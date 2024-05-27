@@ -100,7 +100,7 @@ export default function CreateClient() {
             <CircleHelp className="w-4 h-4" />
             <AlertTitle>Data Usage</AlertTitle>
             <AlertDescription>
-              The data you provide here <b>won't be send on our servers</b>. It will be stored in your browser's session storage only and the URL generated will contain all the data you provided here.
+              The data you provide here <b>won&apos;t be send on our servers</b>. It will be stored in your browser&apos;s session storage only and the URL generated will contain all the data you provided here.
             </AlertDescription>
           </Alert>
 
