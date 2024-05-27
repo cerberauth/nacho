@@ -1,15 +1,7 @@
 import { Server, User } from 'lucide-react'
-import { ChoiceCard } from "@/components/choice-card"
+import { ChoiceCard, type ChoiceCardOption } from "@/components/choice-card"
 
-interface UserInteraction {
-  id: string
-  value: boolean
-  label: string
-  description: string
-  icon: React.ReactNode
-}
-
-const userInteractionOptions: UserInteraction[] = [
+const userInteractionOptions: Array<ChoiceCardOption<boolean>> = [
   {
     id: 'yes',
     value: true,
@@ -32,9 +24,9 @@ type WithUserInteractionChoiceProps = {
 
 export function WithUserInteractionChoice({ onChange }: WithUserInteractionChoiceProps) {
   return (
-    <div>
-      <h3 className="text-2xl font-bold mb-4">How the token will be retrieved?</h3>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <>
+      <h3 className="text-xl font-semibold leading-none tracking-tight mb-2">How the token will be retrieved?</h3>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
         {userInteractionOptions.map((option) => (
           <ChoiceCard
             key={option.id}
@@ -45,6 +37,6 @@ export function WithUserInteractionChoice({ onChange }: WithUserInteractionChoic
           />
         ))}
       </div>
-    </div>
+    </>
   )
 }

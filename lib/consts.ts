@@ -1,14 +1,22 @@
 export enum ApplicationType {
-  spa = 'SPA',
-  webApplication = 'Server Web Application',
-  mobileApplication = 'Mobile Application',
-  machineToMachine = 'Machine to Machine',
-  cli = 'CLI',
-  smartTvAndLimitedInputDevice = 'Smart TV and Limited Input Device',
+  spa = 'spa',
+  webApplication = 'webApplication',
+  mobileApplication = 'mobileApplication',
+  desktopApplication = 'desktopApplication',
+  machineToMachine = 'machineToMachine',
+  cli = 'cli',
+  smartTvAndLimitedInputDevice = 'smartTvAndLimitedInputDevice',
 }
 
 export enum GrantType {
-  authorizationCodeWithPKCE = 'Authorization Code with PKCE',
-  clientCredentials = 'Client Credentials',
-  deviceCode = 'Device Code',
+  authorizationCodeWithPKCE = 'authorizationCodeWithPKCE',
+  clientCredentials = 'clientCredentials',
+  deviceCode = 'deviceCode',
+}
+
+export enum TokenEndpointAuthMethod {
+  none = 'none',
+  clientSecretPost = 'clientSecretPost',
+  clientSecretBasic = 'clientSecretBasic',
+  mtls = 'mtls',
 }

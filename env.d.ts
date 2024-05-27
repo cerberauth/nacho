@@ -1,6 +1,7 @@
 type OAuthClient = {
   applicationType: string
   grantTypes: string[]
+  tokenEndpointAuthMethod: string[]
 
   name: string
   allowedCorsOrigins: string[]
@@ -8,7 +9,6 @@ type OAuthClient = {
   audiences: string[]
   redirectUris: string[]
   frontChannelLogoutUri?: string
-  tokenEndpointAuthMethod: string
 
   contacts: string[]
   uri?: string

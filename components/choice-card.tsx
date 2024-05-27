@@ -1,5 +1,13 @@
 import clsx from 'clsx'
 
+export interface ChoiceCardOption<T=string> {
+  id: string
+  value: T
+  label: string
+  description: string
+  icon: React.ReactNode
+}
+
 type ChoiceCardProps = {
   title: string
   description: string

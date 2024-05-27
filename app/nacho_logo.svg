@@ -1,0 +1,14 @@
+<svg width="485.169" height="482.269" viewBox="0 0 128.368 127.6" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <pattern xlink:href="#a" preserveAspectRatio="xMidYMid" id="b" patternTransform="rotate(40)" x="0" y="0"/>
+        <pattern patternUnits="userSpaceOnUse" width="12" height="12" preserveAspectRatio="xMidYMid" id="a" x="0" y="0" style="fill:#001f3f">
+            <path style="stroke:none;paint-order:markers fill stroke" d="M0 0h10v10H0z"/>
+        </pattern>
+        <path id="c" d="M187.284 188.368h266.3v375.03h-266.3z"/>
+    </defs>
+    <g transform="translate(-40.447 -42.577)">
+        <ellipse style="fill:url(#b);fill-opacity:1;stroke:#001f3f;stroke-width:5.55625;stroke-dasharray:none;stroke-opacity:1" cx="104.833" cy="106.174" rx="55.983" ry="56.081"/>
+        <text xml:space="preserve" transform="matrix(.26458 0 0 .26458 23.608 8.621)" style="font-style:normal;font-variant:normal;font-weight:700;font-stretch:normal;font-size:333.333px;font-family:'Liberation Sans';-inkscape-font-specification:'Liberation Sans Bold';white-space:pre;shape-inside:url(#c);display:inline;fill:#fff;fill-opacity:1;stroke:#001f3f;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"><tspan x="187.283" y="488.618">N</tspan></text>
+        <ellipse style="fill:#fff;fill-opacity:0;stroke:#001f3f;stroke-width:2.325;stroke-dasharray:none;stroke-opacity:1" cx="104.631" cy="106.377" rx="63.021" ry="62.638" fill="none"/>
+    </g>
+</svg>
