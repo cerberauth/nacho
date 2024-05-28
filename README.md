@@ -5,7 +5,7 @@
 ---
 
 [![Join Discord](https://img.shields.io/discord/1242773130137833493?label=Discord&style=for-the-badge)](https://vulnapi.cerberauth.com/discord)
-[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cerberauth/nacho/ci.yml?branch=main&label=core%20build&style=for-the-badge)](https://github.com/cerberauth/vulnapi/actions/workflows/ci.yml)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cerberauth/nacho/main.yml?branch=main&label=core%20build&style=for-the-badge)](https://github.com/cerberauth/nacho/actions/workflows/main.yml)
 [![Github Repo Stars](https://img.shields.io/github/stars/cerberauth/nacho?style=for-the-badge)](https://github.com/cerberauth/nacho)
 
 # Nacho - New OAuth 2.0 (and OpenID Connect) Client Creation Helper

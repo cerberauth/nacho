@@ -3,6 +3,9 @@
 import { ChooseGrantType } from '@/components/choose-grant-type'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { grantTypeName, grantTypeReferences, tokenAuthenticationMethod, tokenAuthenticationMethodReferences } from '@/lib/getters'
+import { ArrowUpRight, SquareArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
 import { useState } from 'react'
 
 export default function GrantTypes() {
@@ -29,8 +32,18 @@ export default function GrantTypes() {
             <CardContent>
               <ul>
                 {selectedGrantTypes.map((type) => (
-                  <li key={type}>
-                    <span>{type}</span>
+                  <li key={type} className="space-y-2">
+                    <span className="underline">{grantTypeName(type)}</span>
+                    <ul className="text-sm my-6 ml-6 list-disc [&>li]:mt-2">
+                      {grantTypeReferences(type).map((reference) => (
+                        <li key={reference}>
+                          <Link href={reference} target="_blank" className="inline-flex">
+                            {reference}
+                            <ArrowUpRight className="w-4 h-4 ml-1" />
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
               </ul>
@@ -45,10 +58,14 @@ export default function GrantTypes() {
             </CardHeader>
 
             <CardContent>
-              <ul>
+              <span className="underline">Possible Authentication Methods</span>
+              <ul className="text-sm my-6 ml-6 list-disc [&>li]:mt-2">
                 {selectedTokenEndpointAuthMethod.map((method) => (
                   <li key={method}>
-                    <span>{method}</span>
+                    <Link href={tokenAuthenticationMethodReferences(method)[0]} target="_blank" className="inline-flex">
+                      {tokenAuthenticationMethod(method)}
+                      <ArrowUpRight className="w-4 h-4 ml-1" />
+                    </Link>
                   </li>
                 ))}
               </ul>

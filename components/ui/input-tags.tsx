@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils";
 import type { InputProps } from "./input";
 
 type InputTagsProps = Omit<InputProps, "value" | "onChange"> & {
-  value: string[];
+  value?: string[];
   onChange: React.Dispatch<React.SetStateAction<string[]>>;
 };
 

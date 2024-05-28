@@ -38,6 +38,7 @@ export default function RootLayout({
           customDomain="https://a.cerberauth.com"
           selfHosted={true}
           trackOutboundLinks={true}
+          taggedEvents={true}
         />
 
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />

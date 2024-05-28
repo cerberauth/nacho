@@ -27,13 +27,13 @@ const createClientSchema = z.object({
 
   name: z.string(),
   uri: z.string().optional(),
-  allowedCorsOrigins: z.array(z.string()),
-  scopes: z.array(z.string()),
-  audiences: z.array(z.string()),
+  allowedCorsOrigins: z.array(z.string()).optional(),
+  scopes: z.array(z.string()).optional(),
+  audiences: z.array(z.string()).optional(),
   redirectUris: z.array(z.string()),
   frontChannelLogoutUri: z.string().optional(),
 
-  contacts: z.array(z.string()),
+  contacts: z.array(z.string()).optional(),
   policyUri: z.string().optional(),
   tosUri: z.string().optional(),
   logoUri: z.string().optional(),
@@ -68,8 +68,12 @@ export default function CreateClient() {
   function onSubmit(data: z.infer<typeof createClientSchema>) {
     const client: OAuthClient = {
       ...data,
+      audiences: data.audiences || [],
+      scopes: data.scopes || [],
+      allowedCorsOrigins: data.allowedCorsOrigins || [],
       grantTypes: data.grantTypes.map(gt => GrantType[gt]),
       applicationType: ApplicationType[data.applicationType],
+      contacts: data.contacts || [],
     }
 
     urlEncode(client).then(encoded => {
@@ -137,7 +141,7 @@ export default function CreateClient() {
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            Allowed CORS Origins <span className="text-red-500">*</span>
+                            Allowed CORS Origins
                           </FormLabel>
                           <FormControl>
                             <InputTags {...field} />
@@ -156,7 +160,7 @@ export default function CreateClient() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Scopes <span className="text-red-500">*</span>
+                          Scopes
                         </FormLabel>
                         <FormControl>
                           <InputTags {...field} />
@@ -174,7 +178,7 @@ export default function CreateClient() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Audiences <span className="text-red-500">*</span>
+                          Audiences
                         </FormLabel>
                         <FormControl>
                           <InputTags {...field} />
@@ -228,7 +232,7 @@ export default function CreateClient() {
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Contacts Email <span className="text-red-500">*</span>
+                          Contacts Email
                         </FormLabel>
                         <FormControl>
                           <InputTags type="email" {...field} />

@@ -1,12 +1,16 @@
 'use client'
 
+export const runtime = 'edge'
+
 import { useEffect, useState } from 'react'
-import { useParams, useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { urlDecode } from '@/lib/url'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
+import { applicationTypeName, grantTypeName, tokenAuthenticationMethod } from '@/lib/getters'
+import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
@@ -58,21 +62,21 @@ export default function ClientPage() {
               <span className="text-muted-foreground">
                 Application Type
               </span>
-              <span>{client.applicationType}</span>
+              <span>{applicationTypeName(client.applicationType as ApplicationType)}</span>
             </li>
 
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">
                 Grant Types
               </span>
-              <span>{client.grantTypes.join(', ')}</span>
+              <span>{client.grantTypes.map(type => grantTypeName(type as GrantType)).join(', ')}</span>
             </li>
 
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">
-                Token Endpoint Auth Method
+                Token Endpoint Authentication Method
               </span>
-              <span>{client.tokenEndpointAuthMethod}</span>
+              <span>{client.tokenEndpointAuthMethod.map(method => tokenAuthenticationMethod(method as TokenEndpointAuthMethod)).join(', ')}</span>
             </li>
           </ul>
 
@@ -140,32 +144,26 @@ export default function ClientPage() {
               </li>
             )}
 
-            {client.logoUri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Logo URI
-                </span>
-                <span>{client.logoUri}</span>
-              </li>
-            )}
+            <li className="flex items-center justify-between">
+              <span className="text-muted-foreground">
+                Logo URI
+              </span>
+              <span>{client.logoUri}</span>
+            </li>
 
-            {client.policyUri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Policy URI
-                </span>
-                <span>{client.policyUri}</span>
-              </li>
-            )}
+            <li className="flex items-center justify-between">
+              <span className="text-muted-foreground">
+                Policy URI
+              </span>
+              <span>{client.policyUri}</span>
+            </li>
 
-            {client.tosUri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Terms of Service URI
-                </span>
-                <span>{client.tosUri}</span>
-              </li>
-            )}
+            <li className="flex items-center justify-between">
+              <span className="text-muted-foreground">
+                Terms of Service URI
+              </span>
+              <span>{client.tosUri}</span>
+            </li>
           </ul>
         </CardContent>
 
