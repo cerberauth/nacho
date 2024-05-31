@@ -1,5 +1,5 @@
 import { Server, User } from 'lucide-react'
-import { ChoiceCard, type ChoiceCardOption } from "@/components/choice-card"
+import { ChoiceCard, MiniChoiceCard, type ChoiceCardOption } from "@/components/choice-card"
 
 const userInteractionOptions: Array<ChoiceCardOption<boolean>> = [
   {
@@ -38,5 +38,22 @@ export function WithUserInteractionChoice({ onChange }: WithUserInteractionChoic
         ))}
       </div>
     </>
+  )
+}
+
+type MiniUserInteractionChoiceCardProps = {
+  className?: string
+  withUserInteraction: boolean
+  onClick: () => void
+}
+
+export function MiniUserInteractionChoiceCard({ className, withUserInteraction, onClick }: MiniUserInteractionChoiceCardProps) {
+  const option = userInteractionOptions.find(option => option.value === withUserInteraction)
+  if (!option) {
+    return null
+  }
+
+  return (
+    <MiniChoiceCard className={className} icon={option.icon} title={option.label} onClick={onClick} />
   )
 }

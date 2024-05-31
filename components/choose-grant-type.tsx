@@ -2,14 +2,14 @@ import { usePlausible } from 'next-plausible'
 import { useState } from 'react'
 
 import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
-import { WithUserInteractionChoice } from './with-user-interaction-choice'
-import { ApplicationTypeChoice } from './application-type/application-type-choice'
-import { BffChoice } from './bff-choice'
+import { MiniUserInteractionChoiceCard, WithUserInteractionChoice } from './with-user-interaction-choice'
+import { ApplicationTypeChoice, MiniApplicationTypeChosenCard } from './application-type/application-type-choice'
+import { BffChoice, MiniBffChoiceCard } from './bff-choice'
 
 const withSecretTokenEndpointAuthMethod = [TokenEndpointAuthMethod.clientSecretBasic, TokenEndpointAuthMethod.clientSecretPost, TokenEndpointAuthMethod.mtls]
 
 type ChooseGrantTypeProps = {
-  onApplicationTypeChange?: (type: ApplicationType) => void
+  onApplicationTypeChange?: (type: ApplicationType | null) => void
   onGrantTypeChange: (grantTypes: Array<GrantType>) => void
   onTokenEndpointAuthMethodChange: (method: Array<TokenEndpointAuthMethod>) => void
 }
@@ -20,16 +20,17 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
   const [applicationType, setApplicationType] = useState<ApplicationType | null>(null)
   const [bff, setBff] = useState<boolean | null>(null)
 
-  const handleUserInteractionChange = (withUserInteraction: boolean) => {
+  const handleUserInteractionChange = (withUserInteraction: boolean | null) => {
+    handleApplicationTypeChange(null)
     plausible('userInteractionChoice', { props: { withUserInteraction } })
     setWithUserInteraction(withUserInteraction)
   }
 
-  const handleApplicationTypeChange = (type: ApplicationType) => {
+  const handleApplicationTypeChange = (type: ApplicationType | null) => {
     plausible('applicationTypeChoice', { props: { applicationType: type } })
     setApplicationType(type)
     if (typeof onApplicationTypeChange === 'function') {
-      onApplicationTypeChange(ApplicationType[type])
+      onApplicationTypeChange(type)
     }
 
     let grantTypes: Array<GrantType> = []
@@ -61,13 +62,17 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
         grantTypes = [GrantType.clientCredentials]
         tokenEndpointAuthMethod = withSecretTokenEndpointAuthMethod
         break
+
+      default:
+        handleBffChange(null)
+        break
     }
 
     onGrantTypeChange(grantTypes)
     onTokenEndpointAuthMethodChange(tokenEndpointAuthMethod)
   }
 
-  const handleBffChange = (value: boolean) => {
+  const handleBffChange = (value: boolean | null) => {
     plausible('bffChoice', { props: { bff: value } })
     setBff(value)
     onTokenEndpointAuthMethodChange(value ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethod.none])
@@ -75,11 +80,25 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
 
   return (
     <div className="text-base leading-6 space-y-4 text-gray-700 sm:leading-7">
-      {!withUserInteraction && (
+      <div className="flex items-center space-x-2">
+        {withUserInteraction !== null && (
+          <MiniUserInteractionChoiceCard withUserInteraction={withUserInteraction} onClick={() => handleUserInteractionChange(null)} />
+        )}
+
+        {applicationType && (
+          <MiniApplicationTypeChosenCard applicationType={applicationType} onClick={() => handleApplicationTypeChange(null)} />
+        )}
+
+        {bff !== null && (
+          <MiniBffChoiceCard bff={bff} onClick={() => handleBffChange(null)} />
+        )}
+      </div>
+
+      {withUserInteraction === null && (
         <WithUserInteractionChoice onChange={handleUserInteractionChange} />
       )}
 
-      {withUserInteraction && !applicationType && (
+      {withUserInteraction !== null && !applicationType && (
         <ApplicationTypeChoice
           withUserInteraction={withUserInteraction}
           onChange={handleApplicationTypeChange}
