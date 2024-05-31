@@ -1,5 +1,5 @@
 import { Check, X } from 'lucide-react'
-import { ChoiceCard, type ChoiceCardOption } from '@/components/choice-card'
+import { ChoiceCard, MiniChoiceCard, type ChoiceCardOption } from '@/components/choice-card'
 
 const bffOptions: Array<ChoiceCardOption<boolean>> = [
   {
@@ -38,5 +38,22 @@ export function BffChoice({ onChange }: BffChoiceProps) {
         ))}
       </div>
     </div>
+  )
+}
+
+type MiniBffChoiceCardProps = {
+  className?: string
+  bff: boolean
+  onClick: () => void
+}
+
+export function MiniBffChoiceCard({ className, bff, onClick }: MiniBffChoiceCardProps) {
+  const option = bffOptions.find(option => option.value === bff)
+  if (!option) {
+    return null
+  }
+
+  return (
+    <MiniChoiceCard className={className} icon={option.icon} title={option.label} onClick={onClick} />
   )
 }

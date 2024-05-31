@@ -65,6 +65,23 @@ export default function CreateClient() {
     sessionStorage.setItem(sessionStorageItem, JSON.stringify(data))
   }, [hasBeenInitialized, data])
 
+  function onApplicationTypeChange(type: ApplicationType | null) {
+    if (type === null) {
+      form.resetField('applicationType')
+      return
+    }
+
+    form.setValue('applicationType', type)
+  }
+
+  function onGrantTypeChange(grantTypes: GrantType[]) {
+    form.setValue('grantTypes', grantTypes)
+  }
+
+  function onTokenEndpointAuthMethodChange(authMethods: TokenEndpointAuthMethod[]) {
+    form.setValue('tokenEndpointAuthMethod', authMethods)
+  }
+
   function onSubmit(data: z.infer<typeof createClientSchema>) {
     const client: OAuthClient = {
       ...data,
@@ -94,9 +111,9 @@ export default function CreateClient() {
           </div>
           <div className="divide-y divide-gray-200">
             <ChooseGrantType
-              onApplicationTypeChange={type => form.setValue('applicationType', type)}
-              onGrantTypeChange={grantTypes => form.setValue('grantTypes', grantTypes)}
-              onTokenEndpointAuthMethodChange={authMethods => form.setValue('tokenEndpointAuthMethod', authMethods)}
+              onApplicationTypeChange={onApplicationTypeChange}
+              onGrantTypeChange={onGrantTypeChange}
+              onTokenEndpointAuthMethodChange={onTokenEndpointAuthMethodChange}
             />
           </div>
 
