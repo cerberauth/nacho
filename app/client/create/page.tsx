@@ -31,7 +31,7 @@ const createClientSchema = z.object({
   scopes: z.array(z.string()).optional(),
   audiences: z.array(z.string()).optional(),
   redirectUris: z.array(z.string()),
-  frontChannelLogoutUri: z.string().optional(),
+  postLogoutRedirectUris: z.array(z.string()).optional(),
 
   contacts: z.array(z.string()).optional(),
   policyUri: z.string().optional(),
@@ -88,6 +88,7 @@ export default function CreateClient() {
       audiences: data.audiences || [],
       scopes: data.scopes || [],
       allowedCorsOrigins: data.allowedCorsOrigins || [],
+      postLogoutRedirectUris: data.postLogoutRedirectUris || [],
       grantTypes: data.grantTypes.map(gt => GrantType[gt]),
       applicationType: ApplicationType[data.applicationType],
       contacts: data.contacts || [],
@@ -227,17 +228,17 @@ export default function CreateClient() {
 
                   <FormField
                     control={form.control}
-                    name="frontChannelLogoutUri"
+                    name="postLogoutRedirectUris"
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          Front Channel Logout URI
+                          Post Logout Redirect URIs
                         </FormLabel>
                         <FormControl>
-                          <Input {...field} />
+                          <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
-                          The Front Channel Logout URI of your application.
+                          List of post logout redirect URIs (comma separated) that your client can redirect to after logout.
                         </FormDescription>
                       </FormItem>
                     )}

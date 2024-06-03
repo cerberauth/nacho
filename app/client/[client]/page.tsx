@@ -112,7 +112,7 @@ export default function ClientPage() {
               <span>{client.audiences.join(', ')}</span>
             </li>
 
-            {client.allowedCorsOrigins.length > 0 && (
+            {Array.isArray(client.allowedCorsOrigins) && client.allowedCorsOrigins.length > 0 && (
               <li className="flex items-center justify-between">
                 <span className="text-muted-foreground">
                   Allowed Origins
@@ -121,12 +121,12 @@ export default function ClientPage() {
               </li>
             )}
 
-            {client.frontChannelLogoutUri && (
+            {Array.isArray(client.postLogoutRedirectUris) && client.postLogoutRedirectUris.length > 0 && (
               <li className="flex items-center justify-between">
                 <span className="text-muted-foreground">
                   Front Channel Logout URI
                 </span>
-                <span>{client.frontChannelLogoutUri}</span>
+                <span>{client.postLogoutRedirectUris.join(', ')}</span>
               </li>
             )}
           </ul>
@@ -144,26 +144,32 @@ export default function ClientPage() {
               </li>
             )}
 
-            <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                Logo URI
-              </span>
-              <span>{client.logoUri}</span>
-            </li>
+            {client.logoUri && (
+              <li className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  Logo URI
+                </span>
+                <span>{client.logoUri}</span>
+              </li>
+            )}
 
-            <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                Policy URI
-              </span>
-              <span>{client.policyUri}</span>
-            </li>
+            {client.policyUri && (
+              <li className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  Policy URI
+                </span>
+                <span>{client.policyUri}</span>
+              </li>
+            )}
 
-            <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                Terms of Service URI
-              </span>
-              <span>{client.tosUri}</span>
-            </li>
+            {client.tosUri && (
+              <li className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  Terms of Service URI
+                </span>
+                <span>{client.tosUri}</span>
+              </li>
+            )}
           </ul>
         </CardContent>
 

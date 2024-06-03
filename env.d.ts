@@ -8,7 +8,7 @@ type OAuthClient = {
   scopes: string[]
   audiences: string[]
   redirectUris: string[]
-  frontChannelLogoutUri?: string
+  postLogoutRedirectUris: string[]
 
   contacts: string[]
   uri?: string
