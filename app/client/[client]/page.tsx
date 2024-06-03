@@ -91,42 +91,58 @@ export default function ClientPage() {
               <span>{client.name}</span>
             </li>
 
-            <li className="flex items-center justify-between">
+            <li className="flex justify-between">
               <span className="text-muted-foreground">
                 Redirect URIs
               </span>
-              <span>{client.redirectUris.join(', ')}</span>
+              <ul>
+                {client.redirectUris.map(uri => (
+                  <li key={uri}>{uri}</li>
+                ))}
+              </ul>
             </li>
 
-            <li className="flex items-center justify-between">
+            <li className="flex justify-between">
               <span className="text-muted-foreground">
                 Scopes
               </span>
               <span>{client.scopes.join(', ')}</span>
             </li>
 
-            <li className="flex items-center justify-between">
+            <li className="flex justify-between">
               <span className="text-muted-foreground">
                 Audiences
               </span>
-              <span>{client.audiences.join(', ')}</span>
+              <ul>
+                {client.audiences.map(audience => (
+                  <li key={audience}>{audience}</li>
+                ))}
+              </ul>
             </li>
 
             {Array.isArray(client.allowedCorsOrigins) && client.allowedCorsOrigins.length > 0 && (
-              <li className="flex items-center justify-between">
+              <li className="flex justify-between">
                 <span className="text-muted-foreground">
                   Allowed Origins
                 </span>
-                <span>{client.allowedCorsOrigins.join(', ')}</span>
+                <ul>
+                  {client.allowedCorsOrigins.map(allowedCorsOrigin => (
+                    <li key={allowedCorsOrigin}>{allowedCorsOrigin}</li>
+                  ))}
+                </ul>
               </li>
             )}
 
             {Array.isArray(client.postLogoutRedirectUris) && client.postLogoutRedirectUris.length > 0 && (
-              <li className="flex items-center justify-between">
+              <li className="flex justify-between">
                 <span className="text-muted-foreground">
                   Front Channel Logout URI
                 </span>
-                <span>{client.postLogoutRedirectUris.join(', ')}</span>
+                <ul>
+                  {client.postLogoutRedirectUris.map(uri => (
+                    <li key={uri}>{uri}</li>
+                  ))}
+                </ul>
               </li>
             )}
           </ul>
