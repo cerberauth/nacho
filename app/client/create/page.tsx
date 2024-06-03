@@ -376,7 +376,7 @@ export default function CreateClient() {
                           Grant Types <span className="text-red-500">*</span>
                         </FormLabel>
                         <FormControl>
-                          <InputTags {...field} disabled />
+                          <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
                           The grant types your client can use.
@@ -394,7 +394,7 @@ export default function CreateClient() {
                           Token Endpoint Auth Method <span className="text-red-500">*</span>
                         </FormLabel>
                         <FormControl>
-                          <InputTags {...field} disabled />
+                          <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
                           The Token Endpoint Auth Method of your application.

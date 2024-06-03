@@ -44,7 +44,7 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
       case ApplicationType.mobileApplication:
       case ApplicationType.desktopApplication:
       case ApplicationType.cli:
-        grantTypes = [GrantType.authorizationCodeWithPKCE]
+        grantTypes = [GrantType.authorizationCodeWithPKCE, GrantType.refreshToken]
         tokenEndpointAuthMethod = [TokenEndpointAuthMethod.none]
         break
 
@@ -54,7 +54,7 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
         break
 
       case ApplicationType.webApplication:
-        grantTypes = [GrantType.authorizationCodeWithPKCE]
+        grantTypes = [GrantType.authorizationCodeWithPKCE, GrantType.refreshToken]
         tokenEndpointAuthMethod = withSecretTokenEndpointAuthMethod
         break
 
