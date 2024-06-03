@@ -10,6 +10,7 @@ export enum ApplicationType {
 
 export enum GrantType {
   authorizationCodeWithPKCE = 'authorizationCodeWithPKCE',
+  refreshToken = 'refreshToken',
   clientCredentials = 'clientCredentials',
   deviceCode = 'deviceCode',
 }
@@ -119,6 +120,14 @@ export const grantTypes = [
     label: 'Device Code',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc8628',
+    ],
+  },
+
+  {
+    id: GrantType.refreshToken,
+    label: 'Refresh Token',
+    references: [
+      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.5',
     ],
   },
 ]
