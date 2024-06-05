@@ -95,7 +95,7 @@ export default function ClientPage() {
               <span className="text-muted-foreground">
                 Redirect URIs
               </span>
-              <ul>
+              <ul className="text-right space-y-2">
                 {client.redirectUris.map(uri => (
                   <li key={uri}>{uri}</li>
                 ))}
@@ -109,23 +109,25 @@ export default function ClientPage() {
               <span>{client.scopes.join(', ')}</span>
             </li>
 
-            <li className="flex justify-between">
-              <span className="text-muted-foreground">
-                Audiences
-              </span>
-              <ul>
-                {client.audiences.map(audience => (
-                  <li key={audience}>{audience}</li>
-                ))}
-              </ul>
-            </li>
+            {Array.isArray(client.audiences) && client.audiences.length > 0 && (
+              <li className="flex justify-between">
+                <span className="text-muted-foreground">
+                  Audiences
+                </span>
+                <ul className="text-right space-y-2">
+                  {client.audiences.map(audience => (
+                    <li key={audience}>{audience}</li>
+                  ))}
+                </ul>
+              </li>
+            )}
 
             {Array.isArray(client.allowedCorsOrigins) && client.allowedCorsOrigins.length > 0 && (
               <li className="flex justify-between">
                 <span className="text-muted-foreground">
                   Allowed Origins
                 </span>
-                <ul>
+                <ul className="text-right space-y-2">
                   {client.allowedCorsOrigins.map(allowedCorsOrigin => (
                     <li key={allowedCorsOrigin}>{allowedCorsOrigin}</li>
                   ))}
@@ -138,7 +140,7 @@ export default function ClientPage() {
                 <span className="text-muted-foreground">
                   Front Channel Logout URI
                 </span>
-                <ul>
+                <ul className="text-right space-y-2">
                   {client.postLogoutRedirectUris.map(uri => (
                     <li key={uri}>{uri}</li>
                   ))}
