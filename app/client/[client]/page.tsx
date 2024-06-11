@@ -2,8 +2,11 @@
 
 export const runtime = 'edge'
 
-import { useEffect, useState } from 'react'
-import { useParams } from 'next/navigation'
+import { useCallback, useEffect, useState } from 'react'
+import { useSession, signIn } from 'next-auth/react'
+import { usePlausible } from 'next-plausible'
+import Link from 'next/link'
+import { useParams, useSearchParams } from 'next/navigation'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { urlDecode } from '@/lib/url'
@@ -15,40 +18,158 @@ import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/const
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
+const testIdOIDCDiscoveryEndpoint = 'https://testid.cerberauth.com/.well-known/openid-configuration'
+const localStorageItem = (id: string) => `testidClient:${id}`
+
+const createShareableLink = (medium: string) => {
+  const url = new URL(window.location.href)
+  url.searchParams.set('utm_source', 'cerberauth')
+  url.searchParams.set('utm_medium', medium)
+  return url.toString()
+}
+
+const createClient = async (client: OAuthClient) => {
+  const response = await fetch('/api/testid/client', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(client),
+  })
+  if (!response.ok) {
+    throw new Error(`Failed to create client: ${response.statusText}`)
+  }
+  return response.json()
+}
+
 export default function ClientPage() {
+  const searchParams = useSearchParams()
+  const session = useSession()
+  const plausible = usePlausible()
   const [client, setClient] = useState<OAuthClient | null>(null)
   const { client: clientEncodedParam } = useParams<{ client: string }>()
+  const [testIdClient, setTestIdClient] = useState<TestIdClient | null>(null)
+
+  const createTestIdClient = useCallback(async () => {
+    if (!client) {
+      return
+    }
+
+    plausible('createTestIdClient')
+    if (session.status === 'unauthenticated') {
+      const callbackUrl = new URL(window.location.href)
+      callbackUrl.searchParams.set('test_id_client', 'created')
+
+      signIn('cerberauth', { callbackUrl: callbackUrl.toString() });
+      return;
+    }
+
+    const newTestIdClient = await createClient(client)
+    plausible('testIdClientCreated')
+    setTestIdClient(newTestIdClient)
+    localStorage.setItem(localStorageItem(client.id || client.name), JSON.stringify(newTestIdClient))
+  }, [client, session, plausible])
 
   useEffect(() => {
     urlDecode(clientEncodedParam).then((data) => setClient(data))
   }, [clientEncodedParam])
+
+  useEffect(() => {
+    if (!client) {
+      return
+    }
+
+    const item = localStorage.getItem(localStorageItem(client.id || client.name))
+    if (item) {
+      setTestIdClient(JSON.parse(item))
+    }
+  }, [client])
+
+  useEffect(() => {
+    if (!client || !searchParams.has('test_id_client') || testIdClient) {
+      return
+    }
+
+    createTestIdClient()
+  }, [client, testIdClient, searchParams, createTestIdClient])
 
   if (!client) {
     return <div>Loading...</div>
   }
 
   const onClipboardCopy = () => {
-    const url = new URL(window.location.href)
-    url.searchParams.set('client', clientEncodedParam)
+    plausible('clientUrlClipboardCopy')
+    const url = createShareableLink('clipboard')
     navigator.clipboard.writeText(url.toString())
   }
 
   const shareByEmail = () => {
-    const url = new URL(window.location.href)
-    url.searchParams.set('client', clientEncodedParam)
-    const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${window.location.href}`)}`
+    plausible('clientShareByEmail')
+    const url = createShareableLink('email')
+    const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${url}`)}`
     window.open(message)
-    console.log(message)
   }
 
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12 space-y-8">
       <div>
-        <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">Client Details</h1>
-        <p className="text-sm text-muted-foreground">
-          Check one last time before you submit it for review and creation.
-        </p>
+        <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2 text-center">{client.name} Client</h1>
       </div>
+
+      {testIdClient ? (
+        <Card>
+          <CardHeader title="Test Client">
+            <CardTitle>Temporary Client</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <p className="text-muted-foreground">
+              A temporary client has been created for you to perform tests. This client will be available for a limited time and will be deleted automatically.
+            </p>
+
+            <Separator className="my-4" />
+
+            <ul className="grid gap-3">
+              <li className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  OpenID Connect Configuration
+                </span>
+                <Link href={testIdOIDCDiscoveryEndpoint} target='_blank'>{testIdOIDCDiscoveryEndpoint}</Link>
+              </li>
+
+              <li className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  Client ID
+                </span>
+                <span>{testIdClient.clientId}</span>
+              </li>
+
+              {testIdClient.clientSecret && (
+                <li className="flex items-center justify-between">
+                  <span className="text-muted-foreground">
+                    Client Secret
+                  </span>
+                  <span>{testIdClient.clientSecret}</span>
+                </li>
+              )}
+            </ul>
+          </CardContent>
+        </Card>
+      ) : (
+        <Card>
+          <CardHeader title="Test Client">
+            <CardTitle>Create a temporary Client</CardTitle>
+          </CardHeader>
+
+          <CardContent>
+            <p className="text-muted-foreground">
+              This will allow you to test the integration in your application while waiting for your real client to be created.
+            </p>
+          </CardContent>
+
+          <CardFooter className="flex justify-end">
+            <Button onClick={createTestIdClient}>Create a Client</Button>
+          </CardFooter>
+        </Card>
+      )}
 
       <Card>
         <CardHeader title="Client Information">
@@ -138,7 +259,7 @@ export default function ClientPage() {
             {Array.isArray(client.postLogoutRedirectUris) && client.postLogoutRedirectUris.length > 0 && (
               <li className="flex justify-between">
                 <span className="text-muted-foreground">
-                  Front Channel Logout URI
+                  Post Logout Redirect URIs
                 </span>
                 <ul className="text-right space-y-2">
                   {client.postLogoutRedirectUris.map(uri => (
@@ -158,7 +279,7 @@ export default function ClientPage() {
                 <span className="text-muted-foreground">
                   URI
                 </span>
-                <span>{client.uri}</span>
+                <Link href={client.uri} target="_blank" rel="nofollow">{client.uri}</Link>
               </li>
             )}
 
@@ -176,7 +297,7 @@ export default function ClientPage() {
                 <span className="text-muted-foreground">
                   Policy URI
                 </span>
-                <span>{client.policyUri}</span>
+                <Link href={client.policyUri} target="_blank" rel="nofollow">{client.policyUri}</Link>
               </li>
             )}
 
@@ -185,7 +306,7 @@ export default function ClientPage() {
                 <span className="text-muted-foreground">
                   Terms of Service URI
                 </span>
-                <span>{client.tosUri}</span>
+                <Link href={client.tosUri} target="_blank" rel="nofollow">{client.tosUri}</Link>
               </li>
             )}
           </ul>
@@ -196,6 +317,6 @@ export default function ClientPage() {
           <Button onClick={shareByEmail}>Share by Email</Button>
         </CardFooter>
       </Card>
-    </main >
+    </main>
   )
 }

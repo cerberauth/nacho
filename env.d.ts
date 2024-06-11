@@ -1,4 +1,5 @@
 type OAuthClient = {
+  id: string
   applicationType: string
   grantTypes: string[]
   tokenEndpointAuthMethod: string[]
@@ -15,4 +16,10 @@ type OAuthClient = {
   policyUri?: string
   tosUri?: string
   logoUri?: string
+}
+
+type TestIdClient = {
+  clientId: string
+  clientSecret: string
+  client: OAuthClient
 }
