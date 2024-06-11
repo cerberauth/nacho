@@ -84,7 +84,7 @@ export default function ClientPage() {
   }, [client])
 
   useEffect(() => {
-    if (!client || !searchParams.has('test_id_client') || testIdClient) {
+    if (!client || !searchParams.has('test_id_client') || localStorage.getItem(localStorageItem(client.id || client.name))) {
       return
     }
 
