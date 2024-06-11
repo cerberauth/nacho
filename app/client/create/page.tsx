@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CircleHelp } from 'lucide-react'
+import { nanoid } from 'nanoid'
 import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 import { useForm } from 'react-hook-form'
@@ -18,7 +19,7 @@ import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/const
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { urlEncode } from '@/lib/url'
 
-const sessionStorageItem = 'client'
+const localStorageItem = 'client'
 
 const createClientSchema = z.object({
   applicationType: z.enum(Object.keys(ApplicationType) as [ApplicationType]),
@@ -52,7 +53,7 @@ export default function CreateClient() {
       return
     }
 
-    const client = sessionStorage.getItem(sessionStorageItem)
+    const client = localStorage.getItem(localStorageItem)
     form.reset(client ? JSON.parse(client) : undefined)
     setHasBeenInitialized(true)
   }, [hasBeenInitialized, form])
@@ -62,7 +63,7 @@ export default function CreateClient() {
       return
     }
 
-    sessionStorage.setItem(sessionStorageItem, JSON.stringify(data))
+    localStorage.setItem(localStorageItem, JSON.stringify(data))
   }, [hasBeenInitialized, data])
 
   function onApplicationTypeChange(type: ApplicationType | null) {
@@ -85,6 +86,7 @@ export default function CreateClient() {
   function onSubmit(data: z.infer<typeof createClientSchema>) {
     const client: OAuthClient = {
       ...data,
+      id: nanoid(),
       audiences: data.audiences || [],
       scopes: data.scopes || [],
       allowedCorsOrigins: data.allowedCorsOrigins || [],
@@ -96,7 +98,7 @@ export default function CreateClient() {
 
     urlEncode(client).then(encoded => {
       router.push(`/client/${encoded}`)
-      sessionStorage.removeItem(sessionStorageItem)
+      localStorage.removeItem(localStorageItem)
     })
   }
 

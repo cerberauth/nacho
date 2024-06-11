@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Head from 'next/head'
+import { SessionProvider } from 'next-auth/react'
 import PlausibleProvider from 'next-plausible'
 import { DefaultSeo, SoftwareAppJsonLd } from 'next-seo'
 import { Inter } from 'next/font/google'
@@ -37,17 +38,19 @@ export default function RootLayout({
       </Head>
 
       <body className={inter.className}>
-        <PlausibleProvider
-          domain="nacho.cerberauth.com"
-          customDomain="https://a.cerberauth.com"
-          selfHosted={true}
-          trackOutboundLinks={true}
-          taggedEvents={true}
-        >
-          <div className="flex min-h-screen w-full flex-col bg-muted/40">
-            {children}
-          </div>
-        </PlausibleProvider>
+        <SessionProvider>
+          <PlausibleProvider
+            domain="nacho.cerberauth.com"
+            customDomain="https://a.cerberauth.com"
+            selfHosted={true}
+            trackOutboundLinks={true}
+            taggedEvents={true}
+          >
+            <div className="flex min-h-screen w-full flex-col bg-muted/40">
+              {children}
+            </div>
+          </PlausibleProvider>
+        </SessionProvider>
       </body>
     </html>
   )
