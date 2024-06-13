@@ -50,6 +50,8 @@ export default function ClientPage() {
   const { client: clientEncodedParam } = useParams<{ client: string }>()
   const [testIdClient, setTestIdClient] = useState<TestIdClient | null>(null)
 
+  console.log(client)
+
   const createTestIdClient = useCallback(async () => {
     if (!client) {
       return

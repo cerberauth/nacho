@@ -6,9 +6,10 @@ import { DefaultSeo, SoftwareAppJsonLd } from 'next-seo'
 import { Inter } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 import { seoConfig } from './seo.config'
+import Header from './header'
 
 export const metadata: Metadata = {
   title: seoConfig.title,
@@ -46,6 +47,8 @@ export default function RootLayout({
             trackOutboundLinks={true}
             taggedEvents={true}
           >
+            <Header />
+
             <div className="flex min-h-screen w-full flex-col bg-muted/40">
               {children}
             </div>
