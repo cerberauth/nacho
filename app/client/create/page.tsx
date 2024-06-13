@@ -103,317 +103,329 @@ export default function CreateClient() {
   }
 
   return (
-    <main className="container mx-auto max-w-4xl px-4 py-12 space-y-8">
+    <main>
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">Create your new client</h1>
-            <p className="text-sm text-muted-foreground">
-              Choose the type of application you are building and the grant type you want to use.
-            </p>
-          </div>
-          <div className="divide-y divide-gray-200">
-            <ChooseGrantType
-              onApplicationTypeChange={onApplicationTypeChange}
-              onGrantTypeChange={onGrantTypeChange}
-              onTokenEndpointAuthMethodChange={onTokenEndpointAuthMethodChange}
-            />
-          </div>
+        <form onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="container mx-auto max-w-4xl px-4 py-12 space-y-4">
+            <div>
+              <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">Create your new client</h1>
+              <p className="text-sm text-muted-foreground">
+                Choose the type of application you are building and the grant type you want to use.
+              </p>
+            </div>
+            <div className="divide-y divide-gray-200">
+              <ChooseGrantType
+                onApplicationTypeChange={onApplicationTypeChange}
+                onGrantTypeChange={onGrantTypeChange}
+                onTokenEndpointAuthMethodChange={onTokenEndpointAuthMethodChange}
+              />
+            </div>
 
-          <Alert className="my-4">
-            <CircleHelp className="w-4 h-4" />
-            <AlertTitle>Data Usage</AlertTitle>
-            <AlertDescription>
-              The data you provide here <b>won&apos;t be send on our servers</b>. It will be stored in your browser&apos;s session storage only and the URL generated will contain all the data you provided here.
-            </AlertDescription>
-          </Alert>
+            <Alert className="my-4">
+              <CircleHelp className="w-4 h-4" />
+              <AlertTitle>Data Usage</AlertTitle>
+              <AlertDescription>
+                The data you provide here <b>won&apos;t be send on our servers</b>. It will be stored in your browser&apos;s session storage only and the URL generated will contain all the data you provided here.
+              </AlertDescription>
+            </Alert>
 
-          <Collapsible title="Client details" open={data.grantTypes?.length > 0}>
-            <CollapsibleContent className="space-y-4">
-              <Card>
-                <CardHeader>
-                  <CardTitle>Technical details</CardTitle>
-                </CardHeader>
+            <Collapsible title="Client details" open={data.grantTypes?.length > 0}>
+              <CollapsibleContent className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Technical details</CardTitle>
+                  </CardHeader>
 
-                <CardContent>
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Name <span className="text-red-500">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          Usually your application friendly name. Will be displayed in the authorization page.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
-
-                  {data.applicationType === ApplicationType.spa && (
+                  <CardContent className="space-y-2">
                     <FormField
                       control={form.control}
-                      name="allowedCorsOrigins"
+                      name="name"
                       render={({ field }) => (
                         <FormItem>
                           <FormLabel>
-                            Allowed CORS Origins
+                            Name <span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            Usually your application friendly name. Will be displayed in the authorization page.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="redirectUris"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Redirect URIs <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
                             <InputTags {...field} />
                           </FormControl>
                           <FormDescription>
-                            List of allowed CORS origins (comma separated) for your JavaScript Application.
+                            List of redirect URIs (comma separated) that your client can redirect to.
                           </FormDescription>
                         </FormItem>
                       )}
                     />
-                  )}
 
-                  <FormField
-                    control={form.control}
-                    name="scopes"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Scopes
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          List of scopes (comma separated) that your client can request.
-                        </FormDescription>
-                      </FormItem>
+                    {data.applicationType === ApplicationType.spa && (
+                      <FormField
+                        control={form.control}
+                        name="allowedCorsOrigins"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>
+                              Allowed CORS Origins
+                            </FormLabel>
+                            <FormControl>
+                              <InputTags {...field} />
+                            </FormControl>
+                            <FormDescription>
+                              List of allowed CORS origins (comma separated) for your JavaScript Application.
+                            </FormDescription>
+                          </FormItem>
+                        )}
+                      />
                     )}
-                  />
 
-                  <FormField
-                    control={form.control}
-                    name="audiences"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Audiences
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          List of audiences (comma separated) that your client can request.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="scopes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Scopes
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            List of scopes (comma separated) that your client can request.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="redirectUris"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Redirect URIs <span className="text-red-500">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          List of redirect URIs (comma separated) that your client can redirect to.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="audiences"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Audiences
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            List of audiences (comma separated) that your client can request.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="postLogoutRedirectUris"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Post Logout Redirect URIs
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          List of post logout redirect URIs (comma separated) that your client can redirect to after logout.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="postLogoutRedirectUris"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Post Logout Redirect URIs
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            List of post logout redirect URIs (comma separated) that your client can redirect to after logout.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
+              </CollapsibleContent>
+            </Collapsible>
 
-                  <FormField
-                    control={form.control}
-                    name="contacts"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Contacts Email
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags type="email" {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          List of contacts email (comma separated) for your client.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
-                </CardContent>
-              </Card>
+            <Collapsible title="UI & Legal Details">
+              <CollapsibleTrigger asChild>
+                <Button variant="link" type="button" className="text-sm">UI & Legal Settings</Button>
+              </CollapsibleTrigger>
 
-              <Card>
-                <CardHeader>
-                  <CardTitle>UI & Legal Details</CardTitle>
-                </CardHeader>
+              <CollapsibleContent className="space-y-4">
+                <Card>
+                  <CardHeader>
+                    <CardTitle>UI & Legal Details</CardTitle>
+                  </CardHeader>
 
-                <CardContent>
-                  <FormField
-                    control={form.control}
-                    name="uri"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Homepage URI
-                        </FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
+                  <CardContent className="space-y-2">
+                    <FormField
+                      control={form.control}
+                      name="contacts"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Contacts Email
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags type="email" {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            List of contacts email (comma separated) for your client.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="policyUri"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Policy URI
-                        </FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="uri"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Homepage URI
+                          </FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="tosUri"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Terms of Service URI
-                        </FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                      </FormItem>
-                    )}
-                  />
+                    <FormField
+                      control={form.control}
+                      name="policyUri"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Policy URI
+                          </FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="logoUri"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Logo URI
-                        </FormLabel>
-                        <FormControl>
-                          <Input {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          The Logo URI of your application. Will be displayed in the authorization page.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
-                </CardContent>
-              </Card>
-            </CollapsibleContent>
-          </Collapsible>
+                    <FormField
+                      control={form.control}
+                      name="tosUri"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Terms of Service URI
+                          </FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                        </FormItem>
+                      )}
+                    />
 
-          <Collapsible title="Advanced settings">
-            <CollapsibleTrigger asChild>
-              <Button variant="link" type="button" className="text-sm">Show advanced settings</Button>
-            </CollapsibleTrigger>
+                    <FormField
+                      control={form.control}
+                      name="logoUri"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Logo URI
+                          </FormLabel>
+                          <FormControl>
+                            <Input {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            The Logo URI of your application. Will be displayed in the authorization page.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
+              </CollapsibleContent>
+            </Collapsible>
 
-            <CollapsibleContent>
-              <Card>
-                <CardHeader>
-                  <CardTitle>Implementation details</CardTitle>
-                </CardHeader>
+            <Collapsible title="Advanced settings">
+              <CollapsibleTrigger asChild>
+                <Button variant="link" type="button" className="text-sm">Show advanced settings</Button>
+              </CollapsibleTrigger>
 
-                <CardContent>
-                  <FormField
-                    control={form.control}
-                    name="applicationType"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Application Type <span className="text-red-500">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <Input {...field} disabled />
-                        </FormControl>
-                        <FormDescription>
-                          The type of application you are building.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
+              <CollapsibleContent>
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Implementation details</CardTitle>
+                  </CardHeader>
 
-                  <FormField
-                    control={form.control}
-                    name="grantTypes"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Grant Types <span className="text-red-500">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          The grant types your client can use.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
+                  <CardContent>
+                    <FormField
+                      control={form.control}
+                      name="applicationType"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Application Type <span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <Input {...field} disabled />
+                          </FormControl>
+                          <FormDescription>
+                            The type of application you are building.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
 
-                  <FormField
-                    control={form.control}
-                    name="tokenEndpointAuthMethod"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>
-                          Token Endpoint Auth Method <span className="text-red-500">*</span>
-                        </FormLabel>
-                        <FormControl>
-                          <InputTags {...field} />
-                        </FormControl>
-                        <FormDescription>
-                          The Token Endpoint Auth Method of your application.
-                        </FormDescription>
-                      </FormItem>
-                    )}
-                  />
-                </CardContent>
-              </Card>
-            </CollapsibleContent>
-          </Collapsible>
+                    <FormField
+                      control={form.control}
+                      name="grantTypes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Grant Types <span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            The grant types your client can use.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
 
-          <Button type="submit" className="w-full" disabled={!form.formState.isValid}>
-            Create client
-          </Button>
+                    <FormField
+                      control={form.control}
+                      name="tokenEndpointAuthMethod"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Token Endpoint Auth Method <span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            The Token Endpoint Auth Method of your application.
+                          </FormDescription>
+                        </FormItem>
+                      )}
+                    />
+                  </CardContent>
+                </Card>
+              </CollapsibleContent>
+            </Collapsible>
+
+            {form.formState.isValid && (
+              <Button type="submit" className="w-full h-12 p-4 shadow-lg" disabled={!form.formState.isValid}>
+                Create client
+              </Button>
+            )}
+          </div>
         </form>
-      </Form>
-    </main>
+      </Form >
+    </main >
   )
 }

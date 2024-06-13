@@ -52,7 +52,7 @@ export function MiniChoiceCard({ className, icon, title, onClick }: MiniChoiceCa
     >
       <div className="flex flex-col items-center space-y-4">
         {icon}
-        <h3 className="w-full max-w-10 text-sm text-center font-semibold">{title}</h3>
+        <h3 className="w-full max-w-48 text-sm text-center font-semibold">{title}</h3>
       </div>
     </div>
   )
