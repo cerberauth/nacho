@@ -14,11 +14,13 @@ import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { applicationTypeName, grantTypeName, tokenAuthenticationMethod } from '@/lib/getters'
 import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { ClipboardIcon } from 'lucide-react'
 
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
-const testIdOIDCDiscoveryEndpoint = 'https://testid.cerberauth.com/.well-known/openid-configuration'
+const issuer = 'https://testid.cerberauth.com/'
+const testIdOIDCDiscoveryEndpoint = `${issuer}.well-known/openid-configuration`
 const localStorageItem = (id: string) => `testidClient:${id}`
 
 const createShareableLink = (medium: string) => {
@@ -95,10 +97,14 @@ export default function ClientPage() {
     return <div>Loading...</div>
   }
 
-  const onClipboardCopy = () => {
+  const onClipboardCopy = (data: string) => {
+    navigator.clipboard.writeText(data)
+  }
+
+  const shareByLink = () => {
     plausible('clientUrlClipboardCopy')
     const url = createShareableLink('clipboard')
-    navigator.clipboard.writeText(url.toString())
+    onClipboardCopy(url.toString())
   }
 
   const shareByEmail = () => {
@@ -132,14 +138,36 @@ export default function ClientPage() {
                 <span className="text-muted-foreground">
                   OpenID Connect Configuration
                 </span>
-                <Link href={testIdOIDCDiscoveryEndpoint} target='_blank'>{testIdOIDCDiscoveryEndpoint}</Link>
+                <div className="space-x-2">
+                  <Link href={testIdOIDCDiscoveryEndpoint} target="_blank" className="text-sm">{testIdOIDCDiscoveryEndpoint}</Link>
+                  <Button variant="outline" size="sm" onClick={() => onClipboardCopy(testIdOIDCDiscoveryEndpoint)}>
+                    <ClipboardIcon className="w-3 h-3" />
+                  </Button>
+                </div>
+              </li>
+
+              <li className="flex items-center justify-between">
+                <span className="text-muted-foreground">
+                  Issuer
+                </span>
+                <div className="space-x-2">
+                  <span className="text-sm">{issuer}</span>
+                  <Button variant="outline" size="sm" onClick={() => onClipboardCopy(issuer)}>
+                    <ClipboardIcon className="w-3 h-3" />
+                  </Button>
+                </div>
               </li>
 
               <li className="flex items-center justify-between">
                 <span className="text-muted-foreground">
                   Client ID
                 </span>
-                <span>{testIdClient.clientId}</span>
+                <div className="space-x-2">
+                  <span className="text-sm">{testIdClient.clientId}</span>
+                  <Button variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientId)}>
+                    <ClipboardIcon className="w-3 h-3" />
+                  </Button>
+                </div>
               </li>
 
               {testIdClient.clientSecret && (
@@ -147,7 +175,12 @@ export default function ClientPage() {
                   <span className="text-muted-foreground">
                     Client Secret
                   </span>
-                  <span>{testIdClient.clientSecret}</span>
+                  <div className="space-x-2">
+                    <span className="text-sm">{testIdClient.clientSecret}</span>
+                    <Button variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientSecret)}>
+                      <ClipboardIcon className="w-3 h-3" />
+                    </Button>
+                  </div>
                 </li>
               )}
             </ul>
@@ -270,50 +303,54 @@ export default function ClientPage() {
             )}
           </ul>
 
-          <Separator className="my-2" />
+          {(client.uri || client.logoUri || client.policyUri || client.tosUri) && (
+            <>
+              <Separator className="my-2" />
 
-          <div className="font-semibold">UI & Legal</div>
-          <ul className="grid gap-3">
-            {client.uri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  URI
-                </span>
-                <Link href={client.uri} target="_blank" rel="nofollow">{client.uri}</Link>
-              </li>
-            )}
+              <div className="font-semibold">UI & Legal</div>
+              <ul className="grid gap-3">
+                {client.uri && (
+                  <li className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      URI
+                    </span>
+                    <Link href={client.uri} target="_blank" rel="nofollow">{client.uri}</Link>
+                  </li>
+                )}
 
-            {client.logoUri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Logo URI
-                </span>
-                <span>{client.logoUri}</span>
-              </li>
-            )}
+                {client.logoUri && (
+                  <li className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      Logo URI
+                    </span>
+                    <span>{client.logoUri}</span>
+                  </li>
+                )}
 
-            {client.policyUri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Policy URI
-                </span>
-                <Link href={client.policyUri} target="_blank" rel="nofollow">{client.policyUri}</Link>
-              </li>
-            )}
+                {client.policyUri && (
+                  <li className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      Policy URI
+                    </span>
+                    <Link href={client.policyUri} target="_blank" rel="nofollow">{client.policyUri}</Link>
+                  </li>
+                )}
 
-            {client.tosUri && (
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Terms of Service URI
-                </span>
-                <Link href={client.tosUri} target="_blank" rel="nofollow">{client.tosUri}</Link>
-              </li>
-            )}
-          </ul>
+                {client.tosUri && (
+                  <li className="flex items-center justify-between">
+                    <span className="text-muted-foreground">
+                      Terms of Service URI
+                    </span>
+                    <Link href={client.tosUri} target="_blank" rel="nofollow">{client.tosUri}</Link>
+                  </li>
+                )}
+              </ul>
+            </>
+          )}
         </CardContent>
 
         <CardFooter className="flex justify-end gap-2">
-          <Button variant="outline" onClick={onClipboardCopy}>Copy Link</Button>
+          <Button variant="outline" onClick={shareByLink}>Copy Link</Button>
           <Button onClick={shareByEmail}>Share by Email</Button>
         </CardFooter>
       </Card>
