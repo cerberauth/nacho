@@ -19,8 +19,8 @@ import { ClipboardIcon } from 'lucide-react'
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
-const issuer = 'https://testid.cerberauth.com/'
-const testIdOIDCDiscoveryEndpoint = `${issuer}.well-known/openid-configuration`
+const issuer = 'https://testid.cerberauth.com'
+const testIdOIDCDiscoveryEndpoint = `${issuer}/.well-known/openid-configuration`
 const localStorageItem = (id: string) => `testidClient:${id}`
 
 const createShareableLink = (medium: string) => {
