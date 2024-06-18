@@ -1,8 +1,7 @@
 'use client'
 
-export const runtime = 'edge'
-
 import { useCallback, useEffect, useState } from 'react'
+import { ClipboardIcon } from 'lucide-react'
 import { useSession, signIn } from 'next-auth/react'
 import { usePlausible } from 'next-plausible'
 import Link from 'next/link'
@@ -14,8 +13,8 @@ import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { applicationTypeName, grantTypeName, tokenAuthenticationMethod } from '@/lib/getters'
 import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
-import { ClipboardIcon } from 'lucide-react'
 
+export const runtime = 'edge'
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
@@ -199,7 +198,7 @@ export default function ClientPage() {
           </CardContent>
 
           <CardFooter className="flex justify-end">
-            <Button onClick={createTestIdClient}>Create a Client</Button>
+            <Button onClick={createTestIdClient}>Create a Test Client</Button>
           </CardFooter>
         </Card>
       )}
@@ -210,7 +209,6 @@ export default function ClientPage() {
         </CardHeader>
 
         <CardContent className="grid gap-3">
-          <div className="font-semibold">Implementation Recommendations</div>
           <ul className="grid gap-3">
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">
@@ -260,7 +258,7 @@ export default function ClientPage() {
               <span className="text-muted-foreground">
                 Scopes
               </span>
-              <span>{client.scopes.join(', ')}</span>
+              <span>{client.scopes.join(' ')}</span>
             </li>
 
             {Array.isArray(client.audiences) && client.audiences.length > 0 && (

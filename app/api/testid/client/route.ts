@@ -37,11 +37,11 @@ export async function POST(req: Request, res: NextApiResponse) {
         switch (type) {
           case GrantType.authorizationCodeWithPKCE:
             return 'authorization_code';
-          case 'refreshToken':
+          case GrantType.refreshToken:
             return 'refresh_token';
-          case 'clientCredentials':
+          case GrantType.clientCredentials:
             return 'client_credentials';
-          case 'deviceCode':
+          case GrantType.deviceCode:
             return 'urn:ietf:params:oauth:grant-type:device_code';
           default:
             return type;
