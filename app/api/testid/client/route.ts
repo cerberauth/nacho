@@ -41,7 +41,7 @@ export async function POST(req: Request, res: NextApiResponse) {
     body: JSON.stringify({
       grant_types: clientData.grantTypes.map((type) => {
         switch (type) {
-          case GrantType.authorizationCodeWithPKCE:
+          case GrantType.authorizationCode:
             return 'authorization_code';
           case GrantType.refreshToken:
             return 'refresh_token';

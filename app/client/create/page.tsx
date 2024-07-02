@@ -91,7 +91,7 @@ export default function CreateClient() {
       scopes: data.scopes || [],
       allowedCorsOrigins: data.allowedCorsOrigins || [],
       postLogoutRedirectUris: data.postLogoutRedirectUris || [],
-      grantTypes: data.grantTypes.map(gt => GrantType[gt]),
+      grantTypes: data.grantTypes,
       applicationType: ApplicationType[data.applicationType],
       contacts: data.contacts || [],
     }
