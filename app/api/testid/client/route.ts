@@ -4,6 +4,12 @@ import { GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
 
 export const runtime = 'edge'
 
+type OpenIDConnectProviderResponse = {
+  client_id: string
+  client_secret: string
+  client: OAuthClient
+}
+
 export async function POST(req: Request, res: NextApiResponse) {
   const clientData = await req.json() as OAuthClient
   if (!clientData) {
@@ -66,11 +72,12 @@ export async function POST(req: Request, res: NextApiResponse) {
   if (!response.ok) {
     throw new Error(`Failed to register client: ${response.statusText}`)
   }
-  const data = await response.json()
-
-  return Response.json({
+  const data = await response.json<OpenIDConnectProviderResponse>()
+  const responseData: TestIdClient = {
     clientId: data.client_id,
     clientSecret: data.client_secret,
     client: clientData,
-  })
+  }
+
+  return Response.json(responseData, { status: 201 })
 }
