@@ -1,12 +1,13 @@
 'use client'
 
+import { ArrowUpRight } from 'lucide-react'
+import Link from 'next/link'
+import { useState } from 'react'
+
 import { ChooseGrantType } from '@/components/choose-grant-type'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import type { GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
 import { grantTypeName, grantTypeReferences, tokenAuthenticationMethod, tokenAuthenticationMethodReferences } from '@/lib/getters'
-import { ArrowUpRight, SquareArrowUpRight } from 'lucide-react'
-import Link from 'next/link'
-import { useState } from 'react'
 
 export default function GrantTypes() {
   const [selectedGrantTypes, setSelectedGrantTypes] = useState<GrantType[] | null>(null)

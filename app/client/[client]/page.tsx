@@ -38,7 +38,7 @@ const createClient = async (client: OAuthClient) => {
   if (!response.ok) {
     throw new Error(`Failed to create client: ${response.statusText}`)
   }
-  return response.json()
+  return response.json<TestIdClient>()
 }
 
 export default function ClientPage() {

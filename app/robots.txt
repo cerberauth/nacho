@@ -1,0 +1,4 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://nacho.cerberauth.com/sitemap.xml

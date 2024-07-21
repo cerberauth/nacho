@@ -13,6 +13,7 @@ import { seoConfig } from './seo.config'
 export const metadata: Metadata = {
   title: seoConfig.title,
   description: seoConfig.description,
+  metadataBase: new URL(seoConfig.canonical!),
 }
 
 export default function RootLayout({
