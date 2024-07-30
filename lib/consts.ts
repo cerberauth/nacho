@@ -9,16 +9,19 @@ export enum ApplicationType {
 }
 
 export enum GrantType {
-  authorizationCodeWithPKCE = 'authorizationCodeWithPKCE',
-  refreshToken = 'refreshToken',
-  clientCredentials = 'clientCredentials',
-  deviceCode = 'deviceCode',
+  authorizationCode = 'authorization_code',
+  pkce = 'pkce',
+  refreshToken = 'refresh_token',
+  clientCredentials = 'client_credentials',
+  implicit = 'implicit',
+  jwtBearer = 'urn:ietf:params:oauth:grant-type:jwt-bearer',
+  deviceCode = 'urn:ietf:params:oauth:grant-type:device_code',
 }
 
 export enum TokenEndpointAuthMethod {
   none = 'none',
-  clientSecretPost = 'clientSecretPost',
-  clientSecretBasic = 'clientSecretBasic',
+  clientSecretPost = 'client_secret_post',
+  clientSecretBasic = 'client_secret_basic',
   mtls = 'mtls',
 }
 
@@ -99,11 +102,26 @@ export const applicationTypes = [
 
 export const grantTypes = [
   {
-    id: GrantType.authorizationCodeWithPKCE,
-    label: 'Authorization Code with PKCE',
+    id: GrantType.authorizationCode,
+    label: 'Authorization Code',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1',
+    ],
+  },
+
+  {
+    id: GrantType.pkce,
+    label: 'PKCE',
+    references: [
       'https://tools.ietf.org/html/rfc7636',
+    ],
+  },
+
+  {
+    id: GrantType.refreshToken,
+    label: 'Refresh Token',
+    references: [
+      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.5',
     ],
   },
 
@@ -124,10 +142,18 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.refreshToken,
-    label: 'Refresh Token',
+    id: GrantType.implicit,
+    label: 'Implicit',
     references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.5',
+      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2',
+    ],
+  },
+
+  {
+    id: GrantType.jwtBearer,
+    label: 'JWT Bearer',
+    references: [
+      'https://datatracker.ietf.org/doc/html/rfc7523',
     ],
   },
 ]

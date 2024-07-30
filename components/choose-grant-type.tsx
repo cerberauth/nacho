@@ -37,14 +37,14 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
     let tokenEndpointAuthMethod: Array<TokenEndpointAuthMethod> = []
     switch (type) {
       case ApplicationType.spa:
-        grantTypes = [GrantType.authorizationCodeWithPKCE]
+        grantTypes = [GrantType.authorizationCode, GrantType.pkce]
         tokenEndpointAuthMethod = bff ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethod.none]
         break
 
       case ApplicationType.mobileApplication:
       case ApplicationType.desktopApplication:
       case ApplicationType.cli:
-        grantTypes = [GrantType.authorizationCodeWithPKCE, GrantType.refreshToken]
+        grantTypes = [GrantType.authorizationCode, GrantType.pkce, GrantType.refreshToken]
         tokenEndpointAuthMethod = [TokenEndpointAuthMethod.none]
         break
 
@@ -54,7 +54,7 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
         break
 
       case ApplicationType.webApplication:
-        grantTypes = [GrantType.authorizationCodeWithPKCE, GrantType.refreshToken]
+        grantTypes = [GrantType.authorizationCode, GrantType.pkce, GrantType.refreshToken]
         tokenEndpointAuthMethod = withSecretTokenEndpointAuthMethod
         break
 
