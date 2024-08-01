@@ -32,7 +32,7 @@
     "@radix-ui/react-tooltip": "1.1.2",
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
-    "lucide-react": "0.417.0",
+    "lucide-react": "0.419.0",
     "nanoid": "5.0.7",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.20",
@@ -59,6 +59,6 @@
     "tailwindcss": "3.4.7",
     "typescript": "5",
     "vercel": "35.2.2",
-    "wrangler": "3.67.1"
+    "wrangler": "3.68.0"
   }
 }
