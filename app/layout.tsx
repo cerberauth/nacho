@@ -3,12 +3,18 @@ import Head from 'next/head'
 import { SessionProvider } from 'next-auth/react'
 import PlausibleProvider from 'next-plausible'
 import { DefaultSeo, SoftwareAppJsonLd } from 'next-seo'
-import { Inter } from 'next/font/google'
+import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 
-const inter = Inter({ subsets: ["latin"] });
+const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+})
+
+import { cn } from '@/lib/utils'
 
 import { seoConfig } from './seo.config'
+import Header from './header'
 
 export const metadata: Metadata = {
   title: seoConfig.title,
@@ -38,7 +44,10 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <body className={inter.className}>
+      <body className={cn(
+        "min-h-screen bg-background font-sans antialiased",
+        fontSans.variable
+      )}>
         <SessionProvider>
           <PlausibleProvider
             domain="nacho.cerberauth.com"
@@ -47,9 +56,9 @@ export default function RootLayout({
             trackOutboundLinks={true}
             taggedEvents={true}
           >
-            <div className="flex min-h-screen w-full flex-col bg-muted/40">
-              {children}
-            </div>
+            <Header />
+
+            {children}
           </PlausibleProvider>
         </SessionProvider>
       </body>

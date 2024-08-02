@@ -1,5 +1,5 @@
-import type { NextApiResponse } from 'next'
 import { auth } from '@/auth'
+
 import { GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
 
 export const runtime = 'edge'
@@ -10,15 +10,14 @@ type OpenIDConnectProviderResponse = {
   client: OAuthClient
 }
 
-export async function POST(req: Request, res: NextApiResponse) {
+export const POST = auth(async (req) => {
   const clientData = await req.json() as OAuthClient
   if (!clientData) {
-    return res.status(400).send('Missing client data')
+    return new Response(null, { status: 400 })
   }
 
-  const session = await auth()
-  if (!session?.token) {
-    return new Response('You must be logged in.', { status: 401 })
+  if (!(req.auth?.token && req.auth?.user?.id)) {
+    return new Response(null, { status: 401 })
   }
 
   let method = clientData.tokenEndpointAuthMethod?.[0];
@@ -35,7 +34,7 @@ export async function POST(req: Request, res: NextApiResponse) {
   const response = await fetch('https://testid.cerberauth.com/oauth2/register', {
     method: 'POST',
     headers: {
-      'Authorization': `Bearer ${session.token}`,
+      'Authorization': `Bearer ${req.auth.token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -47,8 +46,6 @@ export async function POST(req: Request, res: NextApiResponse) {
             return 'refresh_token';
           case GrantType.clientCredentials:
             return 'client_credentials';
-          case GrantType.deviceCode:
-            return 'urn:ietf:params:oauth:grant-type:device_code';
           default:
             return type;
         }
@@ -62,6 +59,7 @@ export async function POST(req: Request, res: NextApiResponse) {
       redirect_uris: clientData.redirectUris,
       post_logout_redirect_uris: clientData.postLogoutRedirectUris,
 
+      owner: req.auth.user.id,
       contacts: clientData.contacts,
       client_uri: clientData.uri,
       policy_uri: clientData.policyUri,
@@ -70,7 +68,7 @@ export async function POST(req: Request, res: NextApiResponse) {
     }),
   })
   if (!response.ok) {
-    throw new Error(`Failed to register client: ${response.statusText}`)
+    return new Response(null, { status: response.status })
   }
   const data = await response.json<OpenIDConnectProviderResponse>()
   const responseData: TestIdClient = {
@@ -80,4 +78,4 @@ export async function POST(req: Request, res: NextApiResponse) {
   }
 
   return Response.json(responseData, { status: 201 })
-}
+})

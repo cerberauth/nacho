@@ -22,8 +22,8 @@ import { urlEncode } from '@/lib/url'
 const localStorageItem = 'client'
 
 const createClientSchema = z.object({
-  applicationType: z.enum(Object.keys(ApplicationType) as [ApplicationType]),
-  grantTypes: z.array(z.enum(Object.keys(GrantType) as [GrantType])),
+  applicationType: z.enum(Object.values(ApplicationType) as [ApplicationType]),
+  grantTypes: z.array(z.enum(Object.values(GrantType) as [GrantType])),
   tokenEndpointAuthMethod: z.array(z.enum(Object.keys(TokenEndpointAuthMethod) as [TokenEndpointAuthMethod])),
 
   name: z.string(),
@@ -106,7 +106,7 @@ export default function CreateClient() {
     <main>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <div className="container mx-auto max-w-4xl px-4 py-12 space-y-4">
+          <main className="container mx-auto max-w-4xl px-4 py-12 pb-28 space-y-4">
             <div>
               <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">Create your new client</h1>
               <p className="text-sm text-muted-foreground">
@@ -120,14 +120,6 @@ export default function CreateClient() {
                 onTokenEndpointAuthMethodChange={onTokenEndpointAuthMethodChange}
               />
             </div>
-
-            <Alert className="my-4">
-              <CircleHelp className="w-4 h-4" />
-              <AlertTitle>Data Usage</AlertTitle>
-              <AlertDescription>
-                The data you provide here <b>won&apos;t be send on our servers</b>. It will be stored in your browser&apos;s session storage only and the URL generated will contain all the data you provided here.
-              </AlertDescription>
-            </Alert>
 
             <Collapsible title="Client details" open={data.grantTypes?.length > 0}>
               <CollapsibleContent className="space-y-4">
@@ -356,28 +348,10 @@ export default function CreateClient() {
               <CollapsibleContent>
                 <Card>
                   <CardHeader>
-                    <CardTitle>Implementation details</CardTitle>
+                    <CardTitle>Advanced Settings</CardTitle>
                   </CardHeader>
 
                   <CardContent>
-                    <FormField
-                      control={form.control}
-                      name="applicationType"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>
-                            Application Type <span className="text-red-500">*</span>
-                          </FormLabel>
-                          <FormControl>
-                            <Input {...field} disabled />
-                          </FormControl>
-                          <FormDescription>
-                            The type of application you are building.
-                          </FormDescription>
-                        </FormItem>
-                      )}
-                    />
-
                     <FormField
                       control={form.control}
                       name="grantTypes"
@@ -418,12 +392,25 @@ export default function CreateClient() {
               </CollapsibleContent>
             </Collapsible>
 
-            {form.formState.isValid && (
-              <Button type="submit" className="w-full h-12 p-4 shadow-lg" disabled={!form.formState.isValid}>
-                Create client
+            <Alert className="my-4">
+              <CircleHelp className="w-4 h-4" />
+              <AlertTitle>Data Usage</AlertTitle>
+              <AlertDescription>
+                The data you provide here <b>won&apos;t be send to our servers</b>. Only browser local storage and URL encoding is used to store and share the data.
+              </AlertDescription>
+            </Alert>
+          </main>
+
+          <footer className="fixed bottom-0 w-full border-t-2 border-t-primary-500 py-4 bg-white">
+            <div className="container mx-auto max-w-4xl w-full px-4 flex justify-end">
+              <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="mr-4">
+                Cancel
               </Button>
-            )}
-          </div>
+              <Button type="submit" size="lg" disabled={!form.formState.isValid}>
+                Create
+              </Button>
+            </div>
+          </footer>
         </form>
       </Form >
     </main >
