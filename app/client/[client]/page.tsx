@@ -29,7 +29,7 @@ const createShareableLink = (medium: string) => {
   return url.toString()
 }
 
-const createClient = async (client: OAuthClient) => {
+const createClient = async (client: OAuthClient): Promise<TestIdClient> => {
   const response = await fetch('/api/testid/client', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -38,7 +38,7 @@ const createClient = async (client: OAuthClient) => {
   if (!response.ok) {
     throw new Error(`Failed to create client: ${response.statusText}`)
   }
-  return response.json<TestIdClient>()
+  return response.json()
 }
 
 export default function ClientPage() {
@@ -54,7 +54,13 @@ export default function ClientPage() {
       return
     }
 
-    plausible('createTestIdClient')
+    plausible('createTestIdClient', {
+      props: {
+        applicationType: client.applicationType,
+        tokenEndpointAuthMethod: client.tokenEndpointAuthMethod,
+        grantTypes: client.grantTypes,
+      }
+    })
     if (session.status === 'unauthenticated') {
       const callbackUrl = new URL(window.location.href)
       callbackUrl.searchParams.set('test_id_client', 'created')
@@ -64,7 +70,6 @@ export default function ClientPage() {
     }
 
     const newTestIdClient = await createClient(client)
-    plausible('testIdClientCreated')
     setTestIdClient(newTestIdClient)
     localStorage.setItem(localStorageItem(client.id || client.name), JSON.stringify(newTestIdClient))
   }, [client, session, plausible])
@@ -101,13 +106,13 @@ export default function ClientPage() {
   }
 
   const shareByLink = () => {
-    plausible('clientUrlClipboardCopy')
+    plausible('clientUrlClipboardCopy', { props: {} })
     const url = createShareableLink('clipboard')
     onClipboardCopy(url.toString())
   }
 
   const shareByEmail = () => {
-    plausible('clientShareByEmail')
+    plausible('clientShareByEmail', { props: {} })
     const url = createShareableLink('email')
     const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${url}`)}`
     window.open(message)
