@@ -30,7 +30,7 @@ const createShareableLink = (medium: string) => {
 }
 
 const createClient = async (client: OAuthClient): Promise<TestIdClient> => {
-  const response = await fetch('/api/testid/client', {
+  const response = await fetch('/api/testid/clients', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(client),
