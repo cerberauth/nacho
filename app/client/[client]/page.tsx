@@ -156,7 +156,7 @@ export default function ClientPage() {
                 </span>
                 <div className="space-x-2">
                   <span className="text-sm">{issuer}</span>
-                  <Button variant="outline" size="sm" onClick={() => onClipboardCopy(issuer)}>
+                  <Button className="active:bg-primary/80" variant="outline" size="sm" onClick={() => onClipboardCopy(issuer)}>
                     <ClipboardIcon className="w-3 h-3" />
                   </Button>
                 </div>
@@ -168,7 +168,7 @@ export default function ClientPage() {
                 </span>
                 <div className="space-x-2">
                   <span className="text-sm">{testIdClient.clientId}</span>
-                  <Button variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientId)}>
+                  <Button className="active:bg-primary/80" variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientId)}>
                     <ClipboardIcon className="w-3 h-3" />
                   </Button>
                 </div>
@@ -181,7 +181,7 @@ export default function ClientPage() {
                   </span>
                   <div className="space-x-2">
                     <span className="text-sm">{testIdClient.clientSecret}</span>
-                    <Button variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientSecret)}>
+                    <Button className="active:bg-primary/80" variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientSecret)}>
                       <ClipboardIcon className="w-3 h-3" />
                     </Button>
                   </div>
@@ -353,7 +353,7 @@ export default function ClientPage() {
         </CardContent>
 
         <CardFooter className="flex justify-end gap-2">
-          <Button variant="outline" onClick={shareByLink}>Copy Link</Button>
+          <Button className="active:bg-secondary/50" variant="outline" onClick={shareByLink}>Copy Link</Button>
           <Button onClick={shareByEmail}>Share by Email</Button>
         </CardFooter>
       </Card>
