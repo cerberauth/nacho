@@ -33,7 +33,7 @@
     "class-variance-authority": "0.7.0",
     "clsx": "2.1.1",
     "gravatar-url": "4.0.1",
-    "lucide-react": "0.427.0",
+    "lucide-react": "0.428.0",
     "nanoid": "5.0.7",
     "next": "14.2.5",
     "next-auth": "5.0.0-beta.20",
@@ -60,6 +60,6 @@
     "tailwindcss": "3.4.10",
     "typescript": "5",
     "vercel": "35.2.4",
-    "wrangler": "3.71.0"
+    "wrangler": "3.72.0"
   }
 }
