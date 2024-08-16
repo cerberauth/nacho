@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "SPA",
+  "description": "Single Page Application with OpenID Connect.",
+  "identifier": "spa",
+  "icon": {
+    "contentUrl": ""
+  },
+  "technologies": [
+    "javascript"
+  ],
+  "client": {
+    "applicationType": "spa",
+    "grantTypes": [
+      "authorization_code",
+      "pkce"
+    ],
+    "tokenEndpointAuthMethods": [
+      "none"
+    ],
+    "scopes": [
+      "openid",
+      "profile",
+      "email"
+    ]
+  }
+}

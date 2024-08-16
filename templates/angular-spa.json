@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Angular SPA",
+  "description": "Angular Single Page Application with OpenID Connect.",
+  "identifier": "angular-spa",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/angular.svg"
+  },
+  "technologies": [
+    "javascript",
+    "angular"
+  ],
+  "example": {
+    "name": "Angular SPA Example",
+    "url": "https://cerberauth-angular-spa-oidc.pages.dev/",
+    "repository": {
+      "url": "https://github.com/cerberauth/openid-connect-examples/tree/main/examples/angular-spa"
+    }
+  },
+  "client": {
+    "applicationType": "spa",
+    "grantTypes": [
+      "authorization_code",
+      "pkce"
+    ],
+    "tokenEndpointAuthMethods": [
+      "none"
+    ],
+    "scopes": [
+      "openid",
+      "profile",
+      "email"
+    ]
+  }
+}

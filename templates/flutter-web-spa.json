@@ -1,0 +1,29 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Flutter (Web) SPA",
+  "description": "Flutter (Web) Single Page Application with OpenID Connect.",
+  "identifier": "flutter-web-spa",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/flutter.svg"
+  },
+  "technologies": [
+    "javascript",
+    "dart",
+    "flutter"
+  ],
+  "client": {
+    "applicationType": "spa",
+    "grantTypes": [
+      "authorization_code",
+      "pkce"
+    ],
+    "tokenEndpointAuthMethods": [
+      "none"
+    ],
+    "scopes": [
+      "openid",
+      "profile",
+      "email"
+    ]
+  }
+}

@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-
+import { templates } from '@/templates'
 import { url } from './seo.config'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -22,5 +22,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    ...templates.map((template) => ({
+      url: `${url}templates/${template.identifier}`,
+      lastModified: new Date(),
+      priority: 1,
+    })),
   ]
 }
