@@ -4,7 +4,7 @@
 interface CloudflareEnv {
 }
 
-type OAuthClient = {
+type OAuth2Client = {
   id: string
   applicationType: string
   grantTypes: string[]
@@ -27,5 +27,11 @@ type OAuthClient = {
 type TestIdClient = {
   clientId: string
   clientSecret: string
-  client: OAuthClient
+  client: OAuth2Client
+}
+
+type Client = {
+  client: OAuth2Client
+  testIdClient?: TestIdClient
+  url: string
 }

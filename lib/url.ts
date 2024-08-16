@@ -13,20 +13,19 @@ async function compress(input: string): Promise<ArrayBuffer> {
 async function decompress(input: ArrayBuffer): Promise<string> {
   const ds = new DecompressionStream('gzip')
   const writer = ds.writable.getWriter()
-  const decoder = new TextDecoder()
   writer.write(input)
   writer.close()
   const decompressedData = await new Response(ds.readable).text()
   return decompressedData
 }
 
-export async function urlEncode(client: OAuthClient): Promise<string> {
+export async function urlEncode(client: OAuth2Client): Promise<string> {
   const string = JSON.stringify(client)
   const compressed = await compress(string)
   return encodeURIComponent(btoa(String.fromCharCode(...new Uint8Array(compressed))))
 }
 
-export async function urlDecode(encoded: string): Promise<OAuthClient> {
+export async function urlDecode(encoded: string): Promise<OAuth2Client> {
   const byteArray = new Uint8Array(atob(decodeURIComponent(encoded)).split('').map((c: string) => c.charCodeAt(0)))
   const decompressed = await decompress(byteArray)
   return JSON.parse(decompressed)

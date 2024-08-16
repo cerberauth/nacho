@@ -1,18 +1,20 @@
 'use client'
 
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { ClipboardIcon } from 'lucide-react'
+import { nanoid } from 'nanoid'
 import { useSession, signIn } from 'next-auth/react'
 import { usePlausible } from 'next-plausible'
 import Link from 'next/link'
-import { useParams, useSearchParams } from 'next/navigation'
+import { useParams, useRouter, useSearchParams } from 'next/navigation'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { urlDecode } from '@/lib/url'
+import { urlDecode, urlEncode } from '@/lib/url'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { applicationTypeName, grantTypeName, tokenAuthenticationMethod } from '@/lib/getters'
 import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { getClientById, saveClient } from '@/lib/clients'
 
 export const runtime = 'edge'
 export const dynamic = 'force-static'
@@ -29,7 +31,7 @@ const createShareableLink = (medium: string) => {
   return url.toString()
 }
 
-const createClient = async (client: OAuthClient): Promise<TestIdClient> => {
+const createClient = async (client: OAuth2Client): Promise<TestIdClient> => {
   const response = await fetch('/api/testid/clients', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -42,12 +44,14 @@ const createClient = async (client: OAuthClient): Promise<TestIdClient> => {
 }
 
 export default function ClientPage() {
+  const router = useRouter()
   const searchParams = useSearchParams()
   const session = useSession()
   const plausible = usePlausible()
-  const [client, setClient] = useState<OAuthClient | null>(null)
   const { client: clientEncodedParam } = useParams<{ client: string }>()
-  const [testIdClient, setTestIdClient] = useState<TestIdClient | null>(null)
+  const [client, setClient] = useState<OAuth2Client | undefined>()
+  const [testIdClient, setTestIdClient] = useState<TestIdClient | undefined>()
+  const url = useMemo(() => `/clients/${clientEncodedParam}`, [clientEncodedParam])
 
   const createTestIdClient = useCallback(async () => {
     if (!client) {
@@ -71,23 +75,34 @@ export default function ClientPage() {
 
     const newTestIdClient = await createClient(client)
     setTestIdClient(newTestIdClient)
-    localStorage.setItem(localStorageItem(client.id || client.name), JSON.stringify(newTestIdClient))
-  }, [client, session, plausible])
+    saveClient({
+      client,
+      testIdClient: newTestIdClient,
+      url,
+    })
+  }, [url, client, session, plausible])
 
   useEffect(() => {
-    urlDecode(clientEncodedParam).then((data) => setClient(data))
-  }, [clientEncodedParam])
+    urlDecode(clientEncodedParam)
+      .then(async (data) => {
+        if (!data.id) {
+          data.id = nanoid()
+          const newEncodedParam = await urlEncode(data)
+          return router.push(`/clients/${newEncodedParam}`)
+        }
 
-  useEffect(() => {
-    if (!client) {
-      return
-    }
+        let client = getClientById(data.id)
+        if (!client) {
+          client = saveClient({
+            client: data,
+            url,
+          })
+        }
 
-    const item = localStorage.getItem(localStorageItem(client.id || client.name))
-    if (item) {
-      setTestIdClient(JSON.parse(item))
-    }
-  }, [client])
+        setClient(client.client)
+        setTestIdClient(client.testIdClient)
+      })
+  }, [url, clientEncodedParam])
 
   useEffect(() => {
     if (!client || !searchParams.has('test_id_client') || localStorage.getItem(localStorageItem(client.id || client.name))) {
