@@ -7,14 +7,16 @@ export const runtime = 'edge'
 type OpenIDConnectProviderResponse = {
   client_id: string
   client_secret: string
-  client: OAuthClient
+  client: OAuth2Client
 }
 
 export const POST = auth(async (req) => {
-  const clientData = await req.json() as OAuthClient
+  const clientData = await req.json() as OAuth2Client
   if (!clientData) {
     return new Response(null, { status: 400 })
   }
+
+  console.log(req.auth)
 
   if (!(req.auth?.token && req.auth?.user?.id)) {
     return new Response(null, { status: 401 })

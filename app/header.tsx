@@ -24,6 +24,10 @@ export default function Header() {
           </Link>
         </div>
 
+        <div className="hidden lg:flex items-center space-x-4 mx-6">
+          <Link href="/clients" className="font-medium">Clients</Link>
+        </div>
+
         <div className="flex flex-1 items-center space-x-2 justify-end">
           {user ? (
             <DropdownMenu>

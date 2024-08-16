@@ -84,7 +84,7 @@ export default function CreateClient() {
   }
 
   function onSubmit(data: z.infer<typeof createClientSchema>) {
-    const client: OAuthClient = {
+    const client: OAuth2Client = {
       ...data,
       id: nanoid(),
       audiences: data.audiences || [],
@@ -98,7 +98,6 @@ export default function CreateClient() {
 
     urlEncode(client).then(encoded => {
       router.push(`/clients/${encoded}`)
-      localStorage.removeItem(localStorageItem)
     })
   }
 
