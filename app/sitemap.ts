@@ -11,7 +11,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
-      url: `${url}client/create`,
+      url: `${url}clients/create`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,

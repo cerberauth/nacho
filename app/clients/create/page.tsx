@@ -97,7 +97,7 @@ export default function CreateClient() {
     }
 
     urlEncode(client).then(encoded => {
-      router.push(`/client/${encoded}`)
+      router.push(`/clients/${encoded}`)
       localStorage.removeItem(localStorageItem)
     })
   }
