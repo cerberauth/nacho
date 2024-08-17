@@ -15,7 +15,7 @@ import { InputTags } from '@/components/ui/input-tags'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel } from '@/components/ui/form'
+import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
 import { urlEncode } from '@/lib/url'
 
@@ -142,6 +142,7 @@ export default function CreateClient() {
                           <FormDescription>
                             Usually your application friendly name. Will be displayed in the authorization page.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -160,6 +161,7 @@ export default function CreateClient() {
                           <FormDescription>
                             List of redirect URIs (comma separated) that your client can redirect to.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -179,6 +181,7 @@ export default function CreateClient() {
                             <FormDescription>
                               List of allowed CORS origins (comma separated) for your JavaScript Application.
                             </FormDescription>
+                            <FormMessage />
                           </FormItem>
                         )}
                       />
@@ -198,6 +201,7 @@ export default function CreateClient() {
                           <FormDescription>
                             List of scopes (comma separated) that your client can request.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -216,6 +220,7 @@ export default function CreateClient() {
                           <FormDescription>
                             List of audiences (comma separated) that your client can request.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -234,6 +239,7 @@ export default function CreateClient() {
                           <FormDescription>
                             List of post logout redirect URIs (comma separated) that your client can redirect to after logout.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -268,6 +274,7 @@ export default function CreateClient() {
                           <FormDescription>
                             List of contacts email (comma separated) for your client.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -283,6 +290,7 @@ export default function CreateClient() {
                           <FormControl>
                             <Input {...field} />
                           </FormControl>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -298,6 +306,7 @@ export default function CreateClient() {
                           <FormControl>
                             <Input {...field} />
                           </FormControl>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -313,6 +322,7 @@ export default function CreateClient() {
                           <FormControl>
                             <Input {...field} />
                           </FormControl>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -331,6 +341,7 @@ export default function CreateClient() {
                           <FormDescription>
                             The Logo URI of your application. Will be displayed in the authorization page.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -365,6 +376,7 @@ export default function CreateClient() {
                           <FormDescription>
                             The grant types your client can use.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
@@ -383,6 +395,7 @@ export default function CreateClient() {
                           <FormDescription>
                             The Token Endpoint Auth Method of your application.
                           </FormDescription>
+                          <FormMessage />
                         </FormItem>
                       )}
                     />
