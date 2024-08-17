@@ -27,7 +27,7 @@ const createClientSchema = z.object({
   tokenEndpointAuthMethod: z.array(z.enum(Object.keys(TokenEndpointAuthMethod) as [TokenEndpointAuthMethod])),
 
   name: z.string(),
-  uri: z.string().optional(),
+  uri: z.union([z.literal(''), z.string().trim().url()]),
   allowedCorsOrigins: z.array(z.string()).optional(),
   scopes: z.array(z.string()).optional(),
   audiences: z.array(z.string()).optional(),
@@ -35,9 +35,9 @@ const createClientSchema = z.object({
   postLogoutRedirectUris: z.array(z.string()).optional(),
 
   contacts: z.array(z.string()).optional(),
-  policyUri: z.string().optional(),
-  tosUri: z.string().optional(),
-  logoUri: z.string().optional(),
+  policyUri: z.union([z.literal(''), z.string().trim().url()]),
+  tosUri: z.union([z.literal(''), z.string().trim().url()]),
+  logoUri: z.union([z.literal(''), z.string().trim().url()]),
 })
 
 export default function CreateClient() {
