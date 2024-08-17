@@ -6,21 +6,20 @@ import Link from 'next/link'
 import NachoLogo from './nacho_logo.svg'
 
 export const metadata: Metadata = {
-  title: 'NACHO - New OAuth Client Helper',
-  description: 'NACHO assists you throughout the process of creating an OpenID Connect (OAuth) client, including choosing the right grant type for your application, and more.',
+  title: 'NACHO - OAuth Client Helper',
+  description: 'NACHO assists you throughout the process of creating an OpenID Connect (OAuth) client, including choosing the right grant type, token authentication method, and more.',
 }
 
 export default function Home() {
   return (
     <main className="flex flex-col max-w-xl mx-auto items-center justify-center">
-      <div className="space-y-6 text-center mt-9 md:mt-32">
+      <div className="space-y-6 text-center mt-9 md:my-32">
         <Image src={NachoLogo} className="mx-auto" alt="Nacho" width={150} height={150} />
         <h1 className="flex flex-col space-y-4 font-bold tracking-tight text-gray-900 dark:text-gray-50">
-          <span className="text-4xl sm:text-5xl">NACHO</span>
-          <span className="text-3xl sm:text-4xl">New OAuth Client Helper</span>
+          <span className="text-3xl sm:text-4xl">OAuth Client Helper</span>
         </h1>
         <p className="text-lg text-gray-600 dark:text-gray-400">
-          Nacho assists you throughout the process of creating an OpenID Connect (OAuth) client.
+          Assists you throughout the process of creating an OpenID Connect (OAuth) client and sharing it.
         </p>
         <div>
           <Link

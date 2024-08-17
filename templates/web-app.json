@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Web Application",
+  "description": "Web Application (Server Side Rendered) with OpenID Connect. Sometimes called a Multi-Page Application or Regular Web Application.",
+  "identifier": "web-app",
+  "icon": {
+    "contentUrl": ""
+  },
+  "technologies": [],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_post",
+      "client_secret_basic"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}

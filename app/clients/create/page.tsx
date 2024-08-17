@@ -105,7 +105,7 @@ export default function CreateClient() {
     <main>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)}>
-          <main className="container mx-auto max-w-4xl px-4 py-12 pb-28 space-y-4">
+          <main className="container mx-auto max-w-4xl px-4 py-12 space-y-4">
             <div>
               <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">Create your new client</h1>
               <p className="text-sm text-muted-foreground">
@@ -400,7 +400,7 @@ export default function CreateClient() {
             </Alert>
           </main>
 
-          <footer className="fixed bottom-0 w-full border-t-2 border-t-primary-500 py-4 bg-white">
+          <div className="fixed bottom-0 w-full border-t-2 border-t-primary-500 py-4 bg-white">
             <div className="container mx-auto max-w-4xl w-full px-4 flex justify-end">
               <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="mr-4">
                 Cancel
@@ -409,7 +409,7 @@ export default function CreateClient() {
                 Create
               </Button>
             </div>
-          </footer>
+          </div>
         </form>
       </Form >
     </main >

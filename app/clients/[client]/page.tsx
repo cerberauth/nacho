@@ -331,7 +331,7 @@ export default function ClientPage() {
                     <span className="text-muted-foreground">
                       URI
                     </span>
-                    <Link href={client.uri} target="_blank" rel="nofollow">{client.uri}</Link>
+                    <Link href={client.uri} target="_blank" rel="nofollow noopener noreferrer ugc">{client.uri}</Link>
                   </li>
                 )}
 
@@ -349,7 +349,7 @@ export default function ClientPage() {
                     <span className="text-muted-foreground">
                       Policy URI
                     </span>
-                    <Link href={client.policyUri} target="_blank" rel="nofollow">{client.policyUri}</Link>
+                    <Link href={client.policyUri} target="_blank" rel="nofollow noopener noreferrer ugc">{client.policyUri}</Link>
                   </li>
                 )}
 
@@ -358,7 +358,7 @@ export default function ClientPage() {
                     <span className="text-muted-foreground">
                       Terms of Service URI
                     </span>
-                    <Link href={client.tosUri} target="_blank" rel="nofollow">{client.tosUri}</Link>
+                    <Link href={client.tosUri} target="_blank" rel="nofollow noopener noreferrer ugc">{client.tosUri}</Link>
                   </li>
                 )}
               </ul>

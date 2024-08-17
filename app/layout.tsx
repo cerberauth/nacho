@@ -15,6 +15,7 @@ import { cn } from '@/lib/utils'
 
 import { seoConfig } from './seo.config'
 import Header from './header'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: seoConfig.title,
@@ -59,6 +60,14 @@ export default function RootLayout({
             <Header />
 
             {children}
+
+            <footer className="text-center p-8 space-y-4">
+              <p className="text-gray-500 text-sm">
+                <Link className="text-primary" href="/clients">Clients</Link> - <Link className="text-primary" href="/templates">Templates</Link>
+              </p>
+              <p className="text-sm text-gray-500">Proudly part of <Link className="text-primary"
+                href="https://www.cerberauth.com?utm_source=nacho">CerberAuth</Link> community.</p>
+            </footer>
           </PlausibleProvider>
         </SessionProvider>
       </body>

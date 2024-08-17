@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Next.js App",
+  "description": "Next.js Application with OpenID Connect.",
+  "identifier": "nextjs-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/nextjs.svg"
+  },
+  "technologies": [
+    "javascript",
+    "react",
+    "next.js"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_post",
+      "client_secret_basic"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}
