@@ -9,20 +9,15 @@ import Link from 'next/link'
 import { useParams, useRouter, useSearchParams } from 'next/navigation'
 
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
-import { urlDecode, urlEncode } from '@/lib/url'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { applicationTypeName, grantTypeName, tokenAuthenticationMethod } from '@/lib/getters'
 import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
 import { getClientById, saveClient } from '@/lib/clients'
-
-export const runtime = 'edge'
-export const dynamic = 'force-static'
-export const dynamicParams = false
+import { urlDecode, urlEncode } from '@/lib/url'
 
 const issuer = 'https://testid.cerberauth.com'
 const testIdOIDCDiscoveryEndpoint = `${issuer}/.well-known/openid-configuration`
-const localStorageItem = (id: string) => `testidClient:${id}`
 
 const createShareableLink = (medium: string) => {
   const url = new URL(window.location.href)
@@ -43,6 +38,14 @@ const createClient = async (client: OAuth2Client): Promise<TestIdClient> => {
   return response.json()
 }
 
+const onClipboardCopy = (data: string) => {
+  navigator.clipboard.writeText(data)
+}
+
+export const runtime = 'edge'
+export const dynamic = 'force-static'
+export const dynamicParams = false
+
 export default function ClientPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
@@ -54,7 +57,7 @@ export default function ClientPage() {
   const url = useMemo(() => `/clients/${clientEncodedParam}`, [clientEncodedParam])
 
   const createTestIdClient = useCallback(async () => {
-    if (!client) {
+    if (!client || testIdClient) {
       return
     }
 
@@ -80,7 +83,20 @@ export default function ClientPage() {
       testIdClient: newTestIdClient,
       url,
     })
-  }, [url, client, session, plausible])
+  }, [url, client, testIdClient, session, plausible])
+
+  const shareByLink = useCallback(() => {
+    plausible('clientUrlClipboardCopy', { props: {} })
+    const url = createShareableLink('clipboard')
+    onClipboardCopy(url.toString())
+  }, [plausible])
+
+  const shareByEmail = useCallback(() => {
+    plausible('clientShareByEmail', { props: {} })
+    const url = createShareableLink('email')
+    const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${url}`)}`
+    window.open(message)
+  }, [plausible])
 
   useEffect(() => {
     urlDecode(clientEncodedParam)
@@ -102,35 +118,18 @@ export default function ClientPage() {
         setClient(client.client)
         setTestIdClient(client.testIdClient)
       })
-  }, [url, clientEncodedParam])
+  }, [router, url, clientEncodedParam])
 
   useEffect(() => {
-    if (!client || !searchParams.has('test_id_client') || localStorage.getItem(localStorageItem(client.id || client.name))) {
+    if (!(client && searchParams.has('test_id_client'))) {
       return
     }
 
     createTestIdClient()
-  }, [client, testIdClient, searchParams, createTestIdClient])
+  }, [client, searchParams, createTestIdClient])
 
   if (!client) {
     return <div>Loading...</div>
-  }
-
-  const onClipboardCopy = (data: string) => {
-    navigator.clipboard.writeText(data)
-  }
-
-  const shareByLink = () => {
-    plausible('clientUrlClipboardCopy', { props: {} })
-    const url = createShareableLink('clipboard')
-    onClipboardCopy(url.toString())
-  }
-
-  const shareByEmail = () => {
-    plausible('clientShareByEmail', { props: {} })
-    const url = createShareableLink('email')
-    const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${url}`)}`
-    window.open(message)
   }
 
   return (

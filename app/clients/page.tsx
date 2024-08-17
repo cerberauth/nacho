@@ -1,13 +1,9 @@
 'use client'
 
 import { useCallback, useEffect, useMemo, useState } from 'react'
-import { DataTable } from './data-table'
 import { getClients, deleteClient } from '@/lib/clients'
 import { columns } from './columns'
-
-export const runtime = 'edge'
-export const dynamic = 'force-static'
-export const dynamicParams = false
+import { DataTable } from './data-table'
 
 export default function ClientsPage() {
   const [clients, setClients] = useState<Client[]>([])
