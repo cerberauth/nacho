@@ -6,8 +6,7 @@ import { useState } from 'react'
 
 import { ChooseGrantType } from '@/components/choose-grant-type'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import type { GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
-import { grantTypeName, grantTypeReferences, tokenAuthenticationMethod, tokenAuthenticationMethodReferences } from '@/lib/getters'
+import { grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
 
 export default function GrantTypes() {
   const [selectedGrantTypes, setSelectedGrantTypes] = useState<GrantType[] | null>(null)
@@ -64,7 +63,7 @@ export default function GrantTypes() {
                 {selectedTokenEndpointAuthMethod.map((method) => (
                   <li key={method}>
                     <Link href={tokenAuthenticationMethodReferences(method)[0]} target="_blank" className="inline-flex">
-                      {tokenAuthenticationMethod(method)}
+                      {tokenAuthenticationMethodLabel(method)}
                       <ArrowUpRight className="w-4 h-4 ml-1" />
                     </Link>
                   </li>

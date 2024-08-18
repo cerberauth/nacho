@@ -1,6 +1,6 @@
 import { auth } from '@/auth'
 
-import { GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
 
 export const runtime = 'edge'
 
@@ -16,19 +16,17 @@ export const POST = auth(async (req) => {
     return new Response(null, { status: 400 })
   }
 
-  console.log(req.auth)
-
   if (!(req.auth?.token && req.auth?.user?.id)) {
     return new Response(null, { status: 401 })
   }
 
   let method = clientData.tokenEndpointAuthMethod?.[0];
   switch (method) {
-    case TokenEndpointAuthMethod.clientSecretPost:
+    case TokenEndpointAuthMethods.clientSecretPost:
       method = 'client_secret_post'
-    case TokenEndpointAuthMethod.none:
+    case TokenEndpointAuthMethods.none:
       method = 'none'
-    case TokenEndpointAuthMethod.clientSecretBasic:
+    case TokenEndpointAuthMethods.clientSecretBasic:
     default:
       method = 'client_secret_basic'
   }
@@ -42,11 +40,11 @@ export const POST = auth(async (req) => {
     body: JSON.stringify({
       grant_types: clientData.grantTypes.map((type) => {
         switch (type) {
-          case GrantType.authorizationCode:
+          case GrantTypes.authorizationCode:
             return 'authorization_code';
-          case GrantType.refreshToken:
+          case GrantTypes.refreshToken:
             return 'refresh_token';
-          case GrantType.clientCredentials:
+          case GrantTypes.clientCredentials:
             return 'client_credentials';
           default:
             return type;

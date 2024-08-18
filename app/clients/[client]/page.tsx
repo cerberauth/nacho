@@ -11,8 +11,7 @@ import { useParams, useRouter, useSearchParams } from 'next/navigation'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
-import { applicationTypeName, grantTypeName, tokenAuthenticationMethod } from '@/lib/getters'
-import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { applicationTypeName, grantTypeName, tokenAuthenticationMethodLabel } from '@/lib/getters'
 import { getClientById, saveClient } from '@/lib/clients'
 import { urlDecode, urlEncode } from '@/lib/url'
 
@@ -54,6 +53,7 @@ export default function ClientPage() {
   const { client: clientEncodedParam } = useParams<{ client: string }>()
   const [client, setClient] = useState<OAuth2Client | undefined>()
   const [testIdClient, setTestIdClient] = useState<TestIdClient | undefined>()
+  const tokenAuthenticationMethod = useMemo<TokenEndpointAuthMethod>(() => Array.isArray(client?.tokenEndpointAuthMethod) ? client?.tokenEndpointAuthMethod[0] : client?.tokenEndpointAuthMethod, [client])
   const url = useMemo(() => `/clients/${clientEncodedParam}`, [clientEncodedParam])
 
   const createTestIdClient = useCallback(async () => {
@@ -247,7 +247,7 @@ export default function ClientPage() {
               <span className="text-muted-foreground">
                 Token Endpoint Authentication Method
               </span>
-              <span>{client.tokenEndpointAuthMethod.map(method => tokenAuthenticationMethod(method as TokenEndpointAuthMethod)).join(', ')}</span>
+              <span>{tokenAuthenticationMethodLabel(tokenAuthenticationMethod)}</span>
             </li>
           </ul>
 

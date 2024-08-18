@@ -1,4 +1,5 @@
 import { Check, X } from 'lucide-react'
+import { useMemo } from 'react'
 import { ChoiceCard, MiniChoiceCard, type ChoiceCardOption } from '@/components/choice-card'
 
 const bffOptions: Array<ChoiceCardOption<boolean>> = [
@@ -48,7 +49,7 @@ type MiniBffChoiceCardProps = {
 }
 
 export function MiniBffChoiceCard({ className, bff, onClick }: MiniBffChoiceCardProps) {
-  const option = bffOptions.find(option => option.value === bff)
+  const option = useMemo(() => bffOptions.find(option => option.value === bff), [bff])
   if (!option) {
     return null
   }

@@ -1,5 +1,4 @@
 import { AppWindowMac, Monitor, PanelTop, Server, SquareTerminal, TabletSmartphone, Tv } from 'lucide-react'
-import type { ApplicationType } from '@/lib/consts'
 
 type ApplicationTypeIconProps = {
   type: ApplicationType

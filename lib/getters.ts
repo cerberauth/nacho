@@ -1,4 +1,4 @@
-import { applicationTypes, grantTypes, tokenAuthenticationMethods, TokenEndpointAuthMethod } from './consts'
+import { applicationTypes, grantTypes, tokenAuthenticationMethods } from './consts'
 
 export const applicationTypeName = (type: string) => {
   return applicationTypes.find(option => option.value === type)?.label
@@ -18,7 +18,7 @@ const getTokenAuthenticationMethod = (method: string) => {
   return tokenAuthenticationMethods.find(tokenMethod => tokenMethod.id === method)
 }
 
-export const tokenAuthenticationMethod = (method: string) =>
+export const tokenAuthenticationMethodLabel = (method: string) =>
   getTokenAuthenticationMethod(method)?.label
 
 export const tokenAuthenticationMethodReferences = (method: string) =>
