@@ -5,22 +5,20 @@ import { useMemo } from 'react'
 import { TemplateCard } from '@/components/template-card'
 import { Card } from '@/components/ui/card'
 import { templates } from '@/templates'
-import { applicationTypeName, grantTypeName, grantTypeReferences, tokenAuthenticationMethod, tokenAuthenticationMethodReferences } from '@/lib/getters'
-
-const getTemplateById = (id: string) => {
-  return templates.find((t) => t.identifier === id)
-}
+import { applicationTypeName, grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
+import { Button } from '@/components/ui/button'
+import { getTemplateById } from '@/lib/templates'
 
 function ListItemWithReferences({ name, references }: { name: string, references: string[] }) {
   return (
-    <>
+    <li>
       {name}
       {' '}
       (<Link href={references[0]} target="_blank" className="inline-flex text-xs underline">
         Reference
         <ArrowUpRight className="w-3 h-3 ml-1 inline-block" />
       </Link>)
-    </>
+    </li>
   )
 }
 
@@ -34,7 +32,7 @@ function GrantTypeListItem({ grantType }: { grantType: string }) {
 }
 
 function TokenAuthenticationMethodListItem({ authMethod }: { authMethod: string }) {
-  const name = useMemo(() => tokenAuthenticationMethod(authMethod) || authMethod, [authMethod])
+  const name = useMemo(() => tokenAuthenticationMethodLabel(authMethod) || authMethod, [authMethod])
   const references = useMemo(() => tokenAuthenticationMethodReferences(authMethod), [authMethod])
 
   return (
@@ -59,7 +57,7 @@ export default function TemplatePage({ params }: Props) {
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12 space-y-16">
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
-        <div className="space-y-4 col-span-2">
+        <div className="space-y-6 col-span-2">
           {template.icon?.contentUrl && (
             <Image
               src={template.icon?.contentUrl}
@@ -79,12 +77,12 @@ export default function TemplatePage({ params }: Props) {
         <Card className="p-8">
           <dl className="space-y-4">
             <div>
-              <dt className="font-medium mb-1">Application Type</dt>
+              <dt className="font-semibold mb-1">Application Type</dt>
               <dd>{applicationTypeName(template.client.applicationType)}</dd>
             </div>
             {template.technologies.length > 0 && (
               <div>
-                <dt className="font-medium mb-1">Technologies</dt>
+                <dt className="font-semibold mb-1">Technologies</dt>
                 <dd>
                   {template.technologies.join(', ')}
                 </dd>
@@ -92,7 +90,7 @@ export default function TemplatePage({ params }: Props) {
             )}
             {template.example && (
               <div>
-                <dt className="font-medium mb-1">Example</dt>
+                <dt className="font-semibold mb-1">Example</dt>
                 <dd>
                   <Link href={template.example.url} className="underline" rel="nofollow" target="_blank">
                     {template.example.name}
@@ -108,6 +106,14 @@ export default function TemplatePage({ params }: Props) {
               </div>
             )}
           </dl>
+
+          <div className="mt-8 text-center">
+            <Button type="button">
+              <Link href={`/clients/create?template=${template.identifier}`}>
+                Create {template.name} Client
+              </Link>
+            </Button>
+          </div>
         </Card>
       </div>
 

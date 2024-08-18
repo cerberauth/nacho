@@ -1,32 +1,32 @@
 import { usePlausible } from 'next-plausible'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
-import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { ApplicationTypes, GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
 import { MiniUserInteractionChoiceCard, WithUserInteractionChoice } from './with-user-interaction-choice'
 import { ApplicationTypeChoice, MiniApplicationTypeChosenCard } from './application-type/application-type-choice'
 import { BffChoice, MiniBffChoiceCard } from './bff-choice'
 
-const withSecretTokenEndpointAuthMethod = [TokenEndpointAuthMethod.clientSecretBasic, TokenEndpointAuthMethod.clientSecretPost, TokenEndpointAuthMethod.mtls]
+const withSecretTokenEndpointAuthMethod = [TokenEndpointAuthMethods.clientSecretBasic, TokenEndpointAuthMethods.clientSecretPost, TokenEndpointAuthMethods.mtls]
 
 type ChooseGrantTypeProps = {
   onApplicationTypeChange?: (type: ApplicationType | null) => void
   onGrantTypeChange: (grantTypes: Array<GrantType>) => void
   onTokenEndpointAuthMethodChange: (method: Array<TokenEndpointAuthMethod>) => void
+  template?: string | null
 }
 
-export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, onTokenEndpointAuthMethodChange }: ChooseGrantTypeProps) {
+export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, onTokenEndpointAuthMethodChange, template }: ChooseGrantTypeProps) {
   const plausible = usePlausible()
   const [withUserInteraction, setWithUserInteraction] = useState<boolean | null>(null)
   const [applicationType, setApplicationType] = useState<ApplicationType | null>(null)
   const [bff, setBff] = useState<boolean | null>(null)
 
-  const handleUserInteractionChange = (withUserInteraction: boolean | null) => {
-    handleApplicationTypeChange(null)
-    plausible('userInteractionChoice', { props: { withUserInteraction } })
-    setWithUserInteraction(withUserInteraction)
-  }
-
-  const handleApplicationTypeChange = (type: ApplicationType | null) => {
+  const handleBffChange = useCallback((value: boolean | null) => {
+    plausible('bffChoice', { props: { bff: value } })
+    setBff(value)
+    onTokenEndpointAuthMethodChange(value ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethods.none])
+  }, [plausible, onTokenEndpointAuthMethodChange])
+  const handleApplicationTypeChange = useCallback((type: ApplicationType | null) => {
     plausible('applicationTypeChoice', { props: { applicationType: type } })
     setApplicationType(type)
     if (typeof onApplicationTypeChange === 'function') {
@@ -36,30 +36,30 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
     let grantTypes: Array<GrantType> = []
     let tokenEndpointAuthMethod: Array<TokenEndpointAuthMethod> = []
     switch (type) {
-      case ApplicationType.spa:
-        grantTypes = [GrantType.authorizationCode, GrantType.pkce]
-        tokenEndpointAuthMethod = bff ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethod.none]
+      case ApplicationTypes.spa:
+        grantTypes = [GrantTypes.authorizationCode, GrantTypes.pkce]
+        tokenEndpointAuthMethod = bff ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethods.none]
         break
 
-      case ApplicationType.mobileApplication:
-      case ApplicationType.desktopApplication:
-      case ApplicationType.cli:
-        grantTypes = [GrantType.authorizationCode, GrantType.pkce, GrantType.refreshToken]
-        tokenEndpointAuthMethod = [TokenEndpointAuthMethod.none]
+      case ApplicationTypes.mobileApplication:
+      case ApplicationTypes.desktopApplication:
+      case ApplicationTypes.cli:
+        grantTypes = [GrantTypes.authorizationCode, GrantTypes.pkce, GrantTypes.refreshToken]
+        tokenEndpointAuthMethod = [TokenEndpointAuthMethods.none]
         break
 
-      case ApplicationType.smartTvAndLimitedInputDevice:
-        grantTypes = [GrantType.deviceCode]
-        tokenEndpointAuthMethod = [TokenEndpointAuthMethod.none]
+      case ApplicationTypes.smartTvAndLimitedInputDevice:
+        grantTypes = [GrantTypes.deviceCode]
+        tokenEndpointAuthMethod = [TokenEndpointAuthMethods.none]
         break
 
-      case ApplicationType.webApplication:
-        grantTypes = [GrantType.authorizationCode, GrantType.pkce, GrantType.refreshToken]
+      case ApplicationTypes.webApplication:
+        grantTypes = [GrantTypes.authorizationCode, GrantTypes.pkce, GrantTypes.refreshToken]
         tokenEndpointAuthMethod = withSecretTokenEndpointAuthMethod
         break
 
-      case ApplicationType.machineToMachine:
-        grantTypes = [GrantType.clientCredentials]
+      case ApplicationTypes.machineToMachine:
+        grantTypes = [GrantTypes.clientCredentials]
         tokenEndpointAuthMethod = withSecretTokenEndpointAuthMethod
         break
 
@@ -70,12 +70,16 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
 
     onGrantTypeChange(grantTypes)
     onTokenEndpointAuthMethodChange(tokenEndpointAuthMethod)
-  }
+  }, [plausible, onApplicationTypeChange, onTokenEndpointAuthMethodChange, onGrantTypeChange, bff, handleBffChange])
+  const handleUserInteractionChange = useCallback((withUserInteraction: boolean | null) => {
+    handleApplicationTypeChange(null)
+    plausible('userInteractionChoice', { props: { withUserInteraction } })
+    setWithUserInteraction(withUserInteraction)
+  }, [plausible, handleApplicationTypeChange])
 
-  const handleBffChange = (value: boolean | null) => {
-    plausible('bffChoice', { props: { bff: value } })
-    setBff(value)
-    onTokenEndpointAuthMethodChange(value ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethod.none])
+  // TODO: Let the user choose the template and then show the template choice card
+  if (template) {
+    return null
   }
 
   return (
@@ -105,7 +109,7 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
         />
       )}
 
-      {applicationType === ApplicationType.spa && bff === null && (
+      {applicationType === ApplicationTypes.spa && bff === null && (
         <BffChoice onChange={handleBffChange} />
       )}
     </div>

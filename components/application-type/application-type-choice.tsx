@@ -1,6 +1,6 @@
-import { AppWindowMac, Monitor, PanelTop, Server, SquareTerminal, TabletSmartphone, Tv } from 'lucide-react'
-import { ApplicationType, applicationTypes } from '../../lib/consts'
-import { ChoiceCard, ChoiceCardOption, MiniChoiceCard } from '@/components/choice-card'
+import { useMemo } from 'react'
+import { ChoiceCard, MiniChoiceCard } from '@/components/choice-card'
+import { applicationTypes } from '@/lib/consts'
 import { ApplicationTypeIcon } from './application-type-icon'
 
 type ApplicationTypeGridProps = {
@@ -35,7 +35,7 @@ type MiniApplicationTypeChosenCardProps = {
 }
 
 export function MiniApplicationTypeChosenCard({ className, applicationType, onClick }: MiniApplicationTypeChosenCardProps) {
-  const option = applicationTypes.find(option => option.value === applicationType)
+  const option = useMemo(() => applicationTypes.find(option => option.value === applicationType), [applicationType])
   if (!option) {
     return null
   }

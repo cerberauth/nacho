@@ -1,4 +1,4 @@
-export enum ApplicationType {
+export enum ApplicationTypes {
   spa = 'spa',
   webApplication = 'webApplication',
   mobileApplication = 'mobileApplication',
@@ -8,7 +8,7 @@ export enum ApplicationType {
   smartTvAndLimitedInputDevice = 'smartTvAndLimitedInputDevice',
 }
 
-export enum GrantType {
+export enum GrantTypes {
   authorizationCode = 'authorization_code',
   pkce = 'pkce',
   refreshToken = 'refresh_token',
@@ -18,7 +18,7 @@ export enum GrantType {
   deviceCode = 'urn:ietf:params:oauth:grant-type:device_code',
 }
 
-export enum TokenEndpointAuthMethod {
+export enum TokenEndpointAuthMethods {
   none = 'none',
   clientSecretPost = 'client_secret_post',
   clientSecretBasic = 'client_secret_basic',
@@ -27,14 +27,14 @@ export enum TokenEndpointAuthMethod {
 
 export const applicationTypeImplementationRecommendation = [
   {
-    types: [ApplicationType.spa],
+    types: [ApplicationTypes.spa],
     references: [
       'https://datatracker.ietf.org/doc/html/draft-ietf-oauth-browser-based-apps',
     ],
   },
 
   {
-    types: [ApplicationType.mobileApplication, ApplicationType.desktopApplication],
+    types: [ApplicationTypes.mobileApplication, ApplicationTypes.desktopApplication],
     references: [
       'https://datatracker.ietf.org/doc/html/rfc8252',
     ],
@@ -44,7 +44,7 @@ export const applicationTypeImplementationRecommendation = [
 export const applicationTypes = [
   {
     id: 'spa',
-    value: ApplicationType.spa,
+    value: ApplicationTypes.spa,
     label: 'SPA (Single Page Application)',
     description: 'Frontend application without server side rendering.',
     withUserInteraction: true,
@@ -52,7 +52,7 @@ export const applicationTypes = [
   },
   {
     id: 'webApplication',
-    value: ApplicationType.webApplication,
+    value: ApplicationTypes.webApplication,
     label: 'Web Application',
     description: 'Web application with server side rendering.',
     withUserInteraction: true,
@@ -60,7 +60,7 @@ export const applicationTypes = [
   },
   {
     id: 'mobileApplication',
-    value: ApplicationType.mobileApplication,
+    value: ApplicationTypes.mobileApplication,
     label: 'Mobile Application',
     description: 'Mobile application for iOS and Android.',
     withUserInteraction: true,
@@ -68,7 +68,7 @@ export const applicationTypes = [
   },
   {
     id: 'desktopApplication',
-    value: ApplicationType.desktopApplication,
+    value: ApplicationTypes.desktopApplication,
     label: 'Desktop Application',
     description: 'Desktop application for Windows, macOS and Linux.',
     withUserInteraction: true,
@@ -76,7 +76,7 @@ export const applicationTypes = [
   },
   {
     id: 'machineToMachine',
-    value: ApplicationType.machineToMachine,
+    value: ApplicationTypes.machineToMachine,
     label: 'Machine to Machine',
     description: 'Cron jobs, daemons, microservice to microservice, ...',
     withUserInteraction: false,
@@ -84,7 +84,7 @@ export const applicationTypes = [
   },
   {
     id: 'cli',
-    value: ApplicationType.cli,
+    value: ApplicationTypes.cli,
     label: 'CLI',
     description: 'Command Line Interface applications',
     withUserInteraction: false,
@@ -92,7 +92,7 @@ export const applicationTypes = [
   },
   {
     id: 'smartTvAndLimitedInputDevice',
-    value: ApplicationType.smartTvAndLimitedInputDevice,
+    value: ApplicationTypes.smartTvAndLimitedInputDevice,
     label: 'Smart TV and Limited Input Device',
     description: 'Applications for Smart TVs, Encoders and more globally device with limited capability for inputting text.',
     withUserInteraction: true,
@@ -102,7 +102,7 @@ export const applicationTypes = [
 
 export const grantTypes = [
   {
-    id: GrantType.authorizationCode,
+    id: GrantTypes.authorizationCode,
     label: 'Authorization Code',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1',
@@ -110,7 +110,7 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.pkce,
+    id: GrantTypes.pkce,
     label: 'PKCE',
     references: [
       'https://tools.ietf.org/html/rfc7636',
@@ -118,7 +118,7 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.refreshToken,
+    id: GrantTypes.refreshToken,
     label: 'Refresh Token',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-1.5',
@@ -126,7 +126,7 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.clientCredentials,
+    id: GrantTypes.clientCredentials,
     label: 'Client Credentials',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4',
@@ -134,7 +134,7 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.deviceCode,
+    id: GrantTypes.deviceCode,
     label: 'Device Code',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc8628',
@@ -142,7 +142,7 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.implicit,
+    id: GrantTypes.implicit,
     label: 'Implicit',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2',
@@ -150,7 +150,7 @@ export const grantTypes = [
   },
 
   {
-    id: GrantType.jwtBearer,
+    id: GrantTypes.jwtBearer,
     label: 'JWT Bearer',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc7523',
@@ -160,28 +160,28 @@ export const grantTypes = [
 
 export const tokenAuthenticationMethods = [
   {
-    id: TokenEndpointAuthMethod.none,
+    id: TokenEndpointAuthMethods.none,
     label: 'None',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc7636#section-4.5',
     ],
   },
   {
-    id: TokenEndpointAuthMethod.clientSecretPost,
+    id: TokenEndpointAuthMethods.clientSecretPost,
     label: 'Client Secret Post',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1',
     ],
   },
   {
-    id: TokenEndpointAuthMethod.clientSecretBasic,
+    id: TokenEndpointAuthMethods.clientSecretBasic,
     label: 'Client Secret Basic',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1',
     ],
   },
   {
-    id: TokenEndpointAuthMethod.mtls,
+    id: TokenEndpointAuthMethods.mtls,
     label: 'Mutual TLS',
     references: [
       'https://datatracker.ietf.org/doc/html/rfc8705',

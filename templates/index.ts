@@ -13,9 +13,9 @@ export type Template = {
     }
   }
   client: {
-    applicationType: string
-    grantTypes: string[]
-    tokenEndpointAuthMethods: string[]
+    applicationType: ApplicationType
+    grantTypes: GrantType[]
+    tokenEndpointAuthMethods: TokenEndpointAuthMethod[]
     scopes: string[]
   }
   identifier: string
@@ -48,17 +48,30 @@ export {
   vueSpa,
   webApp,
 }
+
 export const templates: Template[] = [
+  // @ts-expect-error
   angularSpa,
+  // @ts-expect-error
   astroApp,
+  // @ts-expect-error
   flutterWebSpa,
+  // @ts-expect-error
   nextjsApp,
+  // @ts-expect-error
   preactSpa,
+  // @ts-expect-error
   reactSpa,
+  // @ts-expect-error
   remixApp,
+  // @ts-expect-error
   rustApp,
+  // @ts-expect-error
   spa,
+  // @ts-expect-error
   svelteSpa,
+  // @ts-expect-error
   vueSpa,
+  // @ts-expect-error
   webApp,
 ]

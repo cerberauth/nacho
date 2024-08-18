@@ -3,8 +3,8 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { CircleHelp } from 'lucide-react'
 import { nanoid } from 'nanoid'
-import { useRouter } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useRouter, useSearchParams } from 'next/navigation'
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -16,74 +16,108 @@ import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { ApplicationType, GrantType, TokenEndpointAuthMethod } from '@/lib/consts'
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import { ApplicationTypes, GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
 import { urlEncode } from '@/lib/url'
+import { getTemplateById } from '@/lib/templates'
 
 const localStorageItem = 'client'
 
 const createClientSchema = z.object({
-  applicationType: z.enum(Object.values(ApplicationType) as [ApplicationType]),
-  grantTypes: z.array(z.enum(Object.values(GrantType) as [GrantType])),
-  tokenEndpointAuthMethod: z.array(z.enum(Object.keys(TokenEndpointAuthMethod) as [TokenEndpointAuthMethod])),
+  template: z.string().optional(),
+  applicationType: z.enum(Object.values(ApplicationTypes) as [ApplicationType]),
+  grantTypes: z.array(z.enum(Object.values(GrantTypes) as [GrantType])),
+  tokenEndpointAuthMethod: z.enum(Object.keys(TokenEndpointAuthMethods) as [TokenEndpointAuthMethod]),
 
   name: z.string(),
-  uri: z.union([z.literal(''), z.string().trim().url()]),
+  uri: z.union([z.literal(''), z.string().trim().url()]).optional(),
   allowedCorsOrigins: z.array(z.string()).optional(),
   scopes: z.array(z.string()).optional(),
   audiences: z.array(z.string()).optional(),
-  redirectUris: z.array(z.string()),
-  postLogoutRedirectUris: z.array(z.string()).optional(),
+  redirectUris: z.array(z.string().trim().url()).min(1),
+  postLogoutRedirectUris: z.array(z.string().trim().url()).optional(),
 
   contacts: z.array(z.string()).optional(),
-  policyUri: z.union([z.literal(''), z.string().trim().url()]),
-  tosUri: z.union([z.literal(''), z.string().trim().url()]),
-  logoUri: z.union([z.literal(''), z.string().trim().url()]),
+  policyUri: z.union([z.literal(''), z.string().trim().url()]).optional(),
+  tosUri: z.union([z.literal(''), z.string().trim().url()]).optional(),
+  logoUri: z.union([z.literal(''), z.string().trim().url()]).optional(),
 })
+
+export const runtime = 'edge'
+export const dynamic = 'force-static'
+export const dynamicParams = false
 
 export default function CreateClient() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const [hasBeenInitialized, setHasBeenInitialized] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const form = useForm<z.infer<typeof createClientSchema>>({
     resolver: zodResolver(createClientSchema),
   })
   const data = form.watch()
+  const template = useMemo(() => searchParams.get('template'), [searchParams])
 
   useEffect(() => {
     if (hasBeenInitialized) {
       return
     }
 
-    const client = localStorage.getItem(localStorageItem)
-    form.reset(client ? JSON.parse(client) : undefined)
+    let client: Partial<OAuth2Client> = {}
+    const clientLocalStorage = localStorage.getItem(localStorageItem)
+    if (clientLocalStorage) {
+      client = JSON.parse(clientLocalStorage)
+    }
+
+    if (template) {
+      form.setValue('template', template)
+      const templateApplication = getTemplateById(template)
+      client = templateApplication ? {
+        name: templateApplication.name,
+        ...client,
+        ...{
+          ...templateApplication.client,
+          tokenEndpointAuthMethod: templateApplication.client.tokenEndpointAuthMethods[0],
+        }
+      } : client
+    }
+
+    if (client) {
+      form.reset(client)
+    }
+
     setHasBeenInitialized(true)
-  }, [hasBeenInitialized, form])
+  }, [hasBeenInitialized, template, form])
 
   useEffect(() => {
-    if (!hasBeenInitialized) {
+    if (!hasBeenInitialized || isSubmitting) {
       return
     }
 
     localStorage.setItem(localStorageItem, JSON.stringify(data))
-  }, [hasBeenInitialized, data])
+  }, [hasBeenInitialized, isSubmitting, data])
 
-  function onApplicationTypeChange(type: ApplicationType | null) {
+  const onApplicationTypeChange = useCallback((type: ApplicationType | null) => {
     if (type === null) {
       form.resetField('applicationType')
       return
     }
 
     form.setValue('applicationType', type)
-  }
-
-  function onGrantTypeChange(grantTypes: GrantType[]) {
+  }, [form])
+  const onGrantTypeChange = useCallback((grantTypes: GrantType[]) => {
     form.setValue('grantTypes', grantTypes)
-  }
+  }, [form])
+  const onTokenEndpointAuthMethodChange = useCallback((authMethods: TokenEndpointAuthMethod[]) => {
+    form.setValue('tokenEndpointAuthMethod', authMethods[0])
+  }, [form])
 
-  function onTokenEndpointAuthMethodChange(authMethods: TokenEndpointAuthMethod[]) {
-    form.setValue('tokenEndpointAuthMethod', authMethods)
-  }
+  const onSubmit = useCallback(async (data: z.infer<typeof createClientSchema>) => {
+    if (isSubmitting) {
+      return
+    }
 
-  function onSubmit(data: z.infer<typeof createClientSchema>) {
+    setIsSubmitting(true)
     const client: OAuth2Client = {
       ...data,
       id: nanoid(),
@@ -92,14 +126,15 @@ export default function CreateClient() {
       allowedCorsOrigins: data.allowedCorsOrigins || [],
       postLogoutRedirectUris: data.postLogoutRedirectUris || [],
       grantTypes: data.grantTypes,
-      applicationType: ApplicationType[data.applicationType],
+      applicationType: ApplicationTypes[data.applicationType],
       contacts: data.contacts || [],
     }
 
-    urlEncode(client).then(encoded => {
-      router.push(`/clients/${encoded}`)
-    })
-  }
+    localStorage.removeItem(localStorageItem)
+
+    const encoded = await urlEncode(client)
+    router.push(`/clients/${encoded}`)
+  }, [router, isSubmitting, setIsSubmitting])
 
   return (
     <main>
@@ -117,6 +152,7 @@ export default function CreateClient() {
                 onApplicationTypeChange={onApplicationTypeChange}
                 onGrantTypeChange={onGrantTypeChange}
                 onTokenEndpointAuthMethodChange={onTokenEndpointAuthMethodChange}
+                template={template}
               />
             </div>
 
@@ -166,7 +202,7 @@ export default function CreateClient() {
                       )}
                     />
 
-                    {data.applicationType === ApplicationType.spa && (
+                    {data.applicationType === ApplicationTypes.spa && (
                       <FormField
                         control={form.control}
                         name="allowedCorsOrigins"
@@ -361,7 +397,7 @@ export default function CreateClient() {
                     <CardTitle>Advanced Settings</CardTitle>
                   </CardHeader>
 
-                  <CardContent>
+                  <CardContent className="space-y-2">
                     <FormField
                       control={form.control}
                       name="grantTypes"
@@ -386,14 +422,26 @@ export default function CreateClient() {
                       name="tokenEndpointAuthMethod"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            Token Endpoint Auth Method <span className="text-red-500">*</span>
+                          <FormLabel htmlFor={field.name}>
+                            Token Endpoint Authentication Method <span className="text-red-500">*</span>
                           </FormLabel>
                           <FormControl>
-                            <InputTags {...field} />
+                            <Select value={field.value} name={field.name} onValueChange={field.onChange}>
+                              <SelectTrigger>
+                                <SelectValue placeholder="Token Endpoint Auth Method" onBlur={field.onBlur} ref={field.ref}></SelectValue>
+                              </SelectTrigger>
+
+                              <SelectContent>
+                                {Object.entries(TokenEndpointAuthMethods).map(([key, value]) => (
+                                  <SelectItem key={key} value={value}>
+                                    {value}
+                                  </SelectItem>
+                                ))}
+                              </SelectContent>
+                            </Select>
                           </FormControl>
                           <FormDescription>
-                            The Token Endpoint Auth Method of your application.
+                            The Token Endpoint Authentication Method of your application.
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
