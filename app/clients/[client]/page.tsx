@@ -72,18 +72,21 @@ export default function ClientPage() {
       const callbackUrl = new URL(window.location.href)
       callbackUrl.searchParams.set('test_id_client', 'created')
 
-      signIn('cerberauth', { callbackUrl: callbackUrl.toString() });
-      return;
+      signIn('cerberauth', { callbackUrl: callbackUrl.toString() })
+      return
     }
 
-    const newTestIdClient = await createClient(client)
+    const newTestIdClient = await createClient({
+      ...client,
+      tokenEndpointAuthMethod: tokenAuthenticationMethod,
+    })
     setTestIdClient(newTestIdClient)
     saveClient({
       client,
       testIdClient: newTestIdClient,
       url,
     })
-  }, [url, client, testIdClient, session, plausible])
+  }, [url, client, tokenAuthenticationMethod, testIdClient, session, plausible])
 
   const shareByLink = useCallback(() => {
     plausible('clientUrlClipboardCopy', { props: {} })
