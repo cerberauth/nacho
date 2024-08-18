@@ -15,6 +15,13 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   }],
   session: { strategy: 'jwt' },
   callbacks: {
+    signIn: async ({ account }) => {
+      if (account?.provider === 'cerberauth') {
+        return true
+      }
+
+      return false
+    },
     jwt: async ({ token, account }) => {
       if (account?.access_token) {
         token.accessToken = account.access_token
@@ -22,8 +29,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return token
     },
-    session: async ({ session }) => {
-      return session
+    session: async ({ session, token, user }) => {
+      return {
+        ...session,
+        user: user ?? {
+          id: token.sub,
+          name: token.name,
+          email: token.email,
+          image: token.picture,
+        },
+        token: token.accessToken,
+      }
     },
   }
 })
