@@ -1,23 +1,15 @@
 {
   "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
-  "name": "Next.js App",
-  "description": "Next.js Application with OpenID Connect.",
-  "identifier": "nextjs-app",
+  "name": "Astro App",
+  "description": "Astro Application with OpenID Connect.",
+  "identifier": "astro-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/nextjs.svg"
+    "contentUrl": "https://nacho.cerberauth.com/logos/astro.svg"
   },
   "technologies": [
     "javascript",
-    "react",
-    "next.js"
+    "astro"
   ],
-  "example": {
-    "name": "Next.js App Example",
-    "url": "https://cerberauth-nextjs-app-oidc.pages.dev/",
-    "repository": {
-      "url": "https://github.com/cerberauth/openid-connect-examples/tree/main/examples/nextjs-app"
-    }
-  },
   "client": {
     "applicationType": "webApplication",
     "grantTypes": [
