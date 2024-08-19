@@ -1,17 +1,20 @@
 import NextAuth from 'next-auth'
 
+export const tokenIssuer = process.env.AUTH_CLIENT_ISSUER || 'https://oauth.cerberauth.com'
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [{
     id: 'cerberauth',
     name: 'CerberAuth',
-    issuer: 'https://oauth.cerberauth.com',
+    issuer: tokenIssuer,
     type: 'oidc',
     clientId: process.env.AUTH_CLIENT_ID,
     clientSecret: process.env.AUTH_CLIENT_SECRET,
-    checks: ['pkce', 'state'],
+    checks: ['pkce', 'state', 'nonce'],
     authorization: {
-      params: { scope: 'openid profile email dynamic-client:write' }
+      params: { scope: 'openid profile email offline_access' }
     },
+    idToken: true,
   }],
   session: { strategy: 'jwt' },
   callbacks: {
@@ -22,9 +25,14 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
       return false
     },
-    jwt: async ({ token, account }) => {
-      if (account?.access_token) {
-        token.accessToken = account.access_token
+    jwt: ({ token, profile }) => {
+      if (profile?.sub && profile?.email) {
+        return {
+          sub: profile.sub,
+          name: profile.name,
+          email: profile.email,
+          picture: profile.picture,
+        }
       }
 
       return token
@@ -38,7 +46,6 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           email: token.email,
           image: token.picture,
         },
-        token: token.accessToken,
       }
     },
   }
