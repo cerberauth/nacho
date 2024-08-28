@@ -2,11 +2,12 @@ import { ArrowUpRight, GitPullRequest } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { useMemo } from 'react'
+
 import { TemplateCard } from '@/components/template-card'
+import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { templates } from '@/templates'
 import { applicationTypeName, grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
-import { Button } from '@/components/ui/button'
 import { getTemplateById } from '@/lib/templates'
 
 function ListItemWithReferences({ name, references }: { name: string, references: string[] }) {

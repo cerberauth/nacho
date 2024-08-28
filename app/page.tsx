@@ -6,7 +6,7 @@ import Link from 'next/link'
 import NachoLogo from './nacho_logo.svg'
 
 export const metadata: Metadata = {
-  title: 'NACHO - OAuth Client Helper',
+  title: 'OAuth Client Helper',
   description: 'NACHO assists you throughout the process of creating an OpenID Connect (OAuth) client, including choosing the right grant type, token authentication method, and more.',
 }
 
