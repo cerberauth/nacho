@@ -7,8 +7,8 @@ import { Inter as FontSans } from 'next/font/google'
 import './globals.css'
 
 const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
+  subsets: ['latin'],
+  variable: '--font-sans',
 })
 
 import { cn } from '@/lib/utils'
@@ -18,9 +18,15 @@ import Header from './header'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: seoConfig.title,
-  description: seoConfig.description,
   metadataBase: new URL(seoConfig.canonical!),
+  title: {
+    template: seoConfig.titleTemplate!,
+    default: seoConfig.title!,
+  },
+  description: seoConfig.description,
+  alternates: {
+    canonical: './',
+  }
 }
 
 export default function RootLayout({

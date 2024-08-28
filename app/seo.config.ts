@@ -1,10 +1,10 @@
 import type { DefaultSeoProps } from 'next-seo'
 
-
-export const url = 'https://nacho.cerberauth.com/'
+const url = 'https://nacho.cerberauth.com'
 
 export const seoConfig: DefaultSeoProps = {
   title: 'Nacho - OAuth / OpenID Connect Client Helper',
+  titleTemplate: '%s | Nacho',
   description: 'Nacho help you decide how to create an OAuth Client.',
   canonical: url,
 
