@@ -23,30 +23,42 @@ export type Template = {
 
 import angularSpa from './angular-spa.json' assert { type: 'json' }
 import astroApp from './astro-app.json' assert { type: 'json' }
+import codeigniterApp from './codeigniter-app.json' assert { type: 'json' }
 import flutterWebSpa from './flutter-web-spa.json' assert { type: 'json' }
+import laravelApp from './laravel-app.json' assert { type: 'json' }
 import nextjsApp from './nextjs-app.json' assert { type: 'json' }
+import phpApp from './php-app.json' assert { type: 'json' }
 import preactSpa from './preact-spa.json' assert { type: 'json' }
 import reactSpa from './react-spa.json' assert { type: 'json' }
 import remixApp from './remix-app.json' assert { type: 'json' }
 import rustApp from './rust-app.json' assert { type: 'json' }
 import spa from './spa.json' assert { type: 'json' }
 import svelteSpa from './svelte-spa.json' assert { type: 'json' }
+import symfonyApp from './symfony-app.json' assert { type: 'json' }
 import vueSpa from './vue-spa.json' assert { type: 'json' }
 import webApp from './web-app.json' assert { type: 'json' }
+import yiiApp from './yii-app.json' assert { type: 'json' }
+import zendFrameworkApp from './zend-framework-app.json' assert { type: 'json' }
 
 export {
   angularSpa,
   astroApp,
+  codeigniterApp,
   flutterWebSpa,
+  laravelApp,
   nextjsApp,
+  phpApp,
   preactSpa,
   reactSpa,
   remixApp,
   rustApp,
   spa,
   svelteSpa,
+  symfonyApp,
   vueSpa,
   webApp,
+  yiiApp,
+  zendFrameworkApp,
 }
 
 export const templates: Template[] = [
@@ -55,9 +67,15 @@ export const templates: Template[] = [
   // @ts-expect-error
   astroApp,
   // @ts-expect-error
+  codeigniterApp,
+  // @ts-expect-error
   flutterWebSpa,
   // @ts-expect-error
+  laravelApp,
+  // @ts-expect-error
   nextjsApp,
+  // @ts-expect-error
+  phpApp,
   // @ts-expect-error
   preactSpa,
   // @ts-expect-error
@@ -71,7 +89,13 @@ export const templates: Template[] = [
   // @ts-expect-error
   svelteSpa,
   // @ts-expect-error
+  symfonyApp,
+  // @ts-expect-error
   vueSpa,
   // @ts-expect-error
   webApp,
+  // @ts-expect-error
+  yiiApp,
+  // @ts-expect-error
+  zendFrameworkApp,
 ]
