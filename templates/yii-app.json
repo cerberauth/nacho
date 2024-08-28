@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Yii3 App",
+  "description": "Yii3 Application with OpenID Connect.",
+  "identifier": "yii-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/yii3.svg"
+  },
+  "technologies": [
+    "php",
+    "yii",
+    "yii3"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}
