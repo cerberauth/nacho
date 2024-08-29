@@ -1,0 +1,35 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Nest.js App",
+  "description": "Nest.js Application with OpenID Connect.",
+  "identifier": "nestjs-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/nestjs.svg"
+  },
+  "technologies": [
+    "javascript",
+    "typescript",
+    "node.js",
+    "nest.js",
+    "express.js",
+    "fastify"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}

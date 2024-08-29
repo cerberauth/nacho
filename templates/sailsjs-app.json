@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Sails.js App",
+  "description": "Sails.js Application with OpenID Connect.",
+  "identifier": "sailsjs-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/sailsjs.png"
+  },
+  "technologies": [
+    "javascript",
+    "typescript",
+    "node.js",
+    "sails.js"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}

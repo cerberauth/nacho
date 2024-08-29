@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Meteor.js App",
+  "description": "Meteor.js Application with OpenID Connect.",
+  "identifier": "meteorjs-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/meteorjs.png"
+  },
+  "technologies": [
+    "javascript",
+    "typescript",
+    "node.js",
+    "meteor.js"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}
