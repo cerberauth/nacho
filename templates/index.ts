@@ -26,6 +26,11 @@ import astroApp from './astro-app.json' assert { type: 'json' }
 import codeigniterApp from './codeigniter-app.json' assert { type: 'json' }
 import expressJsApp from './expressjs-app.json' assert { type: 'json' }
 import flutterWebSpa from './flutter-web-spa.json' assert { type: 'json' }
+import golangApp from './golang-app.json' assert { type: 'json' }
+import golangBeegoApp from './golang-beego-app.json' assert { type: 'json' }
+import golangEchoApp from './golang-echo-app.json' assert { type: 'json' }
+import golangFiberApp from './golang-fiber-app.json' assert { type: 'json' }
+import golangGinApp from './golang-gin-app.json' assert { type: 'json' }
 import hapiApp from './hapi-app.json' assert { type: 'json' }
 import laravelApp from './laravel-app.json' assert { type: 'json' }
 import meteorJsApp from './meteorjs-app.json' assert { type: 'json' }
@@ -51,6 +56,11 @@ export {
   codeigniterApp,
   expressJsApp,
   flutterWebSpa,
+  golangApp,
+  golangBeegoApp,
+  golangEchoApp,
+  golangFiberApp,
+  golangGinApp,
   hapiApp,
   laravelApp,
   meteorJsApp,
@@ -71,51 +81,33 @@ export {
   zendFrameworkApp,
 }
 
-export const templates: Template[] = [
-  // @ts-expect-error
+export const templates = [
   angularSpa,
-  // @ts-expect-error
   astroApp,
-  // @ts-expect-error
   codeigniterApp,
-  // @ts-expect-error
   expressJsApp,
-  // @ts-expect-error
   flutterWebSpa,
-  // @ts-expect-error
+  golangApp,
+  golangBeegoApp,
+  golangEchoApp,
+  golangFiberApp,
+  golangGinApp,
   hapiApp,
-  // @ts-expect-error
   laravelApp,
-  // @ts-expect-error
   meteorJsApp,
-  // @ts-expect-error
   nestJsApp,
-  // @ts-expect-error
   nextjsApp,
-  // @ts-expect-error
   phpApp,
-  // @ts-expect-error
   preactSpa,
-  // @ts-expect-error
   reactSpa,
-  // @ts-expect-error
   remixApp,
-  // @ts-expect-error
   rustApp,
-  // @ts-expect-error
   sailsJsApp,
-  // @ts-expect-error
   spa,
-  // @ts-expect-error
   svelteSpa,
-  // @ts-expect-error
   symfonyApp,
-  // @ts-expect-error
   vueSpa,
-  // @ts-expect-error
   webApp,
-  // @ts-expect-error
   yiiApp,
-  // @ts-expect-error
   zendFrameworkApp,
-]
+] as Template[]
