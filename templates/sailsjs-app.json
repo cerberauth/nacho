@@ -4,7 +4,7 @@
   "description": "Sails.js Application with OpenID Connect.",
   "identifier": "sailsjs-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/sailsjs.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/sailsjs.svg"
   },
   "technologies": [
     "javascript",

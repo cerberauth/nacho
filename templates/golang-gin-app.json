@@ -4,7 +4,7 @@
   "description": "Gin web framework Application with OpenID Connect.",
   "identifier": "golang-gin-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/golang-gin.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/golang.svg"
   },
   "technologies": [
     "go",

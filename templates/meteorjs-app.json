@@ -4,7 +4,7 @@
   "description": "Meteor.js Application with OpenID Connect.",
   "identifier": "meteorjs-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/meteorjs.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/meteorjs.svg"
   },
   "technologies": [
     "javascript",

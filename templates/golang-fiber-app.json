@@ -4,7 +4,7 @@
   "description": "Fiber Application with OpenID Connect.",
   "identifier": "golang-fiber-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/golang-fiber.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/golang.svg"
   },
   "technologies": [
     "go",
