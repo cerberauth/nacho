@@ -8,7 +8,7 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { templates } from '@/templates'
 import { applicationTypeName, grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
-import { getTemplateById } from '@/lib/templates'
+import { getRelatedTemplates, getTemplateById } from '@/lib/templates'
 
 function ListItemWithReferences({ name, references }: { name: string, references: string[] }) {
   return (
@@ -49,7 +49,7 @@ type Props = {
 
 export default function TemplatePage({ params }: Props) {
   const template = useMemo(() => getTemplateById(params.template), [params.template])
-  const sameApplicationTypeTemplates = useMemo(() => templates.filter((_template) => _template.client.applicationType === template?.client.applicationType), [template])
+  const relatedTemplates = useMemo(() => template?.identifier ? getRelatedTemplates(template.identifier) : [], [template])
 
   if (!template) {
     return null
@@ -145,7 +145,7 @@ export default function TemplatePage({ params }: Props) {
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Related Templates</h2>
         <div className="grid grid-cols-3 gap-4">
-          {sameApplicationTypeTemplates.map((template) => (
+          {relatedTemplates.map((template) => (
             <TemplateCard key={template.identifier} template={template} />
           ))}
         </div>

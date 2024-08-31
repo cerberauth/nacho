@@ -4,7 +4,7 @@
   "description": "Beego Application with OpenID Connect.",
   "identifier": "golang-beego-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/golang-beego.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/golang.svg"
   },
   "technologies": [
     "go",
