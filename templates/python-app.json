@@ -1,0 +1,30 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Python App",
+  "description": "Python Application with OpenID Connect.",
+  "identifier": "python-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/python.svg"
+  },
+  "technologies": [
+    "python"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}
