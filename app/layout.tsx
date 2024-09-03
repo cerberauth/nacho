@@ -69,7 +69,7 @@ export default function RootLayout({
 
             <footer className="text-center p-8 space-y-4">
               <p className="text-gray-500 text-sm">
-                <Link className="text-primary" href="/clients">Clients</Link> - <Link className="text-primary" href="/templates">Templates</Link>
+                <Link className="text-primary" href="/clients">Clients</Link> - <Link className="text-primary" href="/templates">Templates</Link> - <Link className="text-primary" href="/openid/providers">OpenID Connect Providers Benchmark</Link>
               </p>
               <p className="text-sm text-gray-500">Proudly part of <Link className="text-primary"
                 href="https://www.cerberauth.com?utm_source=nacho">CerberAuth</Link> community.</p>

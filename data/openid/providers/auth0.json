@@ -1,0 +1,105 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Auth0",
+  "abstract": "Auth0 is an identity and access management platform that provides a comprehensive set of features to authenticate and authorize users.",
+  "identifier": "auth0",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/auth0.png"
+  },
+  "website": "https://auth0.com",
+  "license": "proprietary",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "url": "https://auth0.com/docs/flows/implicit-flow-with-form-post"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://auth0.com/docs/flows/authorization-code-flow"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://auth0.com/docs/flows/client-credentials-flow"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "supported",
+      "url": "https://auth0.com/docs/flows/resource-owner-password-flow"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://auth0.com/docs/flows/device-authorization-flow"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "url": "https://auth0.com/docs/api/authentication#authorize-endpoint"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://auth0.com/docs/api/authentication#-post-oauth-token-"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://auth0.com/docs/api/authentication#get-user-info"
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "partial",
+      "description": "Auth0 support only revocation of refresh tokens",
+      "url": "https://auth0.com/docs/api/authentication#revoke-refresh-token"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://auth0.com/docs/api/authentication#authorize"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://auth0.com/docs/api/authentication#authorize"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/applications/dynamic-client-registration"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "url": "https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation"
+    }
+  ]
+}

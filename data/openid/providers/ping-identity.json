@@ -1,0 +1,68 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Ping Identity",
+  "abstract": "Ping Identity is an identity and access management platform that provides a comprehensive set of features to authenticate and authorize users.",
+  "identifier": "ping-identity",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/ping-identity.svg"
+  },
+  "website": "https://www.pingidentity.com",
+  "license": "proprietary",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/developer/msk1601508083227"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/developer/yhk1601508082481"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/developer/ixj1601508083821"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/developer/kwc1601508084434"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/developer/ewx1601508085611"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_authoriz_endpoint"
+    }
+  ]
+}

@@ -1,0 +1,184 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "OpenID Connect Provider features",
+  "featureList": [
+    {
+      "name": "Authorization Code",
+      "description": "The Authorization Code grant type is used by confidential and public clients to exchange an authorization code for an access token.",
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1"
+    },
+    {
+      "name": "Refresh Token",
+      "description": "The Refresh Token grant type is used by clients to exchange a refresh token for an access token when the access token has expired.",
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc6749#section-1.5"
+    },
+    {
+      "name": "Client Credentials",
+      "description": "The Client Credentials grant type is used by clients to obtain an access token outside of the context of a user.",
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc6749#section-4.4"
+    },
+    {
+      "name": "Implicit",
+      "description": "The Implicit grant type is used by clients to obtain an access token directly from the authorization endpoint.",
+      "identifier": "implicit_grant",
+      "status": "deprecated",
+      "url": "https://datatracker.ietf.org/doc/html/rfc6749#section-4.2"
+    },
+    {
+      "name": "Token Exchange",
+      "description": "The Token Exchange grant type is used by clients to exchange a token for another token.",
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8693"
+    },
+    {
+      "name": "Client Initiated Backchannel Authentication",
+      "description": "The Client Initiated Backchannel Authentication grant type is used by clients to authenticate users using a backchannel.",
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+    },
+    {
+      "name": "Device Authorization Grant",
+      "description": "The Device Authorization Grant is used by clients to obtain an access token on devices with limited input capabilities.",
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8628"
+    },
+    {
+      "name": "JWT Bearer Token",
+      "description": "The JWT Bearer Token grant type is used by clients to exchange a JWT for an access token.",
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7523"
+    },
+    {
+      "name": "SAML 2.0 Bearer Assertion",
+      "description": "The SAML 2.0 Bearer Assertion grant type is used by clients to exchange a SAML 2.0 assertion for an access token.",
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7522"
+    },
+    {
+      "name": "Resource Owner Password Credentials",
+      "description": "The Resource Owner Password Credentials grant type is used by clients to exchange a user's credentials for an access token.",
+      "identifier": "password_grant",
+      "status": "deprecated",
+      "url": "https://datatracker.ietf.org/doc/html/rfc6749#section-4.3"
+    },
+    {
+      "name": "RP-initiated Logout",
+      "description": "RP-initiated Logout is used by clients to log out users from the authorization server.",
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-rpinitiated-1_0.html"
+    },
+    {
+      "name": "PKCE",
+      "description": "Proof Key for Code Exchange (PKCE) is a security extension to OAuth 2.0 that protects authorization codes.",
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7636"
+    },
+    {
+      "name": "PAR",
+      "description": "Pushed Authorization Requests (PAR) is a security extension to OAuth 2.0 that allows clients to push authorization requests to the authorization server.",
+      "identifier": "par_extension",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc9126"
+    },
+    {
+      "name": "RAR",
+      "description": "Rich Authorization Requests (RAR) is a security extension to OAuth 2.0 that allows clients to request additional authorization information.",
+      "identifier": "rar_extension",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc9396"
+    },
+    {
+      "name": "Authorization Endpoint",
+      "description": "The Authorization Endpoint is used by clients to obtain authorization from the resource owner.",
+      "identifier": "authorization_endpoint",
+      "status": "supported"
+    },
+    {
+      "name": "Token Endpoint",
+      "description": "The Token Endpoint is used by clients to obtain an access token and refresh token.",
+      "identifier": "token_endpoint",
+      "status": "supported"
+    },
+    {
+      "name": "UserInfo Endpoint",
+      "description": "The UserInfo Endpoint is used by clients to obtain user information.",
+      "identifier": "userinfo_endpoint",
+      "status": "supported"
+    },
+    {
+      "name": "Token Revocation",
+      "description": "OAuth 2.0 Token Revocation is a security feature that allows clients to revoke access tokens and refresh tokens.",
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7009"
+    },
+    {
+      "name": "Token Introspection",
+      "description": "OAuth 2.0 Token Introspection is a security feature that allows clients to validate access tokens and refresh tokens.",
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7662"
+    },
+    {
+      "name": "none prompt",
+      "description": "The none prompt is used to request that the authorization server does not display any user interface.",
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+    },
+    {
+      "name": "login prompt",
+      "description": "The login prompt is used to request that the authorization server displays a login user interface.",
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+    },
+    {
+      "name": "consent prompt",
+      "description": "The consent prompt is used to request that the authorization server displays a consent user interface.",
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+    },
+    {
+      "name": "select_account prompt",
+      "description": "The select_account prompt is used to request that the authorization server displays an account selection user interface.",
+      "identifier": "select_account_prompt",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+    },
+    {
+      "name": "create prompt",
+      "description": "The create prompt is used to request that the authorization server displays a user interface to create a new account.",
+      "identifier": "create_prompt",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+    },
+    {
+      "name": "Dynamic Client Registration",
+      "description": "Dynamic Client Registration enables clients to register with the authorization server.",
+      "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7591"
+    },
+    {
+      "name": "Refresh Token Rotation",
+      "description": "Refresh Token Rotation is a security feature that allows the authorization server to issue a new refresh token with every access token request.",
+      "identifier": "refresh_token_rotation",
+      "status": "supported"
+    }
+  ]
+}
