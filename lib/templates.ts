@@ -1,4 +1,4 @@
-import { templates } from '@/templates'
+import { templates } from '@/data/templates'
 
 export const getTemplateById = (id: string) => {
   return templates.find((t) => t.identifier === id)

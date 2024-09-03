@@ -1,4 +1,4 @@
-import { templates } from '@/templates'
+import { templates } from '@/data/templates'
 import { TemplateCard } from '@/components/template-card'
 
 export default function TemplatePage() {

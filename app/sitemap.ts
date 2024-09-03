@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { templates } from '@/templates'
+import { templates } from '@/data/templates'
 import { seoConfig } from './seo.config'
 
 const url = seoConfig.canonical!

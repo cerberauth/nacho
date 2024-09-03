@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-import type { Template } from '@/templates'
+import type { Template } from '@/data/templates'
 
 type TemplateCardProps = {
   template: Template
