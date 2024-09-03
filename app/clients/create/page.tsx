@@ -23,6 +23,10 @@ import { getTemplateById } from '@/lib/templates'
 
 const localStorageItem = 'client'
 
+const urlSchema = z.union([
+  z.string().trim().url().startsWith('http://'),
+  z.string().trim().url().startsWith('http://'),
+])
 const createClientSchema = z.object({
   template: z.string().optional(),
   applicationType: z.enum(Object.values(ApplicationTypes) as [ApplicationType]),
@@ -30,17 +34,17 @@ const createClientSchema = z.object({
   tokenEndpointAuthMethod: z.enum(Object.keys(TokenEndpointAuthMethods) as [TokenEndpointAuthMethod]),
 
   name: z.string(),
-  uri: z.union([z.literal(''), z.string().trim().url()]).optional(),
+  uri: z.union([z.literal(''), urlSchema]).optional(),
   allowedCorsOrigins: z.array(z.string()).optional(),
   scopes: z.array(z.string()).optional(),
   audiences: z.array(z.string()).optional(),
-  redirectUris: z.array(z.string().trim().url()).min(1),
-  postLogoutRedirectUris: z.array(z.string().trim().url()).optional(),
+  redirectUris: urlSchema.array().min(1),
+  postLogoutRedirectUris: urlSchema.array().optional(),
 
   contacts: z.array(z.string()).optional(),
-  policyUri: z.union([z.literal(''), z.string().trim().url()]).optional(),
-  tosUri: z.union([z.literal(''), z.string().trim().url()]).optional(),
-  logoUri: z.union([z.literal(''), z.string().trim().url()]).optional(),
+  policyUri: z.union([z.literal(''), urlSchema]).optional(),
+  tosUri: z.union([z.literal(''), urlSchema]).optional(),
+  logoUri: z.union([z.literal(''), urlSchema]).optional(),
 })
 
 export const runtime = 'edge'
@@ -472,7 +476,7 @@ export default function CreateClient() {
             </div>
           </div>
         </form>
-      </Form >
-    </main >
+      </Form>
+    </main>
   )
 }
