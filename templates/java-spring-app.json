@@ -4,7 +4,7 @@
   "description": "Spring Boot Application with OpenID Connect.",
   "identifier": "java-spring-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/java-spring.svg"
+    "contentUrl": "https://nacho.cerberauth.com/logos/java-spring-boot.svg"
   },
   "technologies": [
     "java",

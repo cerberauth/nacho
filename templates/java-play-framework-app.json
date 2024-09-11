@@ -4,7 +4,7 @@
   "description": "Play Framework Application with OpenID Connect.",
   "identifier": "java-play-framework-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/java-play.svg"
+    "contentUrl": "https://nacho.cerberauth.com/logos/java-play-framework.svg"
   },
   "technologies": [
     "java",
