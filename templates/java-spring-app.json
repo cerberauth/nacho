@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Spring Boot Application",
+  "description": "Spring Boot Application with OpenID Connect.",
+  "identifier": "java-spring-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/java-spring.svg"
+  },
+  "technologies": [
+    "java",
+    "spring",
+    "spring boot"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}

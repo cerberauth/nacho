@@ -36,6 +36,11 @@ import golangGinApp from './golang-gin-app.json' assert { type: 'json' }
 import hapiApp from './hapi-app.json' assert { type: 'json' }
 import haskellApp from './haskell-app.json' assert { type: 'json' }
 import javaWebApp from './java-web-app.json' assert { type: 'json' }
+import javaJHipsterApp from './java-jhipster-app.json' assert { type: 'json' }
+import javaPlayFrameworkApp from './java-play-framework-app.json' assert { type: 'json' }
+import javaSpringApp from './java-spring-app.json' assert { type: 'json' }
+import javaStrutsApp from './java-struts-app.json' assert { type: 'json' }
+import javaVaadinApp from './java-vaadin-app.json' assert { type: 'json' }
 import kotlinWebApp from './kotlin-web-app.json' assert { type: 'json' }
 import laravelApp from './laravel-app.json' assert { type: 'json' }
 import meteorJsApp from './meteorjs-app.json' assert { type: 'json' }
@@ -74,6 +79,11 @@ export {
   hapiApp,
   haskellApp,
   javaWebApp,
+  javaJHipsterApp,
+  javaPlayFrameworkApp,
+  javaSpringApp,
+  javaStrutsApp,
+  javaVaadinApp,
   kotlinWebApp,
   laravelApp,
   meteorJsApp,
@@ -113,6 +123,11 @@ export const templates = [
   hapiApp,
   haskellApp,
   javaWebApp,
+  javaJHipsterApp,
+  javaPlayFrameworkApp,
+  javaSpringApp,
+  javaStrutsApp,
+  javaVaadinApp,
   kotlinWebApp,
   laravelApp,
   meteorJsApp,
