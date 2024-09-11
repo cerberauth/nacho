@@ -56,9 +56,9 @@ export default function TemplatePage({ params }: Props) {
   }
 
   return (
-    <main className="container mx-auto max-w-4xl px-4 py-12 space-y-16">
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 my-8">
-        <div className="space-y-6 col-span-2">
+    <main className="container mx-auto max-w-5xl px-4 py-12 space-y-16">
+      <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4 my-8">
+        <div className="space-y-6 sm:col-span-2 md:col-span-3">
           {template.icon?.contentUrl && (
             <Image
               src={template.icon?.contentUrl}
@@ -75,7 +75,7 @@ export default function TemplatePage({ params }: Props) {
           </p>
         </div>
 
-        <Card className="p-8">
+        <Card className="p-8 sm:col-span-1 md:col-span-2">
           <dl className="space-y-4">
             <div>
               <dt className="font-semibold mb-1">Application Type</dt>

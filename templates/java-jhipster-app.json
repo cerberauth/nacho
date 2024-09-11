@@ -1,0 +1,31 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "JHipster Application",
+  "description": "JHipster Application with OpenID Connect.",
+  "identifier": "java-jhipster-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/java-jhipster.svg"
+  },
+  "technologies": [
+    "java",
+    "jhipster"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}
