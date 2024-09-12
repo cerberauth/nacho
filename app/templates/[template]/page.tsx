@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 import { TemplateCard } from '@/components/template-card'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { templates } from '@/templates'
+import { templates } from '@/data/templates'
 import { applicationTypeName, grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
 import { getRelatedTemplates, getTemplateById } from '@/lib/templates'
 

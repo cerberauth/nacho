@@ -1,0 +1,58 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Keycloak",
+  "abstract": "Keycloak is an open-source identity and access management solution that provides a comprehensive set of features to authenticate and authorize users.",
+  "identifier": "keycloak",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/keycloak.png"
+  },
+  "website": "https://www.keycloak.org",
+  "license": "Apache-2.0",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#implicit"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#authorization-code"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#client-credentials"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#_resource_owner_password_credentials_flow"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#device-authorization-grant"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#_client_initiated_backchannel_authentication_grant"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#dynamic-client-registration-endpoint"
+    }
+  ]
+}

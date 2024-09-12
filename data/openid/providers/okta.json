@@ -1,0 +1,133 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Okta",
+  "abstract": "Okta is an identity and access management platform that provides a comprehensive set of features to authenticate and authorize users.",
+  "identifier": "okta",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/okta.svg"
+  },
+  "website": "https://www.okta.com",
+  "license": "proprietary",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "deprecated",
+      "url": "https://developer.okta.com/docs/concepts/oauth-openid/#implicit-flow"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/oauth-openid/#client-credentials-flow"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/oauth-openid/#resource-owner-password-flow"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/refresh-tokens/main/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/device-authorization-grant/main/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/set-up-token-exchange/-/main/"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/configure-ciba/main/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/overview/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/oauth-openid/#saml-2-0-assertion-flow"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/tokenOptions"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/userinfo"
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/revoke"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/introspect"
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "not_supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/refresh-tokens/main/#refresh-token-rotation"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/#tag/CustomAS/operation/logoutCustomAS"
+    }
+  ]
+}

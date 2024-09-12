@@ -1,0 +1,54 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Ory Hydra",
+  "abstract": "Ory Hydra is a cloud-native OAuth 2.0 and OpenID Connect server that secures APIs, microservices, and websites with low-latency token validation and revocation.",
+  "identifier": "ory-hydra",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/ory.png"
+  },
+  "website": "https://www.ory.sh/hydra",
+  "license": "Apache-2.0",
+  "github": "https://github.com/ory/hydra",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "supported"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported"
+    }
+  ]
+}
