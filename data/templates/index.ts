@@ -35,6 +35,7 @@ import golangFiberApp from './golang-fiber-app.json' assert { type: 'json' }
 import golangGinApp from './golang-gin-app.json' assert { type: 'json' }
 import hapiApp from './hapi-app.json' assert { type: 'json' }
 import haskellApp from './haskell-app.json' assert { type: 'json' }
+import honoApp from './hono-app.json' assert { type: 'json' }
 import javaWebApp from './java-web-app.json' assert { type: 'json' }
 import javaJHipsterApp from './java-jhipster-app.json' assert { type: 'json' }
 import javaPlayFrameworkApp from './java-play-framework-app.json' assert { type: 'json' }
@@ -78,6 +79,7 @@ export {
   golangGinApp,
   hapiApp,
   haskellApp,
+  honoApp,
   javaWebApp,
   javaJHipsterApp,
   javaPlayFrameworkApp,
@@ -122,6 +124,7 @@ export const templates = [
   golangGinApp,
   hapiApp,
   haskellApp,
+  honoApp,
   javaWebApp,
   javaJHipsterApp,
   javaPlayFrameworkApp,
