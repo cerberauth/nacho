@@ -1,0 +1,33 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "name": "Hono App",
+  "description": "Hono Application with OpenID Connect.",
+  "identifier": "hono-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/hono.svg"
+  },
+  "technologies": [
+    "javascript",
+    "typescript",
+    "hono",
+    "react"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}
