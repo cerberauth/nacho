@@ -4,7 +4,7 @@
   "abstract": "Auth0 is an identity and access management platform that provides a comprehensive set of features to authenticate and authorize users.",
   "identifier": "auth0",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/auth0.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/auth0.svg"
   },
   "website": "https://auth0.com",
   "license": "proprietary",
