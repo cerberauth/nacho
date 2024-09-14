@@ -7,7 +7,7 @@
     "contentUrl": "https://nacho.cerberauth.com/logos/microsoft-entra-id.svg"
   },
   "website": "https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id",
-  "license": "proprietary",
+  "license": "Proprietary",
   "featureList": [
     {
       "identifier": "implicit_grant",
