@@ -18,6 +18,7 @@ export type OpenIDConnectProvider = {
   license: string
   featureList: Array<{
     identifier: string
+    description?: string
     status: string
     url?: string
   }>
