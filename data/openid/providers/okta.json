@@ -115,6 +115,31 @@
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
     },
     {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+    },
+    {
       "identifier": "dynamic_client_registration",
       "status": "supported",
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"

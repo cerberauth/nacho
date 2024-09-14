@@ -1,10 +1,9 @@
-import { Check, CircleHelp, Cross, Info, Trash, X } from 'lucide-react'
+import { Check, CircleHelp, Info, Trash, X } from 'lucide-react'
 import Link from 'next/link'
 
 import { FeatureStatus } from '@/data/openid/providers'
 import { getOpenIDConnectFeatureById, getProviderFeature, getProviders } from '@/lib/providers'
 import { ProviderCard } from '@/components/provider-card'
-import { features } from 'process'
 
 type BenchmarkCellProps = {
   identifier: string
@@ -125,6 +124,18 @@ const categories: BenchmarkCategoryProps[] = [
       'userinfo_endpoint',
       'token_revocation_endpoint',
       'token_introspection_endpoint',
+    ]
+  },
+
+  {
+    name: 'Token Endpoint Authentication Methods',
+    features: [
+      'none_token_endpoint_auth',
+      'client_secret_basic_token_endpoint_auth',
+      'client_secret_post_token_endpoint_auth',
+      'client_secret_jwt_token_endpoint_auth',
+      'private_key_jwt_token_endpoint_auth',
+      'tls_client_auth_token_endpoint_auth',
     ]
   },
 
