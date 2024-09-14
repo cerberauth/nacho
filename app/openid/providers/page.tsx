@@ -227,10 +227,12 @@ export default function ProviderPage() {
         </p>
       </div>
 
-      <div className="sticky top-0 z-10 pointer-events-none max-w-full">
+      <div className="sticky top-0 z-10 max-w-full">
         <div className="flex gap-1 bg-white pt-2">
           {getProviders().map((provider) => (
-            <ProviderCard key={`provider-${provider.identifier}`} provider={provider} />
+            <div key={`provider-${provider.identifier}`} className="max-w-32">
+              <ProviderCard provider={provider} />
+            </div>
           ))}
         </div>
       </div>

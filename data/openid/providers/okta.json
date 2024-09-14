@@ -7,7 +7,7 @@
     "contentUrl": "https://nacho.cerberauth.com/logos/okta.svg"
   },
   "website": "https://www.okta.com",
-  "license": "proprietary",
+  "license": "Proprietary",
   "featureList": [
     {
       "identifier": "implicit_grant",
