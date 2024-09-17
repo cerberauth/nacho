@@ -26,6 +26,7 @@ import astroApp from './astro-app.json' assert { type: 'json' }
 import codeigniterApp from './codeigniter-app.json' assert { type: 'json' }
 import dotnetWebApp from './dotnet-web-app.json' assert { type: 'json' }
 import elixirApp from './elixir-app.json' assert { type: 'json' }
+import erlangApp from './erlang-app.json' assert { type: 'json' }
 import expressJsApp from './expressjs-app.json' assert { type: 'json' }
 import flutterWebSpa from './flutter-web-spa.json' assert { type: 'json' }
 import golangApp from './golang-app.json' assert { type: 'json' }
@@ -70,6 +71,7 @@ export {
   codeigniterApp,
   dotnetWebApp,
   elixirApp,
+  erlangApp,
   expressJsApp,
   flutterWebSpa,
   golangApp,
@@ -115,6 +117,7 @@ export const templates = [
   codeigniterApp,
   dotnetWebApp,
   elixirApp,
+  erlangApp,
   expressJsApp,
   flutterWebSpa,
   golangApp,
