@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
   "name": "React SPA",
   "description": "React Single Page Application with OpenID Connect.",
   "identifier": "react-spa",

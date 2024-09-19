@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
   "name": "Nest.js App",
   "description": "Nest.js Application with OpenID Connect.",
   "identifier": "nestjs-app",
@@ -13,6 +13,13 @@
     "nest.js",
     "express.js",
     "fastify"
+  ],
+  "libraries": [
+    {
+      "name": "openid-client",
+      "description": "OpenID Certified™ Relying Party (OpenID Connect/OAuth 2.0 Client) implementation for Node.js.",
+      "url": "https://github.com/panva/node-openid-client"
+    }
   ],
   "client": {
     "applicationType": "webApplication",
