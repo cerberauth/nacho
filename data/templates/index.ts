@@ -58,6 +58,8 @@ import sailsJsApp from './sailsjs-app.json' assert { type: 'json' }
 import scalaApp from './scala-app.json' assert { type: 'json' }
 import spa from './spa.json' assert { type: 'json' }
 import svelteSpa from './svelte-spa.json' assert { type: 'json' }
+import swiftWebApp from './swift-web-app.json' assert { type: 'json' }
+import swiftVaporWebApp from './swift-vapor-web-app.json' assert { type: 'json' }
 import symfonyApp from './symfony-app.json' assert { type: 'json' }
 import vueSpa from './vue-spa.json' assert { type: 'json' }
 import webApp from './web-app.json' assert { type: 'json' }
@@ -102,6 +104,8 @@ export {
   scalaApp,
   spa,
   svelteSpa,
+  swiftWebApp,
+  swiftVaporWebApp,
   symfonyApp,
   vueSpa,
   webApp,
@@ -147,6 +151,8 @@ export const templates = [
   scalaApp,
   spa,
   svelteSpa,
+  swiftWebApp,
+  swiftVaporWebApp,
   symfonyApp,
   vueSpa,
   webApp,
