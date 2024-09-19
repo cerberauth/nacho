@@ -56,7 +56,7 @@ export default function TemplatePage({ params }: Props) {
   }
 
   return (
-    <main className="container mx-auto max-w-5xl px-4 py-12 space-y-16">
+    <main className="container mx-auto max-w-5xl px-4 py-12 space-y-12">
       <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-5 gap-4 my-8">
         <div className="space-y-6 sm:col-span-2 md:col-span-3">
           {template.icon?.contentUrl && (
@@ -91,10 +91,9 @@ export default function TemplatePage({ params }: Props) {
             )}
             {template.example && (
               <div>
-                <dt className="font-semibold mb-1">Example</dt>
                 <dd>
-                  <Link href={template.example.url} className="underline" rel="nofollow" target="_blank">
-                    {template.example.name}
+                  <Link href={template.example.url} className="underline" rel="nofollow noopener" target="_blank">
+                    <strong>{template.example.name}</strong>
                     <ArrowUpRight className="mx-1 w-4 h-4 inline-block" />
                   </Link>
                   <span className="text-sm">
@@ -117,6 +116,28 @@ export default function TemplatePage({ params }: Props) {
           </div>
         </Card>
       </div>
+
+      {Array.isArray(template.libraries) && template.libraries.length > 0 && (
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">Which Libraries for implementing OpenID Connect for {template.name}?</h2>
+          <p>
+            To implement OpenID Connect for {template.name}, you can use one of the following libraries:
+            <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
+              {template.libraries.map((library, i) => (
+                <li key={i}>
+                  <Link href={library.url} rel="nofollow noopener" target="_blank" className="underline">
+                    {library.name}
+                    <ArrowUpRight className="w-3 h-3 ml-1 inline-block" />
+                  </Link>
+                  {library.description && (
+                    <p className="text-sm mt-2">{library.description}</p>
+                  )}
+                </li>
+              ))}
+            </ul>
+          </p>
+        </div>
+      )}
 
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Which Grant Types for {template.name}?</h2>

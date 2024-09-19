@@ -1,5 +1,5 @@
 {
-  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/client.schema.json",
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
   "name": "Java Web App",
   "description": "Java Web Application with OpenID Connect.",
   "identifier": "java-web-app",

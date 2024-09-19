@@ -27,13 +27,13 @@ export function ProviderCard({ provider }: ProviderCardProps) {
       </p>
       <p className="text-sm text-slate-500 transition flex gap-2">
         {provider.github && (
-          <Link href={provider.github} rel="nofollow" target="_blank"
+          <Link href={provider.github} rel="nofollow noopener" target="_blank"
             className="flex items-center gap-1 hover:text-slate-800">
             <GitHubLogoIcon />
           </Link>
         )}
         {provider.website && (
-          <Link href={provider.website} rel="nofollow" target="_blank"
+          <Link href={provider.website} rel="nofollow noopener" target="_blank"
             className="flex items-center gap-1 hover:text-slate-800">
             <GlobeIcon />
           </Link>

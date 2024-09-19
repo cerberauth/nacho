@@ -5,6 +5,11 @@ export type Template = {
     contentUrl: string
   }
   technologies: string[]
+  libraries?: Array<{
+    name: string
+    description?: string
+    url: string
+  }>
   example?: {
     name: string
     url: string
