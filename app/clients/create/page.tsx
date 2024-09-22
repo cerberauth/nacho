@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { CircleHelp } from 'lucide-react'
 import { nanoid } from 'nanoid'
 import { useRouter, useSearchParams } from 'next/navigation'
+import { usePlausible } from 'next-plausible'
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -56,6 +57,7 @@ export default function CreateClient() {
   const searchParams = useSearchParams()
   const [hasBeenInitialized, setHasBeenInitialized] = useState(false)
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const plausible = usePlausible()
   const form = useForm<z.infer<typeof createClientSchema>>({
     resolver: zodResolver(createClientSchema),
   })
@@ -84,6 +86,8 @@ export default function CreateClient() {
           tokenEndpointAuthMethod: templateApplication.client.tokenEndpointAuthMethods[0],
         }
       } : client
+
+      plausible('Create Client From Template', { props: { template } })
     }
 
     if (client) {
@@ -91,7 +95,7 @@ export default function CreateClient() {
     }
 
     setHasBeenInitialized(true)
-  }, [hasBeenInitialized, template, form])
+  }, [hasBeenInitialized, template, form, plausible])
 
   useEffect(() => {
     if (!hasBeenInitialized || isSubmitting) {
@@ -137,8 +141,9 @@ export default function CreateClient() {
     localStorage.removeItem(localStorageItem)
 
     const encoded = await urlEncode(client)
+    plausible('Create Client', { props: {} })
     router.push(`/clients/${encoded}`)
-  }, [router, isSubmitting, setIsSubmitting])
+  }, [router, isSubmitting, setIsSubmitting, plausible])
 
   return (
     <main>

@@ -61,7 +61,7 @@ export default function ClientPage() {
       return
     }
 
-    plausible('createTestIdClient', {
+    plausible('Create TestId Client', {
       props: {
         applicationType: client.applicationType,
         tokenEndpointAuthMethod: client.tokenEndpointAuthMethod,
@@ -89,13 +89,13 @@ export default function ClientPage() {
   }, [url, client, tokenAuthenticationMethod, testIdClient, session, plausible])
 
   const shareByLink = useCallback(() => {
-    plausible('clientUrlClipboardCopy', { props: {} })
+    plausible('Client URL Clipboard Copy', { props: {} })
     const url = createShareableLink('clipboard')
     onClipboardCopy(url.toString())
   }, [plausible])
 
   const shareByEmail = useCallback(() => {
-    plausible('clientShareByEmail', { props: {} })
+    plausible('Client Email Share', { props: {} })
     const url = createShareableLink('email')
     const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${url}`)}`
     window.open(message)
