@@ -22,12 +22,12 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
   const [bff, setBff] = useState<boolean | null>(null)
 
   const handleBffChange = useCallback((value: boolean | null) => {
-    plausible('bffChoice', { props: { bff: value } })
+    plausible('Choose BFF', { props: { bff: value } })
     setBff(value)
     onTokenEndpointAuthMethodChange(value ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethods.none])
   }, [plausible, onTokenEndpointAuthMethodChange])
   const handleApplicationTypeChange = useCallback((type: ApplicationType | null) => {
-    plausible('applicationTypeChoice', { props: { applicationType: type } })
+    plausible('Choose Application Type', { props: { applicationType: type } })
     setApplicationType(type)
     if (typeof onApplicationTypeChange === 'function') {
       onApplicationTypeChange(type)
@@ -73,7 +73,7 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
   }, [plausible, onApplicationTypeChange, onTokenEndpointAuthMethodChange, onGrantTypeChange, bff, handleBffChange])
   const handleUserInteractionChange = useCallback((withUserInteraction: boolean | null) => {
     handleApplicationTypeChange(null)
-    plausible('userInteractionChoice', { props: { withUserInteraction } })
+    plausible('Choose User Interaction', { props: { withUserInteraction } })
     setWithUserInteraction(withUserInteraction)
   }, [plausible, handleApplicationTypeChange])
 

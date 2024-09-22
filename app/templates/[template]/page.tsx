@@ -92,12 +92,12 @@ export default function TemplatePage({ params }: Props) {
             {template.example && (
               <div>
                 <dd>
-                  <Link href={template.example.url} className="underline" rel="nofollow noopener" target="_blank">
+                  <Link href={template.example.url} className="underline plausible-event-name=Template+Example+Link+Click" rel="nofollow noopener" target="_blank">
                     <strong>{template.example.name}</strong>
                     <ArrowUpRight className="mx-1 w-4 h-4 inline-block" />
                   </Link>
                   <span className="text-sm">
-                    (<Link href={template.example.repository.url} rel="nofollow noopener" target="_blank">
+                    (<Link href={template.example.repository.url} className="plausible-event-name=Template+Example+Repository+Link+Click" rel="nofollow noopener" target="_blank">
                       Github
                       <GitPullRequest className="ml-1 w-3 h-3 inline-block" />
                     </Link>)
@@ -109,7 +109,7 @@ export default function TemplatePage({ params }: Props) {
 
           <div className="mt-8 text-center">
             <Button type="button">
-              <Link href={`/clients/create?template=${template.identifier}`}>
+              <Link href={`/clients/create?template=${template.identifier}`} className={`plausible-event-name=Create+Client+From+Template+Button+Click plausible-event-template=${template.identifier}`}>
                 Create {template.name} Client
               </Link>
             </Button>
@@ -122,20 +122,20 @@ export default function TemplatePage({ params }: Props) {
           <h2 className="text-2xl font-semibold">Which Libraries for implementing OpenID Connect for {template.name}?</h2>
           <p>
             To implement OpenID Connect for {template.name}, you can use one of the following libraries:
-            <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
-              {template.libraries.map((library, i) => (
-                <li key={i}>
-                  <Link href={library.url} rel="nofollow noopener" target="_blank" className="underline">
-                    {library.name}
-                    <ArrowUpRight className="w-3 h-3 ml-1 inline-block" />
-                  </Link>
-                  {library.description && (
-                    <p className="text-sm mt-2">{library.description}</p>
-                  )}
-                </li>
-              ))}
-            </ul>
           </p>
+          <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
+            {template.libraries.map((library, i) => (
+              <li key={i}>
+                <Link href={library.url} rel="nofollow noopener" target="_blank" className="underline">
+                  {library.name}
+                  <ArrowUpRight className="w-3 h-3 ml-1 inline-block" />
+                </Link>
+                {library.description && (
+                  <p className="text-sm mt-2">{library.description}</p>
+                )}
+              </li>
+            ))}
+          </ul>
         </div>
       )}
 
@@ -143,24 +143,24 @@ export default function TemplatePage({ params }: Props) {
         <h2 className="text-2xl font-semibold">Which Grant Types for {template.name}?</h2>
         <p>
           {template.name} can use one or many of the following OAuth Grant Types:
-          <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
-            {template.client.grantTypes.map((grantType) => (
-              <GrantTypeListItem key={grantType} grantType={grantType} />
-            ))}
-          </ul>
         </p>
+        <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
+          {template.client.grantTypes.map((grantType) => (
+            <GrantTypeListItem key={grantType} grantType={grantType} />
+          ))}
+        </ul>
       </div>
 
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">Which Token Endpoint Authentication Methods for {template.name}?</h2>
         <p>
           {template.name} can use one or many of the following OAuth Token Endpoint Authentication Methods:
-          <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
-            {template.client.tokenEndpointAuthMethods.map((authMethod) => (
-              <TokenAuthenticationMethodListItem key={authMethod} authMethod={authMethod} />
-            ))}
-          </ul>
         </p>
+        <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
+          {template.client.tokenEndpointAuthMethods.map((authMethod) => (
+            <TokenAuthenticationMethodListItem key={authMethod} authMethod={authMethod} />
+          ))}
+        </ul>
       </div>
 
       <div className="space-y-4">
