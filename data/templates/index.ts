@@ -53,6 +53,7 @@ import laravelApp from './laravel-app.json' assert { type: 'json' }
 import meteorJsApp from './meteorjs-app.json' assert { type: 'json' }
 import nestJsApp from './nestjs-app.json' assert { type: 'json' }
 import nextjsApp from './nextjs-app.json' assert { type: 'json' }
+import nodejsApp from './nodejs-app.json' assert { type: 'json' }
 import phpApp from './php-app.json' assert { type: 'json' }
 import preactSpa from './preact-spa.json' assert { type: 'json' }
 import pythonApp from './python-app.json' assert { type: 'json' }
@@ -100,6 +101,7 @@ export {
   meteorJsApp,
   nestJsApp,
   nextjsApp,
+  nodejsApp,
   phpApp,
   preactSpa,
   pythonApp,
@@ -148,6 +150,7 @@ export const templates = [
   meteorJsApp,
   nestJsApp,
   nextjsApp,
+  nodejsApp,
   phpApp,
   preactSpa,
   pythonApp,
