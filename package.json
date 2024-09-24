@@ -59,9 +59,9 @@
     "eslint-config-next": "14.2.13",
     "eslint-plugin-next-on-pages": "1.13.3",
     "postcss": "8.4.47",
-    "tailwindcss": "3.4.12",
+    "tailwindcss": "3.4.13",
     "typescript": "5",
-    "vercel": "37.5.3",
-    "wrangler": "3.78.7"
+    "vercel": "37.5.4",
+    "wrangler": "3.78.8"
   }
 }
