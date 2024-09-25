@@ -50,7 +50,7 @@
   },
   "devDependencies": {
     "@cloudflare/next-on-pages": "1.13.3",
-    "@cloudflare/workers-types": "4.20240924.0",
+    "@cloudflare/workers-types": "4.20240925.0",
     "@types/node": "20",
     "@types/react": "18",
     "@types/react-dom": "18",
@@ -62,6 +62,6 @@
     "tailwindcss": "3.4.13",
     "typescript": "5",
     "vercel": "37.5.4",
-    "wrangler": "3.78.9"
+    "wrangler": "3.78.10"
   }
 }
