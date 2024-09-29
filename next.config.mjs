@@ -10,8 +10,8 @@ if (process.env.NODE_ENV === 'development') {
 const cspHeader = `
     default-src 'self';
     connect-src 'self' https://a.cerberauth.com;
-    script-src 'self' https://a.cerberauth.com/js/plausible.outbound-links.tagged-events.js;
-    style-src 'self';
+    script-src 'self' 'unsafe-inline' https://a.cerberauth.com/js/plausible.outbound-links.tagged-events.js;
+    style-src 'self' 'unsafe-inline';
     img-src 'self';
     frame-src 'none';
     font-src 'self';
