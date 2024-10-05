@@ -1,20 +1,19 @@
 {
   "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
-  "name": "Flutter (Web) SPA",
-  "description": "Flutter (Web) Single Page Application with OpenID Connect.",
-  "identifier": "flutter-web-spa",
+  "name": "Dart SPA",
+  "description": "Dart Single Page Application with OpenID Connect.",
+  "identifier": "dart-spa",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/flutter.svg"
+    "contentUrl": "https://nacho.cerberauth.com/logos/dart.svg"
   },
   "technologies": [
     "javascript",
-    "dart",
-    "flutter"
+    "dart"
   ],
   "libraries": [
     {
       "name": "openid_client",
-      "description": "OpenID Connect client library for Flutter web application.",
+      "description": "OpenID Connect client library for Dart browser application.",
       "url": "https://github.com/appsup-dart/openid_client"
     }
   ],

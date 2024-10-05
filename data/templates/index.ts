@@ -29,6 +29,7 @@ export type Template = {
 import angularSpa from './angular-spa.json' assert { type: 'json' }
 import astroApp from './astro-app.json' assert { type: 'json' }
 import codeigniterApp from './codeigniter-app.json' assert { type: 'json' }
+import dartSpa from './dart-spa.json' assert { type: 'json' }
 import dotnetWebApp from './dotnet-web-app.json' assert { type: 'json' }
 import elixirApp from './elixir-app.json' assert { type: 'json' }
 import erlangApp from './erlang-app.json' assert { type: 'json' }
@@ -82,6 +83,7 @@ export {
   angularSpa,
   astroApp,
   codeigniterApp,
+  dartSpa,
   dotnetWebApp,
   elixirApp,
   erlangApp,
@@ -136,6 +138,7 @@ export const templates = [
   angularSpa,
   astroApp,
   codeigniterApp,
+  dartSpa,
   dotnetWebApp,
   elixirApp,
   erlangApp,
