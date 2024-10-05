@@ -57,6 +57,11 @@ import nodejsApp from './nodejs-app.json' assert { type: 'json' }
 import phpApp from './php-app.json' assert { type: 'json' }
 import preactSpa from './preact-spa.json' assert { type: 'json' }
 import pythonApp from './python-app.json' assert { type: 'json' }
+import pythonDjangoApp from './python-django-app.json' assert { type: 'json' }
+import pythonFastAPIApp from './python-fastapi-app.json' assert { type: 'json' }
+import pythonFlaskApp from './python-flask-app.json' assert { type: 'json' }
+import pythonFletApp from './python-flet-app.json' assert { type: 'json' }
+import pythonStarletteApp from './python-starlette-app.json' assert { type: 'json' }
 import reactSpa from './react-spa.json' assert { type: 'json' }
 import remixApp from './remix-app.json' assert { type: 'json' }
 import rubyApp from './ruby-app.json' assert { type: 'json' }
@@ -105,6 +110,11 @@ export {
   phpApp,
   preactSpa,
   pythonApp,
+  pythonDjangoApp,
+  pythonFastAPIApp,
+  pythonFlaskApp,
+  pythonFletApp,
+  pythonStarletteApp,
   reactSpa,
   remixApp,
   rubyApp,
@@ -154,6 +164,11 @@ export const templates = [
   phpApp,
   preactSpa,
   pythonApp,
+  pythonDjangoApp,
+  pythonFastAPIApp,
+  pythonFlaskApp,
+  pythonFletApp,
+  pythonStarletteApp,
   reactSpa,
   remixApp,
   rubyApp,
