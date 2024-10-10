@@ -10,6 +10,13 @@
     "javascript",
     "vue"
   ],
+  "example": {
+    "name": "Vue SPA Example",
+    "url": "https://cerberauth-vue-spa-oidc.pages.dev/",
+    "repository": {
+      "url": "https://github.com/cerberauth/openid-connect-examples/tree/main/examples/vue-spa"
+    }
+  },
   "client": {
     "applicationType": "spa",
     "grantTypes": [
