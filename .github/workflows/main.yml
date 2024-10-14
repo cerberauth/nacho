@@ -29,3 +29,27 @@ jobs:
 
       - name: Run tests 🧪
         run: npm run build
+
+  validate-json:
+    runs-on: ubuntu-latest
+    name: Validate ${{ matrix.name }} JSON
+
+    strategy:
+      fail-fast: true
+      matrix:
+        include:
+          - name: OpenID Connect Providers
+            files: 'data/openid/providers/*.json'
+          - name: OpenID Connect Applications
+            files: 'data/templates/*.json'
+            schema: https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json
+
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v4
+
+      - name: Validate JSON
+        uses: emmanuelgautier/validate-json@v1
+        with:
+          files: ${{ matrix.files }}
+          schema: ${{ matrix.schema }}
