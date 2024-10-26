@@ -18,7 +18,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
 import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
-import { ApplicationTypes, GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
+import { ApplicationTypes, GrantTypes, tokenAuthenticationMethods, TokenEndpointAuthMethods } from '@/lib/consts'
 import { urlEncode } from '@/lib/url'
 import { getTemplateById } from '@/lib/templates'
 
@@ -409,25 +409,6 @@ export default function CreateClient() {
                   <CardContent className="space-y-2">
                     <FormField
                       control={form.control}
-                      name="grantTypes"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>
-                            Grant Types <span className="text-red-500">*</span>
-                          </FormLabel>
-                          <FormControl>
-                            <InputTags {...field} />
-                          </FormControl>
-                          <FormDescription>
-                            The grant types your client can use.
-                          </FormDescription>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
-
-                    <FormField
-                      control={form.control}
                       name="tokenEndpointAuthMethod"
                       render={({ field }) => (
                         <FormItem>
@@ -441,9 +422,9 @@ export default function CreateClient() {
                               </SelectTrigger>
 
                               <SelectContent>
-                                {Object.entries(TokenEndpointAuthMethods).map(([key, value]) => (
-                                  <SelectItem key={key} value={value}>
-                                    {value}
+                                {tokenAuthenticationMethods.map(({ id, label }) => (
+                                  <SelectItem key={id} value={id}>
+                                    {label}
                                   </SelectItem>
                                 ))}
                               </SelectContent>
@@ -451,6 +432,25 @@ export default function CreateClient() {
                           </FormControl>
                           <FormDescription>
                             The Token Endpoint Authentication Method of your application.
+                          </FormDescription>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="grantTypes"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>
+                            Grant Types <span className="text-red-500">*</span>
+                          </FormLabel>
+                          <FormControl>
+                            <InputTags {...field} />
+                          </FormControl>
+                          <FormDescription>
+                            The grant types your client can use.
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -475,7 +475,7 @@ export default function CreateClient() {
               <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="mr-4">
                 Cancel
               </Button>
-              <Button type="submit" size="lg" disabled={!form.formState.isValid}>
+              <Button type="submit" size="lg">
                 Create
               </Button>
             </div>
