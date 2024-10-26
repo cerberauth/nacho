@@ -1,9 +1,7 @@
 import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev'
 
-// Here we use the @cloudflare/next-on-pages next-dev module to allow us to use bindings during local development
-// (when running the application with `next dev`), for more information see:
-// https://github.com/cloudflare/next-on-pages/blob/5712c57ea7/internal-packages/next-dev/README.md
-if (process.env.NODE_ENV === 'development') {
+const { NODE_ENV, CF_ACCOUNT_ID } = process.env
+if (NODE_ENV === 'development' && CF_ACCOUNT_ID) {
   await setupDevPlatform()
 }
 
@@ -12,7 +10,7 @@ const cspHeader = `
     connect-src 'self' https://a.cerberauth.com;
     script-src 'self' 'unsafe-inline' https://a.cerberauth.com/js/plausible.outbound-links.tagged-events.js;
     style-src 'self' 'unsafe-inline';
-    img-src 'self';
+    img-src 'self' https://nacho.cerberauth.com https://gravatar.com;
     frame-src 'none';
     font-src 'self';
     object-src 'none';
@@ -28,6 +26,10 @@ const nextConfig = {
     domains: ['nacho.cerberauth.com'],
   },
   headers() {
+    if (NODE_ENV === 'development') {
+      return []
+    }
+
     return [
       {
         source: '/:path*',
