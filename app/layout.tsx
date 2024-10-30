@@ -72,7 +72,7 @@ export default function RootLayout({
                 <Link className="text-primary" href="/clients">Clients</Link> - <Link className="text-primary" href="/templates">Templates</Link> - <Link className="text-primary" href="/openid/providers">OpenID Connect Providers Benchmark</Link>
               </p>
               <p className="text-sm">
-                <Link className="text-gray-500 hover:text-gray-600" href="https://www.cerberauth.com/tos?utm_source=nacho" rel="nofollow noopener" target="_blank">Terms of Service</Link> - <Link className="text-gray-500 hover:text-gray-600" href="https://www.cerberauth.com/privacy?utm_source=nacho" rel="nofollow noopener" target="_blank">Privacy Policy</Link>
+                <Link className="text-gray-500 hover:text-gray-600" href="https://www.cerberauth.com/tos?utm_source=nacho" rel="nofollow" target="_blank">Terms of Service</Link> - <Link className="text-gray-500 hover:text-gray-600" href="https://www.cerberauth.com/privacy?utm_source=nacho" rel="nofollow" target="_blank">Privacy Policy</Link> - <Link className="text-gray-500 hover:text-gray-600" href="https://github.com/cerberauth/nacho" rel="nofollow noopener noreferrer" target="_blank">Github</Link>
               </p>
               <p className="text-sm text-gray-500">Proudly part of <Link className="text-primary"
                 href="https://www.cerberauth.com/?utm_source=nacho">CerberAuth</Link> community.</p>
