@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
 
 import NachoLogo from './nacho_logo.svg'
+import { GitHubLogoIcon } from '@radix-ui/react-icons'
 
 export default function Header() {
   const session = useSession()
@@ -28,7 +29,11 @@ export default function Header() {
           <Link href="/clients" className="font-medium">Clients</Link>
         </div>
 
-        <div className="flex flex-1 items-center space-x-2 justify-end">
+        <div className="flex flex-1 items-center space-x-4 justify-end">
+          <Link href="https://github.com/cerberauth/nacho" rel="nofollow noopener noreferrer" target="_blank">
+            <GitHubLogoIcon className="w-6 h-6" />
+          </Link>
+
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
