@@ -34,6 +34,7 @@ import dotnetWebApp from './dotnet-web-app.json' assert { type: 'json' }
 import elixirApp from './elixir-app.json' assert { type: 'json' }
 import erlangApp from './erlang-app.json' assert { type: 'json' }
 import expressJsApp from './expressjs-app.json' assert { type: 'json' }
+import fastifyApp from './fastify-app.json' assert { type: 'json' }
 import flutterWebSpa from './flutter-web-spa.json' assert { type: 'json' }
 import golangApp from './golang-app.json' assert { type: 'json' }
 import golangBeegoApp from './golang-beego-app.json' assert { type: 'json' }
@@ -88,6 +89,7 @@ export {
   elixirApp,
   erlangApp,
   expressJsApp,
+  fastifyApp,
   flutterWebSpa,
   golangApp,
   golangBeegoApp,
@@ -143,6 +145,7 @@ export const templates = [
   elixirApp,
   erlangApp,
   expressJsApp,
+  fastifyApp,
   flutterWebSpa,
   golangApp,
   golangBeegoApp,
