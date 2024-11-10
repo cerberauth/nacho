@@ -1,10 +1,11 @@
 import { MetadataRoute } from 'next'
- 
+import { seoConfig } from './seo.config'
+
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'New OAuth Client Helper - Nacho',
-    short_name: 'Nacho',
-    description: 'A tool to help you create OAuth2 clients for your applications.',
+    name: seoConfig.title,
+    short_name: seoConfig.openGraph?.siteName,
+    description: seoConfig.description,
     start_url: '/',
     display: 'standalone',
     background_color: '#fff',

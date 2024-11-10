@@ -1,21 +1,19 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import Head from 'next/head'
 import { SessionProvider } from 'next-auth/react'
 import PlausibleProvider from 'next-plausible'
 import { DefaultSeo, SoftwareAppJsonLd } from 'next-seo'
 import { Inter as FontSans } from 'next/font/google'
+import Link from 'next/link'
 import './globals.css'
+
+import { seoConfig } from './seo.config'
+import Header from './header'
 
 const fontSans = FontSans({
   subsets: ['latin'],
   variable: '--font-sans',
 })
-
-import { cn } from '@/lib/utils'
-
-import { seoConfig } from './seo.config'
-import Header from './header'
-import Link from 'next/link'
 
 export const metadata: Metadata = {
   metadataBase: new URL(seoConfig.canonical!),
@@ -27,6 +25,10 @@ export const metadata: Metadata = {
   alternates: {
     canonical: './',
   }
+}
+
+export const viewport: Viewport = {
+  maximumScale: 1,
 }
 
 export default function RootLayout({
@@ -47,14 +49,10 @@ export default function RootLayout({
           keywords='OAuth, OpenID Connect, Client, Helper'
           operatingSystem='All'
         />
-
         <link rel="manifest" href="/site.webmanifest" />
       </Head>
 
-      <body className={cn(
-        "min-h-screen bg-background font-sans antialiased",
-        fontSans.variable
-      )}>
+      <body className={`min-h-[100dvh] bg-white dark:bg-gray-950 text-black dark:text-white ${fontSans.className} antialiased`}>
         <SessionProvider>
           <PlausibleProvider
             domain="nacho.cerberauth.com"

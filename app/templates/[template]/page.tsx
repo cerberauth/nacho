@@ -44,16 +44,16 @@ function TokenAuthenticationMethodListItem({ authMethod }: { authMethod: string 
 export const dynamicParams = false
 
 type Props = {
-  params: { template: string }
+  params: Promise<{ template: string }>
 }
 
-export default function TemplatePage({ params }: Props) {
-  const template = useMemo(() => getTemplateById(params.template), [params.template])
-  const relatedTemplates = useMemo(() => template?.identifier ? getRelatedTemplates(template.identifier) : [], [template])
-
+export default async function TemplatePage({ params }: Props) {
+  const { template: templateParam } = await params
+  const template = getTemplateById(templateParam)
   if (!template) {
     return null
   }
+  const relatedTemplates = getRelatedTemplates(template.identifier)
 
   return (
     <main className="container mx-auto max-w-5xl px-4 py-12 space-y-12">
@@ -175,8 +175,9 @@ export default function TemplatePage({ params }: Props) {
   )
 }
 
-export function generateMetadata({ params }: Props) {
-  const template = getTemplateById(params.template)
+export async function generateMetadata({ params }: Props) {
+  const { template: templateParam } = await params
+  const template = getTemplateById(templateParam)
   if (!template) {
     return null
   }

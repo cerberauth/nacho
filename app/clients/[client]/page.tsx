@@ -1,13 +1,11 @@
 'use client'
 
-import { useCallback, useEffect, useMemo, useState } from 'react'
-import { ClipboardIcon } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
 import { nanoid } from 'nanoid'
-import { useSession, signIn } from 'next-auth/react'
-import { usePlausible } from 'next-plausible'
 import Link from 'next/link'
-import { useParams, useRouter, useSearchParams } from 'next/navigation'
+import { useParams, useRouter } from 'next/navigation'
 
+import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
@@ -15,26 +13,11 @@ import { applicationTypeName, grantTypeName, tokenAuthenticationMethodLabel } fr
 import { getClientById, saveClient } from '@/lib/clients'
 import { urlDecode, urlEncode } from '@/lib/url'
 
-const issuer = 'https://testid.cerberauth.com'
-const testIdOIDCDiscoveryEndpoint = `${issuer}/.well-known/openid-configuration`
-
 const createShareableLink = (medium: string) => {
   const url = new URL(window.location.href)
   url.searchParams.set('utm_source', 'cerberauth')
   url.searchParams.set('utm_medium', medium)
   return url.toString()
-}
-
-const createClient = async (client: OAuth2Client): Promise<TestIdClient> => {
-  const response = await fetch('/api/testid/clients', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(client),
-  })
-  if (!response.ok) {
-    throw new Error(`Failed to create client: ${response.statusText}`)
-  }
-  return response.json()
 }
 
 const onClipboardCopy = (data: string) => {
@@ -47,59 +30,20 @@ export const dynamicParams = false
 
 export default function ClientPage() {
   const router = useRouter()
-  const searchParams = useSearchParams()
-  const session = useSession()
-  const plausible = usePlausible()
   const { client: clientEncodedParam } = useParams<{ client: string }>()
   const [client, setClient] = useState<OAuth2Client | undefined>()
-  const [testIdClient, setTestIdClient] = useState<TestIdClient | undefined>()
-  const tokenAuthenticationMethod = useMemo<TokenEndpointAuthMethod>(() => Array.isArray(client?.tokenEndpointAuthMethod) ? client?.tokenEndpointAuthMethod[0] : client?.tokenEndpointAuthMethod, [client])
   const url = useMemo(() => `/clients/${clientEncodedParam}`, [clientEncodedParam])
 
-  const createTestIdClient = useCallback(async () => {
-    if (!client || testIdClient) {
-      return
-    }
-
-    plausible('Create TestId Client', {
-      props: {
-        applicationType: client.applicationType,
-        tokenEndpointAuthMethod: client.tokenEndpointAuthMethod,
-        grantTypes: client.grantTypes,
-      }
-    })
-    if (session.status === 'unauthenticated') {
-      const callbackUrl = new URL(window.location.href)
-      callbackUrl.searchParams.set('test_id_client', 'created')
-
-      signIn('cerberauth', { callbackUrl: callbackUrl.toString() })
-      return
-    }
-
-    const newTestIdClient = await createClient({
-      ...client,
-      tokenEndpointAuthMethod: tokenAuthenticationMethod,
-    })
-    setTestIdClient(newTestIdClient)
-    saveClient({
-      client,
-      testIdClient: newTestIdClient,
-      url,
-    })
-  }, [url, client, tokenAuthenticationMethod, testIdClient, session, plausible])
-
-  const shareByLink = useCallback(() => {
-    plausible('Client URL Clipboard Copy', { props: {} })
+  const shareByLink = () => {
     const url = createShareableLink('clipboard')
     onClipboardCopy(url.toString())
-  }, [plausible])
+  }
 
-  const shareByEmail = useCallback(() => {
-    plausible('Client Email Share', { props: {} })
+  const shareByEmail = () => {
     const url = createShareableLink('email')
     const message = `mailto:?subject=${encodeURIComponent('New Client Request')}&body=${encodeURIComponent(`Please we would need you to create a new OAuth2 client. You can check the following link for all the client details: ${url}`)}`
     window.open(message)
-  }, [plausible])
+  }
 
   useEffect(() => {
     urlDecode(clientEncodedParam)
@@ -119,17 +63,8 @@ export default function ClientPage() {
         }
 
         setClient(client.client)
-        setTestIdClient(client.testIdClient)
       })
   }, [router, url, clientEncodedParam])
-
-  useEffect(() => {
-    if (!(client && searchParams.has('test_id_client'))) {
-      return
-    }
-
-    createTestIdClient()
-  }, [client, searchParams, createTestIdClient])
 
   if (!client) {
     return <div>Loading...</div>
@@ -140,90 +75,6 @@ export default function ClientPage() {
       <div>
         <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2 text-center">{client.name} Client</h1>
       </div>
-
-      {testIdClient ? (
-        <Card>
-          <CardHeader title="Test Client">
-            <CardTitle>Temporary Client</CardTitle>
-          </CardHeader>
-
-          <CardContent>
-            <p className="text-muted-foreground">
-              A temporary client has been created for you to perform tests. This client will be available for a limited time and will be deleted automatically.
-            </p>
-
-            <Separator className="my-4" />
-
-            <ul className="grid gap-3">
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  OpenID Connect Configuration
-                </span>
-                <div className="space-x-2">
-                  <Link href={testIdOIDCDiscoveryEndpoint} target="_blank" className="text-sm">{testIdOIDCDiscoveryEndpoint}</Link>
-                  <Button variant="outline" size="sm" onClick={() => onClipboardCopy(testIdOIDCDiscoveryEndpoint)}>
-                    <ClipboardIcon className="w-3 h-3" />
-                  </Button>
-                </div>
-              </li>
-
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Issuer
-                </span>
-                <div className="space-x-2">
-                  <span className="text-sm">{issuer}</span>
-                  <Button className="active:bg-primary/80" variant="outline" size="sm" onClick={() => onClipboardCopy(issuer)}>
-                    <ClipboardIcon className="w-3 h-3" />
-                  </Button>
-                </div>
-              </li>
-
-              <li className="flex items-center justify-between">
-                <span className="text-muted-foreground">
-                  Client ID
-                </span>
-                <div className="space-x-2">
-                  <span className="text-sm">{testIdClient.clientId}</span>
-                  <Button className="active:bg-primary/80" variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientId)}>
-                    <ClipboardIcon className="w-3 h-3" />
-                  </Button>
-                </div>
-              </li>
-
-              {testIdClient.clientSecret && (
-                <li className="flex items-center justify-between">
-                  <span className="text-muted-foreground">
-                    Client Secret
-                  </span>
-                  <div className="space-x-2">
-                    <span className="text-sm">{testIdClient.clientSecret}</span>
-                    <Button className="active:bg-primary/80" variant="outline" size="sm" onClick={() => onClipboardCopy(testIdClient.clientSecret)}>
-                      <ClipboardIcon className="w-3 h-3" />
-                    </Button>
-                  </div>
-                </li>
-              )}
-            </ul>
-          </CardContent>
-        </Card>
-      ) : (
-        <Card>
-          <CardHeader title="Test Client">
-            <CardTitle>Create a temporary Client</CardTitle>
-          </CardHeader>
-
-          <CardContent>
-            <p className="text-muted-foreground">
-              This will allow you to test the integration in your application while waiting for your real client to be created.
-            </p>
-          </CardContent>
-
-          <CardFooter className="flex justify-end">
-            <Button onClick={createTestIdClient}>Create a Test Client</Button>
-          </CardFooter>
-        </Card>
-      )}
 
       <Card>
         <CardHeader title="Client Information">
@@ -250,7 +101,7 @@ export default function ClientPage() {
               <span className="text-muted-foreground">
                 Token Endpoint Authentication Method
               </span>
-              <span>{tokenAuthenticationMethodLabel(tokenAuthenticationMethod)}</span>
+              <span>{tokenAuthenticationMethodLabel(client.tokenEndpointAuthMethod)}</span>
             </li>
           </ul>
 
@@ -370,8 +221,41 @@ export default function ClientPage() {
         </CardContent>
 
         <CardFooter className="flex justify-end gap-2">
-          <Button className="active:bg-secondary/50" variant="outline" onClick={shareByLink}>Copy Link</Button>
-          <Button onClick={shareByEmail}>Share by Email</Button>
+          <Button className="active:bg-secondary/50 plausible-event-name=Client+URL+Clipboard+Copy" variant="outline" onClick={shareByLink}>Copy Link</Button>
+          <Button className="plausible-event-name=Client+Email+Share" onClick={shareByEmail}>Share by Email</Button>
+        </CardFooter>
+      </Card>
+
+      <Card>
+        <CardHeader title="Test Client">
+          <CardTitle>Are you a developer?</CardTitle>
+        </CardHeader>
+
+        <CardContent>
+          <p className="text-muted-foreground">
+            Create the real client can take some time. If you want to test the client right now, you can create a fake test client.
+          </p>
+        </CardContent>
+
+        <CardFooter className="flex justify-end">
+          <AlertDialog>
+            <AlertDialogTrigger asChild>
+              <Button className="plausible-event-name=Create+TestId+Client">Create a Test Client</Button>
+            </AlertDialogTrigger>
+
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>Create a Test Client</AlertDialogTitle>
+                <AlertDialogDescription>
+                  This feature is not available yet. We are working on it.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+
+              <AlertDialogFooter>
+                <AlertDialogCancel>Continue</AlertDialogCancel>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </CardFooter>
       </Card>
     </main>
