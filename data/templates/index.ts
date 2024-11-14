@@ -32,6 +32,8 @@ import codeigniterApp from './codeigniter-app.json' assert { type: 'json' }
 import dartSpa from './dart-spa.json' assert { type: 'json' }
 import dotnetWebApp from './dotnet-web-app.json' assert { type: 'json' }
 import elixirApp from './elixir-app.json' assert { type: 'json' }
+import elysiaJSApp from './elysiajs-app.json' assert { type: 'json' }
+import encoreTSApp from './encorets-app.json' assert { type: 'json' }
 import erlangApp from './erlang-app.json' assert { type: 'json' }
 import expressJsApp from './expressjs-app.json' assert { type: 'json' }
 import fastifyApp from './fastify-app.json' assert { type: 'json' }
@@ -87,6 +89,8 @@ export {
   dartSpa,
   dotnetWebApp,
   elixirApp,
+  elysiaJSApp,
+  encoreTSApp,
   erlangApp,
   expressJsApp,
   fastifyApp,
@@ -143,6 +147,8 @@ export const templates = [
   dartSpa,
   dotnetWebApp,
   elixirApp,
+  elysiaJSApp,
+  encoreTSApp,
   erlangApp,
   expressJsApp,
   fastifyApp,
