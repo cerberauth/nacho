@@ -7,10 +7,10 @@ async function compress(input: string): Promise<ArrayBuffer> {
   writer.write(encoder.encode(input))
   writer.close()
   const compressedData = await new Response(cs.readable).arrayBuffer()
-  return compressedData
+  return compressedData as ArrayBuffer
 }
 
-async function decompress(input: ArrayBuffer): Promise<string> {
+async function decompress(input: Uint8Array): Promise<string> {
   const ds = new DecompressionStream('gzip')
   const writer = ds.writable.getWriter()
   writer.write(input)
