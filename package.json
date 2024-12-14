@@ -63,7 +63,7 @@
     "postcss": "8.4.49",
     "tailwindcss": "3.4.15",
     "typescript": "5",
-    "vercel": "37.14.0",
+    "vercel": "39.2.0",
     "wrangler": "3.91.0"
   },
   "prettier": {
