@@ -79,6 +79,7 @@ import swiftVaporWebApp from './swift-vapor-web-app.json' assert { type: 'json' 
 import symfonyApp from './symfony-app.json' assert { type: 'json' }
 import vueSpa from './vue-spa.json' assert { type: 'json' }
 import webApp from './web-app.json' assert { type: 'json' }
+import windevApp from './windev-app.json' assert { type: 'json' }
 import yiiApp from './yii-app.json' assert { type: 'json' }
 import zendFrameworkApp from './zend-framework-app.json' assert { type: 'json' }
 
@@ -136,6 +137,7 @@ export {
   symfonyApp,
   vueSpa,
   webApp,
+  windevApp,
   yiiApp,
   zendFrameworkApp,
 }
@@ -194,6 +196,7 @@ export const templates = [
   symfonyApp,
   vueSpa,
   webApp,
+  windevApp,
   yiiApp,
   zendFrameworkApp,
 ] as Template[]
