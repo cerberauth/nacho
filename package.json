@@ -63,8 +63,11 @@
     "postcss": "8.4.49",
     "tailwindcss": "3.4.16",
     "typescript": "5",
-    "vercel": "39.2.2",
+    "vercel": "39.1.1",
     "wrangler": "3.95.0"
+  },
+  "overrides": {
+    "vercel": "$vercel"
   },
   "prettier": {
     "arrowParens": "always",
