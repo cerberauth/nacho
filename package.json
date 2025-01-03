@@ -37,7 +37,7 @@
     "gravatar-url": "4.0.1",
     "lucide-react": "0.468.0",
     "nanoid": "5.0.9",
-    "next": "15.1.0",
+    "next": "15.1.2",
     "next-auth": "5.0.0-beta.25",
     "next-plausible": "3.12.4",
     "next-seo": "6.6.0",
