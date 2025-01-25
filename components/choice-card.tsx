@@ -48,7 +48,7 @@ export function MiniChoiceCard({ className, icon, title, onClick }: MiniChoiceCa
   return (
     <div
       onClick={onClick}
-      className={clsx("bg-white dark:bg-gray-950 rounded-lg shadow-sm p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer", className)}
+      className={clsx("bg-white dark:bg-gray-950 rounded-lg shadow-xs p-4 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors cursor-pointer", className)}
     >
       <div className="flex flex-col items-center space-y-4">
         {icon}
