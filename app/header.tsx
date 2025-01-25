@@ -16,7 +16,7 @@ export default function Header() {
   const user = session.data?.user
 
   return (
-    <header className="z-10 supports-backdrop-blur:bg-background/60 sticky top-0 w-full shadow dark:shadow-secondary bg-background/95 backdrop-blur">
+    <header className="z-10 supports-backdrop-blur:bg-background/60 sticky top-0 w-full shadow-sm dark:shadow-secondary bg-background/95 backdrop-blur-sm">
       <div className="mx-4 sm:mx-8 flex h-14 items-center">
         <div className="flex items-center space-x-4 lg:space-x-0">
           <Link href="/" className="font-medium text-lg flex">
