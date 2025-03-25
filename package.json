@@ -37,7 +37,7 @@
     "gravatar-url": "4.0.1",
     "lucide-react": "0.475.0",
     "nanoid": "5.0.9",
-    "next": "15.1.6",
+    "next": "15.2.4",
     "next-auth": "5.0.0-beta.25",
     "next-plausible": "3.12.4",
     "next-seo": "6.6.0",
@@ -57,17 +57,14 @@
     "@types/react": "19",
     "@types/react-dom": "19",
     "eslint": "8",
-    "eslint-config-next": "15.1.6",
+    "eslint-config-next": "15.2.4",
     "eslint-config-prettier": "10.0.1",
-    "eslint-plugin-next-on-pages": "1.13.7",
+    "eslint-plugin-next-on-pages": "1.13.10",
     "postcss": "8.5.1",
     "tailwindcss": "4.0.5",
     "typescript": "5",
     "vercel": "39.4.2",
     "wrangler": "3.107.3"
-  },
-  "overrides": {
-    "vercel": "$vercel"
   },
   "prettier": {
     "arrowParens": "always",
