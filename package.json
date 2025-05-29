@@ -64,7 +64,7 @@
     "tailwindcss": "4.0.5",
     "typescript": "5",
     "vercel": "39.4.2",
-    "wrangler": "3.107.3"
+    "wrangler": "4.18.0"
   },
   "overrides": {
     "vercel": "$vercel"
