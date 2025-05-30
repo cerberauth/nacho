@@ -63,7 +63,7 @@
     "postcss": "8.5.1",
     "tailwindcss": "4.0.5",
     "typescript": "5",
-    "vercel": "39.4.2",
+    "vercel": "42.3.0",
     "wrangler": "3.107.3"
   },
   "overrides": {
