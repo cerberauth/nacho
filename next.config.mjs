@@ -1,9 +1,4 @@
-import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev'
-
-const { NODE_ENV, CF_ACCOUNT_ID } = process.env
-if (NODE_ENV === 'development' && CF_ACCOUNT_ID) {
-  await setupDevPlatform()
-}
+const { NODE_ENV } = process.env
 
 const cspHeader = `
     default-src 'self';
@@ -90,3 +85,7 @@ const nextConfig = {
 }
 
 export default nextConfig
+
+// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+initOpenNextCloudflareForDev()
