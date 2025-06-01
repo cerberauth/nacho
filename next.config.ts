@@ -1,9 +1,4 @@
-import { setupDevPlatform } from '@cloudflare/next-on-pages/next-dev'
-
-const { NODE_ENV, CF_ACCOUNT_ID } = process.env
-if (NODE_ENV === 'development' && CF_ACCOUNT_ID) {
-  await setupDevPlatform()
-}
+import type { NextConfig } from 'next'
 
 const cspHeader = `
     default-src 'self';
@@ -20,13 +15,12 @@ const cspHeader = `
     upgrade-insecure-requests;
 `
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   images: {
     domains: ['nacho.cerberauth.com'],
   },
-  headers() {
-    if (NODE_ENV === 'development') {
+  async headers() {
+    if (process.env.NODE_ENV === 'development') {
       return []
     }
 
@@ -90,3 +84,7 @@ const nextConfig = {
 }
 
 export default nextConfig
+
+// added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+initOpenNextCloudflareForDev()
