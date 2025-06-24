@@ -26,7 +26,6 @@ import { clientSchema as createClientSchema } from '../schema'
 
 const localStorageItem = 'client'
 
-export const runtime = 'edge'
 export const dynamic = 'force-static'
 export const dynamicParams = false
 

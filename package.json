@@ -8,13 +8,14 @@
     "start": "next start",
     "lint": "next lint",
     "build:worker": "opennextjs-cloudflare build",
-		"deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
-		"preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
-		"cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
+    "dev:worker": "wrangler dev --port 8771",
+    "preview:worker": "npm run build:worker && npm run dev:worker",
+    "deploy:worker": "npm run build:worker && wrangler deploy",
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
   },
   "dependencies": {
     "@hookform/resolvers": "4.1.3",
-    "@opennextjs/cloudflare": "1.1.0",
+    "@opennextjs/cloudflare": "1.3.1",
     "@radix-ui/react-accordion": "1.2.3",
     "@radix-ui/react-alert-dialog": "1.1.6",
     "@radix-ui/react-avatar": "1.1.3",
@@ -39,7 +40,7 @@
     "gravatar-url": "4.0.1",
     "lucide-react": "0.483.0",
     "nanoid": "5.1.5",
-    "next": "15.3.3",
+    "next": "15.3.4",
     "next-auth": "5.0.0-beta.25",
     "next-plausible": "3.12.4",
     "next-seo": "6.6.0",
@@ -51,6 +52,7 @@
     "zod": "3.24.2"
   },
   "devDependencies": {
+    "@cloudflare/workers-types": "4.20250619.0",
     "@eslint/eslintrc": "3",
     "@tailwindcss/postcss": "4.0.15",
     "@types/node": "22",
@@ -62,7 +64,7 @@
     "postcss": "8",
     "tailwindcss": "4.0.15",
     "typescript": "5",
-		"wrangler": "4.18.0"
+		"wrangler": "4.21.1"
   },
   "prettier": {
     "arrowParens": "always",

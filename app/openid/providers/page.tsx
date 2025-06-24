@@ -217,7 +217,7 @@ const categories: BenchmarkCategoryProps[] = [
   rows: features.map((identifier) => {
     const feature = getOpenIDConnectFeatureById(identifier)
     if (!feature) {
-      console.error(`Feature ${identifier} not found`)
+      console.warn(`Feature ${identifier} not found`)
       return {
         identifier,
         name: '',
