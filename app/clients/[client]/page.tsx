@@ -24,7 +24,6 @@ const onClipboardCopy = (data: string) => {
   navigator.clipboard.writeText(data)
 }
 
-export const runtime = 'edge'
 export const dynamic = 'force-static'
 export const dynamicParams = false
 
