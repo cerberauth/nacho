@@ -5,7 +5,7 @@ const cspHeader = `
     connect-src 'self' https://a.cerberauth.com;
     script-src 'self' 'unsafe-inline' https://a.cerberauth.com/js/plausible.outbound-links.tagged-events.js;
     style-src 'self' 'unsafe-inline';
-    img-src 'self' https://nacho.cerberauth.com https://gravatar.com;
+    img-src 'self' https://nacho.cerberauth.com;
     frame-src 'none';
     font-src 'self';
     object-src 'none';
