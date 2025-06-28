@@ -41,10 +41,30 @@ function TokenAuthenticationMethodListItem({ authMethod }: { authMethod: string 
   )
 }
 
-export const dynamicParams = false
-
 type Props = {
   params: Promise<{ template: string }>
+}
+
+export const dynamic = 'force-static'
+
+export async function generateStaticParams() {
+  return templates.map((template) => ({
+    template: template.identifier
+  }))
+}
+
+export async function generateMetadata({ params }: Props) {
+  const { template: templateParam } = await params
+  const template = getTemplateById(templateParam)
+  if (!template) {
+    return null
+  }
+
+  return {
+    title: `${template.name} OAuth / OpenID Connect Client Template`,
+    description: template.description,
+    image: template.icon?.contentUrl
+  }
 }
 
 export default async function TemplatePage({ params }: Props) {
@@ -173,24 +193,4 @@ export default async function TemplatePage({ params }: Props) {
       </div>
     </main>
   )
-}
-
-export async function generateMetadata({ params }: Props) {
-  const { template: templateParam } = await params
-  const template = getTemplateById(templateParam)
-  if (!template) {
-    return null
-  }
-
-  return {
-    title: `${template.name} OAuth / OpenID Connect Client Template`,
-    description: template.description,
-    image: template.icon?.contentUrl
-  }
-}
-
-export function generateStaticParams() {
-  return templates.map((template) => ({
-    template: template.identifier
-  }))
 }
