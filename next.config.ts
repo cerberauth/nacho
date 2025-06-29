@@ -16,6 +16,7 @@ const cspHeader = `
 `
 
 const nextConfig: NextConfig = {
+  poweredByHeader: false,
   images: {
     domains: ['nacho.cerberauth.com'],
   },
