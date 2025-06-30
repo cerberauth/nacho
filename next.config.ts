@@ -1,6 +1,4 @@
-import createMDX from '@next/mdx'
 import type { NextConfig } from 'next'
-import remarkGfm from 'remark-gfm'
 
 const cspHeader = `
     default-src 'self';
@@ -88,14 +86,7 @@ const nextConfig: NextConfig = {
   },
 }
 
-const withMDX = createMDX({
-  options: {
-    remarkPlugins: [remarkGfm],
-    rehypePlugins: [],
-  },
-})
-
-export default withMDX(nextConfig)
+export default nextConfig
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
