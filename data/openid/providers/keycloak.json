@@ -108,6 +108,17 @@
       "identifier": "tls_client_auth_token_endpoint_auth",
       "status": "supported",
       "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "partial",
+      "description": "Supports through OpenID Connect Discovery",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
     }
   ]
 }

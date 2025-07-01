@@ -88,6 +88,16 @@
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
       "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/12.3/developers_reference_guide/pf_openid_provider_config_endpoint.html"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/12.3/developers_reference_guide/pf_oauth_authorization_server_metadata_endpoint_endpoint.html"
     }
   ]
 }
