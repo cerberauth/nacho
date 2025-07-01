@@ -168,6 +168,8 @@ const categories: BenchmarkCategoryProps[] = [
       'userinfo_endpoint',
       'token_revocation_endpoint',
       'token_introspection_endpoint',
+      'openid_connect_discovery_endpoint',
+      'oauth_authorization_server_metadata_endpoint'
     ]
   },
 

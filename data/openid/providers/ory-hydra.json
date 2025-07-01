@@ -74,6 +74,17 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "partial",
+      "description": "Supports through OpenID Connect Discovery",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
     }
   ]
 }

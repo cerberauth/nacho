@@ -75,6 +75,17 @@
       "status": "not_supported"
     },
     {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "partial",
+      "description": "Supports through OpenID Connect Discovery",
+      "url": "https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery"
+    },
+    {
       "identifier": "none_prompt",
       "status": "supported",
       "url": "https://auth0.com/docs/api/authentication#authorize"

@@ -38,8 +38,8 @@
       "url": "https://datatracker.ietf.org/doc/html/rfc8693"
     },
     {
-      "name": "Client Initiated Backchannel Authentication",
-      "description": "The Client Initiated Backchannel Authentication grant type is used by clients to authenticate users using a backchannel.",
+      "name": "Client Initiated BackChannel Authentication",
+      "description": "The Client Initiated BackChannel Authentication grant type is used by clients to authenticate users using a backchannel.",
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
       "url": "https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
@@ -138,6 +138,20 @@
       "identifier": "token_introspection_endpoint",
       "status": "supported",
       "url": "https://datatracker.ietf.org/doc/html/rfc7662"
+    },
+    {
+      "name": "OpenID Connect Discovery Endpoint",
+      "description": "Mechanism for an OpenID Connect Relying Party to discover the OpenID Provider and obtain information needed to interact with it.",
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-connect-discovery-1_0.html"
+    },
+    {
+      "name": "OAuth 2.0 Authorization Server Metadata Endpoint",
+      "description": "A metadata format that an OAuth 2.0 client can use to obtain the information needed to interact with an OAuth 2.0 authorization server.",
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8414"
     },
     {
       "name": "none",

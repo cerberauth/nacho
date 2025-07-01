@@ -48,6 +48,17 @@
       "identifier": "pkce_extension",
       "status": "supported",
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "partial",
+      "description": "Supports through OpenID Connect Discovery",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"
     }
   ]
 }

@@ -90,6 +90,16 @@
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/introspect"
     },
     {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"
+    },
+    {
       "identifier": "none_prompt",
       "status": "supported",
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
