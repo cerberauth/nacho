@@ -39,6 +39,10 @@
       "status": "supported"
     },
     {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported"
+    },
+    {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "not_supported"
     },
