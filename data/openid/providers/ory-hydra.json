@@ -36,11 +36,55 @@
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
-      "status": "not_supported"
+      "status": "supported"
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/oAuth2Authorize"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/oauth2TokenExchange"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/getOidcUserInfo"
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/revokeOAuth2Token"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/introspectOAuth2Token"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "partial",
+      "description": "Supports through OpenID Connect Discovery",
+      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
     },
     {
       "identifier": "none_token_endpoint_auth",
@@ -68,23 +112,38 @@
       "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
     },
     {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "url": "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "not_supported",
+      "url": "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "partial",
+      "description": "Uses registration prompt",
+      "url": "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+    },
+    {
       "identifier": "dynamic_client_registration",
       "status": "supported"
     },
     {
       "identifier": "refresh_token_rotation",
       "status": "supported"
-    },
-    {
-      "identifier": "openid_connect_discovery_endpoint",
-      "status": "supported",
-      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
-    },
-    {
-      "identifier": "oauth_authorization_server_metadata_endpoint",
-      "status": "partial",
-      "description": "Supports through OpenID Connect Discovery",
-      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
     }
   ]
 }
