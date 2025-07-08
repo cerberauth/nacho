@@ -50,6 +50,11 @@
       "url": "https://auth0.com/docs/flows/device-authorization-flow"
     },
     {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "url": "https://auth0.com/docs/authenticate/custom-token-exchange"
+    },
+    {
       "identifier": "authorization_endpoint",
       "status": "supported",
       "url": "https://auth0.com/docs/api/authentication#authorize-endpoint"
