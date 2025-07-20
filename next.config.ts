@@ -1,4 +1,7 @@
 import type { NextConfig } from 'next'
+import createMDX from '@next/mdx'
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkGfm from 'remark-gfm'
 
 const cspHeader = `
     default-src 'self';
@@ -16,6 +19,7 @@ const cspHeader = `
 `
 
 const nextConfig: NextConfig = {
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   poweredByHeader: false,
   images: {
     domains: ['nacho.cerberauth.com'],
@@ -84,7 +88,14 @@ const nextConfig: NextConfig = {
   },
 }
 
-export default nextConfig
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkFrontmatter, remarkGfm],
+    rehypePlugins: [],
+  },
+})
+
+export default withMDX(nextConfig)
 
 // added by create cloudflare to enable calling `getCloudflareContext()` in `next dev`
 import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'

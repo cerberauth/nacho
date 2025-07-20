@@ -1,38 +1,52 @@
 import { MetadataRoute } from 'next'
 import { templates } from '@/data/templates'
-import { seoConfig } from './seo.config'
+import { baseUrl } from './seo.config'
 
-const url = seoConfig.canonical!
+import useCasesJson from '@/data/mdx/use-cases.json'
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export const dynamic = 'force-static'
+
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const lastModified = new Date()
   return [
     {
-      url,
-      lastModified: new Date(),
+      url: baseUrl,
+      lastModified,
       changeFrequency: 'yearly',
       priority: 1,
     },
     {
-      url: `${url}/clients/create`,
-      lastModified: new Date(),
+      url: `${baseUrl}/clients/create`,
+      lastModified,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${url}/grant-types`,
-      lastModified: new Date(),
+      url: `${baseUrl}/grant-types`,
+      lastModified,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
     {
-      url: `${url}/openid/providers`,
-      lastModified: new Date(),
+      url: `${baseUrl}/openid/providers`,
+      lastModified,
       changeFrequency: 'weekly',
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/use-cases`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    ...useCasesJson.map((useCase) => ({
+      url: `${baseUrl}/use-cases/${useCase.slug}`,
+      lastModified,
+      priority: 1,
+    })),
     ...templates.map((template) => ({
-      url: `${url}/templates/${template.identifier}`,
-      lastModified: new Date(),
+      url: `${baseUrl}/templates/${template.identifier}`,
+      lastModified,
       priority: 1,
     })),
   ]

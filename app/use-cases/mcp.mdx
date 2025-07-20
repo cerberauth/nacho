@@ -1,0 +1,17 @@
+---
+title: 'OAuth Authorization Server for Model Context Protocol'
+summary: 'The Model Context Protocol (MCP) may require an Authorization Server to manage access control and context for AI models and services. Learn more about the MCP and how to set up an Authorization Server.'
+---
+
+The Model Context Protocol (MCP) is a specification that aims to standardize how AI models interact with their environment, particularly regarding context management and access control. In this ecosystem, an Authorization Server plays a crucial role by managing and issuing access tokens, ensuring that only authorized models and services can access specific resources or perform certain actions.
+
+The primary aims for an Authorization Server in the context of MCP are:
+
+*   **Secure Access Control:** To provide a robust mechanism for controlling which AI models or services can access specific data, functionalities, or other models.
+*   **Contextual Authorization:** To enable authorization decisions based not just on the identity of the model, but also on the specific context of the interaction (e.g., the data being processed, the user initiating the request, the current state of the model).
+*   **Interoperability:** To ensure that different AI models and services, potentially from various vendors, can securely communicate and exchange information within the MCP framework.
+
+The Authorization Server must be compatible with at least the following RFCs:
+
+* OAuth 2.0 Authorization Server Metadata ([RFC8414](https://datatracker.ietf.org/doc/html/rfc8414))
+* OAuth 2.0 Dynamic Client Registration Protocol ([RFC7591](https://datatracker.ietf.org/doc/html/rfc7591))
