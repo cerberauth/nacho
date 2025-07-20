@@ -17,7 +17,6 @@ import { CreateClientForm } from './form'
 const localStorageItem = 'client'
 
 export const dynamic = 'force-static'
-export const dynamicParams = false
 
 export default function CreateClient() {
   const router = useRouter()

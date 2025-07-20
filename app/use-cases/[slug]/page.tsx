@@ -1,8 +1,7 @@
 import { notFound } from 'next/navigation'
-import { CustomMDX } from '@/components/mdx'
 import { baseUrl } from '@/app/seo.config'
 
-import { getUseCases } from '../utils'
+import useCasesJson from '@/data/mdx/use-cases.json'
 
 type Props = {
   params: Promise<{
@@ -10,17 +9,21 @@ type Props = {
   }>
 }
 
-export const dynamic = 'force-static'
+// export const dynamic = 'force-static'
+export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return getUseCases().map((useCase) => ({
+  console.log(useCasesJson.map((useCase) => ({
+    slug: useCase.slug,
+  })))
+  return useCasesJson.map((useCase) => ({
     slug: useCase.slug,
   }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { slug } = await params
-  const useCase = getUseCases().find((useCase) => useCase.slug === slug)
+  const useCase = useCasesJson.find((useCase) => useCase.slug === slug)
   if (!useCase) {
     return
   }
@@ -28,11 +31,8 @@ export async function generateMetadata({ params }: Props) {
   const {
     title,
     summary: description,
-    image,
   } = useCase.metadata
-  const ogImage = image
-    ? image
-    : `${baseUrl}/og?title=${encodeURIComponent(title)}`
+  const ogImage = `${baseUrl}/og?title=${encodeURIComponent(useCase.metadata.title)}`
 
   return {
     title,
@@ -59,10 +59,12 @@ export async function generateMetadata({ params }: Props) {
 
 export default async function Page({ params }: Props) {
   const { slug } = await params
-  const useCase = getUseCases().find((useCase) => useCase.slug === slug)
+  const useCase = useCasesJson.find((useCase) => useCase.slug === slug)
   if (!useCase) {
     notFound()
   }
+
+  const { default: UseCase } = await import(`@/app/use-cases/${slug}.mdx`)
 
   return (
     <main className="flex flex-col max-w-2xl mx-auto items-center justify-center my-8">
@@ -75,9 +77,7 @@ export default async function Page({ params }: Props) {
             '@type': 'BlogPosting',
             headline: useCase.metadata.title,
             description: useCase.metadata.summary,
-            image: useCase.metadata.image
-              ? `${baseUrl}${useCase.metadata.image}`
-              : `/og?title=${encodeURIComponent(useCase.metadata.title)}`,
+            image: `/og?title=${encodeURIComponent(useCase.metadata.title)}`,
             url: `${baseUrl}/blog/${useCase.slug}`,
           }),
         }}
@@ -87,7 +87,7 @@ export default async function Page({ params }: Props) {
           {useCase.metadata.title}
         </h1>
         <article className="prose">
-          <CustomMDX source={useCase.content} />
+          <UseCase />
         </article>
       </div>
     </main>

@@ -1,5 +1,6 @@
 import Link from 'next/link'
-import { getUseCases } from './utils'
+
+import useCasesJson from '@/data/mdx/use-cases.json'
 
 export const metadata = {
   title: 'OpenID Connect and IAM Use Cases',
@@ -8,15 +9,13 @@ export const metadata = {
 
 export const dynamic = 'force-static'
 
-export default function Page() {
-  const useCases = getUseCases()
-
+export default async function Page() {
   return (
     <main className="flex flex-col max-w-2xl mx-auto items-center justify-center my-8">
       <h1 className="font-semibold text-4xl mb-8 tracking-tighter">OpenID Connect and IAM Use Cases</h1>
 
       <div>
-        {useCases
+        {useCasesJson
           .map((useCase) => (
             <Link
               key={useCase.slug}
