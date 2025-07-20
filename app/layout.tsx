@@ -1,7 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import Head from 'next/head'
 import PlausibleProvider from 'next-plausible'
-import { DefaultSeo, SoftwareAppJsonLd } from 'next-seo'
 import { Inter as FontSans } from 'next/font/google'
 import Link from 'next/link'
 import './globals.css'
@@ -15,15 +13,18 @@ const fontSans = FontSans({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL(seoConfig.canonical!),
+  metadataBase: new URL(seoConfig.canonical),
   title: {
-    template: seoConfig.titleTemplate!,
-    default: seoConfig.title!,
+    template: seoConfig.titleTemplate,
+    default: seoConfig.title,
   },
   description: seoConfig.description,
   alternates: {
     canonical: './',
-  }
+  },
+  openGraph: seoConfig.openGraph,
+  twitter: seoConfig.twitter,
+  manifest: '/site.webmanifest',
 }
 
 export const viewport: Viewport = {
@@ -37,20 +38,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Head>
-        <DefaultSeo {...seoConfig} />
-        <SoftwareAppJsonLd
-          name={seoConfig.title as string}
-          description={seoConfig.description}
-          price='0'
-          priceCurrency='USD'
-          applicationCategory='WebApplication'
-          keywords='OAuth, OpenID Connect, Client, Helper'
-          operatingSystem='All'
-        />
-        <link rel="manifest" href="/site.webmanifest" />
-      </Head>
-
       <body className={`min-h-[100dvh] bg-white dark:bg-gray-950 text-black dark:text-white ${fontSans.className} antialiased`}>
         <PlausibleProvider
           domain="nacho.cerberauth.com"
