@@ -46,7 +46,6 @@
     "nanoid": "5.1.5",
     "next": "15.3.4",
     "next-plausible": "3.12.4",
-    "next-seo": "6.8.0",
     "react": "19",
     "react-dom": "19",
     "react-hook-form": "7.59.0",
