@@ -50,6 +50,25 @@
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"
     },
     {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/userinfo"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "not_supported"
+    },
+    {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"
@@ -59,6 +78,49 @@
       "status": "partial",
       "description": "Supports through OpenID Connect Discovery",
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported"
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
     }
   ]
 }
