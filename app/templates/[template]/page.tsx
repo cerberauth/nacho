@@ -46,8 +46,7 @@ type Props = {
 }
 
 export const dynamic = 'force-static'
-
-export const dynamicParams = false
+// export const dynamicParams = false // TODO: https://github.com/opennextjs/opennextjs-cloudflare/issues/682
 
 export async function generateStaticParams() {
   return templates.map((template) => ({

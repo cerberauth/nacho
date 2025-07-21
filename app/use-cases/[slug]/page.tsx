@@ -9,13 +9,10 @@ type Props = {
   }>
 }
 
-// export const dynamic = 'force-static'
-export const dynamicParams = false
+export const dynamic = 'force-static'
+// export const dynamicParams = false // TODO: https://github.com/opennextjs/opennextjs-cloudflare/issues/682
 
 export async function generateStaticParams() {
-  console.log(useCasesJson.map((useCase) => ({
-    slug: useCase.slug,
-  })))
   return useCasesJson.map((useCase) => ({
     slug: useCase.slug,
   }))
