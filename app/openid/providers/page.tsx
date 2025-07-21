@@ -269,7 +269,7 @@ export default function ProviderPage() {
           Display the compatibility of OpenID Connect features across different providers.
         </p>
         <p className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
-          <strong>Note:</strong> The current data is not 100% accurate and is based on provider documentation and experience.
+          <strong>Note:</strong> The current data is based on provider documentation/experience and may not be 100% accurate.
           Please <Link href="https://github.com/cerberauth/nacho/issues" rel="nofollow" target="_blank">open an issue</Link> if you
           have spotted any inconsistencies.
         </p>
