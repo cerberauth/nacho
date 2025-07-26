@@ -69,7 +69,10 @@ import pythonStarletteApp from './python-starlette-app.json' assert { type: 'jso
 import reactSpa from './react-spa.json' assert { type: 'json' }
 import remixApp from './remix-app.json' assert { type: 'json' }
 import rubyApp from './ruby-app.json' assert { type: 'json' }
+import rustActixApp from './rust-actix-app.json' assert { type: 'json' }
 import rustApp from './rust-app.json' assert { type: 'json' }
+import rustAxumApp from './rust-axum-app.json' assert { type: 'json' }
+import rustRocketApp from './rust-rocket-app.json' assert { type: 'json' }
 import sailsJsApp from './sailsjs-app.json' assert { type: 'json' }
 import scalaApp from './scala-app.json' assert { type: 'json' }
 import spa from './spa.json' assert { type: 'json' }
@@ -127,7 +130,10 @@ export {
   reactSpa,
   remixApp,
   rubyApp,
+  rustActixApp,
   rustApp,
+  rustAxumApp,
+  rustRocketApp,
   sailsJsApp,
   scalaApp,
   spa,
@@ -186,7 +192,10 @@ export const templates = [
   reactSpa,
   remixApp,
   rubyApp,
+  rustActixApp,
   rustApp,
+  rustAxumApp,
+  rustRocketApp,
   sailsJsApp,
   scalaApp,
   spa,
