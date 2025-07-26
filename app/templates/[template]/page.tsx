@@ -1,6 +1,7 @@
 import { ArrowUpRight, GitPullRequest } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { notFound } from 'next/navigation'
 import { useMemo } from 'react'
 
 import { TemplateCard } from '@/components/template-card'
@@ -72,7 +73,7 @@ export default async function TemplatePage({ params }: Props) {
   const { template: templateParam } = await params
   const template = getTemplateById(templateParam)
   if (!template) {
-    return null
+    notFound()
   }
   const relatedTemplates = getRelatedTemplates(template.identifier)
 
