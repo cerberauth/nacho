@@ -1,0 +1,114 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Identity and Access Management features",
+  "featureList": [
+    {
+      "name": "Username and Password Authentication",
+      "description": "The Username and Password authentication method is used by users to authenticate with their known username and password.",
+      "identifier": "username_and_password_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Social Sign-in Authentication",
+      "description": "The Social Sign-in authentication method is used by users to authenticate with their social media account.",
+      "identifier": "social_sign_in_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Passkey Authentication",
+      "description": "The Passkey authentication method is used by users to authenticate with their passkey.",
+      "identifier": "passkey_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Device Authentication",
+      "description": "The Device authentication method is used by users to authenticate with their device.",
+      "identifier": "device_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Email Passwordless Authentication",
+      "description": "The Email Passwordless authentication method is used by users to authenticate with their email.",
+      "identifier": "email_passwordless_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Phone Passwordless Authentication",
+      "description": "The Phone Passwordless authentication method is used by users to authenticate with their phone number.",
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Magic Link Authentication",
+      "description": "The Magic Link authentication method is used by users to authenticate with their email.",
+      "identifier": "magic_link_authentication",
+      "status": "supported"
+    },
+    {
+      "name": "Time-based One-Time Password (TOTP) Multi-Factor Authentication (MFA)",
+      "description": "The Time-based One-Time Password (TOTP) MFA method is used by users to authenticate with their TOTP code.",
+      "identifier": "totp_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "HMAC-based One-Time Password (HOTP) Multi-Factor Authentication (MFA)",
+      "description": "The HMAC-based One-Time Password (HOTP) MFA method is used by users to authenticate with their HOTP code.",
+      "identifier": "hotp_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "Universal 2nd Factor (U2F) Multi-Factor Authentication (MFA)",
+      "description": "The Universal 2nd Factor (U2F) MFA method is used by users to authenticate with their U2F key.",
+      "identifier": "u2f_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "WebAuthn Multi-Factor Authentication (MFA)",
+      "description": "The WebAuthn MFA method is used by users to authenticate with their WebAuthn key.",
+      "identifier": "webauthn_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "Email Code MFA",
+      "description": "The Email Code MFA method is used by users to authenticate with their email code.",
+      "identifier": "email_code_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "Phone Code MFA",
+      "description": "The Phone Code MFA method is used by users to authenticate with their phone code.",
+      "identifier": "phone_code_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "Recovery Code MFA",
+      "description": "The Recovery Code MFA method is used by users to authenticate with their recovery code.",
+      "identifier": "recovery_code_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "Push Notification MFA",
+      "description": "The Push Notification MFA method is used by users to authenticate with their push notification.",
+      "identifier": "push_notification_mfa",
+      "status": "supported"
+    },
+    {
+      "name": "OpenID Connect Protocol Supported",
+      "description": "The OpenID Connect Protocol is supported by the identity provider.",
+      "identifier": "oidc_protocol",
+      "status": "supported"
+    },
+    {
+      "name": "SAML 2.0 Supported",
+      "description": "The SAML 2.0 protocol is supported by the identity provider.",
+      "identifier": "saml2_protocol",
+      "status": "supported"
+    },
+    {
+      "name": "WS-Federation Supported",
+      "description": "The WS-Federation protocol is supported by the identity provider.",
+      "identifier": "ws_federation_protocol",
+      "status": "supported"
+    }
+  ]
+}
