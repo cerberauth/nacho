@@ -3,7 +3,7 @@
 import { CircleHelp } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { usePlausible } from 'next-plausible'
-import { useCallback, useEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
@@ -23,6 +23,8 @@ import { clientSchema as createClientSchema } from '../schema'
 
 const localStorageItem = 'client'
 
+let hasBeenInitialized = false
+
 type CreateClientFormProps = {
   onSubmit: (data: z.infer<typeof createClientSchema>) => void
   form: ReturnType<typeof useForm<z.infer<typeof createClientSchema>>>
@@ -32,7 +34,6 @@ type CreateClientFormProps = {
 export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const [hasBeenInitialized, setHasBeenInitialized] = useState(false)
   const plausible = usePlausible()
   const data = form.watch()
   const template = useMemo(() => searchParams.get('template'), [searchParams])
@@ -67,8 +68,8 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
       form.reset(client)
     }
 
-    setHasBeenInitialized(true)
-  }, [hasBeenInitialized, template, form, plausible])
+    hasBeenInitialized = true
+  }, [template, form, plausible])
 
   useEffect(() => {
     if (!hasBeenInitialized || isSubmitting) {
@@ -76,7 +77,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
     }
 
     localStorage.setItem(localStorageItem, JSON.stringify(data))
-  }, [hasBeenInitialized, isSubmitting, data])
+  }, [isSubmitting, data])
 
   const onApplicationTypeChange = useCallback((type: ApplicationType | null) => {
     if (type === null) {
