@@ -22,7 +22,7 @@ jobs:
           node-version-file: '.nvmrc'
 
       - name: Install dependencies 👨🏻‍💻
-        run: npm ci --legacy-peer-deps
+        run: npm ci
 
       - name: Run linter 👀
         run: npm run lint
