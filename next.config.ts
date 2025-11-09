@@ -1,7 +1,5 @@
 import type { NextConfig } from 'next'
 import createMDX from '@next/mdx'
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkGfm from 'remark-gfm'
 
 const cspHeader = `
     default-src 'self';
@@ -90,7 +88,7 @@ const nextConfig: NextConfig = {
 
 const withMDX = createMDX({
   options: {
-    remarkPlugins: [remarkFrontmatter, remarkGfm],
+    remarkPlugins: ['remark-frontmatter', 'remark-gfm'],
     rehypePlugins: [],
   },
 })

@@ -1,5 +1,7 @@
+'use client'
+
+import { useCallback, useEffect, useMemo, useState } from 'react'
 import {
-  ColumnDef,
   flexRender,
   getCoreRowModel,
   useReactTable,
@@ -13,17 +15,38 @@ import {
   TableRow,
 } from '@/components/ui/table'
 
-interface DataTableProps {
-  columns: ColumnDef<Client>[]
-  data: Client[]
-}
+import { getClients, deleteClient } from '@/lib/clients'
+import { columns } from './columns'
 
-export function DataTable({ columns, data }: DataTableProps) {
+const getCoreRowModelMemo = getCoreRowModel()
+const defaultClients: Client[] = []
+
+interface DataTableProps {} // eslint-disable-line
+
+export function DataTable({}: DataTableProps) {
+  const [clients, setClients] = useState<Client[]>(defaultClients)
+  const onDeleteClientClick = useCallback((clientId: string) => {
+    deleteClient(clientId)
+    setClients(getClients())
+  }, [])
+  const dataColumns = useMemo(() => columns(onDeleteClientClick), [onDeleteClientClick])
   const table = useReactTable({
-    data,
-    columns,
-    getCoreRowModel: getCoreRowModel(),
+    data: clients ?? defaultClients,
+    columns: dataColumns,
+    getCoreRowModel: getCoreRowModelMemo,
   })
+
+  useEffect(() => {
+    let clientsGet = false
+    if (!clientsGet) {
+      setClients(getClients())
+      clientsGet = true
+    }
+
+    return () => {
+      clientsGet = true
+    }
+  }, [])
 
   return (
     <div className="rounded-md">
