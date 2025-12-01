@@ -2,9 +2,9 @@ import { z } from 'zod'
 import { ApplicationTypes, GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
 
 const urlSchema = z.union([
-  z.string().trim().url().startsWith('http://'),
-  z.string().trim().url().startsWith('https://'),
-], { errorMap: () => ({ message: 'URL must begin with http:// or https://' }) })
+  z.url().trim().startsWith('http://'),
+  z.url().trim().startsWith('https://'),
+], { error: () => ({ message: 'URL must begin with http:// or https://' }) })
 export const clientSchema = z.object({
   template: z.string().optional(),
   applicationType: z.enum(Object.values(ApplicationTypes) as [ApplicationType]),
