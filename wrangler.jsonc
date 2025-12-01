@@ -6,7 +6,7 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "nacho",
   "main": ".open-next/worker.js",
-  "compatibility_date": "2025-05-11",
+  "compatibility_date": "2025-11-17",
   "compatibility_flags": [
     "nodejs_compat",
     "global_fetch_strictly_public"
