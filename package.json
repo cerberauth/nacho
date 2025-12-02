@@ -11,16 +11,16 @@
     "build:worker": "opennextjs-cloudflare build",
     "dev:worker": "wrangler dev --port 8771",
     "preview:worker": "npm run build:worker && npm run dev:worker",
-    "deploy:worker": "npm run build:worker && wrangler deploy",
+    "deploy:worker": "npm run build:worker && opennextjs-cloudflare deploy",
     "generate:mdx": "npx tsx utils/generate-mdx",
-    "cf-typegen": "wrangler types --env-interface CloudflareEnv cloudflare-env.d.ts"
+    "cf-typegen": "wrangler types --env-interface CloudflareEnv ./cloudflare-env.d.ts"
   },
   "dependencies": {
-    "@hookform/resolvers": "4.1.3",
+    "@hookform/resolvers": "5.2.2",
     "@mdx-js/loader": "3.1.1",
     "@mdx-js/react": "3.1.1",
     "@next/mdx": "16.0.1",
-    "@opennextjs/cloudflare": "1.11.1",
+    "@opennextjs/cloudflare": "1.14.0",
     "@radix-ui/react-accordion": "1.2.12",
     "@radix-ui/react-alert-dialog": "1.1.15",
     "@radix-ui/react-avatar": "1.1.11",
@@ -44,7 +44,7 @@
     "clsx": "2.1.1",
     "lucide-react": "0.553.0",
     "nanoid": "5.1.6",
-    "next": "16.0.1",
+    "next": "16.0.6",
     "next-plausible": "3.12.4",
     "react": "19.2.0",
     "react-dom": "19.2.0",
@@ -54,24 +54,24 @@
     "slugify": "1.6.6",
     "sugar-high": "0.9.5",
     "tailwind-merge": "3.4.0",
-    "zod": "3.25.67"
+    "zod": "4.1.13"
   },
   "devDependencies": {
-    "@cloudflare/workers-types": "4.20251109.0",
+    "@cloudflare/workers-types": "4.20251128.0",
     "@tailwindcss/postcss": "4.1.17",
     "@tailwindcss/typography": "0.5.19",
     "@types/mdx": "2.0.13",
-    "@types/node": "22",
+    "@types/node": "24",
     "@types/react": "19.2.2",
     "@types/react-dom": "19.2.2",
     "eslint": "9",
-    "eslint-config-next": "16.0.1",
+    "eslint-config-next": "16.0.6",
     "eslint-config-prettier": "10.1.8",
     "tailwindcss": "4.1.17",
     "tailwindcss-animate": "1.0.7",
     "tsx": "4.20.6",
     "typescript": "5",
-    "wrangler": "4.46.0"
+    "wrangler": "4.51.0"
   },
   "overrides": {
     "@types/react": "19.2.2",
