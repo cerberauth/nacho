@@ -10,7 +10,7 @@ async function compress(input: string): Promise<ArrayBuffer> {
   return compressedData as ArrayBuffer
 }
 
-async function decompress(input: Uint8Array): Promise<string> {
+async function decompress(input: BufferSource): Promise<string> {
   const ds = new DecompressionStream('gzip')
   const writer = ds.writable.getWriter()
   writer.write(input)
@@ -23,6 +23,15 @@ export async function urlEncode(client: OAuth2Client): Promise<string> {
   const string = JSON.stringify(client)
   const compressed = await compress(string)
   return encodeURIComponent(btoa(String.fromCharCode(...new Uint8Array(compressed))))
+}
+
+export function clientClientURLByEncodedClient(encodedClient: string): string {
+  return `/clients/c?client=${encodedClient}`
+}
+
+export async function clientClientURLByOAuth2Client(client: OAuth2Client): Promise<string> {
+  const encoded = await urlEncode(client)
+  return clientClientURLByEncodedClient(encoded)
 }
 
 export async function urlDecode(encoded: string): Promise<OAuth2Client> {

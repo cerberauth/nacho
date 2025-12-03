@@ -1,17 +1,13 @@
 'use client'
 
-import { useEffect, useMemo, useState } from 'react'
-import { nanoid } from 'nanoid'
 import Link from 'next/link'
-import { useParams, useRouter } from 'next/navigation'
 
 import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
+import { Skeleton } from '@/components/ui/skeleton'
 import { applicationTypeName, grantTypeName, tokenAuthenticationMethodLabel } from '@/lib/getters'
-import { getClientById, saveClient } from '@/lib/clients'
-import { urlDecode, urlEncode } from '@/lib/url'
 
 const createShareableLink = (medium: string) => {
   const url = new URL(window.location.href)
@@ -24,17 +20,17 @@ const onClipboardCopy = (data: string) => {
   navigator.clipboard.writeText(data)
 }
 
-export const dynamic = 'force-static'
+export type ClientViewProps = {
+  client: OAuth2Client
+}
 
-export default function ClientPage() {
-  const router = useRouter()
-  const { client: clientEncodedParam } = useParams<{ client: string }>()
-  const [client, setClient] = useState<OAuth2Client | undefined>()
-  const url = useMemo(() => `/clients/${clientEncodedParam}`, [clientEncodedParam])
-
+export function ClientView({ client }: ClientViewProps) {
   const shareByLink = () => {
-    const url = createShareableLink('clipboard')
-    onClipboardCopy(url.toString())
+    onClipboardCopy(createShareableLink('clipboard').toString())
+  }
+
+  if (!client) {
+    return <Skeleton className="h-12" />
   }
 
   const shareByEmail = () => {
@@ -43,33 +39,8 @@ export default function ClientPage() {
     window.open(message)
   }
 
-  useEffect(() => {
-    urlDecode(clientEncodedParam)
-      .then(async (data) => {
-        if (!data.id) {
-          data.id = nanoid()
-          const newEncodedParam = await urlEncode(data)
-          return router.push(`/clients/${newEncodedParam}`)
-        }
-
-        let client = getClientById(data.id)
-        if (!client) {
-          client = saveClient({
-            client: data,
-            url,
-          })
-        }
-
-        setClient(client.client)
-      })
-  }, [router, url, clientEncodedParam])
-
-  if (!client) {
-    return <div>Loading...</div>
-  }
-
   return (
-    <main className="container mx-auto max-w-4xl px-4 py-12 space-y-8">
+    <>
       <div>
         <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2 text-center">{client.name} Client</h1>
       </div>
@@ -256,6 +227,6 @@ export default function ClientPage() {
           </AlertDialog>
         </CardFooter>
       </Card>
-    </main>
+    </>
   )
 }
