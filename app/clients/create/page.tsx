@@ -9,7 +9,7 @@ import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
 import { ApplicationTypes } from '@/lib/consts'
-import { urlEncode } from '@/lib/url'
+import { clientClientURLByOAuth2Client } from '@/lib/url'
 
 import { clientSchema as createClientSchema } from '../schema'
 import { CreateClientForm } from './form'
@@ -46,9 +46,9 @@ export default function CreateClient() {
 
     localStorage.removeItem(localStorageItem)
 
-    const encoded = await urlEncode(client)
     plausible('Create Client', { props: {} })
-    router.push(`/clients/${encoded}`)
+    const href = await clientClientURLByOAuth2Client(client)
+    router.push(href)
   }, [router, isSubmitting, setIsSubmitting, plausible])
 
   return (

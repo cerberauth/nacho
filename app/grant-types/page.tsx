@@ -6,7 +6,8 @@ import { useState } from 'react'
 
 import { ChooseGrantType } from '@/components/choose-grant-type'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
+import { grantTypeName, grantTypeReferences } from '@/lib/getters'
+import { TokenAuthenticationMethodListItem } from '@/components/token-authentication-method-list-item'
 
 export default function GrantTypes() {
   const [selectedGrantTypes, setSelectedGrantTypes] = useState<GrantType[] | null>(null)
@@ -51,7 +52,7 @@ export default function GrantTypes() {
           </Card>
         )}
 
-        {selectedTokenEndpointAuthMethod && (
+        {Array.isArray(selectedTokenEndpointAuthMethod) && selectedTokenEndpointAuthMethod.length > 0 && (
           <Card>
             <CardHeader>
               <CardTitle>Token Endpoint Authentication Method Recommendation</CardTitle>
@@ -61,12 +62,7 @@ export default function GrantTypes() {
               <span className="underline">Possible Authentication Methods</span>
               <ul className="text-sm my-6 ml-6 list-disc [&>li]:mt-2">
                 {selectedTokenEndpointAuthMethod.map((method) => (
-                  <li key={method}>
-                    <Link href={tokenAuthenticationMethodReferences(method)[0]} target="_blank" className="inline-flex">
-                      {tokenAuthenticationMethodLabel(method)}
-                      <ArrowUpRight className="w-4 h-4 ml-1" />
-                    </Link>
-                  </li>
+                  <TokenAuthenticationMethodListItem key={method} authMethod={method} />
                 ))}
               </ul>
             </CardContent>
