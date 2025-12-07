@@ -77,6 +77,7 @@ import rustAxumApp from './rust-axum-app.json' with { type: 'json' }
 import rustRocketApp from './rust-rocket-app.json' with { type: 'json' }
 import sailsJsApp from './sailsjs-app.json' with { type: 'json' }
 import scalaApp from './scala-app.json' with { type: 'json' }
+import solidSpa from './solid-spa.json' with { type: 'json' }
 import spa from './spa.json' with { type: 'json' }
 import svelteSpa from './svelte-spa.json' with { type: 'json' }
 import swiftWebApp from './swift-web-app.json' with { type: 'json' }
@@ -140,6 +141,7 @@ export {
   rustRocketApp,
   sailsJsApp,
   scalaApp,
+  solidSpa,
   spa,
   svelteSpa,
   swiftWebApp,
@@ -204,6 +206,7 @@ export const templates = [
   rustRocketApp,
   sailsJsApp,
   scalaApp,
+  solidSpa,
   spa,
   svelteSpa,
   swiftWebApp,

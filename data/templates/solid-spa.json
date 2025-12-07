@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "Solid SPA",
+  "description": "Solid Single Page Application with OpenID Connect.",
+  "identifier": "solid-spa",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/solid.svg"
+  },
+  "technologies": [
+    "javascript",
+    "solid"
+  ],
+  "client": {
+    "applicationType": "spa",
+    "grantTypes": [
+      "authorization_code",
+      "pkce"
+    ],
+    "tokenEndpointAuthMethods": [
+      "none"
+    ],
+    "scopes": [
+      "openid",
+      "profile",
+      "email"
+    ]
+  }
+}
