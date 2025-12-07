@@ -67,6 +67,7 @@ import pythonFastAPIApp from './python-fastapi-app.json' with { type: 'json' }
 import pythonFlaskApp from './python-flask-app.json' with { type: 'json' }
 import pythonFletApp from './python-flet-app.json' with { type: 'json' }
 import pythonStarletteApp from './python-starlette-app.json' with { type: 'json' }
+import qwikSpa from './qwik-spa.json' with { type: 'json' }
 import reactSpa from './react-spa.json' with { type: 'json' }
 import remixApp from './remix-app.json' with { type: 'json' }
 import rubyApp from './ruby-app.json' with { type: 'json' }
@@ -129,6 +130,7 @@ export {
   pythonFlaskApp,
   pythonFletApp,
   pythonStarletteApp,
+  qwikSpa,
   reactSpa,
   remixApp,
   rubyApp,
@@ -192,6 +194,7 @@ export const templates = [
   pythonFlaskApp,
   pythonFletApp,
   pythonStarletteApp,
+  qwikSpa,
   reactSpa,
   remixApp,
   rubyApp,
