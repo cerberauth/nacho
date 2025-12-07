@@ -4,7 +4,7 @@
   "abstract": "Keycloak is an open-source identity and access management solution that provides a comprehensive set of features to authenticate and authorize users.",
   "identifier": "keycloak",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/keycloak.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/keycloak.svg"
   },
   "website": "https://www.keycloak.org",
   "license": "Apache-2.0",

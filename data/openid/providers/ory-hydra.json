@@ -4,7 +4,7 @@
   "abstract": "Ory Hydra is a cloud-native OAuth 2.0 and OpenID Connect server that secures APIs, microservices, and websites with low-latency token validation and revocation.",
   "identifier": "ory-hydra",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/ory.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/ory.svg"
   },
   "website": "https://www.ory.sh/hydra",
   "license": "Apache-2.0",

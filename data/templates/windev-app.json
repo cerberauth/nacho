@@ -4,7 +4,7 @@
   "description": "WinDev / WebDev Applications with OpenID Connect.",
   "identifier": "windev-webdev-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/pc-soft.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/pc-soft.svg"
   },
   "technologies": [
     "windev",
