@@ -1,0 +1,28 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "Qwik SPA",
+  "description": "Qwik Single Page Application with OpenID Connect.",
+  "identifier": "qwik-spa",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/qwik.svg"
+  },
+  "technologies": [
+    "javascript",
+    "qwik"
+  ],
+  "client": {
+    "applicationType": "spa",
+    "grantTypes": [
+      "authorization_code",
+      "pkce"
+    ],
+    "tokenEndpointAuthMethods": [
+      "none"
+    ],
+    "scopes": [
+      "openid",
+      "profile",
+      "email"
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "Waku App",
+  "description": "Waku Application with OpenID Connect.",
+  "identifier": "waku-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/waku.svg"
+  },
+  "technologies": [
+    "javascript",
+    "react",
+    "waku"
+  ],
+  "client": {
+    "applicationType": "webApplication",
+    "grantTypes": [
+      "authorization_code",
+      "pkce",
+      "refresh_token"
+    ],
+    "tokenEndpointAuthMethods": [
+      "client_secret_basic",
+      "client_secret_post"
+    ],
+    "scopes": [
+      "openid",
+      "offline_access",
+      "profile",
+      "email"
+    ]
+  }
+}

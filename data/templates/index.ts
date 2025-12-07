@@ -58,6 +58,7 @@ import meteorJsApp from './meteorjs-app.json' with { type: 'json' }
 import nestJsApp from './nestjs-app.json' with { type: 'json' }
 import nextjsApp from './nextjs-app.json' with { type: 'json' }
 import nodejsApp from './nodejs-app.json' with { type: 'json' }
+import nuxtApp from './nuxt-app.json' with { type: 'json' }
 import phpApp from './php-app.json' with { type: 'json' }
 import preactSpa from './preact-spa.json' with { type: 'json' }
 import pythonApp from './python-app.json' with { type: 'json' }
@@ -66,6 +67,7 @@ import pythonFastAPIApp from './python-fastapi-app.json' with { type: 'json' }
 import pythonFlaskApp from './python-flask-app.json' with { type: 'json' }
 import pythonFletApp from './python-flet-app.json' with { type: 'json' }
 import pythonStarletteApp from './python-starlette-app.json' with { type: 'json' }
+import qwikSpa from './qwik-spa.json' with { type: 'json' }
 import reactSpa from './react-spa.json' with { type: 'json' }
 import remixApp from './remix-app.json' with { type: 'json' }
 import rubyApp from './ruby-app.json' with { type: 'json' }
@@ -75,12 +77,14 @@ import rustAxumApp from './rust-axum-app.json' with { type: 'json' }
 import rustRocketApp from './rust-rocket-app.json' with { type: 'json' }
 import sailsJsApp from './sailsjs-app.json' with { type: 'json' }
 import scalaApp from './scala-app.json' with { type: 'json' }
+import solidSpa from './solid-spa.json' with { type: 'json' }
 import spa from './spa.json' with { type: 'json' }
 import svelteSpa from './svelte-spa.json' with { type: 'json' }
 import swiftWebApp from './swift-web-app.json' with { type: 'json' }
 import swiftVaporWebApp from './swift-vapor-web-app.json' with { type: 'json' }
 import symfonyApp from './symfony-app.json' with { type: 'json' }
 import vueSpa from './vue-spa.json' with { type: 'json' }
+import wakuApp from './waku-app.json' with { type: 'json' }
 import webApp from './web-app.json' with { type: 'json' }
 import windevApp from './windev-app.json' with { type: 'json' }
 import yiiApp from './yii-app.json' with { type: 'json' }
@@ -119,6 +123,7 @@ export {
   nestJsApp,
   nextjsApp,
   nodejsApp,
+  nuxtApp,
   phpApp,
   preactSpa,
   pythonApp,
@@ -127,6 +132,7 @@ export {
   pythonFlaskApp,
   pythonFletApp,
   pythonStarletteApp,
+  qwikSpa,
   reactSpa,
   remixApp,
   rubyApp,
@@ -136,12 +142,14 @@ export {
   rustRocketApp,
   sailsJsApp,
   scalaApp,
+  solidSpa,
   spa,
   svelteSpa,
   swiftWebApp,
   swiftVaporWebApp,
   symfonyApp,
   vueSpa,
+  wakuApp,
   webApp,
   windevApp,
   yiiApp,
@@ -181,6 +189,7 @@ export const templates = [
   nestJsApp,
   nextjsApp,
   nodejsApp,
+  nuxtApp,
   phpApp,
   preactSpa,
   pythonApp,
@@ -189,6 +198,7 @@ export const templates = [
   pythonFlaskApp,
   pythonFletApp,
   pythonStarletteApp,
+  qwikSpa,
   reactSpa,
   remixApp,
   rubyApp,
@@ -198,12 +208,14 @@ export const templates = [
   rustRocketApp,
   sailsJsApp,
   scalaApp,
+  solidSpa,
   spa,
   svelteSpa,
   swiftWebApp,
   swiftVaporWebApp,
   symfonyApp,
   vueSpa,
+  wakuApp,
   webApp,
   windevApp,
   yiiApp,
