@@ -1,0 +1,22 @@
+/_next/static/*
+  Cache-Control: public,max-age=31536000,immutable
+
+/logos/*
+  Cache-Control: public,max-age=86400,immutable
+
+/*
+  X-XSS-Protection: 1; mode=block
+  X-DNS-Prefetch-Control: on
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: same-origin
+  Permissions-Policy: fullscreen=(self)
+  Access-Control-Allow-Methods: GET, OPTIONS
+
+https://:worker.:cerberauth.workers.dev/*
+  Access-Control-Allow-Origin: https://*-:worker.:cerberauth.workers.dev/
+  X-Robots-Tag: noindex
+
+https://nacho.cerberauth.com/*
+  Access-Control-Allow-Origin: https://nacho.cerberauth.com
+  Content-Security-Policy: default-src 'self'; connect-src 'self' https://a.cerberauth.com; script-src 'self' 'unsafe-inline' https://a.cerberauth.com/js/plausible.outbound-links.tagged-events.js; style-src 'self' 'unsafe-inline'; img-src 'self' https://nacho.cerberauth.com; frame-src 'none'; font-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;
