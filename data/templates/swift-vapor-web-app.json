@@ -4,7 +4,7 @@
   "description": "Swift Vapor Web Application with OpenID Connect.",
   "identifier": "swift-vapor-web-app",
   "icon": {
-    "contentUrl": "https://nacho.cerberauth.com/logos/vapor.png"
+    "contentUrl": "https://nacho.cerberauth.com/logos/vapor.svg"
   },
   "technologies": [
     "swift",

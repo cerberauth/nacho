@@ -4,38 +4,18 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { useMemo } from 'react'
 
+import { ListItemWithReferences } from '@/components/list-item-with-references'
+import { TokenAuthenticationMethodListItem } from '@/components/token-authentication-method-list-item'
 import { TemplateCard } from '@/components/template-card'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { templates } from '@/data/templates'
-import { applicationTypeName, grantTypeName, grantTypeReferences, tokenAuthenticationMethodLabel, tokenAuthenticationMethodReferences } from '@/lib/getters'
+import { applicationTypeName, grantTypeName, grantTypeReferences } from '@/lib/getters'
 import { getRelatedTemplates, getTemplateById } from '@/lib/templates'
-
-function ListItemWithReferences({ name, references }: { name: string, references: string[] }) {
-  return (
-    <li>
-      {name}
-      {' '}
-      (<Link href={references[0]} target="_blank" className="inline-flex text-xs underline">
-        Reference
-        <ArrowUpRight className="w-3 h-3 ml-1 inline-block" />
-      </Link>)
-    </li>
-  )
-}
 
 function GrantTypeListItem({ grantType }: { grantType: string }) {
   const name = useMemo(() => grantTypeName(grantType) || grantType, [grantType])
   const references = useMemo(() => grantTypeReferences(grantType), [grantType])
-
-  return (
-    <ListItemWithReferences name={name} references={references} />
-  )
-}
-
-function TokenAuthenticationMethodListItem({ authMethod }: { authMethod: string }) {
-  const name = useMemo(() => tokenAuthenticationMethodLabel(authMethod) || authMethod, [authMethod])
-  const references = useMemo(() => tokenAuthenticationMethodReferences(authMethod), [authMethod])
 
   return (
     <ListItemWithReferences name={name} references={references} />
@@ -47,7 +27,7 @@ type Props = {
 }
 
 export const dynamic = 'force-static'
-// export const dynamicParams = false // TODO: https://github.com/opennextjs/opennextjs-cloudflare/issues/682
+export const dynamicParams = false
 
 export async function generateStaticParams() {
   return templates.map((template) => ({
