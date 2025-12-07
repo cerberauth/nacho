@@ -58,6 +58,7 @@ import meteorJsApp from './meteorjs-app.json' with { type: 'json' }
 import nestJsApp from './nestjs-app.json' with { type: 'json' }
 import nextjsApp from './nextjs-app.json' with { type: 'json' }
 import nodejsApp from './nodejs-app.json' with { type: 'json' }
+import nuxtApp from './nuxt-app.json' with { type: 'json' }
 import phpApp from './php-app.json' with { type: 'json' }
 import preactSpa from './preact-spa.json' with { type: 'json' }
 import pythonApp from './python-app.json' with { type: 'json' }
@@ -119,6 +120,7 @@ export {
   nestJsApp,
   nextjsApp,
   nodejsApp,
+  nuxtApp,
   phpApp,
   preactSpa,
   pythonApp,
@@ -181,6 +183,7 @@ export const templates = [
   nestJsApp,
   nextjsApp,
   nodejsApp,
+  nuxtApp,
   phpApp,
   preactSpa,
   pythonApp,
