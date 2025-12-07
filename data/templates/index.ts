@@ -84,6 +84,7 @@ import swiftWebApp from './swift-web-app.json' with { type: 'json' }
 import swiftVaporWebApp from './swift-vapor-web-app.json' with { type: 'json' }
 import symfonyApp from './symfony-app.json' with { type: 'json' }
 import vueSpa from './vue-spa.json' with { type: 'json' }
+import wakuApp from './waku-app.json' with { type: 'json' }
 import webApp from './web-app.json' with { type: 'json' }
 import windevApp from './windev-app.json' with { type: 'json' }
 import yiiApp from './yii-app.json' with { type: 'json' }
@@ -148,6 +149,7 @@ export {
   swiftVaporWebApp,
   symfonyApp,
   vueSpa,
+  wakuApp,
   webApp,
   windevApp,
   yiiApp,
@@ -213,6 +215,7 @@ export const templates = [
   swiftVaporWebApp,
   symfonyApp,
   vueSpa,
+  wakuApp,
   webApp,
   windevApp,
   yiiApp,
