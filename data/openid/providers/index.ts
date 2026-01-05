@@ -24,14 +24,14 @@ export type OpenIDConnectProvider = {
   }>
 }
 
-import openIDConnectFeatures from './features.json' assert { type: 'json' }
+import openIDConnectFeatures from './features.json'
 
-import auth0 from './auth0.json' assert { type: 'json' }
-import keycloak from './keycloak.json' assert { type: 'json' }
-import microsoftEntraID from './microsoft-entra-id.json' assert { type: 'json' }
-import okta from './okta.json' assert { type: 'json' }
-import oryHydra from './ory-hydra.json' assert { type: 'json' }
-import pingIdentity from './ping-identity.json' assert { type: 'json' }
+import auth0 from './auth0.json'
+import keycloak from './keycloak.json'
+import microsoftEntraID from './microsoft-entra-id.json'
+import okta from './okta.json'
+import oryHydra from './ory-hydra.json'
+import pingIdentity from './ping-identity.json'
 
 export {
   openIDConnectFeatures,
