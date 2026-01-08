@@ -19,9 +19,9 @@ export function ProviderCard({ provider }: ProviderCardProps) {
           alt={provider.name}
         />
       )}
-      <p className="text-md text-center w-full text-slate-900 dark:text-white mt-2">
+      <Link href={`/openid/providers/${provider.identifier}`} className="text-md text-center w-full text-slate-900 dark:text-white mt-2">
         {provider.name}
-      </p>
+      </Link>
       <p className="text-sm text-slate-500">
         {provider.license}
       </p>
