@@ -5,7 +5,6 @@
 ---
 
 [![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/cerberauth/nacho/main.yml?branch=main&label=build&style=for-the-badge)](https://github.com/cerberauth/nacho/actions/workflows/main.yml)
-![Uptime](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fcerberauth%2Fupptime%2Fmaster%2Fapi%2Fnacho%2Fuptime.json&style=for-the-badge)
 [![Join Discord](https://img.shields.io/discord/1242773130137833493?label=Discord&style=for-the-badge)](https://vulnapi.cerberauth.com/discord)
 [![Github Repo Stars](https://img.shields.io/github/stars/cerberauth/nacho?style=for-the-badge)](https://github.com/cerberauth/nacho)
 
@@ -20,14 +19,15 @@ It is designed to be used by developers and non-developers alike, and it is mean
 - [Features](#features)
 - [Contributing](#contributing)
 
-## State Diagram
-
-![Grant Type Choice State Diagram](./docs/grant-type-state-diagram.png)
-
 ## Features
 
 - Choose Grant Type (Flow)
 - Prepare New Client creation request
+- OpenID Connect Providers benchmark table with what specifications are supported for each of them
+
+## State Diagram
+
+![Grant Type Choice State Diagram](./docs/grant-type-state-diagram.png)
 
 ## Contributing
 
