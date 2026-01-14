@@ -4,10 +4,6 @@ export const getOpenIDConnectFeatures = () => {
   return openIDConnectFeatures
 }
 
-export const getOpenIDConnectFeatureById = (id: string) => {
-  return getOpenIDConnectFeatures().featureList.find((f) => f.identifier === id)
-}
-
 export const getProviders = () => {
   return providers
 }

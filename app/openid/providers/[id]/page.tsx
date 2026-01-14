@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
 import { featuresCategories, FeatureStatus, OpenIDConnectFeatureCategory, type OpenIDConnectFeature, type OpenIDConnectProvider } from '@/data/openid/providers'
-import { getOpenIDConnectFeatureById, getProviderById, getProviderFeature, getProviders } from '@/lib/providers'
+import { getProviderById, getProviderFeature, getProviders } from '@/lib/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { getTableCells } from '../get-table-cells'
 import { ArrowUpRight } from 'lucide-react'
@@ -49,8 +49,6 @@ export default async function ProviderPage({ params }: Props) {
   const categories = getTableCells([provider.identifier])
   const faqFeatures = featuresCategories.reduce((acc, category) => {
     const features = category.features
-      .map((feature) => getOpenIDConnectFeatureById(feature))
-      .filter(Boolean)
       .map((feature) => ({
         feature,
         providerFeature: getProviderFeature(provider.identifier, feature!.identifier),

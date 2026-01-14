@@ -67,67 +67,31 @@ export const featuresCategories = [
   {
     name: 'Grant Types',
     identifier: OpenIDConnectFeatureCategory.GrantType,
-    features: [
-      'authorization_code_grant',
-      'implicit_grant',
-      'client_credentials_grant',
-      'refresh_token_grant',
-      'password_grant',
-      'urn:ietf:params:oauth:grant-type:token-exchange',
-      'urn:openid:params:grant-type:ciba',
-      'urn:ietf:params:oauth:grant-type:device_code',
-      'urn:ietf:params:oauth:grant-type:jwt-bearer',
-      'urn:ietf:params:oauth:grant-type:saml2-bearer'
-    ]
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.GrantType),
   },
 
   {
     name: 'Extensions',
     identifier: OpenIDConnectFeatureCategory.Extension,
-    features: [
-      'pkce_extension',
-      'par_extension',
-      'rar_extension',
-    ]
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Extension),
   },
 
   {
     name: 'Endpoints',
     identifier: OpenIDConnectFeatureCategory.Endpoint,
-    features: [
-      'authorization_endpoint',
-      'token_endpoint',
-      'userinfo_endpoint',
-      'token_revocation_endpoint',
-      'token_introspection_endpoint',
-      'openid_connect_discovery_endpoint',
-      'oauth_authorization_server_metadata_endpoint'
-    ]
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Endpoint),
   },
 
   {
     name: 'Token Endpoint Authentication Methods',
     identifier: OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod,
-    features: [
-      'none_token_endpoint_auth',
-      'client_secret_basic_token_endpoint_auth',
-      'client_secret_post_token_endpoint_auth',
-      'client_secret_jwt_token_endpoint_auth',
-      'private_key_jwt_token_endpoint_auth',
-      'tls_client_auth_token_endpoint_auth',
-    ]
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod),
   },
 
   {
     name: 'Prompts',
     identifier: OpenIDConnectFeatureCategory.Prompt,
-    features: [
-      'login_prompt',
-      'none_prompt',
-      'consent_prompt',
-      'select_account_prompt',
-      'create_prompt',
-    ]
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Prompt),
   },
 
   // {
@@ -143,11 +107,7 @@ export const featuresCategories = [
   {
     name: 'Features',
     identifier: OpenIDConnectFeatureCategory.Feature,
-    features: [
-      'refresh_token_rotation',
-      'dynamic_client_registration',
-      'rp_initiated_logout',
-    ]
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Feature),
   }
 ]
 
