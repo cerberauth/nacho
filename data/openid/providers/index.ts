@@ -13,6 +13,7 @@ export enum OpenIDConnectFeatureCategory {
   TokenEndpointAuthenticationMethod = 'token_endpoint_authentication_method',
   Prompt = 'prompt',
   Feature = 'feature',
+  FAPI = 'fapi',
 }
 
 export type OpenIDConnectFeature = {
@@ -108,6 +109,12 @@ export const featuresCategories = [
     name: 'Features',
     identifier: OpenIDConnectFeatureCategory.Feature,
     features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Feature),
+  },
+
+  {
+    name: 'Financial-grade API (FAPI)',
+    identifier: OpenIDConnectFeatureCategory.FAPI,
+    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.FAPI),
   }
 ]
 

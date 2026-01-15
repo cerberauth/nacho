@@ -259,7 +259,7 @@
       "url": "https://datatracker.ietf.org/doc/html/rfc8705"
     },
     {
-      "name": "Dynamic Client Registration",
+      "name": "Dynamic Client Registration Protocol",
       "description": "Dynamic Client Registration enables clients to register with the authorization server.",
       "identifier": "dynamic_client_registration",
       "category": "feature",
@@ -267,11 +267,67 @@
       "url": "https://datatracker.ietf.org/doc/html/rfc7591"
     },
     {
+      "name": "Dynamic Client Registration Management Protocol",
+      "description": "Dynamic Client Registration Management enables clients to manage the registration of clients with the authorization server.",
+      "identifier": "dynamic_client_registration_management",
+      "category": "feature",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc7592"
+    },
+    {
       "name": "Refresh Token Rotation",
       "description": "Refresh Token Rotation is a security feature that allows the authorization server to issue a new refresh token with every access token request.",
       "identifier": "refresh_token_rotation",
       "category": "feature",
       "status": "supported"
+    },
+    {
+      "name": "OAuth 2.0 Demonstrating Proof of Possession (DPoP)",
+      "description": "Demonstrating Proof of Possession (DPoP) is an application-level mechanism for sender-constraining OAuth access and refresh tokens. It enables a client to prove the possession of a public/private key pair by including a DPoP header in an HTTP request.",
+      "identifier": "dpop",
+      "category": "feature",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc9449"
+    },
+    {
+      "name": "FAPI 1.0 Security Profile - Part 1: Baseline",
+      "description": "",
+      "identifier": "fapi_1_0_baseline",
+      "category": "fapi",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-financial-api-part-1-1_0.html"
+    },
+    {
+      "name": "FAPI 1.0 Security Profile - Part 2: Advanced",
+      "description": "",
+      "identifier": "fapi_1_0_advanced",
+      "category": "fapi",
+      "status": "supported",
+      "url": "https://openid.net/specs/openid-financial-api-part-2-1_0.html"
+    },
+    {
+      "name": "FAPI 2.0 Security Profile",
+      "description": "",
+      "identifier": "fapi_2_0_security_profile",
+      "category": "fapi",
+      "status": "supported",
+      "url": "https://openid.net/specs/fapi-security-profile-2_0.html"
+    },
+    {
+      "name": "FAPI 2.0 Message Signing",
+      "description": "",
+      "identifier": "fapi_2_0_message_signing",
+      "category": "fapi",
+      "status": "supported",
+      "url": "https://openid.net/specs/fapi-message-signing-2_0.html"
+    },
+    {
+      "name": "JARM",
+      "description": "",
+      "identifier": "jarm",
+      "category": "fapi",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc9102"
     }
   ]
 }
