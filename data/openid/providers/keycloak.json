@@ -13,7 +13,7 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#implicit"
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_implicit"
     },
     {
       "identifier": "authorization_code_grant",
@@ -41,6 +41,11 @@
       "url": "https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens"
     },
     {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/token-exchange"
+    },
+    {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
       "url": "https://www.keycloak.org/docs/latest/securing_apps/#device-authorization-grant"
@@ -51,9 +56,40 @@
       "url": "https://www.keycloak.org/docs/latest/securing_apps/#_client_initiated_backchannel_authentication_grant"
     },
     {
-      "identifier": "dynamic_client_registration",
+      "identifier": "authorization_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#dynamic-client-registration-endpoint"
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_authorization_endpoint"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_endpoint"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_userinfo_endpoint"
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_revocation_endpoint"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_introspection_endpoint"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "partial",
+      "description": "Supports through OpenID Connect Discovery",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
     },
     {
       "identifier": "none_prompt",
@@ -111,15 +147,34 @@
       "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
     },
     {
-      "identifier": "openid_connect_discovery_endpoint",
+      "identifier": "dynamic_client_registration",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+      "url": "https://www.keycloak.org/docs/latest/securing_apps/#dynamic-client-registration-endpoint"
     },
     {
-      "identifier": "oauth_authorization_server_metadata_endpoint",
-      "status": "partial",
-      "description": "Supports through OpenID Connect Discovery",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+      "identifier": "dpop",
+      "status": "supported",
+      "url": "https://www.keycloak.org/docs/latest/server_admin/#_dpop-bound-tokens"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "supported",
+      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
     }
   ]
 }
