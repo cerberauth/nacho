@@ -153,11 +153,19 @@
     },
     {
       "name": "Token Introspection",
-      "description": "OAuth 2.0 Token Introspection is a security feature that allows clients to validate access tokens and refresh tokens.",
+      "description": "OAuth 2.0 Token Introspection is a security feature that allows clients to introspect access tokens and refresh tokens.",
       "identifier": "token_introspection_endpoint",
       "category": "endpoint",
       "status": "supported",
       "url": "https://datatracker.ietf.org/doc/html/rfc7662"
+    },
+    {
+      "name": "Device Authorization Endpoint",
+      "description": "The Device Authorization Endpoint is used by device clients to obtain an authorization code, which can be exchanged for an access token and refresh token.",
+      "identifier": "device_authorization_endpoint",
+      "category": "endpoint",
+      "status": "supported",
+      "url": "https://datatracker.ietf.org/doc/html/rfc8628#section-3.1"
     },
     {
       "name": "OpenID Connect Discovery Endpoint",
