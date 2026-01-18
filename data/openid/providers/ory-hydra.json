@@ -80,15 +80,19 @@
       "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/introspectOAuth2Token"
     },
     {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "url": "https://www.ory.com/docs/reference/api#tag/oAuth2/operation/oAuth2DeviceFlow"
+    },
+    {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
       "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
-      "status": "partial",
-      "description": "Supports through OpenID Connect Discovery",
-      "url": "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
+      "status": "supported",
+      "url": "https://github.com/ory/hydra/releases/tag/v25.4.0"
     },
     {
       "identifier": "none_token_endpoint_auth",
