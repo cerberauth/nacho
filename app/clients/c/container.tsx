@@ -1,6 +1,7 @@
 'use client'
 
-import { urlDecode } from '@/lib/url'
+import { saveClient, getClientById } from '@/lib/clients'
+import { urlDecode, clientClientURLByEncodedClient } from '@/lib/url'
 
 import { ClientView } from './client-view'
 import { useSearchParams } from 'next/navigation'
@@ -19,7 +20,15 @@ export function SearchParamsContainer() {
 function ClientContainer({ encodedClient }: { encodedClient: string }) {
   const [client, setClient] = useState<OAuth2Client | undefined>()
   useEffect(() => {
-    urlDecode(encodedClient).then(setClient)
+    urlDecode(encodedClient).then((decodedClient) => {
+      setClient(decodedClient)
+
+      // Save to localStorage if not already saved
+      if (!getClientById(decodedClient.id)) {
+        const url = clientClientURLByEncodedClient(encodedClient)
+        saveClient({ client: decodedClient, url })
+      }
+    })
   }, [encodedClient])
   if (!client) {
     return null

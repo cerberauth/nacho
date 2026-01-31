@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main className="flex flex-col max-w-xl mx-auto items-center justify-center">
       <div className="space-y-6 text-center mt-9 md:my-32">
-        <Image src={NachoLogo} className="mx-auto" alt="Nacho" width={150} height={150} />
+        <Image src={NachoLogo} className="mx-auto" alt="Nacho" width={150} height={150} priority />
         <h1 className="flex flex-col space-y-4 font-bold tracking-tight text-gray-900 dark:text-gray-50">
           <span className="text-3xl sm:text-4xl">OAuth Client Helper</span>
         </h1>

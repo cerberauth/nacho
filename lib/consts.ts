@@ -180,11 +180,11 @@ export const tokenAuthenticationMethods = [
       'https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1',
     ],
   },
-  // {
-  //   id: TokenEndpointAuthMethods.mtls,
-  //   label: 'Mutual TLS',
-  //   references: [
-  //     'https://datatracker.ietf.org/doc/html/rfc8705',
-  //   ],
-  // },
+  {
+    id: TokenEndpointAuthMethods.mtls,
+    label: 'Mutual TLS',
+    references: [
+      'https://datatracker.ietf.org/doc/html/rfc8705',
+    ],
+  },
 ]

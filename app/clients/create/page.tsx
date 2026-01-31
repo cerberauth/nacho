@@ -8,6 +8,7 @@ import { Suspense, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 
+import { saveClient } from '@/lib/clients'
 import { ApplicationTypes } from '@/lib/consts'
 import { clientClientURLByOAuth2Client } from '@/lib/url'
 
@@ -27,10 +28,6 @@ export default function CreateClient() {
   })
 
   const onSubmit = useCallback(async (data: z.infer<typeof createClientSchema>) => {
-    if (isSubmitting) {
-      return
-    }
-
     setIsSubmitting(true)
     const client: OAuth2Client = {
       ...data,
@@ -48,11 +45,15 @@ export default function CreateClient() {
 
     plausible('Create Client', { props: {} })
     const href = await clientClientURLByOAuth2Client(client)
+
+    // Save client to localStorage for the clients table
+    saveClient({ client, url: href })
+
     router.push(href)
-  }, [router, isSubmitting, setIsSubmitting, plausible])
+  }, [router, plausible])
 
   return (
-    <Suspense>
+    <Suspense fallback={<div className="container mx-auto max-w-4xl px-4 py-12">Loading...</div>}>
       <CreateClientForm
         onSubmit={onSubmit}
         form={form}

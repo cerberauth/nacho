@@ -1,5 +1,3 @@
-'use client'
-
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -12,7 +10,7 @@ export default function Header() {
       <div className="mx-4 sm:mx-8 flex h-14 items-center">
         <div className="flex items-center space-x-4 lg:space-x-0">
           <Link href="/" className="font-medium text-lg flex">
-            <Image src={NachoLogo} className="mr-2" alt="Nacho" width={30} height={30} />
+            <Image src={NachoLogo} className="mr-2" alt="Nacho" width={30} height={30} priority />
             Nacho
           </Link>
         </div>

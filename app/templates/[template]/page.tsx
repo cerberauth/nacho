@@ -2,7 +2,6 @@ import { ArrowUpRight, GitPullRequest } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
-import { useMemo } from 'react'
 
 import { ListItemWithReferences } from '@/components/list-item-with-references'
 import { TokenAuthenticationMethodListItem } from '@/components/token-authentication-method-list-item'
@@ -14,8 +13,8 @@ import { applicationTypeName, grantTypeName, grantTypeReferences } from '@/lib/g
 import { getRelatedTemplates, getTemplateById } from '@/lib/templates'
 
 function GrantTypeListItem({ grantType }: { grantType: string }) {
-  const name = useMemo(() => grantTypeName(grantType) || grantType, [grantType])
-  const references = useMemo(() => grantTypeReferences(grantType), [grantType])
+  const name = grantTypeName(grantType) || grantType
+  const references = grantTypeReferences(grantType)
 
   return (
     <ListItemWithReferences name={name} references={references} />
