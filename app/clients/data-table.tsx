@@ -37,15 +37,7 @@ export function DataTable({}: DataTableProps) {
   })
 
   useEffect(() => {
-    let clientsGet = false
-    if (!clientsGet) {
-      setClients(getClients())
-      clientsGet = true
-    }
-
-    return () => {
-      clientsGet = true
-    }
+    setClients(getClients())
   }, [])
 
   return (
