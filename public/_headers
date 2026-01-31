@@ -9,7 +9,7 @@
   X-DNS-Prefetch-Control: on
   X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
-  Referrer-Policy: same-origin
+  Referrer-Policy: no-referrer
   Permissions-Policy: fullscreen=(self)
   Access-Control-Allow-Methods: GET, OPTIONS
 
