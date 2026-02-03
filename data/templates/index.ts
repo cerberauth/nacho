@@ -32,6 +32,7 @@ import codeigniterApp from './codeigniter-app.json' with { type: 'json' }
 import dartSpa from './dart-spa.json' with { type: 'json' }
 import dotnetWebApp from './dotnet-web-app.json' with { type: 'json' }
 import elixirApp from './elixir-app.json' with { type: 'json' }
+import elixirPhoenixApp from './elixir-phoenix-app.json' with { type: 'json' }
 import elysiaJSApp from './elysiajs-app.json' with { type: 'json' }
 import encoreTSApp from './encorets-app.json' with { type: 'json' }
 import erlangApp from './erlang-app.json' with { type: 'json' }
@@ -52,6 +53,7 @@ import javaPlayFrameworkApp from './java-play-framework-app.json' with { type: '
 import javaSpringApp from './java-spring-app.json' with { type: 'json' }
 import javaStrutsApp from './java-struts-app.json' with { type: 'json' }
 import javaVaadinApp from './java-vaadin-app.json' with { type: 'json' }
+import koaApp from './koa-app.json' with { type: 'json' }
 import kotlinWebApp from './kotlin-web-app.json' with { type: 'json' }
 import laravelApp from './laravel-app.json' with { type: 'json' }
 import meteorJsApp from './meteorjs-app.json' with { type: 'json' }
@@ -71,6 +73,7 @@ import qwikSpa from './qwik-spa.json' with { type: 'json' }
 import reactSpa from './react-spa.json' with { type: 'json' }
 import remixApp from './remix-app.json' with { type: 'json' }
 import rubyApp from './ruby-app.json' with { type: 'json' }
+import rubyRailsApp from './ruby-rails-app.json' with { type: 'json' }
 import rustActixApp from './rust-actix-app.json' with { type: 'json' }
 import rustApp from './rust-app.json' with { type: 'json' }
 import rustAxumApp from './rust-axum-app.json' with { type: 'json' }
@@ -97,6 +100,7 @@ export {
   dartSpa,
   dotnetWebApp,
   elixirApp,
+  elixirPhoenixApp,
   elysiaJSApp,
   encoreTSApp,
   erlangApp,
@@ -117,6 +121,7 @@ export {
   javaSpringApp,
   javaStrutsApp,
   javaVaadinApp,
+  koaApp,
   kotlinWebApp,
   laravelApp,
   meteorJsApp,
@@ -136,6 +141,7 @@ export {
   reactSpa,
   remixApp,
   rubyApp,
+  rubyRailsApp,
   rustActixApp,
   rustApp,
   rustAxumApp,
@@ -163,6 +169,7 @@ export const templates = [
   dartSpa,
   dotnetWebApp,
   elixirApp,
+  elixirPhoenixApp,
   elysiaJSApp,
   encoreTSApp,
   erlangApp,
@@ -183,6 +190,7 @@ export const templates = [
   javaSpringApp,
   javaStrutsApp,
   javaVaadinApp,
+  koaApp,
   kotlinWebApp,
   laravelApp,
   meteorJsApp,
@@ -202,6 +210,7 @@ export const templates = [
   reactSpa,
   remixApp,
   rubyApp,
+  rubyRailsApp,
   rustActixApp,
   rustApp,
   rustAxumApp,
