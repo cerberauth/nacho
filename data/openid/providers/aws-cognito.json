@@ -134,7 +134,7 @@
       "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html#post-token"
     },
     {
-      "identifier": "tls_client_auth",
+      "identifier": "tls_client_auth_token_endpoint_auth",
       "status": "not_supported",
       "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/token-endpoint.html#post-token"
     },
@@ -164,13 +164,52 @@
       "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/authorization-endpoint.html#get-authorize"
     },
     {
+      "identifier": "device_authorization_endpoint",
+      "status": "not_supported",
+      "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/federation-endpoints-oauth-grants.html"
+    },
+    {
       "identifier": "dynamic_client_registration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
       "status": "not_supported"
     },
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
       "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-refresh-token.html#using-the-refresh-token-rotation"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "partial",
+      "description": "AWS Cognito has a logout endpoint but it does not conform to the RP-Initiated Logout specification",
+      "url": "https://docs.aws.amazon.com/cognito/latest/developerguide/logout-endpoint.html"
+    },
+    {
+      "identifier": "dpop",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "unknown"
     }
   ]
 }

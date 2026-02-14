@@ -23,6 +23,21 @@
       "status": "supported"
     },
     {
+      "identifier": "par_extension",
+      "status": "not_supported",
+      "url": "https://github.com/ory/hydra/discussions/3071"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "not_supported",
+      "url": "https://github.com/ory/fosite/issues/822"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "not_supported",
+      "url": "https://github.com/ory/hydra/discussions/3305"
+    },
+    {
       "identifier": "client_credentials_grant",
       "status": "supported"
     },
@@ -100,6 +115,10 @@
       "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
     },
     {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
       "url": "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
@@ -150,8 +169,45 @@
       "status": "supported"
     },
     {
+      "identifier": "dynamic_client_registration_management",
+      "status": "unknown"
+    },
+    {
       "identifier": "refresh_token_rotation",
       "status": "supported"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "url": "https://www.ory.com/docs/oauth2-oidc/oidc-logout"
+    },
+    {
+      "identifier": "dpop",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported",
+      "url": "https://github.com/ory/hydra/discussions/3833"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported",
+      "url": "https://github.com/ory/hydra/discussions/3833"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "not_supported",
+      "url": "https://github.com/ory/hydra/discussions/3833"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "not_supported",
+      "url": "https://github.com/ory/hydra/discussions/3833"
+    },
+    {
+      "identifier": "jarm",
+      "status": "unknown"
     }
   ]
 }
