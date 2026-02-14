@@ -16,7 +16,6 @@
       "description": "Library which bring support for OAuth 2.0 and OpenID Connect (OIDC) in Angular.",
       "url": "https://github.com/manfredsteyer/angular-oauth2-oidc"
     },
-    
     {
       "name": "oauth4webapi",
       "description": "OAuth 2/OpenID Connect library for JavaScript Runtimes.",
@@ -30,19 +29,5 @@
       "url": "https://github.com/cerberauth/openid-connect-examples/tree/main/examples/angular-spa"
     }
   },
-  "client": {
-    "applicationType": "spa",
-    "grantTypes": [
-      "authorization_code",
-      "pkce"
-    ],
-    "tokenEndpointAuthMethods": [
-      "none"
-    ],
-    "scopes": [
-      "openid",
-      "profile",
-      "email"
-    ]
-  }
+  "extends": "spa"
 }

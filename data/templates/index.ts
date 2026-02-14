@@ -26,6 +26,11 @@ export type Template = {
   identifier: string
 }
 
+type TemplateInput = Omit<Template, 'client'> & {
+  extends?: string
+  client?: Template['client']
+}
+
 import angularSpa from './angular-spa.json' with { type: 'json' }
 import astroApp from './astro-app.json' with { type: 'json' }
 import codeigniterApp from './codeigniter-app.json' with { type: 'json' }
@@ -93,7 +98,7 @@ import windevApp from './windev-app.json' with { type: 'json' }
 import yiiApp from './yii-app.json' with { type: 'json' }
 import zendFrameworkApp from './zend-framework-app.json' with { type: 'json' }
 
-export {
+const templateInputs = [
   angularSpa,
   astroApp,
   codeigniterApp,
@@ -160,73 +165,23 @@ export {
   windevApp,
   yiiApp,
   zendFrameworkApp,
+] as TemplateInput[]
+
+function resolveTemplate(input: TemplateInput, all: TemplateInput[]): Template {
+  if (input.client) {
+    const { extends: _, ...rest } = input
+    return rest as Template
+  }
+  if (!input.extends) {
+    throw new Error(`Template "${input.identifier}" has no client and no extends`)
+  }
+  const parent = all.find((t) => t.identifier === input.extends)
+  if (!parent) {
+    throw new Error(`Template "${input.identifier}" extends "${input.extends}" which was not found`)
+  }
+  const resolved = resolveTemplate(parent, all)
+  const { extends: _, ...rest } = input
+  return { ...rest, client: resolved.client } as Template
 }
 
-export const templates = [
-  angularSpa,
-  astroApp,
-  codeigniterApp,
-  dartSpa,
-  dotnetWebApp,
-  elixirApp,
-  elixirPhoenixApp,
-  elysiaJSApp,
-  encoreTSApp,
-  erlangApp,
-  expressJsApp,
-  fastifyApp,
-  flutterWebSpa,
-  golangApp,
-  golangBeegoApp,
-  golangEchoApp,
-  golangFiberApp,
-  golangGinApp,
-  hapiApp,
-  haskellApp,
-  honoApp,
-  javaWebApp,
-  javaJHipsterApp,
-  javaPlayFrameworkApp,
-  javaSpringApp,
-  javaStrutsApp,
-  javaVaadinApp,
-  koaApp,
-  kotlinWebApp,
-  laravelApp,
-  meteorJsApp,
-  nestJsApp,
-  nextjsApp,
-  nodejsApp,
-  nuxtApp,
-  phpApp,
-  preactSpa,
-  pythonApp,
-  pythonDjangoApp,
-  pythonFastAPIApp,
-  pythonFlaskApp,
-  pythonFletApp,
-  pythonStarletteApp,
-  qwikSpa,
-  reactSpa,
-  remixApp,
-  rubyApp,
-  rubyRailsApp,
-  rustActixApp,
-  rustApp,
-  rustAxumApp,
-  rustRocketApp,
-  sailsJsApp,
-  scalaApp,
-  solidSpa,
-  spa,
-  svelteSpa,
-  swiftWebApp,
-  swiftVaporWebApp,
-  symfonyApp,
-  vueSpa,
-  wakuApp,
-  webApp,
-  windevApp,
-  yiiApp,
-  zendFrameworkApp,
-] as Template[]
+export const templates: Template[] = templateInputs.map((t) => resolveTemplate(t, templateInputs))
