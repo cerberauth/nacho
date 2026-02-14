@@ -10,19 +10,5 @@
     "javascript",
     "preact"
   ],
-  "client": {
-    "applicationType": "spa",
-    "grantTypes": [
-      "authorization_code",
-      "pkce"
-    ],
-    "tokenEndpointAuthMethods": [
-      "none"
-    ],
-    "scopes": [
-      "openid",
-      "profile",
-      "email"
-    ]
-  }
+  "extends": "spa"
 }

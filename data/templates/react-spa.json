@@ -17,19 +17,5 @@
       "url": "https://github.com/cerberauth/openid-connect-examples/tree/main/examples/react-spa"
     }
   },
-  "client": {
-    "applicationType": "spa",
-    "grantTypes": [
-      "authorization_code",
-      "pkce"
-    ],
-    "tokenEndpointAuthMethods": [
-      "none"
-    ],
-    "scopes": [
-      "openid",
-      "profile",
-      "email"
-    ]
-  }
+  "extends": "spa"
 }
