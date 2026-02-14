@@ -25,6 +25,19 @@
       "url": "https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"
     },
     {
+      "identifier": "par_extension",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "unknown"
+    },
+    {
       "identifier": "client_credentials_grant",
       "status": "supported",
       "url": "https://developer.okta.com/docs/concepts/oauth-openid/#client-credentials-flow"
@@ -90,6 +103,11 @@
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/introspect"
     },
     {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/device-authorization-grant/main/"
+    },
+    {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
       "url": "https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"
@@ -150,7 +168,16 @@
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
     },
     {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
       "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
       "status": "supported",
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"
     },
@@ -163,6 +190,32 @@
       "identifier": "rp_initiated_logout",
       "status": "supported",
       "url": "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/#tag/CustomAS/operation/logoutCustomAS"
+    },
+    {
+      "identifier": "dpop",
+      "status": "supported",
+      "url": "https://developer.okta.com/docs/guides/dpop/nonoktaresourceserver/main/"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "supported",
+      "url": "https://www.okta.com/products/regulated-identity/"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "unknown"
     }
   ]
 }

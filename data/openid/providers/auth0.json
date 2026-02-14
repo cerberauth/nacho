@@ -30,6 +30,16 @@
       "url": "https://auth0.com/docs/secure/application-credentials#jwt-secured-authorization-request-jar-"
     },
     {
+      "identifier": "par_extension",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/authorization-code-flow-with-par"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/authorization-code-flow-with-rar"
+    },
+    {
       "identifier": "client_credentials_grant",
       "status": "supported",
       "url": "https://auth0.com/docs/flows/client-credentials-flow"
@@ -55,6 +65,19 @@
       "url": "https://auth0.com/docs/authenticate/custom-token-exchange"
     },
     {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-initiated-backchannel-authentication-flow"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "unknown"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
       "identifier": "authorization_endpoint",
       "status": "supported",
       "url": "https://auth0.com/docs/api/authentication#authorize-endpoint"
@@ -78,6 +101,11 @@
     {
       "identifier": "token_introspection_endpoint",
       "status": "not_supported"
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "url": "https://auth0.com/docs/api/authentication/device-authorization-flow/authorize-device"
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
@@ -148,9 +176,45 @@
       "url": "https://auth0.com/docs/get-started/applications/dynamic-client-registration"
     },
     {
+      "identifier": "dynamic_client_registration_management",
+      "status": "unknown"
+    },
+    {
       "identifier": "refresh_token_rotation",
       "status": "supported",
       "url": "https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "url": "https://auth0.com/docs/authenticate/login/logout/log-users-out-of-auth0"
+    },
+    {
+      "identifier": "dpop",
+      "status": "supported",
+      "url": "https://auth0.com/docs/secure/sender-constraining/demonstrating-proof-of-possession-dpop"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/applications/configure-fapi-compliance"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "supported",
+      "url": "https://auth0.com/docs/get-started/applications/configure-fapi-compliance"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "unknown"
     }
   ]
 }

@@ -45,9 +45,37 @@
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow#first-case-access-token-request-with-a-shared-secret"
     },
     {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported",
+      "description": "Microsoft Entra ID uses the On-Behalf-Of flow instead of the standard RFC 8693 token exchange grant type",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "unknown"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "partial",
+      "description": "Supports exchange of SAML v1.1 tokens issued by AD FS, not SAMLv2 tokens issued by Entra ID itself",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-saml-bearer-assertion"
+    },
+    {
       "identifier": "pkce_extension",
       "status": "supported",
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"
+    },
+    {
+      "identifier": "par_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "unknown"
     },
     {
       "identifier": "authorization_endpoint",
@@ -65,8 +93,18 @@
       "url": "https://learn.microsoft.com/en-us/entra/identity-platform/userinfo"
     },
     {
+      "identifier": "token_revocation_endpoint",
+      "status": "not_supported",
+      "url": "https://learn.microsoft.com/en-us/answers/questions/1426223/entraid-(azuread)-oidc-implementation-missing-revo"
+    },
+    {
       "identifier": "token_introspection_endpoint",
       "status": "not_supported"
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code"
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
@@ -118,9 +156,61 @@
       "url": "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
     },
     {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
       "url": "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/refresh-tokens"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "url": "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-a-sign-out-request"
+    },
+    {
+      "identifier": "dpop",
+      "status": "not_supported",
+      "description": "Microsoft Entra ID uses SHR-based proof of possession instead of the standard DPoP (RFC 9449)",
+      "url": "https://learn.microsoft.com/en-us/entra/msal/dotnet/advanced/proof-of-possession-tokens"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "unknown"
     }
   ]
 }

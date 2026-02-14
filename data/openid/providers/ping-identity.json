@@ -70,6 +70,16 @@
       "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_pushed_authoriz_request_endpoint.html"
     },
     {
+      "identifier": "rar_extension",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/13.0/administrators_reference_guide/pf_oauth_rich_authorization_requests.html"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authoriz_endpoint.html"
+    },
+    {
       "identifier": "authorization_endpoint",
       "status": "supported",
       "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html"
@@ -160,6 +170,11 @@
       "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
     },
     {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_endpoint.html"
+    },
+    {
       "identifier": "rp_initiated_logout",
       "status": "supported",
       "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_openid_connect_rp_logout_endpoint.html"
@@ -168,6 +183,44 @@
       "identifier": "dynamic_client_registration",
       "status": "supported",
       "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_dynamic_registra_endpoint.html"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_dynamic_registra_endpoint.html"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingone/applications/p1_refresh_token_rotation.html"
+    },
+    {
+      "identifier": "dpop",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/13.0/administrators_reference_guide/help_oauthclientsettingstasklet_oauthclientsettings.html"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "supported",
+      "url": "https://www.pingidentity.com/en/resources/blog/post/ping-achieves-fapi2-certification.html"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "supported",
+      "url": "https://www.pingidentity.com/en/resources/blog/post/ping-achieves-fapi2-certification.html"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "supported",
+      "url": "https://docs.pingidentity.com/pingfederate/latest/release_notes/pf_release_notes_121.html"
     }
   ]
 }
