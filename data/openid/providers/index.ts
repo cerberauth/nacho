@@ -46,6 +46,7 @@ export type OpenIDConnectProvider = {
 import openIDConnectFeatures from './features.json'
 
 import auth0 from './auth0.json'
+import authlete from './authlete.json'
 import awsCognito from './aws-cognito.json'
 import keycloak from './keycloak.json'
 import microsoftEntraID from './microsoft-entra-id.json'
@@ -57,6 +58,7 @@ export {
   openIDConnectFeatures,
 
   auth0,
+  authlete,
   keycloak,
   microsoftEntraID,
   okta,
@@ -120,6 +122,7 @@ export const featuresCategories = [
 
 export const providers: OpenIDConnectProvider[] = [
   auth0,
+  authlete,
   awsCognito,
   keycloak,
   microsoftEntraID,

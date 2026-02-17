@@ -1,0 +1,225 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Authlete",
+  "abstract": "Authlete is a managed-cloud and on-premise headless OAuth 2.0 / OpenID Connect engine that provides backend APIs to implement authorization servers and identity providers, supporting 40+ OAuth/OIDC specifications including FAPI profiles.",
+  "identifier": "authlete",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/authlete.svg"
+  },
+  "website": "https://www.authlete.com",
+  "license": "Proprietary",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "url": "https://www.authlete.com/legal/spec_sheet/"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/pkce/"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/authorization-requests/jar/"
+    },
+    {
+      "identifier": "par_extension",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/authorization-requests/pushed-authorization-requests/"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/authorization-requests/rich-authorization-requests/"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://www.authlete.com/legal/spec_sheet/"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "supported",
+      "url": "https://www.authlete.com/legal/spec_sheet/"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/refresh-tokens/how-to-enable-refresh-token-grant-type/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/device_flow/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/token_exchange/"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/ciba/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/jwt_authorization_grant/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported",
+      "url": "https://www.authlete.com/legal/spec_sheet/"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/legal/spec_sheet/"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/userinfo-endpoint/"
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/tokens/token-revocation-policy/"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/introspection/two-introspection-apis/"
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/device_flow/"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/metadata/openid-connect-discovery/"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/metadata/openid-connect-discovery/"
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported",
+      "url": "https://www.authlete.com/developers/definitive_guide/authorization_endpoint_spec/"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/client-authentication/client-authentication/"
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/client-authentication/client-authentication/"
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/client-authentication/client-authentication/"
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/client-authentication/client-secret-jwt/"
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/client-authentication/client-auth-private-key-jwt/"
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/client-authentication/tls-client-auth/"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "unknown"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "unknown"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/refresh-tokens/refreshing-refresh-tokens/"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "unknown"
+    },
+    {
+      "identifier": "dpop",
+      "status": "supported",
+      "url": "https://www.authlete.com/kb/oauth-and-openid-connect/proof-of-possession-pop-tokens/dpop/"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/fapi/"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/fapi/"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/fapi2/"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/fapi2/ms/authres/"
+    },
+    {
+      "identifier": "jarm",
+      "status": "supported",
+      "url": "https://www.authlete.com/developers/fapi2/ms/authres/"
+    }
+  ]
+}
