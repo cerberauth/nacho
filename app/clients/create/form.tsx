@@ -2,7 +2,6 @@
 
 import { CircleHelp } from 'lucide-react'
 import { useRouter, useSearchParams } from 'next/navigation'
-import { usePlausible } from 'next-plausible'
 import { useCallback, useEffect, useRef } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -32,7 +31,6 @@ type CreateClientFormProps = {
 export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const plausible = usePlausible()
   const data = form.watch()
   const template = searchParams.get('template')
   const hasBeenInitialized = useRef(false)
@@ -60,7 +58,9 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
         }
       } : client
 
-      plausible('Create Client From Template', { props: { template } })
+      import('@plausible-analytics/tracker').then(({ track }) => {
+        track('Create Client From Template', { props: { template } })
+      })
     }
 
     if (client) {
@@ -68,7 +68,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
     }
 
     hasBeenInitialized.current = true
-  }, [template, form, plausible])
+  }, [template, form])
 
   useEffect(() => {
     if (!hasBeenInitialized.current || isSubmitting) {

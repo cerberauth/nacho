@@ -1,4 +1,3 @@
-import { usePlausible } from 'next-plausible'
 import { useCallback, useState } from 'react'
 
 import { ApplicationTypes, GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
@@ -16,18 +15,17 @@ type ChooseGrantTypeProps = {
 }
 
 export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, onTokenEndpointAuthMethodChange, template }: ChooseGrantTypeProps) {
-  const plausible = usePlausible()
   const [withUserInteraction, setWithUserInteraction] = useState<boolean | null>(null)
   const [applicationType, setApplicationType] = useState<ApplicationType | null>(null)
   const [bff, setBff] = useState<boolean | null>(null)
 
   const handleBffChange = useCallback((value: boolean | null) => {
-    plausible('Choose BFF', { props: { bff: value } })
+    import('@plausible-analytics/tracker').then(({ track }) => track('Choose BFF', { props: { bff: String(value) } }))
     setBff(value)
     onTokenEndpointAuthMethodChange(value ? withSecretTokenEndpointAuthMethod : [TokenEndpointAuthMethods.none])
-  }, [plausible, onTokenEndpointAuthMethodChange])
+  }, [onTokenEndpointAuthMethodChange])
   const handleApplicationTypeChange = useCallback((type: ApplicationType | null) => {
-    plausible('Choose Application Type', { props: { applicationType: type } })
+    import('@plausible-analytics/tracker').then(({ track }) => track('Choose Application Type', { props: { applicationType: String(type) } }))
     setApplicationType(type)
     if (typeof onApplicationTypeChange === 'function') {
       onApplicationTypeChange(type)
@@ -70,12 +68,12 @@ export function ChooseGrantType({ onApplicationTypeChange, onGrantTypeChange, on
 
     onGrantTypeChange(grantTypes)
     onTokenEndpointAuthMethodChange(tokenEndpointAuthMethod)
-  }, [plausible, onApplicationTypeChange, onTokenEndpointAuthMethodChange, onGrantTypeChange, bff, handleBffChange])
+  }, [onApplicationTypeChange, onTokenEndpointAuthMethodChange, onGrantTypeChange, bff, handleBffChange])
   const handleUserInteractionChange = useCallback((withUserInteraction: boolean | null) => {
     handleApplicationTypeChange(null)
-    plausible('Choose User Interaction', { props: { withUserInteraction } })
+    import('@plausible-analytics/tracker').then(({ track }) => track('Choose User Interaction', { props: { withUserInteraction: String(withUserInteraction) } }))
     setWithUserInteraction(withUserInteraction)
-  }, [plausible, handleApplicationTypeChange])
+  }, [handleApplicationTypeChange])
 
   // TODO: Let the user choose the template and then show the template choice card
   if (template) {
