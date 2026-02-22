@@ -3,7 +3,6 @@
 import { zodResolver } from '@hookform/resolvers/zod'
 import { nanoid } from 'nanoid'
 import { useRouter } from 'next/navigation'
-import { usePlausible } from 'next-plausible'
 import { Suspense, useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
@@ -22,7 +21,6 @@ export const dynamic = 'force-static'
 export default function CreateClient() {
   const router = useRouter()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const plausible = usePlausible()
   const form = useForm<z.infer<typeof createClientSchema>>({
     resolver: zodResolver(createClientSchema),
   })
@@ -43,14 +41,15 @@ export default function CreateClient() {
 
     localStorage.removeItem(localStorageItem)
 
-    plausible('Create Client', { props: {} })
+    const { track } = await import('@plausible-analytics/tracker')
+    track('Create Client', { props: {} })
     const href = await clientClientURLByOAuth2Client(client)
 
     // Save client to localStorage for the clients table
     saveClient({ client, url: href })
 
     router.push(href)
-  }, [router, plausible])
+  }, [router])
 
   return (
     <Suspense fallback={<div className="container mx-auto max-w-4xl px-4 py-12">Loading...</div>}>
