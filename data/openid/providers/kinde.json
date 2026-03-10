@@ -1,0 +1,202 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Kinde",
+  "abstract": "Kinde is a modern authentication and user management platform for developers, providing a hosted identity solution with support for social login, SSO, MFA, and OAuth 2.0/OpenID Connect for SaaS applications.",
+  "identifier": "kinde",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/kinde.svg"
+  },
+  "website": "https://kinde.com",
+  "license": "Proprietary",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "not_supported",
+      "url": "https://docs.kinde.com/build/applications/about-applications/"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "par_extension",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "url": "https://docs.kinde.com/machine-to-machine-applications/about-m2m/authenticate-with-m2m/"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "url": "https://docs.kinde.com/build/tokens/refresh-tokens/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "url": "https://docs.kinde.com/authenticate/device-authorization-flow/overview/"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "url": "https://docs.kinde.com/build/tokens/configure-tokens/"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "unknown"
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "url": "https://docs.kinde.com/authenticate/device-authorization-flow/overview/"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "unknown"
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported"
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "url": "https://docs.kinde.com/developer-tools/your-apis/test-your-api-m2m-token/"
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "url": "https://docs.kinde.com/build/tokens/refresh-tokens/"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dpop",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jarm",
+      "status": "not_supported"
+    }
+  ]
+}
