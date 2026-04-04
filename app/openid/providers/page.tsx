@@ -1,10 +1,21 @@
+import { Suspense } from 'react'
+import type { Metadata } from 'next'
+
 import { getProviders } from '@/lib/providers'
-import { ProviderCard } from '@/components/provider-card'
-import { BenchmarkTable } from '@/components/benchmark-table'
 import { getTableCells } from './get-table-cells'
 import { ProviderInaccuracyWarning } from './inaccuracy-warning'
+import { ProvidersInteractiveView } from './providers-interactive-view'
 
-const categories = getTableCells(getProviders().map((provider) => provider.identifier))
+export const metadata: Metadata = {
+  title: 'OpenID Connect Providers compatibility',
+  description: 'Display the compatibility of OpenID Connect features across different providers.',
+  alternates: {
+    canonical: '/openid/providers',
+  },
+}
+
+const allProviders = getProviders()
+const allCategories = getTableCells(allProviders.map((provider) => provider.identifier))
 
 export default function ProviderPage() {
   return (
@@ -19,19 +30,9 @@ export default function ProviderPage() {
         <ProviderInaccuracyWarning />
       </div>
 
-      <div className="sticky top-0 z-10 max-w-full">
-        <div className="flex gap-1 bg-white pt-2">
-          {getProviders().map((provider) => (
-            <div key={`provider-${provider.identifier}`} className="max-w-32">
-              <ProviderCard provider={provider} />
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex flex-col max-w-full">
-        <BenchmarkTable categories={categories} />
-      </div>
+      <Suspense>
+        <ProvidersInteractiveView providers={allProviders} allCategories={allCategories} />
+      </Suspense>
     </main>
   )
 }
