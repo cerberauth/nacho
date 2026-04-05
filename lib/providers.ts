@@ -1,11 +1,15 @@
-import { openIDConnectFeatures, providers } from '@/data/openid/providers'
+import { openIDConnectFeatures, providers, FeatureStatus } from '@/data/openid/providers'
 
 export const getOpenIDConnectFeatures = () => {
   return openIDConnectFeatures
 }
 
 export const getProviders = () => {
-  return providers
+  return [...providers].sort((a, b) => {
+    const countSupported = (p: typeof a) =>
+      p.featureList.filter((f) => f.status === FeatureStatus.Supported).length
+    return countSupported(b) - countSupported(a)
+  })
 }
 
 export const getProviderById = (id: string) => {
