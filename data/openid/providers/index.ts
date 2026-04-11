@@ -57,6 +57,7 @@ import microsoftEntraID from './microsoft-entra-id.json'
 import okta from './okta.json'
 import oryHydra from './ory-hydra.json'
 import pingIdentity from './ping-identity.json'
+import zitadel from './zitadel.json'
 
 export {
   openIDConnectFeatures,
@@ -72,6 +73,7 @@ export {
   okta,
   oryHydra,
   pingIdentity,
+  zitadel,
 }
 
 export const featuresCategories = [
@@ -141,4 +143,5 @@ export const providers: OpenIDConnectProvider[] = [
   okta,
   oryHydra,
   pingIdentity,
+  zitadel,
 ]
