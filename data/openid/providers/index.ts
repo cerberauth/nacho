@@ -50,6 +50,7 @@ import authlete from './authlete.json'
 import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
 import cyberArk from './cyberark.json'
+import fusionauth from './fusionauth.json'
 import kinde from './kinde.json'
 import keycloak from './keycloak.json'
 import microsoftEntraID from './microsoft-entra-id.json'
@@ -64,6 +65,7 @@ export {
   authlete,
   clerk,
   cyberArk,
+  fusionauth,
   kinde,
   keycloak,
   microsoftEntraID,
@@ -132,6 +134,7 @@ export const providers: OpenIDConnectProvider[] = [
   awsCognito,
   clerk,
   cyberArk,
+  fusionauth,
   kinde,
   keycloak,
   microsoftEntraID,
