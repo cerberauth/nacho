@@ -3,6 +3,7 @@ export enum FeatureStatus {
   NotSupported = 'not_supported',
   Partial = 'partial',
   Deprecated = 'deprecated',
+  Planned = 'planned',
   Unknown = 'unknown'
 }
 
@@ -22,7 +23,7 @@ export type OpenIDConnectFeature = {
   category: string
   description?: string
   status: string
-  url?: string
+  links?: string[]
 }
 
 export type OpenIDConnectProvider = {
@@ -39,7 +40,7 @@ export type OpenIDConnectProvider = {
     identifier: string
     description?: string
     status: string
-    url?: string
+    links?: string[]
   }>
 }
 

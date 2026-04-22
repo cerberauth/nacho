@@ -1,0 +1,548 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Firebase Authentication",
+  "abstract": "Google-backed authentication service. Base auth is free with no MAU limit. Upgrading to Identity Platform adds MFA, multi-tenancy, SAML, and OIDC at $0.0015/MAU at scale. Cheapest option for high-volume applications.",
+  "identifier": "firebase-auth",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/firebase-auth.svg"
+  },
+  "website": "https://firebase.google.com/products/auth",
+  "github": "https://github.com/firebase",
+  "license": "Proprietary",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "Unlimited (Spark plan)",
+    "pricingModel": "pay-as-you-go",
+    "pricingUrl": "https://firebase.google.com/pricing",
+    "plans": [
+      { "name": "Spark", "price": "Free" },
+      { "name": "Blaze (Identity Platform)", "price": "$0.0015/MAU" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://firebase.google.com/docs/auth/web/password-auth"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Google, Apple, Facebook, Twitter/X, GitHub, Microsoft, Yahoo, Game Center, Play Games.",
+      "links": ["https://firebase.google.com/docs/auth/web/google-signin"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "not_supported",
+      "description": "Email OTP as a separate passwordless method is not supported. Email link (magic link) is supported."
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "Phone OTP via SMS. Billed per use on the Blaze (pay-as-you-go) plan.",
+      "links": ["https://firebase.google.com/docs/auth/web/phone-auth"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "description": "Email link (magic link) sign-in for passwordless authentication.",
+      "links": ["https://firebase.google.com/docs/auth/web/email-link-auth"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "supported",
+      "description": "Create anonymous user accounts that can be converted to permanent accounts on sign-up.",
+      "links": ["https://firebase.google.com/docs/auth/web/anonymous-auth"]
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "TOTP MFA available via Firebase Identity Platform (requires upgrade from base Firebase Auth).",
+      "links": ["https://cloud.google.com/identity-platform/docs/web/mfa-totp"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS MFA via Firebase Identity Platform.",
+      "links": ["https://cloud.google.com/identity-platform/docs/web/mfa"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "unknown"
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "unknown"
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "OIDC provider support via Firebase Identity Platform.",
+      "links": ["https://cloud.google.com/identity-platform/docs/web/oidc"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML provider support via Firebase Identity Platform.",
+      "links": ["https://cloud.google.com/identity-platform/docs/web/saml"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "partial",
+      "description": "Service account authentication via Google Cloud IAM. Not a native M2M auth flow.",
+      "links": ["https://cloud.google.com/iam/docs/service-account-overview"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "OIDC enterprise identity provider connections via Identity Platform.",
+      "links": ["https://cloud.google.com/identity-platform/docs/web/oidc"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "SAML enterprise identity provider connections via Identity Platform.",
+      "links": ["https://cloud.google.com/identity-platform/docs/web/saml"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft/Azure AD via OIDC/SAML social login providers."
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "links": ["https://firebase.google.com/docs/auth/admin/import-users"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Import password hashes in bcrypt, scrypt, standard/modified PBKDF2, SHA, HMAC, and MD5.",
+      "links": ["https://firebase.google.com/docs/auth/admin/import-users"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users#list_all_users"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Bulk operations via Firebase Admin SDK."
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Users are created on first sign-in via social/SAML/OIDC providers."
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "partial",
+      "description": "Gradual migration via blocking functions that call an existing auth system.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "partial",
+      "description": "FirebaseUI provides a basic profile update flow. Custom profile management requires building your own UI."
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Link multiple authentication providers to a single Firebase user account.",
+      "links": ["https://firebase.google.com/docs/auth/web/account-linking"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Disable user accounts to prevent sign-in.",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Store custom data in Firebase Realtime Database, Firestore, or user custom claims.",
+      "links": ["https://firebase.google.com/docs/auth/admin/custom-claims"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Custom claims for app-managed metadata (server-controlled).",
+      "links": ["https://firebase.google.com/docs/auth/admin/custom-claims"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "partial",
+      "description": "Custom claims limited to 1000 bytes per user."
+    },
+    {
+      "identifier": "user_search",
+      "status": "partial",
+      "description": "List users with pagination. Limited search capabilities via Admin SDK.",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users#list_all_users"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "partial",
+      "description": "Role-based access implemented via custom claims. No built-in RBAC UI or API.",
+      "links": ["https://firebase.google.com/docs/auth/admin/custom-claims"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Multi-tenancy via separate Identity Platform tenants. Basic B2B model, no native organization abstraction.",
+      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Password policy configuration in Firebase Console.",
+      "links": ["https://firebase.google.com/docs/auth/web/password-auth"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "unknown"
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "abac",
+      "status": "not_supported",
+      "description": "No native ABAC. Implement via Firebase Security Rules and custom claims."
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "partial",
+      "description": "Custom claims and Firebase Security Rules for API/resource authorization.",
+      "links": ["https://firebase.google.com/docs/auth/admin/custom-claims"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://cloud.google.com/security/compliance/soc-2"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "links": ["https://cloud.google.com/security/compliance/iso-27001"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "description": "Google Cloud HIPAA BAA covers Firebase Identity Platform.",
+      "links": ["https://cloud.google.com/security/compliance/hipaa"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "supported",
+      "links": ["https://cloud.google.com/security/compliance/pci-dss"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported",
+      "links": ["https://cloud.google.com/security/compliance/csa"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "not_supported",
+      "description": "Firebase Authentication is not FedRAMP authorized. Use GCP Identity Platform via Government Cloud."
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "links": ["https://firebase.google.com/support/privacy"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported"
+    },
+    {
+      "identifier": "consent_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "partial",
+      "description": "Firebase projects run in a selected Google Cloud region. Firestore data can be replicated multi-region.",
+      "values": ["US", "EU", "AP"],
+      "links": ["https://firebase.google.com/docs/projects/locations"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "partial",
+      "description": "Firebase Auth logs via Google Cloud Audit Logs on Identity Platform.",
+      "links": ["https://cloud.google.com/identity-platform/docs/audit-logging"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "partial",
+      "description": "Logs exportable to BigQuery and Cloud Logging.",
+      "links": ["https://cloud.google.com/identity-platform/docs/audit-logging"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported"
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported"
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "Customer-managed encryption keys (CMEK) available via Identity Platform on Cloud KMS.",
+      "links": ["https://cloud.google.com/identity-platform/docs/customer-managed-encryption-keys"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "not_supported",
+      "description": "No built-in CAPTCHA. Use reCAPTCHA Enterprise via custom blocking functions."
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "App Check helps prevent automated abuse.",
+      "links": ["https://firebase.google.com/docs/app-check"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "FirebaseUI provides a hosted authentication flow.",
+      "links": ["https://firebase.google.com/docs/auth/web/firebaseui"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "Firebase Auth SDK for embedded login. FirebaseUI for ready-made components.",
+      "links": ["https://firebase.google.com/docs/auth/web/start"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Full custom branding with FirebaseUI or custom UI."
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "FirebaseUI supports multiple languages.",
+      "links": ["https://github.com/firebase/firebaseui-web"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "FirebaseUI open-source components for web, iOS, and Android.",
+      "links": ["https://firebase.google.com/docs/auth/web/firebaseui"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "partial",
+      "description": "Auth events tracked via Firebase Analytics and BigQuery export.",
+      "links": ["https://firebase.google.com/docs/analytics"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Firebase SDKs for JavaScript, iOS (Swift/ObjC), Android (Kotlin/Java), Flutter, C++, Unity, and admin SDKs for Node.js, Python, Go, Java, .NET.",
+      "links": ["https://firebase.google.com/docs/auth"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Firebase Admin SDK and REST API for user management.",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "unknown"
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Blocking functions (beforeCreate, beforeSignIn) for custom auth logic. Cloud Functions for post-event hooks.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "supported",
+      "description": "Cloud Functions for Firebase supports TypeScript."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Custom domain via Firebase Hosting.",
+      "links": ["https://firebase.google.com/docs/hosting/custom-domain"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "Firebase CLI for deploying auth rules and functions.",
+      "links": ["https://firebase.google.com/docs/cli"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "partial",
+      "description": "Google Cloud Terraform provider covers some Firebase Identity Platform resources.",
+      "links": ["https://registry.terraform.io/providers/hashicorp/google/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "not_supported",
+      "description": "Firebase Auth uses its own user store. Custom database connections not supported."
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Blocking functions and Cloud Functions Firestore triggers act as event hooks.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "FirebaseUI is fully customizable with custom styles and strings.",
+      "links": ["https://firebase.google.com/docs/auth/web/firebaseui"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "not_supported",
+      "description": "Firebase uses Google's email delivery. Custom SMTP not supported in base Auth; available via Action Mailer extensions."
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Customize email templates in the Firebase Console.",
+      "links": ["https://firebase.google.com/docs/auth/web/manage-users"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims added via Admin SDK. Limited to 1000 bytes total.",
+      "links": ["https://firebase.google.com/docs/auth/admin/custom-claims"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "not_supported"
+    }
+  ]
+}

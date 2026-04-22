@@ -1,0 +1,580 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Ping Identity",
+  "abstract": "Enterprise-grade IAM/CIAM with no-code DaVinci orchestration, PingOne Protect AI-driven security, and the broadest deployment flexibility (SaaS, self-hosted, hybrid).",
+  "identifier": "ping-identity",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/ping-identity.svg"
+  },
+  "website": "https://www.pingidentity.com",
+  "license": "Proprietary",
+  "pricing": {
+    "hasFreeTier": false,
+    "pricingModel": "custom",
+    "pricingUrl": "https://www.pingidentity.com/en/platform/pricing.html",
+    "plans": [
+      { "name": "Trial", "price": "Free (30 days)" },
+      { "name": "PingOne", "price": "Custom" },
+      { "name": "Enterprise", "price": "Custom" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/authentication/p1_passwordpolicies.html"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_strong_auth_configuring_fido.html"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingid/pingid_service_management/cxe1564020450447.html"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "supported",
+      "description": "PingID supports HOTP (counter-based OTP) in addition to TOTP, also used for offline PingID authentication.",
+      "links": ["https://docs.pingidentity.com/pingid/pingid_service_management/cxe1564020450447.html"]
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "FIDO2 security keys with backward compatibility for U2F.",
+      "links": ["https://docs.pingidentity.com/pingid/pingid_service_management/pid_configuring_fido2_authentication_method.html"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_strong_auth_configuring_fido.html"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "supported",
+      "description": "Recovery codes supported in PingOne Advanced Identity Cloud and via admin device reset in PingID.",
+      "links": ["https://docs.pingidentity.com/auth-node-ref/8/auth-node-recovery-code-display.html"]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "supported",
+      "description": "PingID push notifications.",
+      "links": ["https://www.pingidentity.com/en/product/pingid.html"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "supported",
+      "description": "PingOne Protect AI-driven risk-based adaptive MFA.",
+      "links": ["https://docs.pingidentity.com/pingone/threat_protection_using_pingone_protect/p1_protect_overview.html"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "supported",
+      "description": "Cisco Duo integration via the Duo Security Integration Kit for PingFederate and a Duo Connector for PingOne DaVinci.",
+      "links": ["https://docs.pingidentity.com/connectors/duo_connector.html"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/authentication/p1_stepup_authentication_for_apis.html"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/introduction_to_pingfederate/pf_intro_to_pf.html"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/introduction_to_pingfederate/pf_intro_to_pf.html"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "supported",
+      "description": "PingFederate supports full WS-Federation Passive Requestor Profile, including interoperability with Microsoft ADFS.",
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/introduction_to_pingfederate/pf_ws_fed.html"]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/developer_tools/p1_api_reference.html"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/use-cases/use-case-sso-oidc-entra-id.html"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/introduction_to_pingfederate/pf_intro_to_pf.html"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "PingDirectory and PingFederate LDAP connectors.",
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/introduction_to_pingfederate/pf_intro_to_pf.html"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Native integration: PingOne can act as external MFA for Entra ID, provision users from Entra via MS Graph, and use Entra as OIDC provider.",
+      "links": ["https://docs.pingidentity.com/pingone/integrations/p1_add_idp_microsoft_entra.html"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/latest/identities/bulk-import-identities.html"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingds/7.5/use-cases/change-password-storage.html"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/latest/idm-rest-api/endpoints/rest-managed-users.html"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_deleteuser.html"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "Bulk import supports conflict handling with upsert semantics.",
+      "links": ["https://docs.pingidentity.com/pingoneaic/latest/identities/bulk-import-identities.html"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "supported",
+      "description": "PingOne import API treats usernames as plain string fields with minimal restrictions at import time.",
+      "links": ["https://github.com/pingidentity/pingone-user-import-tool"]
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "supported",
+      "description": "TOTP secrets and phone numbers can be set via the PingOne MFA API during migration.",
+      "links": ["https://docs.pingidentity.com/pingone/getting_started_with_pingone/p1_mfa_enrolling_user_authentication_device_api.html"]
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/integrations/p1_scim_provisioning_features.html"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/integrations/p1_provisioning_configuring_outbound_group_provisioning.html"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/integrations/p1_scim_provisioning_features.html"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_provision_external_groups.html"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/latest/self-service/pass-through-authentication.html"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/managing_your_pingone_user_profile/p1_self_service_start.html"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_enable_a_user.html"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_adduserattributes.html"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Admin-managed custom attributes prefixed with `custom_` on user objects, accessible via API.",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_adduserattributes.html"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "supported",
+      "description": "Up to 200 custom string and JSON attributes per environment.",
+      "links": ["https://docs.pingidentity.com/pingone/getting_started_with_pingone/p1_platform_limits.html"]
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_user_attributes.html"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_attribute_access_control_user_atts.html"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_groups_vs_populations.html"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Built-in password policy templates (Standard, Passphrase, Basic) with configurable complexity.",
+      "links": ["https://docs.pingidentity.com/pingone/authentication/p1_passwordpolicies.html"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "description": "PingOne enforces username policies including MIN_LENGTH, VALID_TYPE, UNIQUE, and CANNOT_CONTAIN_CHARACTERS.",
+      "links": ["https://docs.pingidentity.com/pingone/getting_started_with_pingone/p1_platform_limits.html"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/authorization_using_pingone_authorize/p1_az_generated_attributes.html"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "PingOne Authorize add-on.",
+      "links": ["https://docs.pingidentity.com/pingone/authorization_using_pingone_authorize/p1_az_generated_attributes.html"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/developer_tools/p1_api_reference.html"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://www.pingidentity.com/en/legal/trust-center.html"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "description": "Ping Identity holds ISO 27001, ISO 27017, and ISO 27018 certifications.",
+      "links": ["https://docs.pingidentity.com/pingoneaic/product-information/security-compliance.html"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "description": "PingOne Advanced Identity Cloud complies with HIPAA/HITECH.",
+      "links": ["https://docs.pingidentity.com/pingoneaic/product-information/security-compliance.html"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "supported",
+      "description": "Self-hosted/on-premises PingFederate + PingDirectory deployment can be configured for PCI DSS.",
+      "links": ["https://www.pingidentity.com/en/legal/trust-center.html"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported",
+      "description": "Ping Identity holds CSA STAR Level 2 Attestation.",
+      "links": ["https://docs.pingidentity.com/pingoneaic/product-information/security-compliance.html"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "supported",
+      "description": "Ping Government Identity Cloud is FedRAMP High authorized and DoD IL5 certified.",
+      "links": ["https://www.pingidentity.com/en/platform/solutions/fedramp-solutions-for-government.html"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "links": ["https://www.pingidentity.com/en/legal/data-privacy-addendum.html"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/directory/p1_deleteuser.html"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "SaaS multi-region plus self-hosted option for full control.",
+      "links": ["https://www.pingidentity.com/en/platform/pingone-advanced-identity-cloud.html"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "PingOne runs on AWS; PingFederate self-hosted deployable on any cloud.",
+      "values": ["AWS", "Azure", "GCP"],
+      "links": ["https://www.pingidentity.com/en/platform/pingone-advanced-identity-cloud.html"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/latest/tenants/audit-debug-logs.html"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/tenants/audit-debug-logs-push.html"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "supported",
+      "description": "PingOne Protect has a dedicated Threat Protection Dashboard under Monitoring → Threat Protection.",
+      "links": ["https://docs.pingidentity.com/pingone/threat_protection_using_pingone_protect/p1_protect_dashboard.html"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/product-information/security-compliance.html"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/product-information/security-compliance.html"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "Supported in Advanced Identity Cloud via ESV-mapped signing/encryption keys. Self-hosted PingFederate/PingDirectory gives full key control.",
+      "links": ["https://docs.pingidentity.com/pingoneaic/tenants/esvs-signing-encryption.html"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "description": "PingOne Protect AI-driven bot detection.",
+      "links": ["https://docs.pingidentity.com/pingone/threat_protection_using_pingone_protect/p1_protect_introduction.html"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/authentication/p1_resolve_lockout.html"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/settings/p1_rate_limits.html"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/threat_protection_using_pingone_protect/p1_protect_risk_predictors.html"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "No dedicated dark web monitoring product. Breached password detection via PingOne Protect covers known credential compromise checking."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "supported",
+      "description": "PingOne Advanced Identity Cloud Proxy Connect provides IP-based access control and HTTP header rules restricting network access per tenant environment.",
+      "links": ["https://docs.pingidentity.com/pingoneaic/tenants/proxy-connect.html"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/threat_protection_using_pingone_protect/p1_protect_risk_predictors.html"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/authentication/p1_mfa_policies.html"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/sdks/latest/sdks/use-cases/how-to-manage-user-profiles.html"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "links": ["https://www.pingidentity.com/en/platform/pingone-advanced-identity-cloud.html"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/sdks/latest/sdks/use-cases/how-to-manage-user-profiles.html"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/monitoring/p1_dashboards.html"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/sdks/latest/sdks/use-cases/how-to-manage-user-profiles.html"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/developer_tools/p1_api_reference.html"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/settings/p1_rate_limits.html"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "DaVinci orchestration flows and scripted hooks.",
+      "links": ["https://docs.pingidentity.com/davinci/connectors/davinci_connections.html"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "DaVinci Code Snippet and Functions connectors use JavaScript only, not TypeScript."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/settings/p1_rate_limits.html"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "Ping CLI (pingcli) supports platform export with Terraform HCL output for IaC workflows.",
+      "links": ["https://developer.pingidentity.com/pingcli/pingcli_landing_page.html"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "supported",
+      "links": ["https://registry.terraform.io/providers/pingidentity/pingone/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/latest/self-service/pass-through-authentication.html"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/integrations/p1_webhooks.html"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/strong_authentication_mfa/p1_authentication_methods_overview.html"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "PingOne allows configuration of a custom SMTP server or MS Graph API email provider.",
+      "links": ["https://docs.pingidentity.com/pingone/settings/p1_configure_custom_smtp_server.html"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingoneaic/tenants/email-templates.html"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "links": ["https://docs.pingidentity.com/pingone/applications/p1_editcustomidtokenmapping.html"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "supported",
+      "description": "DaVinci drag-and-drop no-code orchestration.",
+      "links": ["https://docs.pingidentity.com/davinci/connectors/davinci_connections.html"]
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "supported",
+      "description": "PingOne Verify with document and biometric verification.",
+      "links": ["https://www.pingidentity.com/en/product/pingone-credentials.html"]
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "supported",
+      "description": "PingOne Neo verifiable credentials.",
+      "links": ["https://www.pingidentity.com/en/product/pingone-credentials.html"]
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "supported",
+      "description": "Identity for AI (Agent IAM Core, Agent Gateway, Agent Detection via PingOne Protect) launched GA on March 24, 2026. Supports MCP OAuth 2.0 authorization for AI agents.",
+      "links": [
+        "https://www.pingidentity.com/en/product/agent-iam-core.html",
+        "https://developer.pingidentity.com/identity-for-ai/agents/idai-securing-mcp-servers.html"
+      ]
+    }
+  ]
+}

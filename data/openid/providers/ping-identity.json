@@ -12,192 +12,192 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/developer/msk1601508083227"
+      "links": ["https://docs.pingidentity.com/r/en-us/developer/msk1601508083227"]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/developer/yhk1601508082481"
+      "links": ["https://docs.pingidentity.com/r/en-us/developer/yhk1601508082481"]
     },
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/developer/ixj1601508083821"
+      "links": ["https://docs.pingidentity.com/r/en-us/developer/ixj1601508083821"]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/developer/kwc1601508084434"
+      "links": ["https://docs.pingidentity.com/r/en-us/developer/kwc1601508084434"]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/developer/ewx1601508085611"
+      "links": ["https://docs.pingidentity.com/r/en-us/developer/ewx1601508085611"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_oauth_grant_type_param"]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_authoriz_endpoint"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingfederate-111/pf_authoriz_endpoint"]
     },
     {
       "identifier": "par_extension",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_pushed_authoriz_request_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_pushed_authoriz_request_endpoint.html"]
     },
     {
       "identifier": "rar_extension",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/administrators_reference_guide/pf_oauth_rich_authorization_requests.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/administrators_reference_guide/pf_oauth_rich_authorization_requests.html"]
     },
     {
       "identifier": "jar_extension",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authoriz_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authoriz_endpoint.html"]
     },
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html"]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_endpoint.html"]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_user_auth_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_user_auth_endpoint.html"]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_revoc_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_revoc_endpoint.html"]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_introspec_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_introspec_endpoint.html"]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_device_auth_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_device_auth_endpoint.html"]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/12.3/developers_reference_guide/pf_openid_provider_config_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/12.3/developers_reference_guide/pf_openid_provider_config_endpoint.html"]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/12.3/developers_reference_guide/pf_oauth_authorization_server_metadata_endpoint_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/12.3/developers_reference_guide/pf_oauth_authorization_server_metadata_endpoint_endpoint.html"]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"]
     },
     {
       "identifier": "select_account_prompt",
       "status": "not_supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"]
     },
     {
       "identifier": "create_prompt",
       "status": "not_supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_authorization_endpoint.html#openid-connect-parameters"]
     },
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"]
     },
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"
+      "links": ["https://docs.pingidentity.com/r/en-us/pingone/pingone_c_token_endpoint_authentication_methods"]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_token_endpoint.html"]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_openid_connect_rp_logout_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_openid_connect_rp_logout_endpoint.html"]
     },
     {
       "identifier": "dynamic_client_registration",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_dynamic_registra_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_dynamic_registra_endpoint.html"]
     },
     {
       "identifier": "dynamic_client_registration_management",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_dynamic_registra_endpoint.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/developers_reference_guide/pf_dynamic_registra_endpoint.html"]
     },
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingone/applications/p1_refresh_token_rotation.html"
+      "links": ["https://docs.pingidentity.com/pingone/applications/p1_refresh_token_rotation.html"]
     },
     {
       "identifier": "dpop",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/13.0/administrators_reference_guide/help_oauthclientsettingstasklet_oauthclientsettings.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/13.0/administrators_reference_guide/help_oauthclientsettingstasklet_oauthclientsettings.html"]
     },
     {
       "identifier": "fapi_1_0_baseline",
@@ -206,12 +206,12 @@
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "url": "https://www.pingidentity.com/en/resources/blog/post/ping-achieves-fapi2-certification.html"
+      "links": ["https://www.pingidentity.com/en/resources/blog/post/ping-achieves-fapi2-certification.html"]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "supported",
-      "url": "https://www.pingidentity.com/en/resources/blog/post/ping-achieves-fapi2-certification.html"
+      "links": ["https://www.pingidentity.com/en/resources/blog/post/ping-achieves-fapi2-certification.html"]
     },
     {
       "identifier": "fapi_2_0_message_signing",
@@ -220,7 +220,7 @@
     {
       "identifier": "jarm",
       "status": "supported",
-      "url": "https://docs.pingidentity.com/pingfederate/latest/release_notes/pf_release_notes_121.html"
+      "links": ["https://docs.pingidentity.com/pingfederate/latest/release_notes/pf_release_notes_121.html"]
     }
   ]
 }

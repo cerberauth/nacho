@@ -2,9 +2,9 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 
-import { featuresCategories, FeatureStatus, OpenIDConnectFeatureCategory, type OpenIDConnectFeature, type OpenIDConnectProvider } from '@/data/openid/providers'
-import { getProviderById, getProviderFeature, getProviders } from '@/lib/providers'
-import { providers as iamProviders } from '@/data/iam/index'
+import { featuresCategories, FeatureStatus, IAMFeatureCategory, type IAMFeature, type IAMProvider } from '@/data/iam/index'
+import { getIAMProviderById, getIAMProviderFeature, getIAMProviders } from '@/lib/iam-providers'
+import { providers as openIDProviders } from '@/data/openid/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { getTableCells } from '../get-table-cells'
 import { ArrowUpRight } from 'lucide-react'
@@ -18,21 +18,21 @@ export const dynamic = 'force-static'
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return getProviders().map((provider) => ({ id: provider.identifier }))
+  return getIAMProviders().map((provider) => ({ id: provider.identifier }))
 }
 
 export async function generateMetadata({ params }: Props) {
   const { id } = await params
-  const provider = getProviderById(id)
+  const provider = getIAMProviderById(id)
   if (!provider) {
     return null
   }
 
   return {
-    title: `${provider.name} OpenID Connect Provider`,
+    title: `${provider.name} IAM Provider`,
     description: provider.abstract,
     alternates: {
-      canonical: `/openid/providers/${id}`,
+      canonical: `/iam/providers/${id}`,
     },
     openGraph: {
       images: [{ url: provider.icon.contentUrl }],
@@ -41,24 +41,24 @@ export async function generateMetadata({ params }: Props) {
 }
 
 type FAQFeature = {
-  feature: OpenIDConnectFeature
-  providerFeature: OpenIDConnectProvider['featureList'][0]
+  feature: IAMFeature
+  providerFeature: IAMProvider['featureList'][0]
 }
 
 export default async function ProviderPage({ params }: Props) {
   const { id } = await params
-  const provider = getProviderById(id)
+  const provider = getIAMProviderById(id)
   if (!provider) {
     return notFound()
   }
 
   const categories = getTableCells([provider.identifier])
-  const iamProvider = iamProviders.find((p) => p.identifier === provider.identifier)
+  const openIDProvider = openIDProviders.find((p) => p.identifier === provider.identifier)
   const faqFeatures = featuresCategories.reduce((acc, category) => {
     const features = category.features
       .map((feature) => ({
         feature,
-        providerFeature: getProviderFeature(provider.identifier, feature!.identifier),
+        providerFeature: getIAMProviderFeature(provider.identifier, feature!.identifier),
       }))
       .filter((f) => f.providerFeature && f.providerFeature.status !== FeatureStatus.Unknown) as unknown as FAQFeature[]
     return [...acc, ...features]
@@ -79,7 +79,7 @@ export default async function ProviderPage({ params }: Props) {
           )}
           <div className="flex flex-col gap-2">
             <h1 className="text-5xl font-semibold leading-none tracking-tight mb-2">
-              {provider.name} OpenID Connect Provider
+              {provider.name} IAM Provider
             </h1>
             <p className="text-md text-slate-600">
               {provider.abstract}
@@ -94,21 +94,21 @@ export default async function ProviderPage({ params }: Props) {
         <BenchmarkTable categories={categories} />
 
         <p className="text-sm text-slate-600">
-          If you want to compare OpenID Connect features of different providers, please check out the <Link href="/openid/providers" className="text-primary hover:underline">OpenID Connect Providers benchmark</Link>.
+          If you want to compare IAM features of different providers, please check out the <Link href="/iam/providers" className="text-primary hover:underline">CIAM Identity Providers benchmark</Link>.
         </p>
-        {iamProvider && (
+        {openIDProvider && (
           <p className="text-sm text-slate-600">
-            Looking for {provider.name}&apos;s CIAM features like MFA, SSO, and user management?{' '}
-            <Link href={`/iam/providers/${iamProvider.identifier}`} className="text-primary hover:underline">
-              View {provider.name} on the CIAM Identity Providers benchmark
+            Looking for {provider.name}&apos;s OpenID Connect protocol compatibility?{' '}
+            <Link href={`/openid/providers/${openIDProvider.identifier}`} className="text-primary hover:underline">
+              View {provider.name} on the OpenID Connect Providers benchmark
             </Link>.
           </p>
         )}
-        {!iamProvider && (
+        {!openIDProvider && (
           <p className="text-sm text-slate-600">
-            Looking for CIAM features like MFA, SSO, user management, and compliance?{' '}
-            <Link href="/iam/providers" className="text-primary hover:underline">
-              Check out the CIAM Identity Providers benchmark
+            Looking for OpenID Connect protocol-level compatibility across providers?{' '}
+            <Link href="/openid/providers" className="text-primary hover:underline">
+              Check out the OpenID Connect Providers benchmark
             </Link>.
           </p>
         )}
@@ -129,35 +129,63 @@ export default async function ProviderPage({ params }: Props) {
   )
 }
 
-function FAQFeatureComponent({ feature, provider }: { feature: FAQFeature, provider: OpenIDConnectProvider }) {
+function FAQFeatureComponent({ feature, provider }: { feature: FAQFeature, provider: IAMProvider }) {
   let fullFeatureName: string
   switch (feature.feature.category) {
-    case OpenIDConnectFeatureCategory.GrantType:
-      fullFeatureName = `${feature.feature.name} grant type`
+    case IAMFeatureCategory.AuthenticationMethod:
+      fullFeatureName = `${feature.feature.name} authentication method`
       break
 
-    case OpenIDConnectFeatureCategory.Extension:
-      fullFeatureName = `${feature.feature.name} extension`
+    case IAMFeatureCategory.MFA:
+      fullFeatureName = `${feature.feature.name} MFA`
       break
 
-    case OpenIDConnectFeatureCategory.Endpoint:
-      fullFeatureName = `${feature.feature.name} endpoint`
+    case IAMFeatureCategory.IntegrationProtocols:
+      fullFeatureName = `${feature.feature.name} integration protocol`
       break
 
-    case OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod:
-      fullFeatureName = `${feature.feature.name} token endpoint authentication method`
+    case IAMFeatureCategory.IdentityFederation:
+      fullFeatureName = `${feature.feature.name} identity federation`
       break
 
-    case OpenIDConnectFeatureCategory.Prompt:
-      fullFeatureName = `${feature.feature.name} prompt`
+    case IAMFeatureCategory.UserManagement:
+      fullFeatureName = `${feature.feature.name} user management`
       break
 
-    case OpenIDConnectFeatureCategory.Feature:
+    case IAMFeatureCategory.AccessControl:
+      fullFeatureName = `${feature.feature.name} access control`
+      break
+
+    case IAMFeatureCategory.Security:
+      fullFeatureName = `${feature.feature.name} security feature`
+      break
+
+    case IAMFeatureCategory.MultiTenancy:
+      fullFeatureName = `${feature.feature.name} multi-tenancy`
+      break
+
+    case IAMFeatureCategory.BrandingUX:
+      fullFeatureName = `${feature.feature.name} branding feature`
+      break
+
+    case IAMFeatureCategory.Analytics:
+      fullFeatureName = `${feature.feature.name} analytics`
+      break
+
+    case IAMFeatureCategory.Compliance:
+      fullFeatureName = `${feature.feature.name} compliance`
+      break
+
+    case IAMFeatureCategory.DeveloperIntegration:
+      fullFeatureName = `${feature.feature.name} developer integration`
+      break
+
+    case IAMFeatureCategory.Advanced:
     default:
       fullFeatureName = `${feature.feature.name} feature`
       break
   }
-  const question = `Does ${provider.name} support the ${fullFeatureName}?`
+  const question = `Does ${provider.name} support ${fullFeatureName}?`
 
   let answer: string
   switch (feature.providerFeature.status) {

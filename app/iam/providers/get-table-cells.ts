@@ -1,11 +1,11 @@
-import { featuresCategories, FeatureStatus } from '@/data/openid/providers'
-import { getProviderFeature } from '@/lib/providers'
+import { featuresCategories, FeatureStatus, type IAMFeature } from '@/data/iam/index'
+import { getIAMProviderFeature } from '@/lib/iam-providers'
 import { type BenchmarkCategoryProps } from '@/components/benchmark-table'
 
 export function getTableCells(providerIdentifiers: string[]): BenchmarkCategoryProps[] {
   return featuresCategories.map(({ name, features }) => ({
     name,
-    rows: features.map((feature) => {
+    rows: (features as IAMFeature[]).map((feature) => {
       return {
         identifier: feature.identifier,
         description: feature.description,
@@ -13,7 +13,7 @@ export function getTableCells(providerIdentifiers: string[]): BenchmarkCategoryP
         status: feature.status as FeatureStatus,
         links: feature.links,
         cells: providerIdentifiers.map((providerIdentifier) => {
-          const cellFeature = getProviderFeature(providerIdentifier, feature.identifier)
+          const cellFeature = getIAMProviderFeature(providerIdentifier, feature.identifier)
           if (!cellFeature) {
             return {
               identifier: providerIdentifier,
@@ -25,7 +25,8 @@ export function getTableCells(providerIdentifiers: string[]): BenchmarkCategoryP
             identifier: providerIdentifier,
             description: cellFeature.description,
             status: cellFeature.status as FeatureStatus,
-            links: cellFeature.links
+            links: cellFeature.links,
+            values: cellFeature.values,
           }
         })
       }

@@ -1,0 +1,580 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Microsoft Entra External ID",
+  "abstract": "Azure-native CIAM platform (successor to Azure AD B2C). Simple per-MAU consumption pricing with a 50K free tier. FedRAMP High authorized with deep Microsoft ecosystem integration.",
+  "identifier": "microsoft-entra-id",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/microsoft-entra-id.svg"
+  },
+  "website": "https://learn.microsoft.com/en-us/entra/external-id/",
+  "license": "Proprietary",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "50,000 MAU/month",
+    "pricingModel": "mau",
+    "pricingUrl": "https://azure.microsoft.com/en-us/pricing/details/active-directory/external-identities/",
+    "plans": [
+      { "name": "Free", "price": "Free (50K MAU)" },
+      { "name": "P1", "price": "$0.0325/MAU" },
+      { "name": "P2", "price": "$0.0650/MAU" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Google, Facebook, Apple, custom OIDC/SAML providers.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "not_supported",
+      "description": "Passkeys are not supported for external tenant customers.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP passwordless sign-in.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "Phone OTP via SMS. Billed per SMS transaction.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "description": "Email OTP-based magic link sign-in.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "not_supported",
+      "description": "Authenticator app TOTP MFA is not available for external tenant customers.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-multifactor-authentication-customers"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "not_supported",
+      "description": "WebAuthn/FIDO2 security keys are not available as MFA for external tenant customers."
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "not_supported",
+      "description": "WebAuthn MFA is not available for external tenant customers. Only Email OTP and SMS OTP are supported."
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-multifactor-authentication-customers"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "Per-transaction SMS cost.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-multifactor-authentication-customers"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "not_supported",
+      "description": "Recovery codes are not available for external tenant customers."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "partial",
+      "description": "Risk-based MFA via Conditional Access policies.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "Cisco Duo is not a supported MFA method for external tenant customers. Only Email OTP and SMS OTP are available as second factors."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "MFA step-up via Conditional Access authentication context (auth context IDs c1–c99). Require MFA only for sensitive operations.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-multifactor-authentication-customers"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/saml-protocol-reference"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "supported",
+      "description": "WS-Federation supported as an identity provider federation option. Enables federation with on-premises ADFS and WS-Fed identity providers.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 client credentials flow.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-custom-oidc-federation-customers"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "Active Directory integration via Azure AD Connect and federation.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/hybrid/whatis-hybrid-identity"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Native Microsoft Entra ID (Azure AD) integration as part of the Microsoft identity platform."
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Bulk operations via Microsoft Graph API.",
+      "links": ["https://learn.microsoft.com/en-us/graph/api/resources/users"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "partial",
+      "description": "Password hash import via Graph API bulk operations.",
+      "links": ["https://learn.microsoft.com/en-us/graph/api/resources/users"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Export users via Microsoft Graph API."
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Bulk updates and deletes via Microsoft Graph API."
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "SCIM provisioning is not available for external tenants.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time user creation via federated identity providers."
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "partial",
+      "description": "User migration via custom authentication extensions.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/custom-extension-overview"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Self-service profile management via the My Account portal.",
+      "links": ["https://myaccount.microsoft.com"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "partial",
+      "description": "Identity linking between local and federated accounts."
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported"
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Custom user attributes via Microsoft Graph extensionAttributes.",
+      "links": ["https://learn.microsoft.com/en-us/graph/extensibility-overview"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported"
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown"
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "Full-featured user search via Microsoft Graph API.",
+      "links": ["https://learn.microsoft.com/en-us/graph/api/resources/users"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/custom-roles-overview"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Multi-tenancy via separate external tenants. No built-in B2B organization abstraction within a tenant.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/overview-customers-ciam"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-password-ban-bad"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "description": "Username (alias) sign-in is available. Flexible regex-based validation — default accepts any string that doesn't look like an email; custom regex patterns configurable via admin center or Graph API. Username must be unique and cannot match email format.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "partial",
+      "description": "Progressive profiling via custom user flows.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-user-flow-add-attributes"]
+    },
+    {
+      "identifier": "abac",
+      "status": "partial",
+      "description": "Attribute-based access control via Conditional Access policies.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/permissions-consent-overview"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/azure/compliance/"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported"
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-hipaa-us"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "supported"
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "supported",
+      "description": "Microsoft Azure holds FedRAMP High authorization.",
+      "links": ["https://learn.microsoft.com/en-us/azure/compliance/offerings/offering-fedramp"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/microsoft-365/admin/misc/gdpr-compliance"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported"
+    },
+    {
+      "identifier": "consent_management",
+      "status": "partial",
+      "description": "OAuth 2.0 consent framework for app permissions.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/permissions-consent-overview"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Multiple Azure regions; additional geo options (AU, JP) as add-ons.",
+      "values": ["US", "EU", "AU", "JP", "CA", "IN", "BR", "AP"],
+      "links": ["https://azure.microsoft.com/en-us/explore/global-infrastructure/geographies/"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Azure Government and sovereign cloud deployments available.",
+      "values": ["Azure"],
+      "links": ["https://learn.microsoft.com/en-us/azure/azure-government/"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/monitoring-health/reference-reports-data-retention"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Stream to Azure Monitor, Azure Event Hubs, and Azure Log Analytics.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/monitoring-health/concept-log-monitoring"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "supported",
+      "description": "Microsoft Entra ID Protection provides threat monitoring.",
+      "links": ["https://learn.microsoft.com/en-us/entra/id-protection/overview-identity-protection"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported"
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported"
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "not_supported",
+      "description": "Customer-managed keys are not available for External ID external tenant data."
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "description": "Bot detection via Cloudflare WAF and Akamai WAF partner integrations. Provides DDoS protection, bot detection, and OWASP Top 10 filtering.",
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-configure-waf-integration",
+        "https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-configure-akamai-integration"
+      ]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Smart Lockout protects against brute force attacks.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/howto-mfa-mfasettings"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "IP-based risk detection via Conditional Access.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "partial",
+      "description": "Password ban list against known weak/breached passwords.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-password-ban-bad"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "Microsoft Entra ID Protection (which includes leaked credential detection) is explicitly not available for external tenants."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "partial",
+      "description": "IP-based location conditions are available in Conditional Access for external tenants. WAF integration (Cloudflare, Akamai) provides additional network-level ACL. Not a native tenant ACL feature.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/conditional-access/overview"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "partial",
+      "description": "Device compliance and registration via Microsoft Intune integration.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-compliant-device"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Per-tenant company branding with logo, background, and colors.",
+      "links": ["https://learn.microsoft.com/en-us/entra/fundamentals/how-to-customize-branding"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "Per-tenant MFA enforcement via Conditional Access policies.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-branding-customers"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "Native Authentication SDK for iOS and Android enables embedded login without redirects.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-native-authentication"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Full brand customization with custom domain and Microsoft branding removed.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-branding-customers"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "Support for 40+ languages in hosted login pages.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-branding-customers"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "MSAL SDKs and Microsoft-hosted UX components.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/msal-overview"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "Sign-in logs and usage reports via Azure Monitor.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/monitoring-health/overview-monitoring-health"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "MSAL libraries for .NET, Java, JavaScript, Python, iOS, Android, Go, and more.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/msal-overview"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Full Microsoft Graph API for identity management.",
+      "links": ["https://learn.microsoft.com/en-us/graph/api/resources/users"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "Documented limits: 200 req/s per tenant, 20 req/s per IP. Token issuance varies by flow (sign-up: 6 requests, sign-in: 4). Telephony: 100 SMS per IP per 15 min, 500 per tenant per 15 min.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/reference-service-limits"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "partial",
+      "description": "Custom authentication extensions via REST API calls at specific points in the flow.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/custom-extension-overview"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "supported",
+      "description": "Custom extensions are REST APIs — any language including TypeScript supported."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-custom-url-domain"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "not_supported",
+      "description": "No dedicated deploy CLI for External ID. Configuration is managed via Microsoft Entra admin center, Azure CLI, Microsoft Graph API, or PowerShell."
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "supported",
+      "description": "AzureRM and AzureAD Terraform providers cover Entra resources.",
+      "links": ["https://registry.terraform.io/providers/hashicorp/azuread/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "partial",
+      "description": "REST API connectors in user flows fire HTTP calls at specific points in the auth flow.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/reference-user-flow-api-connectors"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Fully customizable company branding for login pages.",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-branding-customers"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Custom email provider via the emailOtpSend custom authentication extension event. Supports any email provider (Azure Communication Services, SendGrid, etc.).",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/custom-extension-email-otp-get-started"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/how-to-customize-branding-customers"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims mapping via optional claims and custom authentication extensions.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/optional-claims"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "partial",
+      "description": "Microsoft Entra Verified ID is a separate service for W3C Verifiable Credentials.",
+      "links": ["https://learn.microsoft.com/en-us/entra/verified-id/decentralized-identifier-overview"]
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "partial",
+      "description": "Microsoft Entra Agent ID (Preview, announced Ignite 2025) provides first-class identity constructs for AI agents: OAuth 2.0 client credentials and on-behalf-of flows, lifecycle management, Conditional Access for agents, and Identity Protection.",
+      "links": ["https://learn.microsoft.com/en-us/entra/agent-id/"]
+    }
+  ]
+}

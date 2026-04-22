@@ -1,0 +1,570 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Keycloak",
+  "abstract": "Open-source (Apache 2.0) IAM/CIAM by Red Hat. Zero licensing cost with unlimited users. Most feature-rich open-source option with full SPI extensibility. Requires self-hosting and DevOps expertise.",
+  "identifier": "keycloak",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/keycloak.svg"
+  },
+  "website": "https://www.keycloak.org",
+  "github": "https://github.com/keycloak/keycloak",
+  "license": "Apache 2.0",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "Unlimited (self-hosted, open source)",
+    "pricingModel": "open-source",
+    "pricingUrl": "https://www.keycloak.org",
+    "plans": [
+      { "name": "Open Source", "price": "Free (self-hosted)" },
+      { "name": "Red Hat SSO", "price": "Commercial support available" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_user-credentials"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "12+ built-in providers plus any custom OIDC or SAML identity provider.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#social-identity-providers"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "WebAuthn passwordless and two-factor authentication.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#webauthn"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP for passwordless authentication.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#one-time-passwords"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "partial",
+      "description": "Phone OTP via custom SPI extension or third-party provider. No built-in SMS gateway."
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "partial",
+      "description": "Magic link via custom authenticator SPI. Not available out-of-the-box."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#time-based-one-time-password"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "supported",
+      "description": "HOTP (counter-based OTP) supported alongside TOTP.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#one-time-passwords"]
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "WebAuthn security keys for U2F-style authentication.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#webauthn"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#webauthn"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#one-time-passwords"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "partial",
+      "description": "SMS OTP via SPI extension. No built-in SMS provider."
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "supported",
+      "description": "Recovery Codes are a built-in required action since Keycloak 22+. Single-use backup codes generated at MFA enrollment.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#recovery-codes"]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "not_supported",
+      "description": "No built-in adaptive/risk-based MFA. Can be implemented via custom SPI."
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "partial",
+      "description": "Cisco Duo integration available via community extension."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#step-up-mechanism"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#oidc-clients"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#saml-clients"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 client credentials grant natively supported.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_client-credentials"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "Full LDAP and Active Directory federation with read/write sync.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_ldap"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Azure AD/Entra ID federation via OIDC or SAML identity brokering."
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Import users via Admin REST API or LDAP sync.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#admin-cli"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Import password hashes via Admin API with custom hashing algorithm support.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_import-export"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Export users via Admin REST API or realm export.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_import-export"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Bulk operations via Admin REST API."
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "Partial Import API supports OVERWRITE, SKIP, and FAIL conflict strategies, enabling upsert behavior.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#importing-and-exporting-realms"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "partial",
+      "description": "Keycloak accepts a broad Unicode range via regex but username character handling is version-dependent. Spaces, CJK characters, and special symbols have caused regressions between versions (e.g., v23→v24). Import success depends on Keycloak version and specific characters involved."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "supported",
+      "description": "TOTP secrets can be imported via the JSON realm import format or the admin REST API using the credentials array with fields: secret (BASE32), digits, period, and algorithm.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_import-export"]
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "No built-in SCIM support. Community extensions are available.",
+      "links": ["https://github.com/Captain-P-Goldfish/scim-for-keycloak"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "JIT user provisioning during first federation login.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_identity_broker_first_login"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "description": "Lazy migration via User Storage SPI for gradual migration from existing user stores.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_user-storage-spi"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Keycloak Account Console for self-service profile, MFA, and session management.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#using-the-account-console"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Link multiple identity providers to a single Keycloak account.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_account-linking"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Disable user accounts to prevent authentication."
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Custom user attributes stored as user attributes in Keycloak.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#user-profile"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported"
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "partial",
+      "description": "Attribute value limits are database-level constraints, not formally documented in official docs. Unmanaged attributes support up to ~2048 characters in recent versions (extended from the historical 255-char limit). Limits are deployment-dependent."
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#searching-for-users"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Realm roles and client roles with composite roles support.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#assigning-permissions-and-roles-to-users"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "description": "Organizations feature (since v26.0) and Realms for full tenant isolation.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_managing_organizations"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#password-policies"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "description": "Username policy configuration via realm settings."
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "supported",
+      "description": "Progressive profiling supported since Keycloak v24.0.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#user-profile"]
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "Attribute-based access control via Keycloak Authorization Services.",
+      "links": ["https://www.keycloak.org/docs/latest/authorization_services/index.html"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Resource, scope, and policy-based authorization via Keycloak Authorization Services.",
+      "links": ["https://www.keycloak.org/docs/latest/authorization_services/index.html"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/authorization_services/index.html"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "unknown",
+      "description": "Keycloak is open-source software. Compliance depends on the operator's deployment."
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "unknown"
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "unknown",
+      "description": "Keycloak itself is software. HIPAA compliance depends on how it is deployed and operated."
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown"
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "unknown",
+      "description": "Keycloak is open-source software that can be deployed in FedRAMP-authorized cloud environments."
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "Export user data via Admin REST API."
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported"
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "OAuth 2.0 consent screen and scope management built-in.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#openid-connect-scopes"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Self-hosted deployment anywhere with cross-datacenter replication support.",
+      "links": ["https://www.keycloak.org/high-availability/introduction"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Self-host on AWS (EC2, EKS, ROSA), Azure (VMs, AKS), GCP, or any other cloud.",
+      "values": ["AWS", "Azure", "GCP"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#event-listener"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "partial",
+      "description": "Event listener SPI supports syslog, JSON, and Gelf log handlers.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#event-listener"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "Encryption at rest depends on the underlying database and storage configuration."
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported"
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "Manage your own encryption keys via the deployment infrastructure."
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "not_supported",
+      "description": "No built-in CAPTCHA. Integrate via custom authenticator SPI."
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#password-guess-brute-force-attacks"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "partial",
+      "description": "IP-based brute force detection. No advanced suspicious IP detection."
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "supported",
+      "description": "IP allow/deny lists configurable per realm."
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Per-realm (tenant) FreeMarker theming for custom branding.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_themes"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "Per-realm MFA policies and authentication flows.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_authentication-flows"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_themes"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "partial",
+      "description": "Direct grant API allows credential-based flows for embedded auth. Hosted redirect flow is standard.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#resource-owner-password-credentials-grant-legacy"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Full FreeMarker theming enables complete brand customization.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_themes"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "20+ built-in language packs with custom translation support.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_themes"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "Account Console and configurable Login theme served by Keycloak.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#using-the-account-console"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "partial",
+      "description": "Events API for login analytics. External dashboards (Grafana, ELK) recommended.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#event-listener"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Keycloak adapters for Java (Spring Boot, Quarkus), JavaScript, Node.js, Go, Python, PHP. Keycloak SDKs via community.",
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/index.html"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "links": ["https://www.keycloak.org/docs-api/latest/rest-api/index.html"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "not_supported",
+      "description": "No built-in IP-based rate limiting. Brute-force detection handles per-user lockout. External WAF or reverse proxy required for true rate limiting."
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Full SPI extensibility: custom authenticators, identity providers, user federation, event listeners, token mappers, and more.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Keycloak SPIs are implemented in Java. No JavaScript/TypeScript runtime for extensibility."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Deploy on any custom domain via reverse proxy configuration."
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "kcadm.sh CLI for configuration management and CI/CD pipelines.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#the-admin-cli"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "partial",
+      "description": "Community-maintained Terraform provider: mrparkers/keycloak.",
+      "links": ["https://registry.terraform.io/providers/mrparkers/keycloak/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "User Storage SPI for connecting to any external user store.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_user-storage-spi"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Event listener SPI supports custom HTTP webhooks for authentication events.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#event-listener"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Full FreeMarker templating for all login page customization.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_themes"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Configure custom SMTP server in realm settings.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_email"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "FreeMarker email templates for all transactional emails.",
+      "links": ["https://www.keycloak.org/docs/latest/server_development/index.html#_themes"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Protocol mappers and scripted mappers for custom token claims.",
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/index.html#_protocol-mappers"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported",
+      "description": "Authentication flows are configured via the admin console but are not a visual drag-and-drop builder."
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "not_supported"
+    }
+  ]
+}
