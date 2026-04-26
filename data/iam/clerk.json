@@ -68,11 +68,15 @@
     },
     {
       "identifier": "hotp_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Not supported. Clerk favors TOTP and WebAuthn/Passkeys."
     },
     {
       "identifier": "u2f_mfa",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Supported via WebAuthn/Passkey implementation (roaming and platform authenticators). Available on Pro plan and above.",
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "webauthn_mfa",

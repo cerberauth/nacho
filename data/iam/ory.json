@@ -255,7 +255,8 @@
     },
     {
       "identifier": "legacy_username_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Ory Kratos does not support importing legacy password hashes from other providers directly through the import API."
     },
     {
       "identifier": "mfa_enrollment_import",

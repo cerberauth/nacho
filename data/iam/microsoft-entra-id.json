@@ -33,9 +33,9 @@
     },
     {
       "identifier": "passkey_authentication",
-      "status": "not_supported",
-      "description": "Passkeys are not supported for external tenant customers.",
-      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-authentication-methods-customers"]
+      "status": "supported",
+      "description": "Passkeys (in Microsoft Authenticator) are now supported for external tenant customers.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage"]
     },
     {
       "identifier": "email_passwordless_authentication",
@@ -61,9 +61,9 @@
     },
     {
       "identifier": "totp_mfa",
-      "status": "not_supported",
-      "description": "Authenticator app TOTP MFA is not available for external tenant customers.",
-      "links": ["https://learn.microsoft.com/en-us/entra/external-id/customers/concept-multifactor-authentication-customers"]
+      "status": "supported",
+      "description": "Authenticator app TOTP MFA is supported.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage"]
     },
     {
       "identifier": "hotp_mfa",
@@ -71,13 +71,15 @@
     },
     {
       "identifier": "u2f_mfa",
-      "status": "not_supported",
-      "description": "WebAuthn/FIDO2 security keys are not available as MFA for external tenant customers."
+      "status": "supported",
+      "description": "FIDO2 security keys are supported.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage"]
     },
     {
       "identifier": "webauthn_mfa",
-      "status": "not_supported",
-      "description": "WebAuthn MFA is not available for external tenant customers. Only Email OTP and SMS OTP are supported."
+      "status": "supported",
+      "description": "WebAuthn MFA is supported.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage"]
     },
     {
       "identifier": "email_code_mfa",
@@ -97,7 +99,9 @@
     },
     {
       "identifier": "push_notification_mfa",
-      "status": "not_supported"
+      "status": "supported",
+      "description": "Microsoft Authenticator Push MFA is supported.",
+      "links": ["https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-methods-manage"]
     },
     {
       "identifier": "adaptive_mfa",
@@ -108,7 +112,7 @@
     {
       "identifier": "cisco_duo_mfa",
       "status": "not_supported",
-      "description": "Cisco Duo is not a supported MFA method for external tenant customers. Only Email OTP and SMS OTP are available as second factors."
+      "description": "Cisco Duo is not a supported MFA method for external tenant customers."
     },
     {
       "identifier": "step_up_authentication",

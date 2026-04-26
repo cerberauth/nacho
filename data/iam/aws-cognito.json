@@ -69,34 +69,42 @@
     },
     {
       "identifier": "hotp_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Not natively supported. Requires custom authentication flow via Lambda triggers."
     },
     {
       "identifier": "u2f_mfa",
-      "status": "unknown"
+      "status": "partial",
+      "description": "Not natively supported as U2F. Modern hardware keys (YubiKeys) are supported via native WebAuthn/Passkey support.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-passkeys.html"]
     },
     {
       "identifier": "webauthn_mfa",
       "status": "supported",
-      "description": "WebAuthn MFA available via passkeys on Essentials tier and above."
+      "description": "WebAuthn MFA available via passkeys on Essentials tier and above.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-passkeys.html"]
     },
     {
       "identifier": "email_code_mfa",
       "status": "supported",
-      "description": "Email OTP MFA available on Essentials and Plus tiers."
+      "description": "Email OTP MFA available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-email-message.html"]
     },
     {
       "identifier": "phone_code_mfa",
       "status": "supported",
-      "description": "SMS OTP MFA available on Essentials and Plus tiers."
+      "description": "SMS OTP MFA available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-sms-message.html"]
     },
     {
       "identifier": "recovery_code_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Static backup codes not supported. MFA recovery requires admin reset or custom implementation."
     },
     {
       "identifier": "push_notification_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Not natively supported. Requires custom implementation via SNS/Lambda."
     },
     {
       "identifier": "adaptive_mfa",
@@ -106,11 +114,14 @@
     },
     {
       "identifier": "cisco_duo_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Not natively supported. Requires custom integration via Lambda triggers."
     },
     {
       "identifier": "step_up_authentication",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Supported via custom authentication flows using Lambda triggers (Pre-token generation or custom auth challenges).",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge-answer.html"]
     },
     {
       "identifier": "oidc_protocol",

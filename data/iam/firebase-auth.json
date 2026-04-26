@@ -64,21 +64,13 @@
       "description": "TOTP MFA available via Firebase Identity Platform (requires upgrade from base Firebase Auth).",
       "links": ["https://cloud.google.com/identity-platform/docs/web/mfa-totp"]
     },
-    {
-      "identifier": "hotp_mfa",
-      "status": "not_supported"
-    },
-    {
-      "identifier": "u2f_mfa",
-      "status": "not_supported"
-    },
-    {
-      "identifier": "webauthn_mfa",
-      "status": "not_supported"
-    },
+    { "identifier": "hotp_mfa", "status": "not_supported" },
+    { "identifier": "u2f_mfa", "status": "not_supported" },
+    { "identifier": "webauthn_mfa", "status": "not_supported" },
     {
       "identifier": "email_code_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Email verification is required for MFA, but it cannot be used as the second factor."
     },
     {
       "identifier": "phone_code_mfa",
@@ -88,23 +80,28 @@
     },
     {
       "identifier": "recovery_code_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Not supported natively. Enroll multiple factors to prevent lockout."
     },
     {
       "identifier": "push_notification_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Not supported natively. Custom implementation via Firebase Cloud Messaging required."
     },
     {
       "identifier": "adaptive_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Not supported natively. Implement via custom Blocking Functions."
     },
     {
       "identifier": "cisco_duo_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native integration."
     },
     {
       "identifier": "step_up_authentication",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Supported via architectural pattern using incremental enrollment/verification."
     },
     {
       "identifier": "oidc_protocol",
