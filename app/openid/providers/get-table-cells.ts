@@ -1,34 +1,8 @@
-import { featuresCategories, FeatureStatus } from '@/data/openid/providers'
+import { featuresCategories } from '@/data/openid/providers'
 import { getProviderFeature } from '@/lib/providers'
-import { type BenchmarkCategoryProps } from '@/components/benchmark-table'
+import { getTableCells as buildTableCells } from '@/lib/get-table-cells'
+import type { BenchmarkCategoryProps } from '@/components/benchmark-table'
 
 export function getTableCells(providerIdentifiers: string[]): BenchmarkCategoryProps[] {
-  return featuresCategories.map(({ name, features }) => ({
-    name,
-    rows: features.map((feature) => {
-      return {
-        identifier: feature.identifier,
-        description: feature.description,
-        name: feature.name,
-        status: feature.status as FeatureStatus,
-        links: feature.links,
-        cells: providerIdentifiers.map((providerIdentifier) => {
-          const cellFeature = getProviderFeature(providerIdentifier, feature.identifier)
-          if (!cellFeature) {
-            return {
-              identifier: providerIdentifier,
-              status: FeatureStatus.Unknown
-            }
-          }
-
-          return {
-            identifier: providerIdentifier,
-            description: cellFeature.description,
-            status: cellFeature.status as FeatureStatus,
-            links: cellFeature.links
-          }
-        })
-      }
-    })
-  }))
+  return buildTableCells(featuresCategories, providerIdentifiers, getProviderFeature)
 }

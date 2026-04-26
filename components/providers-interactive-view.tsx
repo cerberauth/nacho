@@ -6,7 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight, Check, ChevronLeft, ChevronRight, CircleHelp, Info, Plus, Settings2, Trash, X } from 'lucide-react'
 
-import { FeatureStatus } from '@/data/openid/providers'
+import { FeatureStatus, type Provider, type FeatureCategory } from '@/lib/types'
+import { StatusCell } from '@/components/benchmark/status-cell'
 import type { BenchmarkCategoryProps } from '@/components/benchmark-table'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import {
@@ -24,49 +25,8 @@ import {
 } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 
-type FeatureCategory = {
-  name: string
-  identifier: string
-  features: Array<{
-    name: string
-    identifier: string
-    description?: string
-    status?: string
-    url?: string
-  }>
-}
-
-type PricingPlan = {
-  name: string
-  price: string
-}
-
-type Pricing = {
-  hasFreeTier: boolean
-  freeTierLimit?: string
-  pricingModel: string
-  pricingUrl?: string
-  plans: PricingPlan[]
-}
-
-type Provider = {
-  name: string
-  identifier: string
-  abstract?: string
-  website?: string
-  icon?: {
-    contentUrl: string
-  }
-  license: string
-  pricing?: Pricing
-  featureList: Array<{
-    identifier: string
-    description?: string
-    status: string
-    url?: string
-    values?: string[]
-  }>
-}
+import { useBenchmarkParams } from '@/components/hooks/use-benchmark-params'
+import { PricingRows } from '@/components/benchmark/pricing-rows'
 
 type Props = {
   providers: Provider[]
@@ -76,49 +36,18 @@ type Props = {
 }
 
 export function ProvidersInteractiveView({ providers, allCategories, featuresCategories, providerDetailUrlPrefix }: Props) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
-
-  const selectedFeatures = useMemo(() => {
-    const f = searchParams.get('features')
-    return f ? new Set(f.split(',').filter(Boolean)) : new Set<string>()
-  }, [searchParams])
-
-  const hiddenProviders = useMemo(() => {
-    const p = searchParams.get('excluded_providers')
-    return p ? new Set(p.split(',').filter(Boolean)) : new Set<string>()
-  }, [searchParams])
-
-  const hiddenRows = useMemo(() => {
-    const r = searchParams.get('excluded_features')
-    return r ? new Set(r.split(',').filter(Boolean)) : new Set<string>()
-  }, [searchParams])
+  const {
+    selectedFeatures,
+    hiddenProviders,
+    hiddenRows,
+    updateParams,
+  } = useBenchmarkParams()
 
   const [wizardOpen, setWizardOpen] = useState(false)
   const [wizardStep, setWizardStep] = useState(0)
   const [draftFeatures, setDraftFeatures] = useState<Set<string>>(new Set())
 
   const isConfigured = selectedFeatures.size > 0 || hiddenRows.size > 0
-
-  const updateParams = useCallback((features: Set<string>, hidden: Set<string>, rows: Set<string>) => {
-    const params = new URLSearchParams(searchParams.toString())
-    if (features.size > 0) {
-      params.set('features', Array.from(features).join(','))
-    } else {
-      params.delete('features')
-    }
-    if (hidden.size > 0) {
-      params.set('excluded_providers', Array.from(hidden).join(','))
-    } else {
-      params.delete('excluded_providers')
-    }
-    if (rows.size > 0) {
-      params.set('excluded_features', Array.from(rows).join(','))
-    } else {
-      params.delete('excluded_features')
-    }
-    router.replace(`?${params.toString()}`, { scroll: false })
-  }, [router, searchParams])
 
   const toggleProvider = (id: string) => {
     const next = new Set(hiddenProviders)
@@ -128,7 +57,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
     } else if (visibleCount > 1) {
       next.add(id)
     }
-    updateParams(selectedFeatures, next, hiddenRows)
+    updateParams({ hiddenProviders: next })
   }
 
   const toggleRow = (id: string) => {
@@ -138,7 +67,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
     } else {
       next.add(id)
     }
-    updateParams(selectedFeatures, hiddenProviders, next)
+    updateParams({ hiddenRows: next })
   }
 
   const trackVendorClick = (identifier: string) => {
@@ -166,7 +95,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
     import('@plausible-analytics/tracker').then(({ track }) =>
       track('Benchmark Setup', { props: { features: Array.from(draftFeatures).join(','), benchmark: 'openid' } })
     )
-    updateParams(draftFeatures, hiddenProviders, hiddenRows)
+    updateParams({ features: draftFeatures })
     setWizardOpen(false)
   }
 
@@ -180,11 +109,11 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
     import('@plausible-analytics/tracker').then(({ track }) =>
       track('Benchmark Feature Filter', { props: { feature: featureId, action: next.has(featureId) ? 'add' : 'remove', benchmark: 'openid' } })
     )
-    updateParams(next, hiddenProviders, hiddenRows)
+    updateParams({ features: next })
   }
 
   const resetBenchmark = () => {
-    updateParams(new Set(), hiddenProviders, new Set())
+    updateParams({ features: new Set(), hiddenRows: new Set() })
   }
 
   const tableProviderIds = useMemo(() => {
@@ -515,69 +444,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
           })}
 
           {/* ── Pricing & Plans section ── */}
-          {sortedProviders.some(p => p.pricing) && (
-            <Fragment>
-              <div className="col-span-full sticky left-0 bg-white px-2 pt-4 pb-1">
-                <h2 className="text-xl font-mono text-slate-950">Pricing &amp; Plans</h2>
-              </div>
-
-              {/* Free Tier row */}
-              <div className="sticky left-0 z-10 bg-white flex items-center px-2">
-                <span className="p-1 text-sm text-slate-600"><code>Free Tier</code></span>
-              </div>
-              {sortedProviders.map(provider => (
-                <div key={`pricing-free-tier-${provider.identifier}`} className={`flex items-center justify-center transition-opacity ${dimmedProviders.has(provider.identifier) ? 'opacity-25' : ''}`}>
-                  <div className="w-full h-6 flex items-center justify-center rounded">
-                    {provider.pricing ? (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            {provider.pricing.hasFreeTier ? (
-                              <span className="bg-lime-100 text-lime-600 w-full h-6 flex items-center justify-center rounded cursor-default">
-                                <Check className="h-4 w-4" />
-                              </span>
-                            ) : (
-                              <span className="bg-red-100 text-red-600 w-full h-6 flex items-center justify-center rounded cursor-default">
-                                <X className="w-4 h-4" />
-                              </span>
-                            )}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="text-sm">{provider.pricing.hasFreeTier ? (provider.pricing.freeTierLimit || 'Free tier available') : 'No free tier'}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    ) : (
-                      <span className="bg-gray-100 text-gray-600 w-full h-6 flex items-center justify-center rounded">
-                        <CircleHelp className="w-4 h-4" />
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-
-              {/* Plans row */}
-              <div className="sticky left-0 z-10 bg-white flex items-start px-2 pt-1">
-                <span className="p-1 text-sm text-slate-600"><code>Plans</code></span>
-              </div>
-              {sortedProviders.map(provider => (
-                <div key={`pricing-plans-${provider.identifier}`} className={`flex items-start justify-center py-1 transition-opacity ${dimmedProviders.has(provider.identifier) ? 'opacity-25' : ''}`}>
-                  {provider.pricing ? (
-                    <div className="flex flex-col gap-0.5 w-full">
-                      {provider.pricing.plans.map(plan => (
-                        <div key={plan.name} className="flex flex-col items-center rounded bg-slate-50 border border-slate-100 px-1 py-0.5">
-                          <span className="text-xs font-medium text-slate-700 text-center">{plan.name}</span>
-                          <span className="text-xs text-slate-500 text-center">{plan.price}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <span className="text-xs text-slate-400 mt-1">—</span>
-                  )}
-                </div>
-              ))}
-            </Fragment>
-          )}
+          <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
 
           {/* ── Categories + feature rows ── */}
           {filteredCategories.map(category => (
@@ -625,89 +492,13 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                       key={cell.identifier}
                       className={`flex items-center justify-center transition-opacity ${dimmedProviders.has(cell.identifier) ? 'opacity-25' : ''}`}
                     >
-                      <div className="w-full min-h-6 flex items-center justify-center rounded">
-                        <TooltipProvider>
-                          <Tooltip>
-                            {cell.status === FeatureStatus.Supported && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-lime-100 text-lime-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-lime-200 rounded">{v}</span>)
-                                      : <Check className="h-4 w-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Supported'}</p>
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.NotSupported && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-red-100 text-red-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-red-200 rounded">{v}</span>)
-                                      : <X className="w-4 h-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Not Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Not Supported'}</p>
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.Deprecated && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-yellow-100 text-yellow-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-yellow-200 rounded">{v}</span>)
-                                      : <Trash className="h-4 w-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Deprecated <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Deprecated'}</p>
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.Partial && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-blue-100 text-blue-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-blue-200 rounded">{v}</span>)
-                                      : <Info className="h-4 w-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Partially Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Partially Supported'}</p>
-                                  {cell.description && <p>{cell.description}</p>}
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.Unknown && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-gray-100 text-gray-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-gray-200 rounded">{v}</span>)
-                                      : <CircleHelp className="w-4 h-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">Unknown Support</p>
-                                  Help us improve this data by <Link href="https://github.com/cerberauth/nacho/issues" target="_blank" rel="nofollow" className="underline">opening an issue</Link>.
-                                </TooltipContent>
-                              </>
-                            )}
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
+                      <StatusCell
+                        featureIdentifier={row.identifier}
+                        status={cell.status as FeatureStatus}
+                        links={cell.links}
+                        values={cell.values}
+                        description={cell.description}
+                      />
                     </div>
                   ))}
                 </Fragment>

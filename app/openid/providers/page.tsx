@@ -3,10 +3,10 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { featuresCategories } from '@/data/openid/providers'
+import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
+import { ProvidersInteractiveView } from '@/components/providers-interactive-view'
 import { getProviders } from '@/lib/providers'
 import { getTableCells } from './get-table-cells'
-import { ProviderInaccuracyWarning } from './inaccuracy-warning'
-import { ProvidersInteractiveView } from './providers-interactive-view'
 
 export const metadata: Metadata = {
   title: 'OpenID Connect Providers Benchmark',

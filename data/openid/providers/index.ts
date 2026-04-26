@@ -1,11 +1,6 @@
-export enum FeatureStatus {
-  Supported = 'supported',
-  NotSupported = 'not_supported',
-  Partial = 'partial',
-  Deprecated = 'deprecated',
-  Planned = 'planned',
-  Unknown = 'unknown'
-}
+import { FeatureStatus } from '@/lib/types'
+
+export { FeatureStatus }
 
 export enum OpenIDConnectFeatureCategory {
   GrantType = 'grant_type',

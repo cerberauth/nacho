@@ -1,14 +1,15 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
+import { ArrowUpRight } from 'lucide-react'
 
-import { featuresCategories, FeatureStatus, IAMFeatureCategory, type IAMFeature, type IAMProvider } from '@/data/iam/index'
+import { FeatureStatus } from '@/lib/types'
+import { featuresCategories, IAMFeatureCategory, type IAMFeature, type IAMProvider } from '@/data/iam/index'
 import { getIAMProviderById, getIAMProviderFeature, getIAMProviders } from '@/lib/iam-providers'
 import { providers as openIDProviders } from '@/data/openid/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
+import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
 import { getTableCells } from '../get-table-cells'
-import { ArrowUpRight } from 'lucide-react'
-import { ProviderInaccuracyWarning } from '../inaccuracy-warning'
 
 type Props = {
   params: Promise<{ id: string }>

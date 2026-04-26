@@ -1,4 +1,5 @@
-import { providers, FeatureStatus } from '@/data/iam/index'
+import { FeatureStatus } from '@/lib/types'
+import { providers } from '@/data/iam/index'
 
 export const getIAMProviders = () => {
   return [...providers].sort((a, b) => {

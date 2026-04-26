@@ -1,4 +1,4 @@
-import { FeatureStatus } from '@/data/iam/index'
+import { FeatureStatus } from '@/lib/types'
 
 export type SurveyAnswers = {
   audience?: 'b2c' | 'b2b' | 'b2e' | 'mixed'

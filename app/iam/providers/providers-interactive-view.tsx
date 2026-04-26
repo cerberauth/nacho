@@ -1,14 +1,13 @@
 'use client'
 
-import { Fragment, useState, useMemo, useCallback } from 'react'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { Fragment, useState, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, CircleHelp, Info, Plus, RefreshCw, Trash, X } from 'lucide-react'
+import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Plus, RefreshCw, Trash, X } from 'lucide-react'
 
-import { FeatureStatus } from '@/data/iam/index'
+import { FeatureStatus, type Provider, type FeatureCategory } from '@/lib/types'
+import { StatusCell } from '@/components/benchmark/status-cell'
 import type { BenchmarkCategoryProps } from '@/components/benchmark-table'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 import {
   Dialog,
   DialogContent,
@@ -26,39 +25,8 @@ import { Button } from '@/components/ui/button'
 import survey from '@/data/iam/survey.json'
 import { scoreVendors, type SurveyAnswers, type VendorScore } from '@/lib/iam-scoring'
 
-type FeatureCategory = {
-  name: string
-  identifier: string
-  features: Array<{
-    name: string
-    identifier: string
-    description?: string
-    status?: string
-  }>
-}
-
-type Provider = {
-  name: string
-  identifier: string
-  abstract?: string
-  website?: string
-  icon?: { contentUrl: string }
-  license: string
-  pricing?: {
-    hasFreeTier: boolean
-    freeTierLimit?: string
-    pricingModel: string
-    pricingUrl?: string
-    plans: { name: string; price: string }[]
-  }
-  featureList: Array<{
-    identifier: string
-    description?: string
-    status: string
-    links?: string[]
-    values?: string[]
-  }>
-}
+import { useBenchmarkParams } from '@/components/hooks/use-benchmark-params'
+import { PricingRows } from '@/components/benchmark/pricing-rows'
 
 type Props = {
   providers: Provider[]
@@ -120,10 +88,14 @@ export function IAMProvidersInteractiveView({
   featuresCategories,
   providerDetailUrlPrefix,
 }: Props) {
-  const router = useRouter()
-  const searchParams = useSearchParams()
+  const {
+    selectedFeatures,
+    hiddenProviders,
+    hiddenRows,
+    updateParams,
+    searchParams,
+  } = useBenchmarkParams()
 
-  // ── Survey state ──────────────────────────────────────────────────────────
   const savedAnswers = useMemo<SurveyAnswers | null>(() => {
     const raw = searchParams.get('answers')
     return raw ? decodeAnswers(raw) : null
@@ -133,57 +105,6 @@ export function IAMProvidersInteractiveView({
   const [wizardStep, setWizardStep] = useState(0)
   const [draftAnswers, setDraftAnswers] = useState<SurveyAnswers>(savedAnswers ?? {})
 
-  // ── Feature filter state (secondary, kept compatible with shared URL params) ─
-  const selectedFeatures = useMemo(() => {
-    const f = searchParams.get('features')
-    return f ? new Set(f.split(',').filter(Boolean)) : new Set<string>()
-  }, [searchParams])
-
-  const hiddenProviders = useMemo(() => {
-    const p = searchParams.get('excluded_providers')
-    return p ? new Set(p.split(',').filter(Boolean)) : new Set<string>()
-  }, [searchParams])
-
-  const hiddenRows = useMemo(() => {
-    const r = searchParams.get('excluded_features')
-    return r ? new Set(r.split(',').filter(Boolean)) : new Set<string>()
-  }, [searchParams])
-
-  // ── URL param helpers ────────────────────────────────────────────────────
-  const updateParams = useCallback(
-    (
-      answers: SurveyAnswers | null,
-      features: Set<string>,
-      hidden: Set<string>,
-      rows: Set<string>,
-    ) => {
-      const params = new URLSearchParams(searchParams.toString())
-      if (answers) {
-        params.set('answers', encodeAnswers(answers))
-      } else {
-        params.delete('answers')
-      }
-      if (features.size > 0) {
-        params.set('features', Array.from(features).join(','))
-      } else {
-        params.delete('features')
-      }
-      if (hidden.size > 0) {
-        params.set('excluded_providers', Array.from(hidden).join(','))
-      } else {
-        params.delete('excluded_providers')
-      }
-      if (rows.size > 0) {
-        params.set('excluded_features', Array.from(rows).join(','))
-      } else {
-        params.delete('excluded_features')
-      }
-      router.replace(`?${params.toString()}`, { scroll: false })
-    },
-    [router, searchParams],
-  )
-
-  // ── Scoring ───────────────────────────────────────────────────────────────
   const vendorScores = useMemo<VendorScore[]>(() => {
     if (!savedAnswers) return []
     return scoreVendors(providers as Parameters<typeof scoreVendors>[0], savedAnswers)
@@ -193,7 +114,6 @@ export function IAMProvidersInteractiveView({
     return new Map(vendorScores.map(v => [v.identifier, v]))
   }, [vendorScores])
 
-  // ── Provider ordering ─────────────────────────────────────────────────────
   const allSortedProviders = useMemo(() => {
     if (vendorScores.length === 0) return providers
     return [...providers].sort((a, b) => {
@@ -273,8 +193,6 @@ export function IAMProvidersInteractiveView({
     })
   }, [hiddenRowDetails, sortedProviders])
 
-
-  // ── Provider toggle ───────────────────────────────────────────────────────
   const toggleProvider = (id: string) => {
     const next = new Set(hiddenProviders)
     const visibleCount = providers.filter(p => !next.has(p.identifier)).length
@@ -283,14 +201,14 @@ export function IAMProvidersInteractiveView({
     } else if (visibleCount > 1) {
       next.add(id)
     }
-    updateParams(savedAnswers, selectedFeatures, next, hiddenRows)
+    updateParams({ hiddenProviders: next })
   }
 
   const toggleRow = (id: string) => {
     const next = new Set(hiddenRows)
     if (next.has(id)) next.delete(id)
     else next.add(id)
-    updateParams(savedAnswers, selectedFeatures, hiddenProviders, next)
+    updateParams({ hiddenRows: next })
   }
 
   const trackVendorClick = (identifier: string) => {
@@ -299,7 +217,6 @@ export function IAMProvidersInteractiveView({
     )
   }
 
-  // ── Feature filter toggle ─────────────────────────────────────────────────
   const toggleFeature = (featureId: string) => {
     const next = new Set(selectedFeatures)
     if (next.has(featureId)) next.delete(featureId)
@@ -307,10 +224,9 @@ export function IAMProvidersInteractiveView({
     import('@plausible-analytics/tracker').then(({ track }) =>
       track('Benchmark Feature Filter', { props: { feature: featureId, action: next.has(featureId) ? 'add' : 'remove', benchmark: 'iam' } })
     )
-    updateParams(savedAnswers, next, hiddenProviders, hiddenRows)
+    updateParams({ features: next })
   }
 
-  // ── Survey wizard helpers ─────────────────────────────────────────────────
   const openWizard = () => {
     setDraftAnswers(savedAnswers ?? {})
     setWizardStep(0)
@@ -328,7 +244,6 @@ export function IAMProvidersInteractiveView({
       if (question.inputType === 'single_select') {
         return { ...prev, [key]: value }
       }
-      // multi_select
       const current = (prev[key] as string[] | undefined) ?? []
       const next = current.includes(value)
         ? current.filter(v => v !== value)
@@ -360,7 +275,9 @@ export function IAMProvidersInteractiveView({
     import('@plausible-analytics/tracker').then(({ track }) =>
       track('Benchmark Survey Complete', { props: { benchmark: 'iam' } })
     )
-    updateParams(draftAnswers, selectedFeatures, hiddenProviders, hiddenRows)
+    updateParams({
+      extra: { answers: encodeAnswers(draftAnswers) }
+    })
     setWizardOpen(false)
   }
 
@@ -371,9 +288,7 @@ export function IAMProvidersInteractiveView({
 
   return (
     <>
-      {/* ── Survey wizard dialog ── */}
       <Dialog open={wizardOpen} onOpenChange={(open) => {
-        // Only allow closing if survey is already answered
         if (!open && savedAnswers) setWizardOpen(false)
         else if (!open && !savedAnswers) setWizardOpen(false)
         else setWizardOpen(open)
@@ -385,23 +300,20 @@ export function IAMProvidersInteractiveView({
 
           <p className="text-sm text-slate-500 -mt-2">{survey.description}</p>
 
-          {/* Progress bar */}
           <div className="flex gap-1">
             {STEPS.map((step, i) => (
               <div
                 key={step.stepId}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${
-                  i === wizardStep
-                    ? 'bg-slate-900'
-                    : i < wizardStep
-                      ? 'bg-slate-400'
-                      : 'bg-slate-200'
-                }`}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${i === wizardStep
+                  ? 'bg-slate-900'
+                  : i < wizardStep
+                    ? 'bg-slate-400'
+                    : 'bg-slate-200'
+                  }`}
               />
             ))}
           </div>
 
-          {/* Step content */}
           <div className="min-h-[260px] flex flex-col">
             <h3 className="font-semibold text-slate-900 mb-0.5">{STEPS[wizardStep].title}</h3>
             {STEPS[wizardStep].subtitle && (
@@ -416,11 +328,10 @@ export function IAMProvidersInteractiveView({
                     <button
                       key={option.value}
                       onClick={() => setDraftAnswer(question.questionId, option.value)}
-                      className={`flex flex-col items-start text-left px-4 py-3 rounded-lg border transition-all ${
-                        selected
-                          ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
-                          : 'border-slate-200 hover:border-slate-400'
-                      }`}
+                      className={`flex flex-col items-start text-left px-4 py-3 rounded-lg border transition-all ${selected
+                        ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                        : 'border-slate-200 hover:border-slate-400'
+                        }`}
                     >
                       <span className="text-sm font-medium text-slate-900">{option.label}</span>
                       {option.description && (
@@ -437,11 +348,10 @@ export function IAMProvidersInteractiveView({
                       return (
                         <label
                           key={option.value}
-                          className={`flex items-start gap-3 px-4 py-2.5 rounded-lg border cursor-pointer transition-all ${
-                            selected
-                              ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
-                              : 'border-slate-200 hover:border-slate-400'
-                          }`}
+                          className={`flex items-start gap-3 px-4 py-2.5 rounded-lg border cursor-pointer transition-all ${selected
+                            ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                            : 'border-slate-200 hover:border-slate-400'
+                            }`}
                         >
                           <input
                             type="checkbox"
@@ -464,7 +374,6 @@ export function IAMProvidersInteractiveView({
             ))}
           </div>
 
-          {/* Navigation */}
           <div className="flex justify-between items-center pt-2 border-t">
             <Button
               variant="ghost"
@@ -500,7 +409,6 @@ export function IAMProvidersInteractiveView({
         </DialogContent>
       </Dialog>
 
-      {/* ── Recommendations panel ── */}
       {savedAnswers && recommendedVendors.length > 0 && (
         <div className="w-full flex flex-col gap-4">
           <div className="flex items-center justify-between">
@@ -523,9 +431,8 @@ export function IAMProvidersInteractiveView({
               return (
                 <div
                   key={vs.identifier}
-                  className={`relative flex flex-col gap-3 rounded-xl border p-4 ${
-                    rank === 0 ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900' : 'border-slate-200'
-                  }`}
+                  className={`relative flex flex-col gap-3 rounded-xl border p-4 ${rank === 0 ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900' : 'border-slate-200'
+                    }`}
                 >
                   {rank === 0 && (
                     <span className="absolute -top-2.5 left-4 text-xs font-semibold bg-slate-900 text-white px-2 py-0.5 rounded-full">
@@ -555,7 +462,6 @@ export function IAMProvidersInteractiveView({
                     </div>
                   </div>
 
-                  {/* Score bar */}
                   <div className="flex items-center gap-2">
                     <div className="flex-1 h-1.5 rounded-full bg-slate-200 overflow-hidden">
                       <div
@@ -566,7 +472,6 @@ export function IAMProvidersInteractiveView({
                     <span className="text-xs font-semibold text-slate-700 tabular-nums">{vs.score}%</span>
                   </div>
 
-                  {/* Top reasons */}
                   {vs.topReasons.length > 0 && (
                     <ul className="flex flex-col gap-1">
                       {vs.topReasons.map(reason => (
@@ -599,7 +504,6 @@ export function IAMProvidersInteractiveView({
         </div>
       )}
 
-      {/* ── Toolbar ── */}
       {savedAnswers ? (
         <div id="full-comparison" className="flex items-center gap-2 flex-wrap w-full">
           {excludedFeaturesSorted.map(feature => (
@@ -678,7 +582,7 @@ export function IAMProvidersInteractiveView({
 
           {(selectedFeatures.size > 0 || hiddenRows.size > 0) && (
             <button
-              onClick={() => updateParams(savedAnswers, new Set(), hiddenProviders, new Set())}
+              onClick={() => updateParams({ features: new Set(), hiddenRows: new Set() })}
               className="text-xs text-slate-400 hover:text-slate-700 transition-colors"
             >
               Clear filters
@@ -696,27 +600,23 @@ export function IAMProvidersInteractiveView({
         </div>
       )}
 
-      {/* ── Comparison table ── */}
       <div className="w-full overflow-x-auto overflow-y-clip">
         <div
           className="grid gap-x-1"
           style={{ gridTemplateColumns: `280px repeat(${sortedProviders.length}, minmax(124px, 1fr))` }}
         >
-          {/* Corner spacer */}
           <div className="sticky top-0 left-0 z-30 bg-white" />
 
-          {/* Provider header cards */}
           {sortedProviders.map(provider => {
             const inTable = tableProviderIds.includes(provider.identifier)
             const vs = scoreMap.get(provider.identifier)
             return (
               <div key={provider.identifier} className="sticky top-0 z-20 bg-white pt-2 pb-1 group/col relative">
                 <div
-                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${
-                    inTable
-                      ? 'bg-slate-50 border-slate-200 hover:border-slate-300'
-                      : 'bg-white border-slate-100 opacity-20 hover:opacity-40'
-                  }`}
+                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${inTable
+                    ? 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                    : 'bg-white border-slate-100 opacity-20 hover:opacity-40'
+                    }`}
                 >
                   {provider.icon?.contentUrl && (
                     <Image
@@ -736,7 +636,6 @@ export function IAMProvidersInteractiveView({
                   </Link>
                   <span className="text-xs text-slate-400">{provider.license}</span>
 
-                  {/* Score badge */}
                   {vs && savedAnswers && (
                     <div className="flex items-center gap-1 w-full">
                       <div className="flex-1 h-1 rounded-full bg-slate-200 overflow-hidden">
@@ -780,70 +679,8 @@ export function IAMProvidersInteractiveView({
             )
           })}
 
-          {/* Pricing & Plans section */}
-          {sortedProviders.some(p => p.pricing) && (
-            <Fragment>
-              <div className="col-span-full sticky left-0 bg-white px-2 pt-4 pb-1">
-                <h2 className="text-xl font-mono text-slate-950">Pricing &amp; Plans</h2>
-              </div>
+          <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
 
-              <div className="sticky left-0 z-10 bg-white flex items-center px-2">
-                <span className="p-1 text-sm text-slate-600"><code>Free Tier</code></span>
-              </div>
-              {sortedProviders.map(provider => (
-                <div key={`pricing-free-tier-${provider.identifier}`} className={`flex items-center justify-center transition-opacity ${dimmedProviders.has(provider.identifier) ? 'opacity-25' : ''}`}>
-                  <div className="w-full h-6 flex items-center justify-center rounded">
-                    {provider.pricing ? (
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            {provider.pricing.hasFreeTier ? (
-                              <span className="bg-lime-100 text-lime-600 w-full h-6 flex items-center justify-center rounded cursor-default">
-                                <Check className="h-4 w-4" />
-                              </span>
-                            ) : (
-                              <span className="bg-red-100 text-red-600 w-full h-6 flex items-center justify-center rounded cursor-default">
-                                <X className="w-4 h-4" />
-                              </span>
-                            )}
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p className="text-sm">{provider.pricing.hasFreeTier ? (provider.pricing.freeTierLimit || 'Free tier available') : 'No free tier'}</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    ) : (
-                      <span className="bg-gray-100 text-gray-600 w-full h-6 flex items-center justify-center rounded">
-                        <CircleHelp className="w-4 h-4" />
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-
-              <div className="sticky left-0 z-10 bg-white flex items-start px-2 pt-1">
-                <span className="p-1 text-sm text-slate-600"><code>Plans</code></span>
-              </div>
-              {sortedProviders.map(provider => (
-                <div key={`pricing-plans-${provider.identifier}`} className={`flex items-start justify-center py-1 transition-opacity ${dimmedProviders.has(provider.identifier) ? 'opacity-25' : ''}`}>
-                  {provider.pricing ? (
-                    <div className="flex flex-col gap-0.5 w-full">
-                      {provider.pricing.plans.map(plan => (
-                        <div key={plan.name} className="flex flex-col items-center rounded bg-slate-50 border border-slate-100 px-1 py-0.5">
-                          <span className="text-xs font-medium text-slate-700 text-center">{plan.name}</span>
-                          <span className="text-xs text-slate-500 text-center">{plan.price}</span>
-                        </div>
-                      ))}
-                    </div>
-                  ) : (
-                    <span className="text-xs text-slate-400 mt-1">—</span>
-                  )}
-                </div>
-              ))}
-            </Fragment>
-          )}
-
-          {/* Categories + feature rows */}
           {filteredCategories.map(category => (
             <Fragment key={category.name}>
               <div
@@ -885,89 +722,13 @@ export function IAMProvidersInteractiveView({
                       key={cell.identifier}
                       className={`flex items-center justify-center transition-opacity ${dimmedProviders.has(cell.identifier) ? 'opacity-25' : ''}`}
                     >
-                      <div className="w-full min-h-6 flex items-center justify-center rounded">
-                        <TooltipProvider>
-                          <Tooltip>
-                            {cell.status === FeatureStatus.Supported && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-lime-100 text-lime-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-lime-200 rounded">{v}</span>)
-                                      : <Check className="h-4 w-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Supported'}</p>
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.NotSupported && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-red-100 text-red-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-red-200 rounded">{v}</span>)
-                                      : <X className="w-4 h-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Not Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Not Supported'}</p>
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.Deprecated && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-yellow-100 text-yellow-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-yellow-200 rounded">{v}</span>)
-                                      : <Trash className="h-4 w-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Deprecated <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Deprecated'}</p>
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.Partial && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-blue-100 text-blue-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-blue-200 rounded">{v}</span>)
-                                      : <Info className="h-4 w-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">{cell.links?.[0] ? <Link href={cell.links[0]} target="_blank" rel="nofollow">Partially Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Partially Supported'}</p>
-                                  {cell.description && <p>{cell.description}</p>}
-                                </TooltipContent>
-                              </>
-                            )}
-                            {cell.status === FeatureStatus.Unknown && (
-                              <>
-                                <TooltipTrigger asChild>
-                                  <span className="bg-gray-100 text-gray-600 w-full min-h-6 flex flex-wrap gap-1 items-center justify-center rounded p-1">
-                                    {cell.values && cell.values.length > 0
-                                      ? cell.values.map(v => <span key={v} className="text-xs px-1 py-0.5 bg-gray-200 rounded">{v}</span>)
-                                      : <CircleHelp className="w-4 h-4" />
-                                    }
-                                  </span>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                  <p className="text-sm">Unknown Support</p>
-                                  Help us improve this data by <Link href="https://github.com/cerberauth/nacho/issues" target="_blank" rel="nofollow" className="underline">opening an issue</Link>.
-                                </TooltipContent>
-                              </>
-                            )}
-                          </Tooltip>
-                        </TooltipProvider>
-                      </div>
+                      <StatusCell
+                        featureIdentifier={row.identifier}
+                        status={cell.status as FeatureStatus}
+                        links={cell.links}
+                        values={cell.values}
+                        description={cell.description}
+                      />
                     </div>
                   ))}
                 </Fragment>

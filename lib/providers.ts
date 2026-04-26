@@ -1,4 +1,5 @@
-import { openIDConnectFeatures, providers, FeatureStatus } from '@/data/openid/providers'
+import { FeatureStatus } from '@/lib/types'
+import { openIDConnectFeatures, providers } from '@/data/openid/providers'
 
 export const getOpenIDConnectFeatures = () => {
   return openIDConnectFeatures

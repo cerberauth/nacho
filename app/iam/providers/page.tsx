@@ -3,9 +3,9 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 
 import { featuresCategories } from '@/data/iam/index'
+import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
 import { getIAMProviders } from '@/lib/iam-providers'
 import { getTableCells } from './get-table-cells'
-import { ProviderInaccuracyWarning } from './inaccuracy-warning'
 import { IAMProvidersInteractiveView } from './providers-interactive-view'
 
 export const metadata: Metadata = {
