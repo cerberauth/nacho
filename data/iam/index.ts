@@ -67,16 +67,16 @@ import iamFeatures from './features.json'
 import auth0 from './auth0.json'
 import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
-import descope from './descope.json'
+// import descope from './descope.json'
 import microsoftEntraId from './microsoft-entra-id.json'
-import firebaseAuth from './firebase-auth.json'
+// import firebaseAuth from './firebase-auth.json'
 import fusionauth from './fusionauth.json'
 import keycloak from './keycloak.json'
 import ory from './ory.json'
 import pingIdentity from './ping-identity.json'
-import stytch from './stytch.json'
-import supabaseAuth from './supabase-auth.json'
-import supertokens from './supertokens.json'
+// import stytch from './stytch.json'
+// import supabaseAuth from './supabase-auth.json'
+// import supertokens from './supertokens.json'
 
 export {
   iamFeatures,
@@ -84,16 +84,16 @@ export {
   auth0,
   awsCognito,
   clerk,
-  descope,
+  // descope,
   microsoftEntraId,
-  firebaseAuth,
+  // firebaseAuth,
   fusionauth,
   keycloak,
   ory,
   pingIdentity,
-  stytch,
-  supabaseAuth,
-  supertokens,
+  // stytch,
+  // supabaseAuth,
+  // supertokens,
 }
 
 export const featuresCategories = [
@@ -180,14 +180,14 @@ export const providers: IAMProvider[] = [
   auth0,
   awsCognito,
   clerk,
-  descope,
+  // descope,
   microsoftEntraId,
-  firebaseAuth,
+  // firebaseAuth,
   fusionauth,
   keycloak,
   ory,
   pingIdentity,
-  stytch,
-  supabaseAuth,
-  supertokens,
+  // stytch,
+  // supabaseAuth,
+  // supertokens,
 ]
