@@ -1,14 +1,15 @@
-import { ArrowUpRight, Check, CircleHelp, Info, Trash, X } from 'lucide-react'
+import { Trash } from 'lucide-react'
 import Link from 'next/link'
 
-import { FeatureStatus } from '@/data/openid/providers'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import { FeatureStatus } from '@/lib/types'
+import { StatusCell } from '@/components/benchmark/status-cell'
 
 type BenchmarkCellProps = {
   identifier: string
   description?: string
   status: FeatureStatus
-  url?: string
+  links?: string[]
+  values?: string[]
 }
 
 type BenchmarkRowProps = {
@@ -16,7 +17,7 @@ type BenchmarkRowProps = {
   identifier: string
   description?: string
   status: FeatureStatus
-  url?: string
+  links?: string[]
   cells: BenchmarkCellProps[]
 }
 
@@ -54,7 +55,7 @@ function BenchmarkCategoryTable({
         <div id={category.name.trim()} className="sticky left-0 z-10 bg-white shrink-0 w-[280px] min-w-[280px] px-2 pt-4 pb-1">
           <a href={`#${category.name.trim()}`}>
             <h2
-              className="text-xl font-mono text-slate-950 before:content-['#'] before:hidden before:absolute before:-left-4 hover:underline hover:before:block">
+              className="text-xl font-mono text-slate-950 before:content-['#'] before:hidden before:absolute before:-left-4 hover:before:block">
               {category.name}
             </h2>
           </a>
@@ -62,9 +63,9 @@ function BenchmarkCategoryTable({
       </div>
       <ul className="flex flex-col gap-1">
           {category.rows.map((row) => (
-            <li key={`category-row-${row.identifier}`} className="flex gap-1">
+            <li key={`category-row-${row.identifier}`} className="flex gap-1 items-start">
                 <div className="sticky left-0 z-10 bg-white shrink-0 w-[280px] min-w-[280px] flex items-center px-2">
-                  <Link className={`p-1 ${row.name.length > 30 ? 'text-xs' : 'text-sm'} text-slate-600 hover:text-slate-900 flex gap-1 items-start hover:underline`} href={row.url || `#${row.identifier}`} title={row.description || row.name} target="_blank">
+                  <Link className={`p-1 ${row.name.length > 30 ? 'text-xs' : 'text-sm'} text-slate-600 hover:text-slate-900 flex gap-1 items-start hover:underline`} href={row.links?.[0] || `#${row.identifier}`} title={row.description || row.name} target="_blank">
                     <span className="min-w-0">
                       <code>{row.name}</code>
                     </span>
@@ -76,79 +77,14 @@ function BenchmarkCategoryTable({
                   </Link>
                 </div>
                 {row.cells.map((cell) => (
-                <div key={`row-${row.identifier}-cell-${cell.identifier}`} className={`min-w-[124px] w-full flex items-center justify-center transition-opacity ${dimmedProviders?.has(cell.identifier) ? 'opacity-25' : ''}`}>
-                  <div className="w-full h-6 flex items-center justify-center rounded">
-                    <TooltipProvider>
-                      <Tooltip>
-                        {cell.status === FeatureStatus.Supported && (
-                          <>
-                            <TooltipTrigger asChild>
-                              <span className="bg-lime-100 text-lime-600 w-full h-6 flex items-center justify-center rounded">
-                                <Check className="h-4 w-4" />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="text-sm">{cell.url ? <Link href={cell.url} target="_blank" rel="nofollow">Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Supported'}</p>
-                            </TooltipContent>
-                          </>
-                        )}
-
-                        {cell.status === FeatureStatus.NotSupported && (
-                          <>
-                            <TooltipTrigger asChild>
-                              <span className="bg-red-100 text-red-600 w-full h-6 flex items-center justify-center rounded">
-                                <X className="w-4 h-4" />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="text-sm">{cell.url ? <Link href={cell.url} target="_blank" rel="nofollow">Not Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Not Supported'}</p>
-                            </TooltipContent>
-                          </>
-                        )}
-
-                        {cell.status === FeatureStatus.Deprecated && (
-                          <>
-                            <TooltipTrigger asChild>
-                              <span className="bg-yellow-100 text-yellow-600 w-full h-6 flex items-center justify-center rounded">
-                                <Trash className="h-4 w-4" />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="text-sm">{cell.url ? <Link href={cell.url} target="_blank" rel="nofollow">Deprecated <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Deprecated'}</p>
-                            </TooltipContent>
-                          </>
-                        )}
-
-                        {cell.status === FeatureStatus.Partial && (
-                          <>
-                            <TooltipTrigger asChild>
-                              <span className="bg-blue-100 text-blue-600 w-full h-6 flex items-center justify-center rounded">
-                                <Info className="h-4 w-4" />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="text-sm">{cell.url ? <Link href={cell.url} target="_blank" rel="nofollow">Partially Supported <ArrowUpRight className="w-4 h-4 inline-block" /></Link> : 'Partially Supported'}</p>
-                              {cell.description && <p>{cell.description}</p>}
-                            </TooltipContent>
-                          </>
-                        )}
-
-                        {cell.status === FeatureStatus.Unknown && (
-                          <>
-                            <TooltipTrigger asChild>
-                              <span className="bg-gray-100 text-gray-600 w-full h-6 flex items-center justify-center rounded">
-                                <CircleHelp className="w-4 h-4" />
-                              </span>
-                            </TooltipTrigger>
-                            <TooltipContent>
-                              <p className="text-sm">Unknown Support</p>
-                              Help us improve this data by <Link href="https://github.com/cerberauth/nacho/issues" target="_blank" rel="nofollow" className="underline">opening an issue</Link>.
-                            </TooltipContent>
-                          </>
-                        )}
-                      </Tooltip>
-                    </TooltipProvider>
-                  </div>
+                <div key={`row-${row.identifier}-cell-${cell.identifier}`} className={`min-w-[124px] w-full flex items-start justify-center transition-opacity ${dimmedProviders?.has(cell.identifier) ? 'opacity-25' : ''}`}>
+                  <StatusCell
+                    featureIdentifier={row.identifier}
+                    status={cell.status}
+                    links={cell.links}
+                    values={cell.values}
+                    description={cell.description}
+                  />
                 </div>
                 ))}
             </li>
@@ -157,3 +93,4 @@ function BenchmarkCategoryTable({
     </div>
   )
 }
+

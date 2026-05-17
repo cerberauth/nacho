@@ -8,6 +8,7 @@
   },
   "website": "https://clerk.com",
   "license": "Proprietary",
+  "nationality": "USA",
   "featureList": [
     {
       "identifier": "implicit_grant",
@@ -16,12 +17,12 @@
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "jar_extension",
@@ -46,7 +47,7 @@
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
@@ -71,17 +72,17 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "token_revocation_endpoint",
@@ -90,7 +91,7 @@
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "device_authorization_endpoint",
@@ -99,7 +100,7 @@
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
@@ -108,12 +109,12 @@
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "url": "https://clerk.com/changelog/2025-02-13-clerk-oidc"
+      "links": ["https://clerk.com/changelog/2025-02-13-clerk-oidc"]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "url": "https://clerk.com/changelog/2025-02-13-clerk-oidc"
+      "links": ["https://clerk.com/changelog/2025-02-13-clerk-oidc"]
     },
     {
       "identifier": "consent_prompt",
@@ -130,12 +131,12 @@
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "url": "https://clerk.com/docs/advanced-usage/clerk-idp"
+      "links": ["https://clerk.com/docs/advanced-usage/clerk-idp"]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",

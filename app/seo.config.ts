@@ -13,7 +13,7 @@ export const seoConfig = {
     siteName: 'Nacho',
     images: [
       {
-        url: `${baseUrl}og-image.png`,
+        url: `${baseUrl}/og-image.png`,
         width: 1600,
         height: 800,
         alt: 'Nacho - OAuth / OpenID Connect Client Helper',

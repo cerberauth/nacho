@@ -1,0 +1,595 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Descope",
+  "abstract": "No-code visual flow builder for authentication journeys. FedRAMP High authorized. Drag-and-drop orchestration with a connector marketplace rivaling enterprise orchestration platforms at a fraction of the cost.",
+  "identifier": "descope",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/descope.svg"
+  },
+  "website": "https://www.descope.com",
+  "github": "https://github.com/descope",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "7,500 MAU",
+    "pricingModel": "mau",
+    "pricingUrl": "https://www.descope.com/pricing",
+    "plans": [
+      { "name": "Free", "price": "Free" },
+      { "name": "Growth", "price": "$0.05/MAU" },
+      { "name": "Enterprise", "price": "Custom" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://docs.descope.com/flows"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/social"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/passkeys"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/email-otp"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/sms-otp"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/magic-link"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "supported",
+      "description": "Anonymous users issued a dedicated session JWT with a danu claim; seamlessly converted to full accounts on sign-up.",
+      "links": ["https://docs.descope.com/management/user-management/anonymous-users"]
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/totp"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "Not supported. Descope supports TOTP (time-based) and WebAuthn/passkeys but not counter-based HOTP.",
+      "links": ["https://docs.descope.com/auth-methods"]
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "Supported via WebAuthn/FIDO2 implementation (hardware security keys).",
+      "links": ["https://docs.descope.com/auth-methods/passkeys"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/passkeys"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/email-otp"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-methods/sms-otp"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "supported",
+      "description": "Recovery codes supported as a backup MFA method.",
+      "links": ["https://docs.descope.com/auth-methods/recovery-codes"]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "description": "Not supported. Descope provides OTP, TOTP, passkeys, and magic links as MFA channels but does not offer push notification MFA.",
+      "links": ["https://docs.descope.com/auth-methods"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "supported",
+      "description": "Risk-based MFA via conditional logic in Descope Flows. Available on Pro plan.",
+      "links": ["https://docs.descope.com/flows"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "Descope provides native MFA orchestration. Cisco Duo is not listed as a supported connector or MFA integration.",
+      "links": ["https://docs.descope.com/connectors"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "Step-up auth supported natively in Descope Flows.",
+      "links": ["https://docs.descope.com/flows"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://docs.descope.com/sso/oidc"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "links": ["https://docs.descope.com/sso/saml"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "description": "Not supported. Descope supports OIDC and SAML 2.0 as federation protocols but not WS-Federation.",
+      "links": ["https://docs.descope.com/auth-methods/sso"]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "M2M authentication available on Pro plan.",
+      "links": ["https://docs.descope.com/auth-methods/m2m"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "links": ["https://docs.descope.com/sso"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "links": ["https://docs.descope.com/sso"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "LDAP connector authenticates users against an LDAP directory server (including Active Directory) using username/password or mutual TLS (mTLS). Requires the LDAP server to be internet-accessible.",
+      "links": ["https://docs.descope.com/connectors/connector-configuration-guides/other/ldap"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID (Azure AD) SSO via SAML/OIDC, with SCIM provisioning support.",
+      "links": ["https://docs.descope.com/auth-methods/sso/saml", "https://docs.descope.com/management/tenant-management/scim/azure-scim"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Password hash import supported on Pro plan.",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Available via Management API.",
+      "links": ["https://docs.descope.com/api"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported",
+      "description": "Importing pre-existing MFA enrollments (e.g. TOTP secrets) is not supported. Users must re-enroll in MFA after migration.",
+      "links": ["https://docs.descope.com/migrate"]
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "description": "SCIM 2.0 provisioning available on Growth plan.",
+      "links": ["https://docs.descope.com/management/tenant-management/scim"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "Descope only supports inbound SCIM (receiving provisioning from IdPs such as Okta and Azure). Outbound SCIM (pushing users from Descope to external directories) is not supported.",
+      "links": ["https://docs.descope.com/management/tenant-management/scim"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "description": "SCIM group provisioning on Growth plan.",
+      "links": ["https://docs.descope.com/management/tenant-management/scim"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "links": ["https://docs.descope.com/sso"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "description": "Zero-downtime user migration available on Pro plan.",
+      "links": ["https://docs.descope.com/migrate"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "links": ["https://docs.descope.com/sdks"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "supported",
+      "description": "20KB per object.",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Roles and permissions available on Pro plan.",
+      "links": ["https://docs.descope.com/authorization"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "description": "Native multi-tenant model with tenants and organization management.",
+      "links": ["https://docs.descope.com/tenants"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-hosting/branding"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "links": ["https://docs.descope.com/management/user-management"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "supported",
+      "description": "Progressive profiling via Flows builder — collect additional data at any step.",
+      "links": ["https://docs.descope.com/flows"]
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "Attribute-based authorization available on Growth plan.",
+      "links": ["https://docs.descope.com/authorization"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Fine-grained authorization via relationship-based access control on Growth plan.",
+      "links": ["https://docs.descope.com/authorization"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "API authorization with scopes and permissions on Pro plan.",
+      "links": ["https://docs.descope.com/authorization"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported",
+      "description": "CSA STAR Level 2 certified.",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "supported",
+      "description": "FedRAMP High authorized, making Descope suitable for US federal government use cases.",
+      "links": ["https://www.descope.com/press-release/fedramp", "https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "Consent management available on Growth plan.",
+      "links": ["https://docs.descope.com/flows"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Data residency in US and EU regions available on Growth plan.",
+      "values": ["US", "EU"],
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Audit logs available on Pro plan.",
+      "links": ["https://docs.descope.com/audit"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Log streaming to external systems on Growth plan.",
+      "links": ["https://docs.descope.com/audit"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "links": ["https://docs.descope.com/security"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "links": ["https://docs.descope.com/security"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "links": ["https://docs.descope.com/security"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "supported",
+      "links": ["https://docs.descope.com/security"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "No Auth0-style credential guard feature. Descope offers breached password detection via the Have I Been Pwned connector.",
+      "links": ["https://docs.descope.com/connectors/connector-configuration-guides/fraud/pwned"]
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "not_supported",
+      "description": "No dedicated tenant ACL (access control list) feature for restricting traffic to tenants. Access control is managed via RBAC and tenant-level roles.",
+      "links": ["https://docs.descope.com/management/tenant-management"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "supported",
+      "description": "Device fingerprinting for risk-based decisions. Available on Pro plan.",
+      "links": ["https://docs.descope.com/security"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Per-tenant branding on Pro plan.",
+      "links": ["https://docs.descope.com/tenants"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "Per-tenant MFA policies on Pro plan.",
+      "links": ["https://docs.descope.com/tenants"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-hosting"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "Embeddable Descope web components and React/Vue/Angular SDKs.",
+      "links": ["https://docs.descope.com/sdks"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Full white-labeling on Pro plan.",
+      "links": ["https://docs.descope.com/auth-hosting/branding"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-hosting/localization"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "Descope Flow components for React, Vue, Angular, and Web Components.",
+      "links": ["https://docs.descope.com/sdks"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "Authentication analytics dashboard available on all paid plans.",
+      "links": ["https://app.descope.com"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "SDKs for React, Vue, Angular, React Native, iOS, Android, Node.js, Python, Go, and more.",
+      "links": ["https://docs.descope.com/sdks"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "links": ["https://docs.descope.com/api"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "links": ["https://docs.descope.com/api"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Connector marketplace within Flows for triggering external actions at any step.",
+      "links": ["https://docs.descope.com/connectors"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "supported",
+      "description": "TypeScript connectors and function hooks supported.",
+      "links": ["https://docs.descope.com/connectors"]
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Custom domain on Pro plan.",
+      "links": ["https://docs.descope.com/auth-hosting"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "Descope CLI (descopecli) supports project snapshot export/import/validate, flows management, user/tenant operations, and CI/CD integration.",
+      "links": ["https://docs.descope.com/cli/descope"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "supported",
+      "links": ["https://registry.terraform.io/providers/descope/descope/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "Custom database connectors via the Flows connector marketplace. Pro plan.",
+      "links": ["https://docs.descope.com/connectors"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "links": ["https://docs.descope.com/webhooks"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-hosting/branding"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Custom SMTP and email provider via connectors.",
+      "links": ["https://docs.descope.com/connectors"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "links": ["https://docs.descope.com/auth-hosting/branding"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims added to JWTs via the Custom Claims action in Flows or JWT templates. Supports the descope.custom_claims scope in OIDC applications.",
+      "links": ["https://docs.descope.com/customize/auth/oidc/", "https://docs.descope.com/flows/actions/custom-claims"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "supported",
+      "description": "Descope Flows — visual drag-and-drop authentication journey builder. Available on Free plan.",
+      "links": ["https://docs.descope.com/flows"]
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "supported",
+      "description": "MCP server authentication for AI agents on Pro plan.",
+      "links": ["https://docs.descope.com/agentic-identity-hub/mcp-servers"]
+    }
+  ]
+}

@@ -2,6 +2,7 @@ import Image from 'next/image'
 import type { OpenIDConnectProvider } from '@/data/openid/providers'
 import Link from 'next/link'
 import { GitHubLogoIcon, GlobeIcon } from '@radix-ui/react-icons'
+import { getCountryFlag } from '@/lib/utils'
 
 type ProviderCardProps = {
   provider: OpenIDConnectProvider
@@ -19,9 +20,16 @@ export function ProviderCard({ provider }: ProviderCardProps) {
           alt={provider.name}
         />
       )}
-      <Link href={`/openid/providers/${provider.identifier}`} className="text-md text-center w-full text-slate-900 dark:text-white mt-2">
-        {provider.name}
-      </Link>
+      <div className="flex items-center gap-1.5 mt-2">
+        <Link href={`/openid/providers/${provider.identifier}`} className="text-md text-center text-slate-900 dark:text-white">
+          {provider.name}
+        </Link>
+        {provider.nationality && (
+          <span title={provider.nationality} className="text-sm grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+            {getCountryFlag(provider.nationality)}
+          </span>
+        )}
+      </div>
       <p className="text-sm text-slate-500">
         {provider.license}
       </p>

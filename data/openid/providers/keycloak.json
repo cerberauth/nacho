@@ -8,72 +8,73 @@
   },
   "website": "https://www.keycloak.org",
   "license": "Apache-2.0",
+  "nationality": "USA",
   "github": "https://github.com/keycloak/keycloak",
   "featureList": [
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_implicit"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_implicit"]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#authorization-code"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#authorization-code"]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#_pkce"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#_pkce"]
     },
     {
       "identifier": "par_extension",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     },
     {
       "identifier": "rar_extension",
       "status": "not_supported",
-      "url": "https://github.com/keycloak/keycloak/discussions/29340"
+      "links": ["https://github.com/keycloak/keycloak/discussions/29340"]
     },
     {
       "identifier": "jar_extension",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     },
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#client-credentials"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#client-credentials"]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#_resource_owner_password_credentials_flow"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#_resource_owner_password_credentials_flow"]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_endpoint"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_token_endpoint"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/token-exchange"
+      "links": ["https://www.keycloak.org/securing-apps/token-exchange"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#device-authorization-grant"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#device-authorization-grant"]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#_client_initiated_backchannel_authentication_grant"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#_client_initiated_backchannel_authentication_grant"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/jwt-authorization-grant"
+      "links": ["https://www.keycloak.org/securing-apps/jwt-authorization-grant"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
@@ -82,148 +83,148 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_authorization_endpoint"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_authorization_endpoint"]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_endpoint"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_token_endpoint"]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_userinfo_endpoint"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_userinfo_endpoint"]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_revocation_endpoint"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_token_revocation_endpoint"]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_token_introspection_endpoint"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_token_introspection_endpoint"]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "partial",
       "description": "Supports through OpenID Connect Discovery",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "select_account_prompt",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "create_prompt",
       "status": "not_supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"
+      "links": ["https://www.keycloak.org/docs-api/latest/javadocs/org/keycloak/protocol/oidc/OIDCLoginProtocol.html"]
     },
     {
       "identifier": "dynamic_client_registration",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/securing_apps/#dynamic-client-registration-endpoint"
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#dynamic-client-registration-endpoint"]
     },
     {
       "identifier": "dynamic_client_registration_management",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/client-registration"
+      "links": ["https://www.keycloak.org/securing-apps/client-registration"]
     },
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/server_admin/#_offline-access"
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/#_offline-access"]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_logout"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_logout"]
     },
     {
       "identifier": "dpop",
       "status": "supported",
-      "url": "https://www.keycloak.org/docs/latest/server_admin/#_dpop-bound-tokens"
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/#_dpop-bound-tokens"]
     },
     {
       "identifier": "fapi_1_0_baseline",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     },
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     },
     {
       "identifier": "fapi_2_0_message_signing",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     },
     {
       "identifier": "jarm",
       "status": "supported",
-      "url": "https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_fapi-support"]
     }
   ]
 }

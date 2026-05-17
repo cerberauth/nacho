@@ -8,21 +8,22 @@
   },
   "website": "https://www.cyberark.com",
   "license": "Proprietary",
+  "nationality": "Israel",
   "featureList": [
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/implicit-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/implicit-flow.htm"]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow.htm"]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow-pkce.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow-pkce.htm"]
     },
     {
       "identifier": "jar_extension",
@@ -39,17 +40,17 @@
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oauth/client-cred-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oauth/client-cred-flow.htm"]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oauth/resource-owner-password-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oauth/resource-owner-password-flow.htm"]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/tokens/refresh-tokens.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/tokens/refresh-tokens.htm"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
@@ -74,27 +75,27 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow.htm"]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/auth-code-flow.htm"]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/userinfo-endpoint.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/userinfo-endpoint.htm"]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-logout/revoke-tokens.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-logout/revoke-tokens.htm"]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oauth/about-oauth.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oauth/about-oauth.htm"]
     },
     {
       "identifier": "device_authorization_endpoint",
@@ -103,27 +104,27 @@
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/about-openidconnect.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/about-openidconnect.htm"]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/about-openidconnect.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/about-openidconnect.htm"]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-auth.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-auth.htm"]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-auth.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-auth.htm"]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-consent.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-consent.htm"]
     },
     {
       "identifier": "select_account_prompt",
@@ -140,12 +141,12 @@
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oauth/client-cred-flow.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oauth/client-cred-flow.htm"]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/coreservices/authenticate/oauth2-server.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/coreservices/authenticate/oauth2-server.htm"]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
@@ -170,12 +171,12 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/tokens/refresh-tokens.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/tokens/refresh-tokens.htm"]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "url": "https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-logout/end-oidc-session.htm"
+      "links": ["https://docs.cyberark.com/identity/latest/en/content/developer/oidc/oidc-logout/end-oidc-session.htm"]
     },
     {
       "identifier": "dpop",

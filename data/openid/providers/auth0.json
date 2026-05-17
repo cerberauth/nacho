@@ -8,66 +8,67 @@
   },
   "website": "https://auth0.com",
   "license": "Proprietary",
+  "nationality": "USA",
   "featureList": [
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "url": "https://auth0.com/docs/flows/implicit-flow-with-form-post"
+      "links": ["https://auth0.com/docs/flows/implicit-flow-with-form-post"]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "url": "https://auth0.com/docs/flows/authorization-code-flow"
+      "links": ["https://auth0.com/docs/flows/authorization-code-flow"]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce"
+      "links": ["https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow-with-pkce"]
     },
     {
       "identifier": "jar_extension",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/application-credentials#jwt-secured-authorization-request-jar-"
+      "links": ["https://auth0.com/docs/secure/application-credentials#jwt-secured-authorization-request-jar-"]
     },
     {
       "identifier": "par_extension",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/authorization-code-flow-with-par"
+      "links": ["https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/authorization-code-flow-with-par"]
     },
     {
       "identifier": "rar_extension",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/authorization-code-flow-with-rar"
+      "links": ["https://auth0.com/docs/get-started/authentication-and-authorization-flow/authorization-code-flow/authorization-code-flow-with-rar"]
     },
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "url": "https://auth0.com/docs/flows/client-credentials-flow"
+      "links": ["https://auth0.com/docs/flows/client-credentials-flow"]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "url": "https://auth0.com/docs/flows/resource-owner-password-flow"
+      "links": ["https://auth0.com/docs/flows/resource-owner-password-flow"]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "url": "https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens"
+      "links": ["https://auth0.com/docs/tokens/refresh-tokens/use-refresh-tokens"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "url": "https://auth0.com/docs/flows/device-authorization-flow"
+      "links": ["https://auth0.com/docs/flows/device-authorization-flow"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "url": "https://auth0.com/docs/authenticate/custom-token-exchange"
+      "links": ["https://auth0.com/docs/authenticate/custom-token-exchange"]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-initiated-backchannel-authentication-flow"
+      "links": ["https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-initiated-backchannel-authentication-flow"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
@@ -80,23 +81,23 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "url": "https://auth0.com/docs/api/authentication#authorize-endpoint"
+      "links": ["https://auth0.com/docs/api/authentication#authorize-endpoint"]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "url": "https://auth0.com/docs/api/authentication#-post-oauth-token-"
+      "links": ["https://auth0.com/docs/api/authentication#-post-oauth-token-"]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "url": "https://auth0.com/docs/api/authentication#get-user-info"
+      "links": ["https://auth0.com/docs/api/authentication#get-user-info"]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "partial",
       "description": "Auth0 support only revocation of refresh tokens",
-      "url": "https://auth0.com/docs/api/authentication#revoke-refresh-token"
+      "links": ["https://auth0.com/docs/api/authentication#revoke-refresh-token"]
     },
     {
       "identifier": "token_introspection_endpoint",
@@ -105,28 +106,28 @@
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "url": "https://auth0.com/docs/api/authentication/device-authorization-flow/authorize-device"
+      "links": ["https://auth0.com/docs/api/authentication/device-authorization-flow/authorize-device"]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery"
+      "links": ["https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery"]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "partial",
       "description": "Supports through OpenID Connect Discovery",
-      "url": "https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery"
+      "links": ["https://auth0.com/docs/get-started/applications/configure-applications-with-oidc-discovery"]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "url": "https://auth0.com/docs/api/authentication#authorize"
+      "links": ["https://auth0.com/docs/api/authentication#authorize"]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "url": "https://auth0.com/docs/api/authentication#authorize"
+      "links": ["https://auth0.com/docs/api/authentication#authorize"]
     },
     {
       "identifier": "consent_prompt",
@@ -143,37 +144,37 @@
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/application-credentials"
+      "links": ["https://auth0.com/docs/secure/application-credentials"]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/application-credentials"
+      "links": ["https://auth0.com/docs/secure/application-credentials"]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/application-credentials"
+      "links": ["https://auth0.com/docs/secure/application-credentials"]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
       "status": "not_supported",
-      "url": "https://auth0.com/docs/secure/application-credentials"
+      "links": ["https://auth0.com/docs/secure/application-credentials"]
     },
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/application-credentials"
+      "links": ["https://auth0.com/docs/secure/application-credentials"]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/application-credentials"
+      "links": ["https://auth0.com/docs/secure/application-credentials"]
     },
     {
       "identifier": "dynamic_client_registration",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/applications/dynamic-client-registration"
+      "links": ["https://auth0.com/docs/get-started/applications/dynamic-client-registration"]
     },
     {
       "identifier": "dynamic_client_registration_management",
@@ -182,17 +183,17 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation"
+      "links": ["https://auth0.com/docs/secure/tokens/refresh-tokens/refresh-token-rotation"]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "url": "https://auth0.com/docs/authenticate/login/logout/log-users-out-of-auth0"
+      "links": ["https://auth0.com/docs/authenticate/login/logout/log-users-out-of-auth0"]
     },
     {
       "identifier": "dpop",
       "status": "supported",
-      "url": "https://auth0.com/docs/secure/sender-constraining/demonstrating-proof-of-possession-dpop"
+      "links": ["https://auth0.com/docs/secure/sender-constraining/demonstrating-proof-of-possession-dpop"]
     },
     {
       "identifier": "fapi_1_0_baseline",
@@ -201,12 +202,12 @@
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/applications/configure-fapi-compliance"
+      "links": ["https://auth0.com/docs/get-started/applications/configure-fapi-compliance"]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "supported",
-      "url": "https://auth0.com/docs/get-started/applications/configure-fapi-compliance"
+      "links": ["https://auth0.com/docs/get-started/applications/configure-fapi-compliance"]
     },
     {
       "identifier": "fapi_2_0_message_signing",

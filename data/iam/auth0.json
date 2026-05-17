@@ -1,0 +1,1042 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Auth0",
+  "abstract": "Auth0 is a customer identity and access management (CIAM) platform that provides authentication, authorization, user management, security, and compliance features.",
+  "identifier": "auth0",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/auth0.svg"
+  },
+  "website": "https://auth0.com",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "25,000 MAU",
+    "pricingModel": "mau",
+    "pricingUrl": "https://auth0.com/pricing",
+    "plans": [
+      { "name": "Free", "price": "Free" },
+      { "name": "B2C Essentials", "price": "$35/month" },
+      { "name": "B2C Professional", "price": "$240/month" },
+      { "name": "B2B Essentials", "price": "$150/month" },
+      { "name": "B2B Professional", "price": "$800/month" },
+      { "name": "Enterprise", "price": "Custom" }
+    ]
+  },
+  "featureList": [
+    {
+      "description": "Standard database connection authentication with username/email and password. Auth0's primary built-in connection type.",
+      "identifier": "username_and_password_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/database-connections"
+      ]
+    },
+    {
+      "description": "30+ built-in social providers (Google, Facebook, Apple, GitHub, LinkedIn, etc.) plus custom OAuth2/OIDC. Free plan limited to 2 social connections. Dashboard shows only 1 connection per social strategy; additional connections require Management API.",
+      "identifier": "social_sign_in_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/identity-providers/social-identity-providers"
+      ]
+    },
+    {
+      "description": "Passkeys (FIDO2/WebAuthn) supported as a primary factor for database connections. Custom Relying Party ID is in Early Access. Requires Identifier First authentication profile. Account recovery falls back to password reset.",
+      "identifier": "passkey_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/database-connections/passkeys"
+      ]
+    },
+    {
+      "description": "Email OTP code works with Universal Login. Configurable expiry and code length. Locks out after 3 incorrect attempts.",
+      "identifier": "email_passwordless_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/passwordless"
+      ]
+    },
+    {
+      "description": "SMS OTP passwordless login. Requires customer-configured Twilio or custom SMS provider for production. Auth0's built-in SMS provider is test-only. Rate limit of 10 messages/hour/user.",
+      "identifier": "phone_passwordless_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/passwordless/authentication-methods/sms-otp"
+      ]
+    },
+    {
+      "description": "Magic links are NOT supported with Universal Login (Auth0's recommended and actively developed login experience). Classic Login, which was the only way to use magic links, reached End of Life in July 2025. As of July 2025, magic link authentication is effectively unavailable for new or existing production deployments. Same-browser requirement also created mobile friction. Cannot combine with Passkeys/WebAuthn passwordless connections.",
+      "identifier": "magic_link_authentication",
+      "category": "authentication_methods",
+      "status": "not_supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/passwordless/authentication-methods/email-magic-link",
+        "https://auth0.com/docs/authenticate/passwordless/passwordless-connection-limitations",
+        "https://auth0.com/docs/troubleshoot/product-lifecycle/deprecations-and-migrations"
+      ]
+    },
+    {
+      "description": "Authenticator app TOTP (Google Authenticator, Authy, etc.). Available on Essentials plan and above. Not included in the Free plan.",
+      "identifier": "totp_mfa",
+      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-otp-notifications-for-mfa"
+      ]
+    },
+    {
+      "description": "HOTP (counter-based OTP) is not natively supported as a standalone MFA factor. Auth0 focuses on TOTP. Custom implementation possible via Actions.",
+      "identifier": "hotp_mfa",
+      "category": "mfa",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication"
+      ]
+    },
+    {
+      "description": "Roaming authenticators (YubiKey, Titan Key) supported via WebAuthn. U2F is the predecessor spec; Auth0 implements the successor WebAuthn standard. Requires Professional plan or above.",
+      "identifier": "u2f_mfa",
+      "plans": ["B2C Professional", "B2B Professional", "Enterprise"],
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/fido-authentication-with-webauthn/configure-webauthn-security-keys-for-mfa"
+      ]
+    },
+    {
+      "description": "Touch ID, Face ID, Windows Hello as an MFA factor. Requires Professional plan or above (Enterprise MFA tier).",
+      "identifier": "webauthn_mfa",
+      "plans": ["B2C Professional", "B2B Professional", "Enterprise"],
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/fido-authentication-with-webauthn"
+      ]
+    },
+    {
+      "description": "Email OTP as an MFA factor. Cannot be the sole MFA factor if email is also the primary authentication channel. Requires external SMTP for production.",
+      "identifier": "email_code_mfa",
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-email-notifications-for-mfa"
+      ]
+    },
+    {
+      "description": "SMS OTP as a second factor. Rate limit of 10 messages/hour/user. Requires Twilio or custom provider for production use.",
+      "identifier": "phone_code_mfa",
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-sms-voice-notifications-mfa"
+      ]
+    },
+    {
+      "description": "One-time backup codes generated at MFA enrollment for account recovery. Supported alongside all MFA factors.",
+      "identifier": "recovery_code_mfa",
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors"
+      ]
+    },
+    {
+      "description": "Push notifications via Auth0 Guardian app (iOS/Android) or Guardian SDK for custom branded apps. Requires Professional plan or above (Enterprise MFA tier).",
+      "identifier": "push_notification_mfa",
+      "plans": ["B2C Professional", "B2B Professional", "Enterprise"],
+      "category": "mfa",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/multi-factor-authentication-factors/configure-push-notifications-for-mfa"
+      ]
+    },
+    {
+      "description": "ML-based confidence score evaluated at login using new device detection, impossible travel, and IP reputation signals. Requires Enterprise plan with Adaptive MFA add-on. Not supported for SAML IdP-initiated flows or ROPG. All users must have an email address.",
+      "identifier": "adaptive_mfa",
+      "plans": ["Enterprise"],
+      "category": "mfa",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/adaptive-mfa"
+      ]
+    },
+    {
+      "description": "Cisco Duo integration supported but can only be used as the sole MFA factor — cannot be combined with other Auth0 MFA factors simultaneously. Requires Professional plan or above.",
+      "identifier": "cisco_duo_mfa",
+      "category": "mfa",
+      "status": "partial",
+      "plans": ["B2C Professional", "B2B Professional", "Enterprise"],
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/configure-cisco-duo-for-mfa"
+      ]
+    },
+    {
+      "description": "Supported via Actions post-login triggers using acr_values claims. Not a dashboard toggle — requires developer implementation in JavaScript. Requires Essentials plan or above.",
+      "identifier": "step_up_authentication",
+      "category": "mfa",
+      "status": "supported",
+      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/step-up-authentication"
+      ]
+    },
+    {
+      "description": "Core protocol \u2014 Auth0 is fundamentally built on OIDC/OAuth 2.0. OIDC Discovery supported. OpenID-certified.",
+      "identifier": "oidc_protocol",
+      "category": "integration_protocols",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/protocols/openid-connect-protocol"
+      ]
+    },
+    {
+      "description": "Full SAML 2.0 support as both Identity Provider and Service Provider. Custom attribute mappings via Actions. Max 100 attributes, 1 KB names, 2 KB values, 10 KB total assertions. Cannot enable both SAML and WS-Fed addons on the same client application.",
+      "identifier": "saml2_protocol",
+      "category": "integration_protocols",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/protocols/saml"
+      ]
+    },
+    {
+      "description": "Auto-assigned WS-Fed endpoints for every application. Cannot combine with SAML addon on the same client. Not compatible with the Organizations feature.",
+      "identifier": "ws_federation_protocol",
+      "category": "integration_protocols",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/protocols/ws-fed-protocol"
+      ]
+    },
+    {
+      "identifier": "oidc_federation",
+      "category": "identity_federation",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/identity-providers/enterprise-identity-providers/oidc"
+      ]
+    },
+    {
+      "identifier": "saml_federation",
+      "category": "identity_federation",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/identity-providers/enterprise-identity-providers/saml"
+      ]
+    },
+    {
+      "description": "Supported via on-premises AD/LDAP Connector agent. Supports Kerberos SSO for seamless desktop login. Not recommended for customer-side installation in B2B scenarios.",
+      "identifier": "active_directory_ldap",
+      "category": "identity_federation",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/identity-providers/enterprise-identity-providers/active-directory-ldap"
+      ]
+    },
+    {
+      "description": "Native connection type supporting OIDC and SAML federation with Microsoft Entra ID (formerly Azure AD).",
+      "identifier": "azure_ad_integration",
+      "category": "identity_federation",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/identity-providers/enterprise-identity-providers/azure-active-directory/v2"
+      ]
+    },
+    {
+      "description": "JSON format import via Management API. Max 500 KB file size per job and 2 concurrent jobs (429 error if exceeded). Recommended batch size is ~1,000 users. Import job data auto-deleted after 24 hours.",
+      "identifier": "bulk_user_import",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/bulk-user-imports"
+      ]
+    },
+    {
+      "description": "Supported hash formats: bcrypt ($2a$/$2b$/$2y$, NOT $2$ or $2x$), argon2, PBKDF2, scrypt, SHA1/256/512, MD4/MD5, HMAC, LDAP, custom PHC format. bcrypt processes max 72 bytes. The crypt scheme is NOT supported.",
+      "identifier": "password_hash_import",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/bulk-user-import-schema"
+      ]
+    },
+    {
+      "description": "JSON (NDJSON) and CSV export via Management API. Must convert NDJSON to JSON for re-import compatibility. Field selection supported. Export format sometimes incompatible with import schema (community-reported).",
+      "identifier": "bulk_user_export",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/bulk-user-exports"
+      ]
+    },
+    {
+      "description": "No native bulk update or delete operations. All user modifications require individual per-user Management API calls subject to rate limits (2\u201350 RPS depending on plan).",
+      "identifier": "bulk_user_update_delete",
+      "category": "user_management",
+      "status": "not_supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/bulk-user-imports"
+      ]
+    },
+    {
+      "description": "Available but slower than insert-only mode. Does NOT merge metadata on upsert \u2014 existing metadata is completely overwritten.",
+      "identifier": "upsert_on_import",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/bulk-user-imports"
+      ]
+    },
+    {
+      "description": "Usernames are restricted to alphanumeric characters plus @._+- (max 128 characters). Usernames with accents or special symbols require cleaning or mapping. A specific knowledge base article covers the workaround.",
+      "identifier": "legacy_username_import",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://support.auth0.com/center/s/article/How-to-Import-Legacy-Usernames-with-Non-Allowed-Characters",
+        "https://auth0.com/docs/authenticate/database-connections/require-username"
+      ]
+    },
+    {
+      "description": "Phone SMS/voice and email OTP MFA enrollments can be included during bulk user import.",
+      "identifier": "mfa_enrollment_import",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/bulk-user-imports"
+      ]
+    },
+    {
+      "description": "SCIM 2.0 inbound provisioning from enterprise IdPs (Azure AD, Okta, etc.) into Auth0. Now available on all plans including Free.",
+      "identifier": "inbound_scim_provisioning",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/protocols/scim"
+      ]
+    },
+    {
+      "description": "No native outbound SCIM provisioning from Auth0 to third-party applications. Requires custom implementation via Actions or external tooling.",
+      "identifier": "outbound_scim_provisioning",
+      "category": "user_management",
+      "status": "not_supported",
+      "links": [
+        "https://community.auth0.com/t/enable-outbound-scim-provisioning-to-sync-users-and-roles-from-auth0-to-a-third-party-application/182503"
+      ]
+    },
+    {
+      "description": "SCIM Group sync is currently in Limited Early Access \u2014 not generally available. Critical for enterprise B2B access control use cases.",
+      "identifier": "scim_groups",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/authenticate/protocols/scim"
+      ]
+    },
+    {
+      "description": "Automatic user creation in Auth0 on first enterprise SSO login. Configurable via connection settings.",
+      "identifier": "jit_provisioning",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/identity-providers/enterprise-identity-providers"
+      ]
+    },
+    {
+      "description": "Users migrated on first login from a custom database connection without forcing password resets. Legacy database must remain accessible online. One-at-a-time migration pace. Cannot easily combine with Organizations feature. No automatic completion notification.",
+      "identifier": "lazy_migration",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-migration/configure-automatic-migration-from-your-database"
+      ]
+    },
+    {
+      "description": "No built-in profile management portal. Developers must build a custom UI. The My Account API (/me endpoints) is in Limited Early Access. Management API can be used server-side.",
+      "identifier": "self_service_profile_management",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/api/myaccount/",
+        "https://auth0.com/docs/get-started/architecture-scenarios/business-to-consumer/profile-management"
+      ]
+    },
+    {
+      "description": "Supported via Management API. Metadata from the secondary account is discarded upon linking \u2014 must manually merge before calling the link endpoint. No automatic profile merging. Both accounts must be authenticated first. setPrimaryUser can only be called once per transaction in Actions.",
+      "identifier": "account_linking",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-accounts/user-account-linking"
+      ]
+    },
+    {
+      "description": "Users can be blocked via Dashboard or API. Blocked users can still trigger password reset emails (no native prevention without custom logic). No auto-inactivity blocking. Brute force protection blocks by IP, not per individual account.",
+      "identifier": "user_blocking",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-accounts/block-and-unblock-users",
+        "https://community.auth0.com/t/prevent-password-reset-for-blocked-users/42466"
+      ]
+    },
+    {
+      "description": "User-editable custom attributes. Signup API limit: 10 string fields, max 500 characters each. Field names cannot contain . or $. 16 MB total combined metadata limit. 1 MB searchable limit \u2014 profiles exceeding 1 MB have attributes over 256 chars excluded from search index.",
+      "identifier": "user_metadata",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-accounts/metadata/metadata-fields-data"
+      ]
+    },
+    {
+      "description": "Admin-only custom attributes not editable by end users. Cannot contain reserved properties (blocked, email, identities, password_hash, etc.). Subject to combined 16 MB total metadata limit.",
+      "identifier": "app_metadata",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-accounts/metadata"
+      ]
+    },
+    {
+      "description": "Combined metadata hard limits: 16 MB total, 1 MB searchable, 32 KB per Actions session. Recommended to keep individual fields under 2 KB for search performance. These overlapping limits are a common source of production surprises.",
+      "identifier": "metadata_size_limits",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-accounts/metadata/metadata-fields-data",
+        "https://community.auth0.com/t/meaning-of-the-action-limitation-of-32kb-for-user-metadata-and-app-metadata-per-session/107007"
+      ]
+    },
+    {
+      "description": "Lucene query syntax. Max 1,000 results returned (10 pages \u00d7 100). 2-second query timeout (returns 503 on exceed). No wildcards or ranges on metadata fields. ~72 OR terms maximum before errors. Not suitable for login flows or event-driven polling.",
+      "identifier": "user_search",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-search/user-search-query-syntax",
+        "https://dev.auth0.com/docs/manage-users/user-search/user-search-best-practices"
+      ]
+    },
+    {
+      "description": "Supported with hard limits: 1,000 roles per tenant, 50 roles per user, 1,000 permissions per user. No built-in fine-grained ABAC. Large permission sets can cause access tokens to exceed HTTP header size limits. RBAC per organization excluded from B2B Free plan.",
+      "identifier": "rbac",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/access-control/rbac",
+        "https://dev.auth0.com/docs/troubleshoot/customer-support/operational-policies/entity-limit-policy"
+      ]
+    },
+    {
+      "description": "100,000 orgs per tenant (expandable to 2M on Enterprise). 10 connections per org, 50 role assignments per org member. Universal Login only \u2014 not compatible with ROPG, Device Flow, or WS-Federation. No per-org custom domains.",
+      "identifier": "organizations_multitenancy",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/organizations/organizations-overview"
+      ]
+    },
+    {
+      "description": "5 preset OWASP-aligned password strength levels. Cannot enforce 4-of-4 character type requirements (max 3-of-4). Cannot fully customize beyond preset levels without custom code. Existing passwords are not retroactively re-evaluated on policy changes. Effective max length limited by bcrypt's 72-byte processing cap.",
+      "identifier": "password_strength_policy",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/authenticate/database-connections/password-strength",
+        "https://community.auth0.com/t/feature-request-password-policy-require-4-of-4-requirements/68992"
+      ]
+    },
+    {
+      "description": "Usernames restricted to alphanumeric plus @._+- characters, auto-converted to lowercase, max 128 characters. No accent marks or other special characters. Legacy usernames with disallowed characters require workarounds during import.",
+      "identifier": "username_restrictions",
+      "category": "user_management",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/authenticate/database-connections/require-username",
+        "https://support.auth0.com/center/s/article/How-to-Import-Legacy-Usernames-with-Non-Allowed-Characters"
+      ]
+    },
+    {
+      "description": "Visual no-code Forms builder for collecting data during authentication flows. 500 Forms and 500 Flows per tenant. Supports conditional logic and external API calls.",
+      "identifier": "progressive_profiling",
+      "category": "user_management",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/manage-users/user-accounts/user-profiles/progressive-profiling"
+      ]
+    },
+    {
+      "description": "Annually audited, covering all 5 Trust Services Criteria.",
+      "identifier": "soc2_type2",
+      "category": "compliance",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
+      ]
+    },
+    {
+      "description": "Cloud information security and privacy controls. Annually audited.",
+      "identifier": "iso_27001",
+      "category": "compliance",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
+      ]
+    },
+    {
+      "description": "HIPAA BAA is available upon request for Enterprise plans. Auth0 acts as a Business Associate under HIPAA/HITECH. BAA is not available for Azure-hosted deployments. Contact account team via the Support Center to request the agreement.",
+      "identifier": "hipaa_baa",
+      "plans": ["Enterprise"],
+      "category": "compliance",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
+      ]
+    },
+    {
+      "description": "PCI DSS compliance available as an add-on for Auth0 Private Cloud deployment. Annual independent audit. Attestation of Compliance (AOC) and SAQ-D available upon request via the Support Center. Enterprise plan only.",
+      "identifier": "pci_dss",
+      "plans": ["Enterprise"],
+      "category": "compliance",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
+      ]
+    },
+    {
+      "description": "Cloud Security Alliance STAR Gold certification for cloud security practices.",
+      "identifier": "csa_star",
+      "category": "compliance",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
+      ]
+    },
+    {
+      "description": "User data export (Article 20) available via Dashboard or Management API in JSON format.",
+      "identifier": "gdpr_data_export",
+      "category": "compliance",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance/gdpr/gdpr-right-to-access-correct-and-erase-data"
+      ]
+    },
+    {
+      "description": "User deletion supported via Dashboard or Management API. Customer is responsible for removing user data stored in external systems, logs, or backups.",
+      "identifier": "gdpr_right_to_erasure",
+      "category": "compliance",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/data-privacy-and-compliance/gdpr"
+      ]
+    },
+    {
+      "description": "OAuth consent dialog supported for third-party application scopes. No dedicated consent management module for custom consent purposes (marketing opt-in, ToS acceptance). Custom consent must be stored in user_metadata or an external system. Auth0 Forms can handle Terms of Service acceptance flows.",
+      "identifier": "consent_management",
+      "category": "compliance",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/configure/applications/confidential-public-apps/user-consent-and-third-party-applications"
+      ]
+    },
+    {
+      "description": "Public cloud tenants available in US, EU, Australia, Japan, UK, and Canada. Tenant region is selected at creation and cannot be changed. Each region uses region-specific subdomains (e.g., [au|ca|eu|jp|uk].auth0.com).",
+      "identifier": "region_deployment",
+      "category": "compliance",
+      "status": "supported",
+      "values": [
+        "US",
+        "EU",
+        "AU",
+        "JP",
+        "UK",
+        "CA"
+      ],
+      "links": [
+        "https://auth0.com/docs/troubleshoot/customer-support/operational-policies/public-cloud-service-endpoints"
+      ]
+    },
+    {
+      "description": "Single-tenant Private Cloud deployment on AWS (13+ regions) or Azure (60+ regions). Enterprise add-on with separate pricing.",
+      "identifier": "private_cloud_deployment",
+      "plans": ["Enterprise"],
+      "category": "compliance",
+      "status": "partial",
+      "values": ["AWS", "Azure"],
+      "links": [
+        "https://auth0.com/docs/deploy-monitor/deploy-private-cloud"
+      ]
+    },
+    {
+      "description": "Log retention is critically short: Free = 1 day, Essentials = 5 days, Professional = 10 days, Enterprise = 30 days. No option to extend retention within Auth0 on lower tiers. Log streaming to external SIEM is required for any compliance use case.",
+      "identifier": "audit_log_retention",
+      "category": "security",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/deploy-monitor/logs/log-data-retention"
+      ]
+    },
+    {
+      "description": "Stream logs to Splunk, Datadog, Amazon EventBridge, Azure Event Grid, Sumo Logic, and custom webhooks. At-least-once delivery guarantee. PII masking/hashing supported. Not available on the Free plan.",
+      "identifier": "audit_log_streaming",
+      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/log-streams"
+      ]
+    },
+    {
+      "description": "Near real-time threat monitoring dashboard with custom alert configuration. Available on B2B Professional plan and above for B2B; Enterprise only for B2C.",
+      "identifier": "security_center",
+      "plans": ["B2B Professional", "Enterprise"],
+      "category": "security",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/attack-protection"
+      ]
+    },
+    {
+      "description": "AES-256 GCM envelope encryption for all stored data and backups.",
+      "identifier": "encryption_at_rest",
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/highly-regulated-identity/customer-managed-keys"
+      ]
+    },
+    {
+      "description": "TLS 1.2 or higher required for all connections to Auth0 endpoints. Cipher suites include ECDHE/AES-GCM variants. TLS 1.2 weak cipher suites reach end-of-support June 2026. mTLS (mutual TLS) also supported for client authentication.",
+      "identifier": "encryption_in_transit",
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/custom-domains/self-managed-certificates/tls-ssl"
+      ]
+    },
+    {
+      "description": "FIPS 140-2 Level 3 HSM-backed key management. Key rotation via Management API. Requires Enterprise plan with Highly Regulated Identity add-on.",
+      "identifier": "customer_managed_keys",
+      "plans": ["Enterprise"],
+      "category": "security",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/highly-regulated-identity/customer-managed-keys"
+      ]
+    },
+    {
+      "description": "ML-based detection with Auth Challenge (CAPTCHA-free), reCAPTCHA, hCaptcha, and Friendly Captcha. Enhanced bot detection requires Professional plan or above. IP allowlist supports up to 100 entries.",
+      "identifier": "bot_detection",
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/anomaly-detection/bot-detection"
+      ]
+    },
+    {
+      "description": "Blocks a single IP address after a configurable number of failed login attempts. Enabled by default on all plans. Blocks by IP only \u2014 no per-account lockout mechanism.",
+      "identifier": "brute_force_protection",
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/attack-protection/brute-force-protection"
+      ]
+    },
+    {
+      "description": "Detects and throttles rapid login or signup attempts from a single IP address. Available on all paid plans.",
+      "identifier": "suspicious_ip_throttling",
+      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/attack-protection/suspicious-ip-throttling"
+      ]
+    },
+    {
+      "description": "Checks user credentials against publicly known breach databases. Configurable to block signups, block logins, or notify users. Not available on Free plan. Standard detection uses public breach data only (not real-time dark web monitoring).",
+      "identifier": "breached_password_detection",
+      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "category": "security",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/secure/attack-protection/breached-password-detection"
+      ]
+    },
+    {
+      "description": "Proactive continuous dark web monitoring for compromised credentials. Enterprise add-on with separate pricing beyond standard breached password detection.",
+      "identifier": "credential_guard",
+      "plans": ["Enterprise"],
+      "category": "security",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/attack-protection/breached-password-detection"
+      ]
+    },
+    {
+      "description": "Up to 10 ACL rules supporting IPv4/IPv6, geographic filtering, and JA3/JA4 TLS fingerprints. Currently in Early Access. Requires Enterprise plan with Attack Protection add-on.",
+      "identifier": "tenant_acl",
+      "plans": ["Enterprise"],
+      "category": "security",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/secure/tenant-access-control-list/use-cases"
+      ]
+    },
+    {
+      "description": "45+ official SDKs across 12+ languages and frameworks: JavaScript, React, Angular, Vue, Next.js, Node.js, Python (Django, FastAPI), Java (Spring Boot), .NET (ASP.NET), Go, PHP (Laravel), Ruby (Rails), Swift (iOS), Kotlin/Android, React Native, Flutter (community). Separate Management API SDKs for server-side use.",
+      "identifier": "sdk_coverage",
+      "category": "developer_integration",
+      "status": "supported",
+      "values": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Angular",
+        "Vue",
+        "Next.js",
+        "Node.js",
+        "Python",
+        "Java",
+        ".NET",
+        "Go",
+        "PHP",
+        "Ruby",
+        "Swift",
+        "Kotlin",
+        "React Native",
+        "Flutter"
+      ],
+      "links": [
+        "https://auth0.com/docs/libraries"
+      ]
+    },
+    {
+      "description": "Full CRUD REST API for all tenant resources. Rate limits: 2 RPS (Free), 15 RPS (Paid), 50 RPS (Enterprise). 24-hour access token expiry. No TypeScript SDK for Management API.",
+      "identifier": "management_api",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/api/management/v2",
+        "https://auth0.com/docs/troubleshoot/customer-support/operational-policies/rate-limit-policy"
+      ]
+    },
+    {
+      "description": "300 req/min on Free, 100 RPS on paid plans. 20 login attempts/min per IP before throttling to 10. Burst multiplier add-ons (2x\u20134x) available for Enterprise.",
+      "identifier": "authentication_api_rate_limits",
+      "category": "developer_integration",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/troubleshoot/customer-support/operational-policies/rate-limit-policy"
+      ]
+    },
+    {
+      "description": "Event-driven extensibility with 8+ triggers (Post-Login, Pre/Post-Registration, M2M, Post-Change Password, Send Phone Message, Custom Token Exchange, Custom Email Provider). Node.js only \u2014 no TypeScript support. 20-second execution limit per Action. Max 100 KB per Action code. Cache: 20 entries, 4 KB values, 24-hour persistence. Secrets: 128-char keys, 4,096-char values. Full npm registry access. Concurrency: 5 (Free), 25 (Self-Service), 500 (Enterprise).",
+      "identifier": "actions_extensibility",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/actions/flows-and-triggers",
+        "https://auth0.com/docs/customize/actions/limitations"
+      ]
+    },
+    {
+      "description": "Actions runtime is Node.js only. TypeScript is not supported \u2014 code must be written in plain JavaScript. This is increasingly out of step with modern JavaScript ecosystem norms.",
+      "identifier": "typescript_in_actions",
+      "category": "developer_integration",
+      "status": "not_supported",
+      "links": [
+        "https://auth0.com/docs/customize/actions/limitations"
+      ]
+    },
+    {
+      "description": "Rules were deprecated in May 2023, became read-only in November 2024, and reach End of Life on November 18, 2026. Some functionality (e.g., SAML custom attribute mapping to app_metadata, upstream IdP token passing) has no equivalent in Actions \u2014 a known migration gap.",
+      "identifier": "rules_deprecated",
+      "category": "developer_integration",
+      "status": "not_supported",
+      "links": [
+        "https://auth0.com/docs/troubleshoot/product-lifecycle/deprecations-and-migrations",
+        "https://auth0.com/blog/preparing-for-rules-and-hooks-end-of-life/",
+        "https://stytch.com/blog/auth0-rules-and-hooks-deprecation-disadvantages/"
+      ]
+    },
+    {
+      "description": "Hooks followed the same deprecation timeline as Rules. All Hooks functionality has been migrated to Actions triggers. EOL November 18, 2026.",
+      "identifier": "hooks_deprecated",
+      "category": "developer_integration",
+      "status": "not_supported",
+      "links": [
+        "https://auth0.com/docs/customize/hooks",
+        "https://auth0.com/docs/troubleshoot/product-lifecycle/deprecations-and-migrations"
+      ]
+    },
+    {
+      "description": "Custom domains supported on all plans (Free requires credit card on file). Only 1 custom domain per tenant \u2014 per-organization custom domains are not supported. Auth0-managed TLS certificates on paid plans; self-managed certificates require Enterprise. Social provider dev keys do not work with custom domains.",
+      "identifier": "custom_domain",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/custom-domains",
+        "https://dev.auth0.com/docs/customize/custom-domains/self-managed-certificates"
+      ]
+    },
+    {
+      "description": "Official auth0-deploy-cli npm package for full tenant configuration export and import as YAML or JSON. Supports multi-environment workflows and CI/CD pipeline integration. Can be destructive \u2014 testing on dev tenants is strongly recommended.",
+      "identifier": "deploy_cli",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://github.com/auth0/auth0-deploy-cli"
+      ]
+    },
+    {
+      "description": "Official auth0/auth0 Terraform provider with 28+ resource types covering all major tenant entities. Supports Terraform 1.5+. Auto-generation via auth0 tf generate CLI command.",
+      "identifier": "terraform_provider",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/deploy-monitor/auth0-terraform-provider",
+        "https://registry.terraform.io/providers/auth0/auth0/latest/docs"
+      ]
+    },
+    {
+      "description": "Connect Auth0 to any legacy user store via 5 configurable scripts (Login, Create, Verify, Change Password, Get User). 20-second script execution limit, recommended max 100 KB. Built-in templates for MySQL, PostgreSQL, SQL Server, and MongoDB. Auth0 IP ranges must be allowlisted. Requires Professional plan or above.",
+      "identifier": "custom_database_connections",
+      "plans": ["B2C Professional", "B2B Professional", "Enterprise"],
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/best-practices/custom-database-connection-and-action-script-best-practices"
+      ]
+    },
+    {
+      "description": "No native event webhook system. Webhooks are implemented either via Custom Log Streams (async, post-event) or Actions (sync, in-flow). Log stream webhooks have retry logic but are not traditional push webhooks.",
+      "identifier": "native_webhooks",
+      "category": "developer_integration",
+      "status": "partial",
+      "links": [
+        "https://auth0.com/docs/customize/log-streams/custom-log-streams"
+      ]
+    },
+    {
+      "description": "Three tiers of customization: no-code theme editor (all plans), page templates with Liquid syntax (requires custom domain), and Advanced Custom UI Layer (ACUL) full client-rendered SDK (Early Access). Classic Login is deprecated and reached EOL in July 2025. Universal Login always defaults to the sign-in screen \u2014 cannot default to sign-up.",
+      "identifier": "universal_login_customization",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/login-pages/universal-login/customize-themes"
+      ]
+    },
+    {
+      "description": "External SMTP or custom email provider required for production email sending (verification, password reset, MFA). Auth0's built-in email sending is limited and not suitable for production.",
+      "identifier": "custom_email_provider",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/email"
+      ]
+    },
+    {
+      "description": "10+ template types with HTML and Liquid syntax. Only 1 template per type \u2014 per-application branding requires Liquid conditionals. ~64 KB practical template size limit.",
+      "identifier": "email_templates",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/customize/email/email-templates"
+      ]
+    },
+    {
+      "description": "Custom claims added to access and ID tokens via Actions using api.accessToken.setCustomClaim(). Both namespaced and non-namespaced claims now supported. Up to 1,000 custom scopes per API resource server.",
+      "identifier": "custom_oidc_claims",
+      "category": "developer_integration",
+      "status": "supported",
+      "links": [
+        "https://auth0.com/docs/troubleshoot/product-lifecycle/deprecations-and-migrations/custom-claims-migration"
+      ]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "category": "authentication_methods",
+      "status": "not_supported",
+      "description": "Auth0 does not support anonymous/guest authentication. Users must always authenticate with a registered credential. Workarounds require custom M2M tokens or external logic.",
+      "links": [
+        "https://community.auth0.com/t/anonymous-user-flow/73792",
+        "https://community.auth0.com/t/guest-access-for-unauthenticated-user/37145"
+      ]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "category": "integration_protocols",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant for M2M. M2M app token requests are counted and billed. Free tier includes 1,000 tokens/month.",
+      "links": [
+        "https://auth0.com/docs/get-started/authentication-and-authorization-flow/client-credentials-flow"
+      ]
+    },
+    {
+      "identifier": "abac",
+      "category": "access_control",
+      "status": "partial",
+      "description": "Attribute-based policies can be implemented via Actions rules and token claims, but there is no native ABAC policy engine. Available via OpenFGA on Enterprise.",
+      "links": [
+        "https://auth0.com/docs/manage-users/access-control"
+      ]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "category": "access_control",
+      "status": "supported",
+      "description": "Auth0 FGA is powered by OpenFGA (open-source Zanzibar implementation). Available as an Enterprise add-on.",
+      "plans": ["Enterprise"],
+      "links": [
+        "https://auth0.com/fine-grained-authorization"
+      ]
+    },
+    {
+      "identifier": "api_authorization",
+      "category": "access_control",
+      "status": "supported",
+      "description": "Define API resource servers with scopes and permissions. Integrate with RBAC and token claims for authorization.",
+      "links": [
+        "https://auth0.com/docs/get-started/apis"
+      ]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "category": "security",
+      "status": "partial",
+      "description": "Device tracking is available via the Security Center and Adaptive MFA on Enterprise plans. Adaptive MFA uses new device detection and impossible travel signals. No dedicated device fingerprinting API; third-party integrations (e.g., Fingerprint.com) can add device fingerprints to user profiles via Actions.",
+      "plans": ["Enterprise"],
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/adaptive-mfa",
+        "https://auth0.com/docs/secure/attack-protection"
+      ]
+    },
+    {
+      "identifier": "per_org_branding",
+      "category": "multi_tenancy",
+      "status": "supported",
+      "description": "Per-organization logo, primary color, and background color via the Organizations API. Custom domain per org requires a workaround.",
+      "links": [
+        "https://auth0.com/docs/manage-users/organizations/configure-organizations/display-organization-login-page"
+      ]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "category": "multi_tenancy",
+      "status": "supported",
+      "description": "MFA policies can be enforced per organization via Actions and organization-level configuration. Enterprise plan required.",
+      "plans": ["Enterprise"],
+      "links": [
+        "https://auth0.com/docs/manage-users/organizations/configure-organizations/use-mfa-in-organizations"
+      ]
+    },
+    {
+      "identifier": "embedded_login",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Auth0's Advanced Custom UI Layer (ACUL) allows embedding the auth flow via a client-rendered React SDK. Classic embedded login was deprecated.",
+      "links": [
+        "https://auth0.com/docs/customize/login-pages/universal-login/advanced-customization"
+      ]
+    },
+    {
+      "identifier": "white_label",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Full white-labeling with custom domain, custom branding, and removal of Auth0 branding is possible on paid plans.",
+      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "links": [
+        "https://auth0.com/docs/customize/custom-domains"
+      ]
+    },
+    {
+      "identifier": "localization",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Universal Login supports 40+ languages via text dictionaries. Custom locale overrides supported.",
+      "links": [
+        "https://auth0.com/docs/customize/login-pages/universal-login/customize-text"
+      ]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Auth0 provides the Lock embeddable widget and SDK-driven Universal Login. Auth0 recommends Universal Login over Lock for new implementations. React components also available via the Advanced Custom UI Layer (ACUL) for embedded flows. Lock Passwordless is separately deprecated.",
+      "links": [
+        "https://auth0.com/docs/authenticate/login/auth0-universal-login",
+        "https://auth0.com/docs/libraries/lock"
+      ]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Universal Login is Auth0's centrally hosted login page. Customizable via themes, templates, or ACUL.",
+      "links": [
+        "https://auth0.com/docs/authenticate/login/auth0-universal-login"
+      ]
+    },
+    {
+      "identifier": "login_analytics",
+      "category": "analytics",
+      "status": "supported",
+      "description": "Dashboard with login success/failure rates, active users, and sign-up trends. Available on Professional plan and above.",
+      "links": [
+        "https://auth0.com/docs/deploy-monitor/monitor-auth0"
+      ]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "category": "advanced",
+      "status": "partial",
+      "description": "Auth0 Forms (Progressive Profiling) and Actions provide event-driven extensibility, but no visual drag-and-drop flow orchestration engine.",
+      "links": [
+        "https://auth0.com/docs/customize/forms"
+      ]
+    },
+    {
+      "identifier": "identity_proofing",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "Auth0 does not offer built-in identity document verification or biometric liveness proofing."
+    },
+    {
+      "identifier": "decentralized_identity",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "Auth0 does not support W3C Verifiable Credentials, DIDs, or wallet-based authentication."
+    },
+    {
+      "identifier": "billing_integration",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "Auth0 does not offer native billing or subscription management integration. Organizations requiring billing must integrate third-party solutions (e.g., Stripe, Stigg) alongside Auth0.",
+      "links": [
+        "https://auth0.com/blog/auth0-stigg-integration/"
+      ]
+    },
+    {
+      "identifier": "fedramp",
+      "category": "compliance",
+      "status": "not_supported",
+      "description": "Auth0 (developer CIAM product) does not hold FedRAMP authorization. FedRAMP High is held by Okta for Government, a separate government-specific product."
+    },
+    {
+      "identifier": "agentic_identity",
+      "category": "advanced",
+      "status": "supported",
+      "description": "Auth0 Auth for MCP is generally available (May 2026). Enables OAuth 2.1-based authentication and authorization for MCP servers and AI agents. Supports On-Behalf-Of (OBO) token exchange, Client ID Metadata Document (CIMD) registration, resource identifier support per MCP spec, and Token Vault for managing third-party API credentials (Google, Microsoft, Jira). Users authenticate via existing IdPs and delegate scoped permissions to agents.",
+      "links": [
+        "https://auth0.com/ai/docs/auth-for-mcp",
+        "https://auth0.com/blog/auth0-auth-for-mcp-servers-generally-available/"
+      ]
+    }
+  ]
+}

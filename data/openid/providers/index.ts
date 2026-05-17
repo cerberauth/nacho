@@ -1,10 +1,6 @@
-export enum FeatureStatus {
-  Supported = 'supported',
-  NotSupported = 'not_supported',
-  Partial = 'partial',
-  Deprecated = 'deprecated',
-  Unknown = 'unknown'
-}
+import { FeatureStatus } from '@/lib/types'
+
+export { FeatureStatus }
 
 export enum OpenIDConnectFeatureCategory {
   GrantType = 'grant_type',
@@ -22,7 +18,7 @@ export type OpenIDConnectFeature = {
   category: string
   description?: string
   status: string
-  url?: string
+  links?: string[]
 }
 
 export type OpenIDConnectProvider = {
@@ -35,11 +31,12 @@ export type OpenIDConnectProvider = {
     contentUrl: string
   }
   license: string
+  nationality?: string
   featureList: Array<{
     identifier: string
     description?: string
     status: string
-    url?: string
+    links?: string[]
   }>
 }
 

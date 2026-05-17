@@ -1,0 +1,592 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Amazon Cognito",
+  "abstract": "AWS-native CIAM with three feature tiers (Lite/Essentials/Plus). Offers the lowest per-MAU cost at scale and deep AWS ecosystem integration via Lambda triggers.",
+  "identifier": "aws-cognito",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/aws-cognito.svg"
+  },
+  "website": "https://aws.amazon.com/cognito/",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "50,000 MAU/month",
+    "pricingModel": "mau",
+    "pricingUrl": "https://aws.amazon.com/cognito/pricing/",
+    "plans": [
+      { "name": "Free", "price": "Free (50K MAU)" },
+      { "name": "Lite", "price": "$0.0055/MAU" },
+      { "name": "Essentials", "price": "$0.015/MAU" },
+      { "name": "Plus", "price": "$0.023/MAU" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Google, Facebook, Apple, Amazon, custom OIDC/SAML providers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-social-idp.html"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "Available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-passkeys.html"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP available on Essentials tier and above.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow-methods.html"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "Phone OTP (SMS) available on Essentials tier and above.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow-methods.html"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "not_supported",
+      "description": "Magic link authentication is not natively supported by Amazon Cognito."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "supported",
+      "description": "Supported via Amazon Cognito Identity Pools (Federated Identities) for unauthenticated guest access.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/identity-pools.html"]
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "TOTP MFA available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa.html"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "Not natively supported. Requires custom authentication flow via Lambda triggers."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "partial",
+      "description": "Not natively supported as U2F. Modern hardware keys (YubiKeys) are supported via native WebAuthn/Passkey support.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-passkeys.html"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "description": "WebAuthn MFA available via passkeys on Essentials tier and above.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pools-passkeys.html"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "description": "Email OTP MFA available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-email-message.html"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS OTP MFA available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-sms-message.html"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "not_supported",
+      "description": "Static backup codes not supported. MFA recovery requires admin reset or custom implementation."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "description": "Not natively supported. Requires custom implementation via SNS/Lambda."
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "supported",
+      "description": "Adaptive authentication with risk-based MFA on Plus tier.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "Not natively supported. Requires custom integration via Lambda triggers."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "Supported via custom authentication flows using Lambda triggers (Pre-token generation or custom auth challenges).",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-challenge-answer.html"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-userpools-server-contract-reference.html"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-saml-idp.html"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 client credentials grant for M2M authentication. M2M app-client fee was removed in November 2025.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-idp-settings.html"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Configure OIDC identity providers per user pool.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-oidc-idp.html"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "Configure SAML identity providers per user pool.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-saml-idp.html"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "partial",
+      "description": "Active Directory/LDAP integration via SAML or OIDC federation only. No native LDAP connector.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-saml-idp.html"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID (Azure AD) integration via SAML or OIDC federation.",
+      "links": ["https://aws.amazon.com/blogs/security/how-to-set-up-amazon-cognito-for-federated-authentication-using-azure-ad/"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-import-users.html"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Password hash import supported via the import job API.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-import-users.html"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Export users via ListUsers API with pagination.",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsers.html"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "not_supported",
+      "description": "No native bulk update or delete API. Operations must be performed per-user via AdminUpdateUserAttributes or AdminDeleteUser.",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "not_supported",
+      "description": "CSV import only creates new users; existing users are skipped with a [SKIPPED] status. Upsert is not supported.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "not_supported",
+      "description": "Cognito enforces username constraints (max 128 chars, ASCII). Legacy usernames with arbitrary special characters cannot be directly imported.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html"]
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported",
+      "description": "CSV import can flag MFA as enabled but cannot import existing TOTP secrets or SMS enrollments. Users must re-enroll MFA after import.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html"]
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "Amazon Cognito User Pools do not support the SCIM protocol. SCIM is only available in AWS IAM Identity Center, which is a separate service.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/managing-users.html"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "Amazon Cognito User Pools do not support outbound SCIM provisioning.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/managing-users.html"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported",
+      "description": "Amazon Cognito User Pools do not support SCIM groups provisioning.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/managing-users.html"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time provisioning supported via SAML/OIDC federation. Amazon Cognito creates a user profile on first federated sign-in by mapping IdP attributes.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "description": "Zero-downtime user migration via Lambda user migration trigger.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-migrate-user.html"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "not_supported",
+      "description": "Managed Login does not support user self-service profile management such as attribute changes or MFA preference. Custom UI using Cognito APIs is required.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managed-login.html"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation-consolidate-users.html"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Disable user accounts to prevent authentication via AdminDisableUser API.",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDisableUser.html"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Custom user attributes stored in the user pool. Up to 50 custom attributes, max 2048 characters each.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Custom attributes can be marked as write-protected for end users, functioning as app-managed metadata.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "supported",
+      "description": "Custom attribute values are limited to 2048 characters. A maximum of 50 custom attributes can be added per user pool.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/quotas.html"]
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/how-to-manage-user-accounts.html"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "partial",
+      "description": "Group-based access control. No fine-grained RBAC UI. Full RBAC requires Amazon Verified Permissions.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-user-groups.html"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Multi-tenancy via separate user pools per tenant. No native B2B organization model."
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-policies.html"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "description": "Usernames are limited to 128 characters. Case sensitivity is configurable. Aliases (email, phone) can substitute for username at sign-in.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "Attribute-based access control via Amazon Verified Permissions (Cedar policy language).",
+      "links": ["https://aws.amazon.com/verified-permissions/"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Fine-grained authorization via Amazon Verified Permissions using Cedar-based policies.",
+      "links": ["https://aws.amazon.com/verified-permissions/"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-using-the-access-token.html"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported"
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported"
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "links": ["https://aws.amazon.com/compliance/hipaa-compliance/"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "supported",
+      "links": ["https://aws.amazon.com/compliance/pci-dss-level-1-faqs/"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "supported",
+      "description": "Amazon Cognito has FedRAMP authorization in select AWS GovCloud regions.",
+      "links": ["https://aws.amazon.com/compliance/fedramp/"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported"
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported"
+    },
+    {
+      "identifier": "consent_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Deploy in 29+ AWS regions worldwide.",
+      "values": ["US", "EU", "AP", "CA", "SA", "ME", "AF"],
+      "links": ["https://aws.amazon.com/about-aws/global-infrastructure/regional-product-services/"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Runs natively on AWS infrastructure. Dedicated GovCloud option available.",
+      "values": ["AWS"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "CloudTrail logging for all Cognito API calls.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/logging-using-cloudtrail.html"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Stream logs to CloudWatch, S3, and Amazon Kinesis Firehose.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "partial",
+      "description": "Advanced security features available on Plus tier via the Cognito console."
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported"
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported"
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "not_supported",
+      "description": "Amazon Cognito encrypts user pool data internally and does not support customer-provided or customer-managed KMS keys for user pool encryption.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/data-protection.html"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "partial",
+      "description": "Bot detection via AWS WAF integration. Not built-in to Cognito directly.",
+      "links": ["https://docs.aws.amazon.com/waf/latest/developerguide/aws-managed-rule-groups-acfp.html"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "Available on Plus tier.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-adaptive-authentication.html"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "supported",
+      "description": "Compromised credential detection available on Plus tier.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "No dedicated dark web credential monitoring. Cognito's compromised credentials detection (Plus tier) checks credentials against public breach lists, which is covered under breached_password_detection."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "not_supported",
+      "description": "No native per-tenant IP allowlist/blocklist. IP-based access control requires AWS WAF integration with a web ACL attached to the user pool.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-waf.html"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "supported",
+      "description": "Device tracking available on Plus tier for adaptive authentication.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-remember-devices.html"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "partial",
+      "description": "Per-app-client branding via Managed Login on Essentials tier and above."
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "Managed Login hosted UI with visual editor on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/hosted-ui-overview.html"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "Amplify UI components for embedding authentication in web and mobile apps.",
+      "links": ["https://ui.docs.amplify.aws/react/connected-components/authenticator"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "partial",
+      "description": "Custom branding available on Essentials and Plus tiers. Full white-labeling requires custom domain and Managed Login."
+    },
+    {
+      "identifier": "localization",
+      "status": "partial",
+      "description": "Hosted UI supports some localization; full i18n requires custom UI."
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "partial",
+      "description": "Amplify UI Authenticator provides React, Vue, Angular, and React Native components.",
+      "links": ["https://ui.docs.amplify.aws/react/connected-components/authenticator"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "partial",
+      "description": "Authentication metrics available via Amazon CloudWatch.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pool-settings-advanced-security.html"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Amplify SDK covers JavaScript, React, React Native, iOS, Android, Flutter. AWS SDKs for all major languages.",
+      "links": ["https://aws-amplify.github.io/"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/Welcome.html"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/limits.html"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Lambda triggers for all authentication events (Pre-signup, Post-authentication, Pre-token generation, etc.).",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "supported",
+      "description": "AWS Lambda supports TypeScript natively."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-add-custom-domain.html"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "Supported via AWS CDK, AWS CloudFormation, AWS SAM, and Amplify CLI. CDK provides L2 constructs for both User Pools and Identity Pools.",
+      "links": ["https://docs.aws.amazon.com/cdk/v2/guide/home.html"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "supported",
+      "description": "AWS Terraform provider covers all Cognito resources.",
+      "links": ["https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/cognito_user_pool"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "User migration Lambda trigger connects to legacy databases.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-migrate-user.html"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Lambda triggers fire on authentication events, acting as webhooks.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-identity-pools-working-with-aws-lambda-triggers.html"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Managed Login visual editor available on Essentials and Plus tiers.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-app-ui-customization.html"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Amazon SES required for production email. Custom SMTP not natively supported.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-email.html"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Pre-token generation Lambda trigger allows adding custom claims to tokens.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-lambda-pre-token-generation.html"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "not_supported"
+    }
+  ]
+}
