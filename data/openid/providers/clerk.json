@@ -8,6 +8,7 @@
   },
   "website": "https://clerk.com",
   "license": "Proprietary",
+  "nationality": "USA",
   "featureList": [
     {
       "identifier": "implicit_grant",

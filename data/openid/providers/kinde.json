@@ -8,6 +8,7 @@
   },
   "website": "https://kinde.com",
   "license": "Proprietary",
+  "nationality": "Australia",
   "featureList": [
     {
       "identifier": "implicit_grant",

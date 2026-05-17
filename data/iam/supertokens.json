@@ -8,6 +8,7 @@
   },
   "website": "https://supertokens.com",
   "license": "Apache 2.0",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "Unlimited (self-hosted)",

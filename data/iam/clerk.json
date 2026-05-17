@@ -9,6 +9,7 @@
   "website": "https://clerk.com",
   "github": "https://github.com/clerkinc",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "50,000 MRU",
@@ -57,7 +58,9 @@
     },
     {
       "identifier": "anonymous_authentication",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Anonymous/guest authentication is not supported. It is listed on Clerk's product roadmap.",
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
     },
     {
       "identifier": "totp_mfa",
@@ -69,7 +72,8 @@
     {
       "identifier": "hotp_mfa",
       "status": "not_supported",
-      "description": "Not supported. Clerk favors TOTP and WebAuthn/Passkeys."
+      "description": "Not supported. Clerk favors TOTP and WebAuthn/Passkeys.",
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "u2f_mfa",
@@ -82,7 +86,8 @@
       "identifier": "webauthn_mfa",
       "status": "supported",
       "description": "Hardware security key MFA available on Pro plan and above.",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "email_code_mfa",
@@ -99,23 +104,30 @@
       "identifier": "recovery_code_mfa",
       "status": "supported",
       "description": "Backup codes for MFA recovery. Requires MFA to be enabled (Pro plan and above).",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "push_notification_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "adaptive_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "cisco_duo_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No native Cisco Duo integration. Duo can be used as a generic TOTP authenticator app but there is no dedicated Duo MFA provider.",
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
     },
     {
       "identifier": "step_up_authentication",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Supported via Clerk's Reverification feature, which requires users to re-verify their identity before performing sensitive actions.",
+      "links": ["https://clerk.com/docs/guides/reverification"]
     },
     {
       "identifier": "oidc_protocol",
@@ -133,12 +145,14 @@
     },
     {
       "identifier": "ws_federation_protocol",
-      "status": "not_supported"
+      "status": "not_supported",
+      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
     },
     {
       "identifier": "machine_to_machine",
-      "status": "not_supported",
-      "description": "Clerk does not provide OAuth 2.0 client credentials / M2M tokens."
+      "status": "supported",
+      "description": "M2M tokens are generally available (since October 2025). Supports opaque tokens and JWTs for authenticating requests between backend services.",
+      "links": ["https://clerk.com/docs/guides/development/machine-auth/overview"]
     },
     {
       "identifier": "oidc_federation",
@@ -156,13 +170,16 @@
     },
     {
       "identifier": "active_directory_ldap",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native LDAP/Active Directory protocol support. Microsoft Entra ID is supported via SAML/OIDC enterprise connections.",
+      "links": ["https://clerk.com/docs/authentication/enterprise-connections/overview"]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
       "description": "Microsoft Entra ID SSO via SAML/OIDC enterprise connections. Available on Pro plan and above.",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/authentication/enterprise-connections/saml/azure"]
     },
     {
       "identifier": "bulk_user_import",
@@ -178,23 +195,32 @@
     },
     {
       "identifier": "bulk_user_export",
-      "status": "supported"
+      "status": "supported",
+      "links": ["https://clerk.com/docs/deployments/exporting-users"]
     },
     {
       "identifier": "bulk_user_update_delete",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Bulk update and delete are not available. Only individual user operations are supported via the Backend API. Bulk operations are on the roadmap.",
+      "links": ["https://clerk.com/docs/references/backend/user/delete-user"]
     },
     {
       "identifier": "upsert_on_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No native upsert semantics on import. User creation via createUser() does not support upsert; separate create and update calls are required.",
+      "links": ["https://clerk.com/docs/references/backend/user/create-user"]
     },
     {
       "identifier": "legacy_username_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Clerk enforces username restrictions: Latin-based characters only (4-64 chars), no special characters (^$!.#+~). Legacy usernames with special characters or non-Latin scripts cannot be imported.",
+      "links": ["https://clerk.com/docs/authentication/configuration/restrictions"]
     },
     {
       "identifier": "mfa_enrollment_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Importing TOTP/MFA enrollments with user data is not supported. Users must enroll MFA after being imported.",
+      "links": ["https://clerk.com/docs/references/backend/user/create-user"]
     },
     {
       "identifier": "inbound_scim_provisioning",
@@ -205,19 +231,23 @@
     },
     {
       "identifier": "outbound_scim_provisioning",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Clerk only supports inbound SCIM provisioning (IdP pushes to Clerk). Outbound provisioning (Clerk pushing changes to external apps) is not supported.",
+      "links": ["https://clerk.com/docs/authentication/enterprise-connections/directory-sync"]
     },
     {
       "identifier": "scim_groups",
       "status": "partial",
-      "description": "Group/role sync via SCIM B2B Auth add-on. Available on Pro plan and above.",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "description": "Group/role sync via SCIM B2B Auth add-on. IdP groups are mapped to Clerk roles. Available on Pro plan and above.",
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/authentication/enterprise-connections/directory-sync"]
     },
     {
       "identifier": "jit_provisioning",
       "status": "supported",
       "description": "Just-in-time provisioning via enterprise SSO connections. Requires Pro plan and above.",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/authentication/enterprise-connections/jit-provisioning"]
     },
     {
       "identifier": "lazy_migration",
@@ -241,7 +271,8 @@
       "identifier": "user_blocking",
       "status": "supported",
       "description": "User bans and allowlists. Available on Pro plan and above.",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/reference/backend/user/ban-user"]
     },
     {
       "identifier": "user_metadata",
@@ -252,11 +283,14 @@
     {
       "identifier": "app_metadata",
       "status": "supported",
-      "description": "Unsafe (server-only writable) metadata for app-managed data."
+      "description": "Unsafe (server-only writable) metadata for app-managed data.",
+      "links": ["https://clerk.com/docs/users/metadata"]
     },
     {
       "identifier": "metadata_size_limits",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Metadata is limited to 8KB per user. When stored as custom session token claims, the recommended limit is 1.2KB to avoid cookie size issues.",
+      "links": ["https://clerk.com/docs/users/metadata"]
     },
     {
       "identifier": "user_search",
@@ -281,11 +315,14 @@
       "identifier": "password_strength_policy",
       "status": "supported",
       "description": "Custom password requirements available on Pro plan and above. Basic password validation on Free.",
-      "plans": ["Pro", "Business", "Enterprise"]
+      "plans": ["Pro", "Business", "Enterprise"],
+      "links": ["https://clerk.com/docs/security/password-protection"]
     },
     {
       "identifier": "username_restrictions",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Usernames must be 4-64 characters, Latin-based only. Special characters (^$!.#+~) and non-Latin scripts are not allowed to prevent Unicode spoofing attacks.",
+      "links": ["https://clerk.com/docs/authentication/configuration/restrictions"]
     },
     {
       "identifier": "progressive_profiling",
@@ -316,7 +353,9 @@
     },
     {
       "identifier": "iso_27001",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Clerk has implemented an ISMS aligned with ISO/IEC 27001:2022 and its infrastructure providers (AWS, Google Cloud) are ISO 27001 certified, but Clerk itself does not hold a third-party ISO 27001 certification.",
+      "links": ["https://clerk.com/security"]
     },
     {
       "identifier": "hipaa_baa",
@@ -327,11 +366,15 @@
     },
     {
       "identifier": "pci_dss",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Clerk does not hold a PCI DSS certification or attestation of compliance.",
+      "links": ["https://clerk.com/security"]
     },
     {
       "identifier": "csa_star",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Clerk does not hold a CSA STAR certification.",
+      "links": ["https://clerk.com/security"]
     },
     {
       "identifier": "fedramp",
@@ -367,23 +410,31 @@
     },
     {
       "identifier": "audit_log_streaming",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Audit log streaming to external SIEM or data pipelines is not supported. Audit logs are viewable in the Clerk Dashboard only.",
+      "links": ["https://clerk.com/docs/security/audit-log"]
     },
     {
       "identifier": "security_center",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No dedicated threat monitoring or security center dashboard. Security features are distributed across the Clerk Dashboard.",
+      "links": ["https://clerk.com/docs/security/overview"]
     },
     {
       "identifier": "encryption_at_rest",
-      "status": "supported"
+      "status": "supported",
+      "links": ["https://clerk.com/security"]
     },
     {
       "identifier": "encryption_in_transit",
-      "status": "supported"
+      "status": "supported",
+      "links": ["https://clerk.com/security"]
     },
     {
       "identifier": "customer_managed_keys",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Clerk does not support customer-managed encryption keys (BYOK). Encryption keys are managed by Clerk.",
+      "links": ["https://clerk.com/security"]
     },
     {
       "identifier": "bot_detection",
@@ -392,11 +443,14 @@
     },
     {
       "identifier": "brute_force_protection",
-      "status": "supported"
+      "status": "supported",
+      "links": ["https://clerk.com/docs/security/user-lockout"]
     },
     {
       "identifier": "suspicious_ip_throttling",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No dedicated suspicious IP throttling feature. Clerk applies general rate limits per IP for the Frontend API.",
+      "links": ["https://clerk.com/docs/security/overview"]
     },
     {
       "identifier": "breached_password_detection",
@@ -405,15 +459,21 @@
     },
     {
       "identifier": "credential_guard",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No standalone credential guard or dark web monitoring product. Compromised password detection via HaveIBeenPwned is covered under breached_password_detection.",
+      "links": ["https://clerk.com/docs/security/password-protection"]
     },
     {
       "identifier": "tenant_acl",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No IP-based access control lists. Clerk supports email/phone-based allowlists and blocklists for sign-up and sign-in restrictions.",
+      "links": ["https://clerk.com/docs/authentication/configuration/restrictions"]
     },
     {
       "identifier": "device_fingerprinting",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No user-facing device fingerprinting feature. Clerk uses device/network analysis internally for bot detection.",
+      "links": ["https://clerk.com/docs/security/overview"]
     },
     {
       "identifier": "per_org_branding",
@@ -424,7 +484,9 @@
     },
     {
       "identifier": "per_org_mfa_policy",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "MFA can be enforced globally for the entire application but not configured independently per organization.",
+      "links": ["https://clerk.com/docs/authentication/configuration/force-mfa"]
     },
     {
       "identifier": "hosted_login_page",
@@ -499,7 +561,9 @@
     },
     {
       "identifier": "deploy_cli",
-      "status": "unknown"
+      "status": "partial",
+      "description": "Clerk CLI supports config pull/patch for managing instance settings as code. A dedicated 'clerk deploy' command for syncing configuration to production is in development.",
+      "links": ["https://clerk.com/docs/cli"]
     },
     {
       "identifier": "terraform_provider",
@@ -525,7 +589,9 @@
     },
     {
       "identifier": "custom_email_provider",
-      "status": "unknown"
+      "status": "partial",
+      "description": "Clerk's built-in email delivery (SendGrid) can be disabled. Custom email delivery is handled by listening to the emails.created webhook and managing dispatch yourself. No native SMTP configuration.",
+      "links": ["https://clerk.com/docs/customization/email-sms-templates"]
     },
     {
       "identifier": "email_templates",
@@ -534,7 +600,9 @@
     },
     {
       "identifier": "custom_oidc_claims",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Custom claims can be added to session tokens and JWT templates via the Clerk Dashboard. Supports shortcodes for dynamic user attribute values.",
+      "links": ["https://clerk.com/docs/backend-requests/resources/session-tokens"]
     },
     {
       "identifier": "nocode_flow_builder",
@@ -557,7 +625,9 @@
     },
     {
       "identifier": "agentic_identity",
-      "status": "not_supported"
+      "status": "supported",
+      "description": "Clerk supports MCP server authentication, the @clerk/agent-toolkit for Vercel AI SDK and LangChain, and OAuth-secured MCP endpoints for AI agent identity.",
+      "links": ["https://clerk.com/docs/guides/ai/mcp/clerk-mcp-server"]
     }
   ]
 }

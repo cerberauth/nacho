@@ -23,10 +23,19 @@ import {
 } from '@/components/ui/sheet'
 import { Button } from '@/components/ui/button'
 import survey from '@/data/iam/survey.json'
-import { scoreVendors, type SurveyAnswers, type VendorScore } from '@/lib/iam-scoring'
+import {
+  scoreVendors,
+  type SurveyAnswers,
+  type VendorScore,
+  COMMON_FEATURES,
+  AUDIENCE_FEATURES,
+  FEATURE_MAP,
+  COMPLIANCE_MAP
+} from '@/lib/iam-scoring'
 
 import { useBenchmarkParams } from '@/components/hooks/use-benchmark-params'
 import { PricingRows } from '@/components/benchmark/pricing-rows'
+import { getCountryFlag } from '@/lib/utils'
 
 type Props = {
   providers: Provider[]
@@ -233,7 +242,7 @@ export function IAMProvidersInteractiveView({
     setWizardOpen(true)
   }
 
-  const setDraftAnswer = (questionId: string, value: string) => {
+  const setDraftAnswer = (questionId: string, value: string | number) => {
     const key = ANSWER_KEY_MAP[questionId]
     if (!key) return
     const step = STEPS.find(s => s.questions.some(q => q.questionId === questionId))
@@ -241,13 +250,22 @@ export function IAMProvidersInteractiveView({
     if (!question) return
 
     setDraftAnswers(prev => {
+      if (questionId === 'q_mau' && typeof value === 'number') {
+        let bucket: SurveyAnswers['mau'] = '<1k'
+        if (value >= 1000000) bucket = '1m+'
+        else if (value >= 100000) bucket = '100k-1m'
+        else if (value >= 10000) bucket = '10k-100k'
+        else if (value >= 1000) bucket = '1k-10k'
+        return { ...prev, mau: bucket, mauCount: value }
+      }
+
       if (question.inputType === 'single_select') {
-        return { ...prev, [key]: value }
+        return { ...prev, [key]: value as string }
       }
       const current = (prev[key] as string[] | undefined) ?? []
-      const next = current.includes(value)
-        ? current.filter(v => v !== value)
-        : [...current, value]
+      const next = current.includes(value as string)
+        ? current.filter(v => v !== (value as string))
+        : [...current, value as string]
       return { ...prev, [key]: next }
     })
   }
@@ -260,22 +278,59 @@ export function IAMProvidersInteractiveView({
     return current === value
   }
 
-  const canAdvance = (): boolean => {
+  const isQuestionAnswered = (questionId: string): boolean => {
+    const key = ANSWER_KEY_MAP[questionId]
+    if (!key) return true
+    if (questionId === 'q_mau') return draftAnswers.mauCount !== undefined
+    const val = draftAnswers[key]
+    if (Array.isArray(val)) return val.length > 0
+    return val !== undefined && val !== null
+  }
+
+  const isStepAnswered = (): boolean => {
     const step = STEPS[wizardStep]
-    return step.questions.every(q => {
-      if (!q.required) return true
-      const key = ANSWER_KEY_MAP[q.questionId]
-      if (!key) return true
-      const val = draftAnswers[key]
-      return val !== undefined && val !== null
-    })
+    return step.questions.every(q => isQuestionAnswered(q.questionId))
+  }
+
+  const canAdvance = (): boolean => {
+    return true // Allow skipping any step
   }
 
   const finishSurvey = () => {
     import('@plausible-analytics/tracker').then(({ track }) =>
       track('Benchmark Survey Complete', { props: { benchmark: 'iam' } })
     )
+
+    // Build the set of features to display based on answers
+    const nextSelectedFeatures = new Set<string>(COMMON_FEATURES)
+
+    // Add audience-specific features
+    if (draftAnswers.audience) {
+      if (draftAnswers.audience === 'mixed') {
+        Object.values(AUDIENCE_FEATURES).flat().forEach(f => nextSelectedFeatures.add(f))
+      } else if (AUDIENCE_FEATURES[draftAnswers.audience]) {
+        AUDIENCE_FEATURES[draftAnswers.audience].forEach(f => nextSelectedFeatures.add(f))
+      }
+    }
+
+    // Add compliance features
+    if (draftAnswers.compliance) {
+      draftAnswers.compliance.forEach(c => {
+        const mapped = COMPLIANCE_MAP[c]
+        if (mapped) mapped.forEach(f => nextSelectedFeatures.add(f))
+      })
+    }
+
+    // Add user-selected capabilities
+    if (draftAnswers.features) {
+      draftAnswers.features.forEach(feat => {
+        const mapped = FEATURE_MAP[feat]
+        if (mapped) mapped.forEach(f => nextSelectedFeatures.add(f))
+      })
+    }
+
     updateParams({
+      features: nextSelectedFeatures,
       extra: { answers: encodeAnswers(draftAnswers) }
     })
     setWizardOpen(false)
@@ -293,7 +348,7 @@ export function IAMProvidersInteractiveView({
         else if (!open && !savedAnswers) setWizardOpen(false)
         else setWizardOpen(open)
       }}>
-        <DialogContent className="max-w-lg">
+        <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader>
             <DialogTitle>{survey.title}</DialogTitle>
           </DialogHeader>
@@ -314,67 +369,111 @@ export function IAMProvidersInteractiveView({
             ))}
           </div>
 
-          <div className="min-h-[260px] flex flex-col">
+          <div className="flex-1 flex flex-col py-4 overflow-hidden">
             <h3 className="font-semibold text-slate-900 mb-0.5">{STEPS[wizardStep].title}</h3>
             {STEPS[wizardStep].subtitle && (
               <p className="text-xs text-slate-500 mb-4">{STEPS[wizardStep].subtitle}</p>
             )}
 
-            {STEPS[wizardStep].questions.map(question => (
-              <div key={question.questionId} className="flex flex-col gap-2 overflow-y-auto max-h-64">
-                {question.inputType === 'single_select' && question.options?.map(option => {
-                  const selected = isDraftAnswerSelected(question.questionId, option.value)
-                  return (
-                    <button
-                      key={option.value}
-                      onClick={() => setDraftAnswer(question.questionId, option.value)}
-                      className={`flex flex-col items-start text-left px-4 py-3 rounded-lg border transition-all ${selected
-                        ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
-                        : 'border-slate-200 hover:border-slate-400'
-                        }`}
-                    >
-                      <span className="text-sm font-medium text-slate-900">{option.label}</span>
-                      {option.description && (
-                        <span className="text-xs text-slate-500 mt-0.5">{option.description}</span>
-                      )}
-                    </button>
-                  )
-                })}
+            <div className="flex-1 overflow-y-auto pr-2">
+              {STEPS[wizardStep].questions.map(question => (
+                <div key={question.questionId} className="flex flex-col gap-2">
+                  {question.questionId === 'q_mau' ? (
+                    <div className="flex flex-col gap-8 py-8 px-4 bg-slate-50 rounded-xl border border-slate-200">
+                      <div className="flex flex-col items-center gap-2">
+                        <span className="text-3xl font-bold text-slate-900 tabular-nums">
+                          {(draftAnswers.mauCount || 1000).toLocaleString()}
+                        </span>
+                        <span className="text-sm font-medium text-slate-500 text-center uppercase tracking-wider">
+                          Monthly Active Users
+                        </span>
+                      </div>
 
-                {question.inputType === 'multi_select' && (
-                  <div className="flex flex-col gap-1.5">
-                    {question.options?.map(option => {
-                      const selected = isDraftAnswerSelected(question.questionId, option.value)
-                      return (
-                        <label
-                          key={option.value}
-                          className={`flex items-start gap-3 px-4 py-2.5 rounded-lg border cursor-pointer transition-all ${selected
-                            ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
-                            : 'border-slate-200 hover:border-slate-400'
-                            }`}
-                        >
-                          <input
-                            type="checkbox"
-                            checked={selected}
-                            onChange={() => setDraftAnswer(question.questionId, option.value)}
-                            className="accent-slate-900 h-4 w-4 mt-0.5 shrink-0"
-                          />
-                          <div>
-                            <span className="text-sm font-medium text-slate-900">{option.label}</span>
-                            {option.description && (
-                              <p className="text-xs text-slate-500 mt-0.5">{option.description}</p>
-                            )}
-                          </div>
-                        </label>
-                      )
-                    })}
-                  </div>
-                )}
-              </div>
-            ))}
+                      <div className="relative pt-6 pb-2">
+                        <input
+                          type="range"
+                          min="0"
+                          max="1000000"
+                          step="1000"
+                          value={draftAnswers.mauCount || 1000}
+                          onChange={(e) => setDraftAnswer('q_mau', parseInt(e.target.value))}
+                          className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
+                        />
+                        <div className="flex justify-between mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
+                          <span>0</span>
+                          <span>250k</span>
+                          <span>500k</span>
+                          <span>750k</span>
+                          <span>1M+</span>
+                        </div>
+                      </div>
+
+                      <p className="text-xs text-slate-500 text-center italic">
+                        Scale significantly affects platform choice and pricing models.
+                      </p>
+                    </div>
+                  ) : (
+                    <>
+                      {question.inputType === 'single_select' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {question.options?.map(option => {
+                            const selected = isDraftAnswerSelected(question.questionId, option.value)
+                            return (
+                              <button
+                                key={option.value}
+                                onClick={() => setDraftAnswer(question.questionId, option.value)}
+                                className={`flex flex-col items-start text-left px-4 py-3 rounded-lg border transition-all ${selected
+                                  ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                                  : 'border-slate-200 hover:border-slate-400'
+                                  }`}
+                              >
+                                <span className="text-sm font-medium text-slate-900">{option.label}</span>
+                                {option.description && (
+                                  <span className="text-xs text-slate-500 mt-0.5">{option.description}</span>
+                                )}
+                              </button>
+                            )
+                          })}
+                        </div>
+                      )}
+
+                      {question.inputType === 'multi_select' && (
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                          {question.options?.map(option => {
+                            const selected = isDraftAnswerSelected(question.questionId, option.value)
+                            return (
+                              <label
+                                key={option.value}
+                                className={`flex items-start gap-3 px-4 py-2.5 rounded-lg border cursor-pointer transition-all ${selected
+                                  ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                                  : 'border-slate-200 hover:border-slate-400'
+                                  }`}
+                              >
+                                <input
+                                  type="checkbox"
+                                  checked={selected}
+                                  onChange={() => setDraftAnswer(question.questionId, option.value)}
+                                  className="accent-slate-900 h-4 w-4 mt-0.5 shrink-0"
+                                />
+                                <div>
+                                  <span className="text-sm font-medium text-slate-900">{option.label}</span>
+                                  {option.description && (
+                                    <p className="text-xs text-slate-500 mt-0.5">{option.description}</p>
+                                  )}
+                                </div>
+                              </label>
+                            )
+                          })}
+                        </div>
+                      )}
+                    </>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
-          <div className="flex justify-between items-center pt-2 border-t">
+          <div className="flex justify-between items-center pt-4 border-t mt-auto">
             <Button
               variant="ghost"
               size="sm"
@@ -392,17 +491,20 @@ export function IAMProvidersInteractiveView({
             {wizardStep < TOTAL_STEPS - 1 ? (
               <Button
                 size="sm"
-                variant={canAdvance() ? 'default' : 'ghost'}
+                variant={isStepAnswered() ? 'default' : 'outline'}
                 onClick={() => setWizardStep(s => s + 1)}
-                disabled={!canAdvance()}
               >
-                Next
+                {isStepAnswered() ? 'Next' : 'Skip'}
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             ) : (
-              <Button size="sm" onClick={finishSurvey}>
-                <Check className="h-4 w-4 mr-1" />
-                See recommendations
+              <Button size="sm" onClick={finishSurvey} variant={isStepAnswered() ? 'default' : 'outline'}>
+                {isStepAnswered() ? (
+                  <>
+                    <Check className="h-4 w-4 mr-1" />
+                    See recommendations
+                  </>
+                ) : 'Skip to results'}
               </Button>
             )}
           </div>
@@ -451,13 +553,20 @@ export function IAMProvidersInteractiveView({
                       />
                     )}
                     <div>
-                      <Link
-                        href={`${providerDetailUrlPrefix}/${provider.identifier}`}
-                        onClick={() => trackVendorClick(provider.identifier)}
-                        className="text-sm font-semibold text-slate-900 hover:underline"
-                      >
-                        {provider.name}
-                      </Link>
+                      <div className="flex items-center gap-1.5">
+                        <Link
+                          href={`${providerDetailUrlPrefix}/${provider.identifier}`}
+                          onClick={() => trackVendorClick(provider.identifier)}
+                          className="text-sm font-semibold text-slate-900 hover:underline"
+                        >
+                          {provider.name}
+                        </Link>
+                        {provider.nationality && (
+                          <span title={provider.nationality} className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                            {getCountryFlag(provider.nationality)}
+                          </span>
+                        )}
+                      </div>
                       <p className="text-xs text-slate-500">{provider.license}</p>
                     </div>
                   </div>
@@ -470,6 +579,21 @@ export function IAMProvidersInteractiveView({
                       />
                     </div>
                     <span className="text-xs font-semibold text-slate-700 tabular-nums">{vs.score}%</span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-1 border-y border-slate-100">
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Est. Monthly Cost</span>
+                    <span className="text-xs font-bold text-slate-900">
+                      {vs.estimatedPrice === 'Free' ? (
+                        <span className="text-lime-600">Free</span>
+                      ) : vs.estimatedPrice === 'Custom' ? (
+                        'Custom'
+                      ) : vs.estimatedPrice !== undefined ? (
+                        `$${vs.estimatedPrice.toLocaleString()}`
+                      ) : (
+                        '—'
+                      )}
+                    </span>
                   </div>
 
                   {vs.topReasons.length > 0 && (
@@ -627,13 +751,20 @@ export function IAMProvidersInteractiveView({
                       alt={provider.name}
                     />
                   )}
-                  <Link
-                    href={`${providerDetailUrlPrefix}/${provider.identifier}`}
-                    onClick={() => trackVendorClick(provider.identifier)}
-                    className="text-sm text-center text-slate-900 truncate w-full hover:underline"
-                  >
-                    {provider.name}
-                  </Link>
+                  <div className="flex items-center gap-1 w-full justify-center">
+                    <Link
+                      href={`${providerDetailUrlPrefix}/${provider.identifier}`}
+                      onClick={() => trackVendorClick(provider.identifier)}
+                      className="text-sm text-center text-slate-900 truncate hover:underline"
+                    >
+                      {provider.name}
+                    </Link>
+                    {provider.nationality && (
+                      <span title={provider.nationality} className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                        {getCountryFlag(provider.nationality)}
+                      </span>
+                    )}
+                  </div>
                   <span className="text-xs text-slate-400">{provider.license}</span>
 
                   {vs && savedAnswers && (
@@ -679,9 +810,9 @@ export function IAMProvidersInteractiveView({
             )
           })}
 
-          <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
+            <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
 
-          {filteredCategories.map(category => (
+            {filteredCategories.map(category => (
             <Fragment key={category.name}>
               <div
                 id={category.name.trim()}

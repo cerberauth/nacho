@@ -52,6 +52,7 @@ export type IAMProvider = {
     contentUrl: string
   }
   license: string
+  nationality?: string
   pricing?: IAMPricing
   featureList: Array<{
     identifier: string

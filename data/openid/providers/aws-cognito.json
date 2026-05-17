@@ -8,6 +8,7 @@
   },
   "website": "https://aws.amazon.com/cognito/",
   "license": "Proprietary",
+  "nationality": "USA",
   "featureList": [
     {
       "identifier": "implicit_grant",

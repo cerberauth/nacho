@@ -8,6 +8,7 @@
   },
   "website": "https://www.cyberark.com",
   "license": "Proprietary",
+  "nationality": "Israel",
   "featureList": [
     {
       "identifier": "implicit_grant",

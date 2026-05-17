@@ -3,6 +3,7 @@ import { FeatureStatus } from '@/lib/types'
 export type SurveyAnswers = {
   audience?: 'b2c' | 'b2b' | 'b2e' | 'mixed'
   mau?: '<1k' | '1k-10k' | '10k-100k' | '100k-1m' | '1m+'
+  mauCount?: number
   deployment?: 'saas' | 'self_hosted' | 'flexible'
   features?: string[]
   compliance?: string[]
@@ -22,6 +23,57 @@ export type VendorScore = {
   breakdown: ScoreDimension[]
   recommended: boolean
   topReasons: string[]
+  estimatedPrice?: number | 'Custom' | 'Free'
+}
+
+function parseFreeTierLimit(limit?: string): number {
+  if (!limit) return 0
+  const match = limit.replace(/,/g, '').match(/(\d+)/)
+  if (!match) return 0
+  let val = parseInt(match[1], 10)
+  if (limit.toLowerCase().includes('k')) val *= 1000
+  if (limit.toLowerCase().includes('m')) val *= 1000000
+  return val
+}
+
+function calculateEstimatedPrice(provider: Provider, mau: number): number | 'Custom' | 'Free' {
+  if (!provider.pricing) return 'Custom'
+  
+  const { pricing } = provider
+  if (pricing.hasFreeTier) {
+    const limit = parseFreeTierLimit(pricing.freeTierLimit)
+    if (limit > 0 && mau <= limit) return 'Free'
+    if (!pricing.freeTierLimit && mau <= 1000) return 'Free' // Default assumption if not specified
+  }
+
+  // Look for the best matching plan
+  // We'll look for $/MAU or fixed prices
+  let bestPrice: number | null = null
+
+  for (const plan of pricing.plans) {
+    const priceStr = plan.price.toLowerCase()
+    if (priceStr.includes('custom') || priceStr.includes('enterprise')) continue
+    if (priceStr === 'free') continue
+
+    // Match $/MAU (e.g. $0.02/MAU)
+    const perMauMatch = plan.price.match(/\$([0-9.]+)\/MAU/i)
+    if (perMauMatch) {
+      const price = parseFloat(perMauMatch[1]) * mau
+      if (bestPrice === null || price < bestPrice) bestPrice = price
+      continue
+    }
+
+    // Match fixed price (e.g. $25/month)
+    const fixedMatch = plan.price.match(/\$([0-9,.]+)\/month/i)
+    if (fixedMatch) {
+      const price = parseFloat(fixedMatch[1].replace(/,/g, ''))
+      if (bestPrice === null || price < bestPrice) bestPrice = price
+      continue
+    }
+  }
+
+  if (bestPrice !== null) return Math.round(bestPrice)
+  return 'Custom'
 }
 
 type Provider = {
@@ -60,27 +112,62 @@ function hasFeature(provider: Provider, featureId: string): boolean {
 
 const MAX_PER_DIM = 20
 
+export const COMMON_FEATURES = [
+  'username_and_password_authentication',
+  'totp_mfa',
+  'recovery_code_mfa',
+  'bulk_user_import',
+  'bulk_user_export',
+  'rbac',
+  'password_strength_policy',
+  'hosted_login_page',
+  'sdk_coverage',
+  'management_api',
+  'custom_domain',
+]
+
+export const AUDIENCE_FEATURES: Record<string, string[]> = {
+  b2c: ['social_sign_in_authentication', 'passkey_authentication', 'magic_link_authentication', 'email_passwordless_authentication', 'anonymous_authentication', 'progressive_profiling'],
+  b2b: ['saml2_protocol', 'oidc_federation', 'saml_federation', 'per_org_branding', 'per_org_mfa_policy', 'organizations_multitenancy', 'inbound_scim_provisioning', 'jit_provisioning'],
+  b2e: ['saml2_protocol', 'active_directory_ldap', 'adaptive_mfa', 'oidc_federation', 'saml_federation', 'ws_federation_protocol', 'audit_log_streaming'],
+}
+
+export const FEATURE_MAP: Record<string, string[]> = {
+  enterprise_sso: ['saml2_protocol', 'saml_federation', 'oidc_federation'],
+  passkeys: ['passkey_authentication'],
+  social_login: ['social_sign_in_authentication'],
+  passwordless: ['email_passwordless_authentication', 'magic_link_authentication'],
+  adaptive_mfa: ['adaptive_mfa'],
+  m2m: ['machine_to_machine'],
+  custom_branding: ['universal_login_customization'],
+}
+
+export const COMPLIANCE_MAP: Record<string, string[]> = {
+  soc2: ['soc2_type2'],
+  gdpr: ['gdpr_data_export', 'gdpr_right_to_erasure'],
+  hipaa: ['hipaa_baa'],
+  fedramp: ['fedramp'],
+  pci: ['pci_dss'],
+  iso27001: ['iso_27001'],
+}
+
 function scoreAudience(provider: Provider, audience: SurveyAnswers['audience']): ScoreDimension {
   if (!audience) return { dimension: 'audience', label: 'Audience fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
-
-  const b2cFeatures = ['social_sign_in_authentication', 'passkey_authentication', 'magic_link_authentication', 'email_passwordless_authentication']
-  const b2bFeatures = ['saml2_protocol', 'enterprise_sso_connections', 'per_org_branding', 'per_org_mfa_policy']
-  const b2eFeatures = ['saml2_protocol', 'active_directory_ldap', 'adaptive_mfa', 'enterprise_sso_connections']
 
   let features: string[]
   let label: string
   if (audience === 'b2c') {
-    features = b2cFeatures
+    features = AUDIENCE_FEATURES.b2c
     label = 'Consumer (B2C) fit'
   } else if (audience === 'b2b') {
-    features = b2bFeatures
+    features = AUDIENCE_FEATURES.b2b
     label = 'Business (B2B) fit'
   } else if (audience === 'b2e') {
-    features = b2eFeatures
+    features = AUDIENCE_FEATURES.b2e
     label = 'Workforce (B2E) fit'
   } else {
     // mixed: average of all three
-    const allFeatures = [...new Set([...b2cFeatures, ...b2bFeatures, ...b2eFeatures])]
+    const allFeatures = [...new Set([...AUDIENCE_FEATURES.b2c, ...AUDIENCE_FEATURES.b2b, ...AUDIENCE_FEATURES.b2e])]
     const supported = allFeatures.filter(f => hasFeature(provider, f)).length
     const score = Math.round((supported / allFeatures.length) * MAX_PER_DIM)
     return { dimension: 'audience', label: 'Multi-audience fit', score, maxScore: MAX_PER_DIM }
@@ -173,16 +260,6 @@ function scoreDeployment(provider: Provider, deployment: SurveyAnswers['deployme
   return { dimension: 'deployment', label, score, maxScore: MAX_PER_DIM }
 }
 
-const FEATURE_MAP: Record<string, string[]> = {
-  enterprise_sso: ['saml2_protocol', 'enterprise_sso_connections'],
-  passkeys: ['passkey_authentication'],
-  social_login: ['social_sign_in_authentication'],
-  passwordless: ['email_passwordless_authentication', 'magic_link_authentication'],
-  adaptive_mfa: ['adaptive_mfa'],
-  m2m: ['machine_to_machine'],
-  custom_branding: ['universal_login_customization'],
-}
-
 function scoreFeatures(provider: Provider, features: SurveyAnswers['features']): ScoreDimension {
   if (!features || features.length === 0) {
     return { dimension: 'features', label: 'Feature fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
@@ -196,15 +273,6 @@ function scoreFeatures(provider: Provider, features: SurveyAnswers['features']):
   const supported = required.filter(f => hasFeature(provider, f)).length
   const score = Math.round((supported / required.length) * MAX_PER_DIM)
   return { dimension: 'features', label: 'Feature fit', score, maxScore: MAX_PER_DIM }
-}
-
-const COMPLIANCE_MAP: Record<string, string[]> = {
-  soc2: ['soc2_type2'],
-  gdpr: ['gdpr_data_export', 'gdpr_right_to_erasure'],
-  hipaa: ['hipaa_baa'],
-  fedramp: ['fedramp'],
-  pci: ['pci_dss'],
-  iso27001: ['iso_27001'],
 }
 
 function scoreCompliance(provider: Provider, compliance: SurveyAnswers['compliance']): ScoreDimension {
@@ -291,6 +359,8 @@ function buildTopReasons(breakdown: ScoreDimension[], answers: SurveyAnswers): s
 }
 
 export function scoreVendors(providers: Provider[], answers: SurveyAnswers): VendorScore[] {
+  const mauCount = answers.mauCount || (answers.mau === '<1k' ? 500 : answers.mau === '1k-10k' ? 5000 : answers.mau === '10k-100k' ? 50000 : answers.mau === '100k-1m' ? 500000 : answers.mau === '1m+' ? 1500000 : 0)
+
   const scores = providers.map(provider => {
     const breakdown: ScoreDimension[] = [
       scoreAudience(provider, answers.audience),
@@ -311,6 +381,7 @@ export function scoreVendors(providers: Provider[], answers: SurveyAnswers): Ven
       breakdown,
       recommended: false,
       topReasons: [] as string[],
+      estimatedPrice: mauCount > 0 ? calculateEstimatedPrice(provider, mauCount) : undefined
     }
   })
 

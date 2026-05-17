@@ -33,7 +33,7 @@ const DEVICON_SLUG_MAP: Record<string, string> = {
   'Android': 'android/android-original.svg',
   'Expo': 'expo/expo-original.svg',
   'Remix': 'remix/remix-original.svg',
-  'AWS': 'amazonwebservices/amazonwebservices-original.svg',
+  'AWS': 'amazonwebservices/amazonwebservices-original-wordmark.svg',
   'Azure': 'azure/azure-original.svg',
   'GCP': 'googlecloud/googlecloud-original.svg',
   'Google Cloud': 'googlecloud/googlecloud-original.svg',
@@ -48,7 +48,7 @@ function getValueIcon(featureIdentifier: string, value: string): React.ReactNode
   }
   const slug = DEVICON_SLUG_MAP[value]
   if (slug && (featureIdentifier === 'private_cloud_deployment' || featureIdentifier === 'sdk_coverage')) {
-    return <img src={`${DEVICON_CDN}/${slug}`} alt={value} width={14} height={14} className="inline-block shrink-0" />
+    return <img src={`${DEVICON_CDN}/${slug}`} alt={value} className="inline-block shrink-0 h-3.5 w-auto" />
   }
   return null
 }

@@ -8,6 +8,7 @@
   },
   "website": "https://www.ory.sh/hydra",
   "license": "Apache-2.0",
+  "nationality": "Germany",
   "github": "https://github.com/ory/hydra",
   "featureList": [
     {

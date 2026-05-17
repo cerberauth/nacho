@@ -9,6 +9,7 @@
   "website": "https://fusionauth.io",
   "github": "https://github.com/FusionAuth",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "Unlimited (Community edition, self-hosted)",
@@ -55,7 +56,9 @@
     },
     {
       "identifier": "anonymous_authentication",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native anonymous/guest user concept. Workarounds exist via stub accounts or vended JWTs.",
+      "links": ["https://fusionauth.io/docs/lifecycle/register-users/anonymous-user"]
     },
     {
       "identifier": "totp_mfa",
@@ -64,7 +67,9 @@
     },
     {
       "identifier": "hotp_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "FusionAuth supports TOTP (time-based) only. HOTP (counter-based) is not supported.",
+      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/multi-factor-authentication"]
     },
     {
       "identifier": "u2f_mfa",
@@ -79,15 +84,21 @@
     },
     {
       "identifier": "email_code_mfa",
-      "status": "supported"
+      "status": "supported",
+      "description": "Email-based MFA codes. Available on paid plans only (not Community edition).",
+      "links": ["https://fusionauth.io/docs/lifecycle/manage-users/account-management/two-factor-email"]
     },
     {
       "identifier": "phone_code_mfa",
-      "status": "supported"
+      "status": "supported",
+      "description": "SMS-based MFA codes via configured Messenger. Available on paid plans only.",
+      "links": ["https://fusionauth.io/docs/lifecycle/manage-users/account-management/two-factor-sms"]
     },
     {
       "identifier": "recovery_code_mfa",
-      "status": "supported"
+      "status": "supported",
+      "description": "10 one-time-use recovery codes generated when MFA is enabled.",
+      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/multi-factor-authentication"]
     },
     {
       "identifier": "push_notification_mfa",
@@ -101,7 +112,9 @@
     },
     {
       "identifier": "cisco_duo_mfa",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No native Cisco Duo integration. Custom integration possible via Generic Messenger or Lambda extensibility.",
+      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/multi-factor-authentication"]
     },
     {
       "identifier": "step_up_authentication",
@@ -120,7 +133,9 @@
     },
     {
       "identifier": "ws_federation_protocol",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "FusionAuth supports OIDC and SAML only. WS-Federation is not supported.",
+      "links": ["https://fusionauth.io/docs/get-started/core-concepts/integration-points"]
     },
     {
       "identifier": "machine_to_machine",
@@ -147,7 +162,11 @@
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
-      "description": "Microsoft/Azure AD via OIDC or SAML identity provider."
+      "description": "Microsoft/Azure AD via OIDC or SAML identity provider.",
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/identity-providers/enterprise/azure-ad-oidc",
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/identity-providers/enterprise/azure-ad-saml"
+      ]
     },
     {
       "identifier": "bulk_user_import",
@@ -168,19 +187,26 @@
     {
       "identifier": "bulk_user_update_delete",
       "status": "supported",
-      "description": "Bulk operations via REST API."
+      "description": "Bulk delete via REST API endpoint DELETE /api/user/bulk. Update via individual User API.",
+      "links": ["https://fusionauth.io/docs/apis/users"]
     },
     {
       "identifier": "upsert_on_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Import API is designed for initial data loading only. Duplicate detection via validateDbConstraints param returns 400/500; no upsert semantics.",
+      "links": ["https://fusionauth.io/docs/apis/users#import-users"]
     },
     {
       "identifier": "legacy_username_import",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Usernames are stored and matched exactly as provided, including special characters and whitespace.",
+      "links": ["https://fusionauth.io/docs/lifecycle/migrate-users/"]
     },
     {
       "identifier": "mfa_enrollment_import",
-      "status": "unknown"
+      "status": "supported",
+      "description": "TOTP and SMS/email MFA enrollments can be imported via twoFactor fields in the import JSON or user update API.",
+      "links": ["https://fusionauth.io/docs/apis/users#import-users"]
     },
     {
       "identifier": "inbound_scim_provisioning",
@@ -190,12 +216,15 @@
     },
     {
       "identifier": "outbound_scim_provisioning",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "FusionAuth acts as a SCIM server (inbound) only, not a SCIM client. Webhooks can be used as an alternative for pushing changes.",
+      "links": ["https://fusionauth.io/docs/lifecycle/migrate-users/scim/"]
     },
     {
       "identifier": "scim_groups",
       "status": "supported",
-      "description": "SCIM group sync for access control."
+      "description": "SCIM group provisioning supported. Lambdas map incoming SCIM Group JSON to FusionAuth Group objects.",
+      "links": ["https://fusionauth.io/docs/apis/scim/scim-group"]
     },
     {
       "identifier": "jit_provisioning",
@@ -221,7 +250,9 @@
     },
     {
       "identifier": "user_blocking",
-      "status": "supported"
+      "status": "supported",
+      "description": "Manual and automatic account locking/deactivation. Supports rule-based lockout after failed attempts.",
+      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/setting-up-user-account-lockout"]
     },
     {
       "identifier": "user_metadata",
@@ -231,11 +262,15 @@
     },
     {
       "identifier": "app_metadata",
-      "status": "supported"
+      "status": "supported",
+      "description": "Per-application metadata stored in registration.data field, separate from user.data.",
+      "links": ["https://fusionauth.io/docs/get-started/core-concepts/registrations"]
     },
     {
       "identifier": "metadata_size_limits",
-      "status": "unknown"
+      "status": "supported",
+      "description": "PostgreSQL: effectively unlimited data field size. MySQL: 16 MB limit. Elasticsearch indexing also imposes practical limits.",
+      "links": ["https://fusionauth.io/docs/get-started/core-concepts/limitations"]
     },
     {
       "identifier": "user_search",
@@ -260,7 +295,9 @@
     },
     {
       "identifier": "username_restrictions",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Usernames are case-insensitive for uniqueness but stored case-sensitively. No special character restrictions documented; values accepted as-is.",
+      "links": ["https://fusionauth.io/docs/get-started/core-concepts/limitations"]
     },
     {
       "identifier": "progressive_profiling",
@@ -269,13 +306,18 @@
     },
     {
       "identifier": "abac",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Native ABAC not available. FusionAuth FGA by Permify (separate product) supports ABAC/ReBAC models.",
+      "links": ["https://fusionauth.io/docs/extend/fine-grained-authorization"]
     },
     {
       "identifier": "fine_grained_authorization",
       "status": "partial",
-      "description": "FusionAuth Entity System provides a relationship-based access control model.",
-      "links": ["https://fusionauth.io/docs/get-started/core-concepts/entity-management"]
+      "description": "FusionAuth Entity System provides a relationship-based access control model. FusionAuth FGA by Permify (acquired 2025) adds full RBAC/ABAC/ReBAC.",
+      "links": [
+        "https://fusionauth.io/docs/get-started/core-concepts/entity-management",
+        "https://fusionauth.io/docs/extend/fine-grained-authorization"
+      ]
     },
     {
       "identifier": "api_authorization",
@@ -289,7 +331,9 @@
     },
     {
       "identifier": "iso_27001",
-      "status": "unknown"
+      "status": "supported",
+      "description": "ISO 27001:2022 certification achieved in 2025, awarded by AssurancePoint.",
+      "links": ["https://fusionauth.io/blog/fusionauth-iso27001-2025"]
     },
     {
       "identifier": "hipaa_baa",
@@ -303,11 +347,15 @@
     },
     {
       "identifier": "csa_star",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No CSA STAR certification listed. FusionAuth holds SOC 2 Type II and ISO 27001:2022.",
+      "links": ["https://trust.fusionauth.io/"]
     },
     {
       "identifier": "fedramp",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "FusionAuth is not FedRAMP authorized. Self-hosted deployments can be run in FedRAMP environments (e.g. AWS GovCloud).",
+      "links": ["https://fusionauth.io/docs/operate/secure/compliance"]
     },
     {
       "identifier": "gdpr_data_export",
@@ -356,15 +404,21 @@
     },
     {
       "identifier": "encryption_at_rest",
-      "status": "supported"
+      "status": "supported",
+      "description": "FusionAuth Cloud encrypts all data at rest transparently. Self-hosted deployments rely on the underlying infrastructure.",
+      "links": ["https://fusionauth.io/docs/get-started/run-in-the-cloud/cloud"]
     },
     {
       "identifier": "encryption_in_transit",
-      "status": "supported"
+      "status": "supported",
+      "description": "TLS enforced for all connections. Database connections support TLS configuration for both PostgreSQL and MySQL.",
+      "links": ["https://fusionauth.io/docs/reference/configuration"]
     },
     {
       "identifier": "customer_managed_keys",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No BYOK/CMK offering. Key Master manages signing keys internally; external keys can be imported for JWT signing but not for data encryption.",
+      "links": ["https://fusionauth.io/docs/operate/secure/key-master"]
     },
     {
       "identifier": "bot_detection",
@@ -389,11 +443,15 @@
     },
     {
       "identifier": "credential_guard",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Breached Password Detection (Reactor feature) checks passwords against hundreds of millions of compromised credentials from dark web databases, updated continuously.",
+      "links": ["https://fusionauth.io/docs/operate/secure/breached-password-detection"]
     },
     {
       "identifier": "tenant_acl",
-      "status": "unknown"
+      "status": "supported",
+      "description": "IP Access Control Lists can be assigned per-tenant and per-application to allow or block IP ranges. Requires Enterprise plan.",
+      "links": ["https://fusionauth.io/docs/apis/ip-acl"]
     },
     {
       "identifier": "device_fingerprinting",
@@ -457,7 +515,9 @@
     },
     {
       "identifier": "authentication_api_rate_limits",
-      "status": "unknown"
+      "status": "partial",
+      "description": "FusionAuth Cloud applies WAF-based rate limiting (HTTP 429). Self-hosted instances have login attempt throttling via Advanced Threat Detection but no documented global API rate limits.",
+      "links": ["https://fusionauth.io/docs/operate/secure/advanced-threat-detection"]
     },
     {
       "identifier": "actions_extensibility",
@@ -468,7 +528,8 @@
     {
       "identifier": "typescript_in_actions",
       "status": "partial",
-      "description": "Lambdas support JavaScript (GraalVM). TypeScript requires transpilation before deployment."
+      "description": "Lambdas run JavaScript on GraalJS (ECMAScript 2021). TypeScript must be transpiled to JavaScript before deployment.",
+      "links": ["https://fusionauth.io/docs/extend/code/lambdas/"]
     },
     {
       "identifier": "custom_domain",
@@ -477,7 +538,9 @@
     },
     {
       "identifier": "deploy_cli",
-      "status": "unknown"
+      "status": "supported",
+      "description": "FusionAuth CLI (npx fusionauth) with Kickstart for declarative IaC configuration. Kickstart works on fresh installs for CI/CD environments.",
+      "links": ["https://fusionauth.io/docs/get-started/download-and-install/development/kickstart"]
     },
     {
       "identifier": "terraform_provider",
@@ -524,19 +587,30 @@
     },
     {
       "identifier": "identity_proofing",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No built-in document scanning or biometric identity proofing. Identity pre-verification via email/phone available but not formal identity proofing.",
+      "links": ["https://fusionauth.io/docs/lifecycle/manage-users/verification/identity-pre-verification-via-api"]
     },
     {
       "identifier": "decentralized_identity",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No support for DIDs or verifiable credentials. FusionAuth focuses on traditional OAuth2/OIDC/SAML protocols.",
+      "links": ["https://fusionauth.io/docs/get-started/core-concepts/integration-points"]
     },
     {
       "identifier": "billing_integration",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native billing/payment integration. FusionAuth manages its own subscription billing but does not provide billing APIs for tenant applications.",
+      "links": ["https://fusionauth.io/docs/get-started/core-concepts/integration-points"]
     },
     {
       "identifier": "agentic_identity",
-      "status": "not_supported"
+      "status": "partial",
+      "description": "AI agents modeled as Entities using M2M OAuth 2.1 client credentials. FusionAuth MCP Server available. No native agent-specific identity delegation standard.",
+      "links": [
+        "https://fusionauth.io/blog/ai-agent-identity-overview",
+        "https://fusionauth.io/docs/get-started/core-concepts/entity-management"
+      ]
     }
   ]
 }

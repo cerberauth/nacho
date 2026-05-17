@@ -9,6 +9,7 @@
   "website": "https://firebase.google.com/products/auth",
   "github": "https://github.com/firebase",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "Unlimited (Spark plan)",
@@ -33,12 +34,15 @@
     },
     {
       "identifier": "passkey_authentication",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native passkey/WebAuthn sign-in in Firebase Auth SDKs. Third-party extensions (e.g., Corbado) or a custom OIDC provider workaround are the only options.",
+      "links": ["https://firebase.uservoice.com/forums/948424-general/suggestions/46647016-support-authentication-with-passkeys"]
     },
     {
       "identifier": "email_passwordless_authentication",
       "status": "not_supported",
-      "description": "Email OTP as a separate passwordless method is not supported. Email link (magic link) is supported."
+      "description": "Email OTP (one-time code) as a distinct passwordless sign-in method is not supported. Email link (magic link) is the only email-based passwordless flow.",
+      "links": ["https://firebase.google.com/docs/auth/web/email-link-auth"]
     },
     {
       "identifier": "phone_passwordless_authentication",
@@ -64,13 +68,26 @@
       "description": "TOTP MFA available via Firebase Identity Platform (requires upgrade from base Firebase Auth).",
       "links": ["https://cloud.google.com/identity-platform/docs/web/mfa-totp"]
     },
-    { "identifier": "hotp_mfa", "status": "not_supported" },
-    { "identifier": "u2f_mfa", "status": "not_supported" },
-    { "identifier": "webauthn_mfa", "status": "not_supported" },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "not_supported",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "not_supported",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
+    },
     {
       "identifier": "email_code_mfa",
       "status": "not_supported",
-      "description": "Email verification is required for MFA, but it cannot be used as the second factor."
+      "description": "Email verification is required for MFA, but it cannot be used as the second factor.",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
     },
     {
       "identifier": "phone_code_mfa",
@@ -81,27 +98,32 @@
     {
       "identifier": "recovery_code_mfa",
       "status": "not_supported",
-      "description": "Not supported natively. Enroll multiple factors to prevent lockout."
+      "description": "Not supported natively. Enroll multiple factors to prevent lockout.",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
     },
     {
       "identifier": "push_notification_mfa",
       "status": "not_supported",
-      "description": "Not supported natively. Custom implementation via Firebase Cloud Messaging required."
+      "description": "Not supported natively. Custom implementation via Firebase Cloud Messaging required.",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
     },
     {
       "identifier": "adaptive_mfa",
       "status": "not_supported",
-      "description": "Not supported natively. Implement via custom Blocking Functions."
+      "description": "Not supported natively. Implement via custom Blocking Functions.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
     },
     {
       "identifier": "cisco_duo_mfa",
       "status": "not_supported",
-      "description": "No native integration."
+      "description": "No native integration.",
+      "links": ["https://firebase.google.com/docs/auth/web/multi-factor"]
     },
     {
       "identifier": "step_up_authentication",
       "status": "supported",
-      "description": "Supported via architectural pattern using incremental enrollment/verification."
+      "description": "Supported via reauthenticateWithCredential() and incremental MFA enrollment/verification patterns.",
+      "links": ["https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user"]
     },
     {
       "identifier": "oidc_protocol",
@@ -117,13 +139,15 @@
     },
     {
       "identifier": "ws_federation_protocol",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Only SAML 2.0 and OIDC are supported as federated protocols; WS-Federation is not.",
+      "links": ["https://docs.cloud.google.com/identity-platform/docs/product-comparison"]
     },
     {
       "identifier": "machine_to_machine",
       "status": "partial",
-      "description": "Service account authentication via Google Cloud IAM. Not a native M2M auth flow.",
-      "links": ["https://cloud.google.com/iam/docs/service-account-overview"]
+      "description": "Custom tokens signed by a Google service account can authenticate backend services to Firebase. No native OAuth 2.0 client credentials (M2M) flow.",
+      "links": ["https://firebase.google.com/docs/auth/admin/create-custom-tokens"]
     },
     {
       "identifier": "oidc_federation",
@@ -139,12 +163,15 @@
     },
     {
       "identifier": "active_directory_ldap",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native LDAP/Active Directory connector. AD users can federate via SAML or OIDC (e.g., Azure AD as an IdP).",
+      "links": ["https://firebase.google.com/docs/auth/web/microsoft-oauth"]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
-      "description": "Microsoft/Azure AD via OIDC/SAML social login providers."
+      "description": "Microsoft/Azure AD via the built-in Microsoft OAuth provider or as a generic OIDC/SAML provider via Identity Platform.",
+      "links": ["https://firebase.google.com/docs/auth/web/microsoft-oauth"]
     },
     {
       "identifier": "bulk_user_import",
@@ -165,36 +192,50 @@
     {
       "identifier": "bulk_user_update_delete",
       "status": "supported",
-      "description": "Bulk operations via Firebase Admin SDK."
+      "description": "deleteUsers() accepts up to 1,000 UIDs per call; getUsers() accepts up to 100 identifiers. Available since Admin Node.js SDK v8.12.0.",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users#bulk_delete_users"]
     },
     {
       "identifier": "upsert_on_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "importUsers() does not perform upserts. It processes users without deduplication; importing an existing UID/email fails for that record. Use updateUser() individually to update existing accounts.",
+      "links": ["https://firebase.google.com/docs/auth/admin/import-users"]
     },
     {
       "identifier": "legacy_username_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Firebase Authentication does not have a native username field. Display names are stored as displayName (no uniqueness or format constraints), but true username-based auth requires custom Firestore logic. importUsers() supports uid (up to 128 chars), email, and phone but not a separate username field.",
+      "links": ["https://firebase.google.com/docs/auth/admin/import-users"]
     },
     {
       "identifier": "mfa_enrollment_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "importUsers() does not support importing pre-existing TOTP or SMS MFA enrollments. Users must re-enroll MFA after migration.",
+      "links": ["https://firebase.google.com/docs/auth/admin/import-users"]
     },
     {
       "identifier": "inbound_scim_provisioning",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native SCIM endpoint. User lifecycle management must use the Admin SDK REST API or third-party bridges.",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users"]
     },
     {
       "identifier": "outbound_scim_provisioning",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No outbound SCIM provisioning to downstream systems.",
+      "links": ["https://firebase.google.com/docs/auth/admin/manage-users"]
     },
     {
       "identifier": "scim_groups",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No group/role objects via SCIM. Groups must be implemented via custom claims or Firestore.",
+      "links": ["https://firebase.google.com/docs/auth/admin/custom-claims"]
     },
     {
       "identifier": "jit_provisioning",
       "status": "supported",
-      "description": "Users are created on first sign-in via social/SAML/OIDC providers."
+      "description": "Users are created automatically on first sign-in via social/SAML/OIDC providers. Blocking functions allow custom logic during this flow.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
     },
     {
       "identifier": "lazy_migration",
@@ -262,11 +303,15 @@
     },
     {
       "identifier": "username_restrictions",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Firebase Auth has no native username field with format restrictions. The displayName field is free-form. Custom username enforcement requires application-level logic (e.g., Firestore uniqueness checks).",
+      "links": ["https://firebase.google.com/docs/auth/users"]
     },
     {
       "identifier": "progressive_profiling",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No built-in progressive profiling flow. Can be implemented with custom UI and Blocking Functions.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
     },
     {
       "identifier": "abac",
@@ -321,11 +366,15 @@
     },
     {
       "identifier": "gdpr_right_to_erasure",
-      "status": "supported"
+      "status": "supported",
+      "description": "Delete auth records via Admin SDK deleteUser(). Application data in Firestore/Storage/RTDB must be deleted separately.",
+      "links": ["https://firebase.google.com/support/privacy/clear-export-data"]
     },
     {
       "identifier": "consent_management",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No built-in consent management or cookie consent flows. Must be implemented at the application layer.",
+      "links": ["https://firebase.google.com/support/privacy"]
     },
     {
       "identifier": "region_deployment",
@@ -336,7 +385,9 @@
     },
     {
       "identifier": "private_cloud_deployment",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Firebase Authentication is a fully managed Google Cloud service; self-hosted or private-cloud deployment is not supported.",
+      "links": ["https://firebase.google.com/docs/projects/locations"]
     },
     {
       "identifier": "audit_log_retention",
@@ -352,7 +403,9 @@
     },
     {
       "identifier": "security_center",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No dedicated security dashboard or threat intelligence center. Security signals are available via Google Cloud Audit Logs and Identity Platform's reCAPTCHA integration.",
+      "links": ["https://cloud.google.com/identity-platform/docs/audit-logging"]
     },
     {
       "identifier": "encryption_at_rest",
@@ -370,42 +423,57 @@
     },
     {
       "identifier": "bot_detection",
-      "status": "not_supported",
-      "description": "No built-in CAPTCHA. Use reCAPTCHA Enterprise via custom blocking functions."
+      "status": "supported",
+      "description": "Identity Platform integrates natively with reCAPTCHA Enterprise for bot detection and SMS toll-fraud protection. App Check with reCAPTCHA Enterprise/v3 can also protect all Firebase backend endpoints.",
+      "links": ["https://docs.cloud.google.com/identity-platform/docs/recaptcha-enterprise"]
     },
     {
       "identifier": "brute_force_protection",
       "status": "supported",
-      "description": "App Check helps prevent automated abuse.",
-      "links": ["https://firebase.google.com/docs/app-check"]
+      "description": "Firebase automatically throttles sign-in attempts and returns auth/too-many-requests when thresholds are exceeded. Email enumeration protection is also available.",
+      "links": ["https://firebase.google.com/docs/auth/limits"]
     },
     {
       "identifier": "suspicious_ip_throttling",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No built-in suspicious-IP throttling dashboard or policy. Implement via Blocking Functions or App Check with reCAPTCHA Enterprise.",
+      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
     },
     {
       "identifier": "breached_password_detection",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No breached/compromised password detection (e.g., Have I Been Pwned integration). Must be implemented at the application layer.",
+      "links": ["https://firebase.google.com/support/guides/security-checklist"]
     },
     {
       "identifier": "credential_guard",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No credential stuffing or credential-guard feature. App Check and reCAPTCHA Enterprise can partially mitigate automated credential attacks.",
+      "links": ["https://firebase.google.com/docs/app-check"]
     },
     {
       "identifier": "tenant_acl",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No tenant-level access control lists. Per-tenant isolation is achieved via Identity Platform multi-tenancy, but fine-grained tenant ACLs are not supported natively.",
+      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"]
     },
     {
       "identifier": "device_fingerprinting",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native device fingerprinting. reCAPTCHA Enterprise signals (via Identity Platform) provide some device-level risk assessment.",
+      "links": ["https://docs.cloud.google.com/identity-platform/docs/recaptcha-enterprise"]
     },
     {
       "identifier": "per_org_branding",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No per-tenant/org custom branding in the hosted UI. Each Identity Platform tenant can have its own sign-in providers but shares the same FirebaseUI theme unless a fully custom UI is built per tenant.",
+      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-ui"]
     },
     {
       "identifier": "per_org_mfa_policy",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "MFA policies cannot be configured per tenant/organization in Identity Platform multi-tenancy.",
+      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"]
     },
     {
       "identifier": "hosted_login_page",
@@ -456,7 +524,9 @@
     },
     {
       "identifier": "authentication_api_rate_limits",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Documented per-operation rate limits (e.g., account creation, sign-in). Limits can be tightened from the Google Cloud console. The auth/too-many-requests error is returned when thresholds are exceeded.",
+      "links": ["https://firebase.google.com/docs/auth/limits"]
     },
     {
       "identifier": "actions_extensibility",
@@ -512,8 +582,8 @@
     {
       "identifier": "email_templates",
       "status": "supported",
-      "description": "Customize email templates in the Firebase Console.",
-      "links": ["https://firebase.google.com/docs/auth/web/manage-users"]
+      "description": "Customize email templates (sender name, address, subject, body) for password reset, email verification, and email change in the Firebase Console. Custom action URLs are also configurable.",
+      "links": ["https://support.google.com/firebase/answer/7000714"]
     },
     {
       "identifier": "custom_oidc_claims",
@@ -523,23 +593,33 @@
     },
     {
       "identifier": "nocode_flow_builder",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No visual/no-code authentication flow builder. FirebaseUI provides pre-built components but requires code-level integration.",
+      "links": ["https://firebase.google.com/docs/auth/web/firebaseui"]
     },
     {
       "identifier": "identity_proofing",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No built-in identity proofing or document verification. Must be integrated at the application layer via third-party services.",
+      "links": ["https://firebase.google.com/docs/auth"]
     },
     {
       "identifier": "decentralized_identity",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No support for DIDs, verifiable credentials, or W3C decentralized identity standards.",
+      "links": ["https://firebase.google.com/docs/auth"]
     },
     {
       "identifier": "billing_integration",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native billing or subscription management integration. Billing is handled via Google Cloud billing accounts.",
+      "links": ["https://firebase.google.com/pricing"]
     },
     {
       "identifier": "agentic_identity",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No native OAuth 2.0 M2M/agent identity flows or MCP-spec authorization. The Firebase MCP server for developer tooling uses CLI credentials, not a standards-based agentic auth model.",
+      "links": ["https://firebase.google.com/docs/ai-assistance/mcp-server"]
     }
   ]
 }

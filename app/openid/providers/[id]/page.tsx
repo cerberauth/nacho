@@ -9,6 +9,7 @@ import { getProviderById, getProviderFeature, getProviders } from '@/lib/provide
 import { providers as iamProviders } from '@/data/iam/index'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
+import { getCountryFlag } from '@/lib/utils'
 import { getTableCells } from '../get-table-cells'
 
 type Props = {
@@ -79,9 +80,16 @@ export default async function ProviderPage({ params }: Props) {
             />
           )}
           <div className="flex flex-col gap-2">
-            <h1 className="text-5xl font-semibold leading-none tracking-tight mb-2">
-              {provider.name} OpenID Connect Provider
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-5xl font-semibold leading-none tracking-tight">
+                {provider.name} OpenID Connect Provider
+              </h1>
+              {provider.nationality && (
+                <span title={provider.nationality} className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                  {getCountryFlag(provider.nationality)}
+                </span>
+              )}
+            </div>
             <p className="text-md text-slate-600">
               {provider.abstract}
             </p>
@@ -99,17 +107,17 @@ export default async function ProviderPage({ params }: Props) {
         </p>
         {iamProvider && (
           <p className="text-sm text-slate-600">
-            Looking for {provider.name}&apos;s CIAM features like MFA, SSO, and user management?{' '}
+            Looking for {provider.name}&apos;s (C)IAM features like MFA, SSO, and user management?{' '}
             <Link href={`/iam/providers/${iamProvider.identifier}`} className="text-primary hover:underline">
-              View {provider.name} on the CIAM Identity Providers benchmark
+              View {provider.name} on the (C)IAM Identity Providers benchmark
             </Link>.
           </p>
         )}
         {!iamProvider && (
           <p className="text-sm text-slate-600">
-            Looking for CIAM features like MFA, SSO, user management, and compliance?{' '}
+            Looking for (C)IAM features like MFA, SSO, user management, and compliance?{' '}
             <Link href="/iam/providers" className="text-primary hover:underline">
-              Check out the CIAM Identity Providers benchmark
+              Check out the (C)IAM Identity Providers benchmark
             </Link>.
           </p>
         )}

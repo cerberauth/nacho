@@ -8,6 +8,7 @@
   },
   "website": "https://aws.amazon.com/cognito/",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "50,000 MAU/month",
@@ -42,13 +43,13 @@
       "identifier": "email_passwordless_authentication",
       "status": "supported",
       "description": "Email OTP available on Essentials tier and above.",
-      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-sms-message.html"]
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow-methods.html"]
     },
     {
       "identifier": "phone_passwordless_authentication",
       "status": "supported",
       "description": "Phone OTP (SMS) available on Essentials tier and above.",
-      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-mfa-sms-message.html"]
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/amazon-cognito-user-pools-authentication-flow-methods.html"]
     },
     {
       "identifier": "magic_link_authentication",
@@ -158,12 +159,14 @@
     {
       "identifier": "active_directory_ldap",
       "status": "partial",
-      "description": "Active Directory/LDAP integration via SAML or OIDC federation only. No native LDAP connector."
+      "description": "Active Directory/LDAP integration via SAML or OIDC federation only. No native LDAP connector.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-saml-idp.html"]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
-      "description": "Microsoft Entra ID (Azure AD) integration via SAML or OIDC federation."
+      "description": "Microsoft Entra ID (Azure AD) integration via SAML or OIDC federation.",
+      "links": ["https://aws.amazon.com/blogs/security/how-to-set-up-amazon-cognito-for-federated-authentication-using-azure-ad/"]
     },
     {
       "identifier": "bulk_user_import",
@@ -179,40 +182,56 @@
     {
       "identifier": "bulk_user_export",
       "status": "supported",
-      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-import-users.html"]
+      "description": "Export users via ListUsers API with pagination.",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_ListUsers.html"]
     },
     {
       "identifier": "bulk_user_update_delete",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No native bulk update or delete API. Operations must be performed per-user via AdminUpdateUserAttributes or AdminDeleteUser.",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminUpdateUserAttributes.html"]
     },
     {
       "identifier": "upsert_on_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "CSV import only creates new users; existing users are skipped with a [SKIPPED] status. Upsert is not supported.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html"]
     },
     {
       "identifier": "legacy_username_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Cognito enforces username constraints (max 128 chars, ASCII). Legacy usernames with arbitrary special characters cannot be directly imported.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html"]
     },
     {
       "identifier": "mfa_enrollment_import",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "CSV import can flag MFA as enabled but cannot import existing TOTP secrets or SMS enrollments. Users must re-enroll MFA after import.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-using-import-tool.html"]
     },
     {
       "identifier": "inbound_scim_provisioning",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Amazon Cognito User Pools do not support the SCIM protocol. SCIM is only available in AWS IAM Identity Center, which is a separate service.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/managing-users.html"]
     },
     {
       "identifier": "outbound_scim_provisioning",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Amazon Cognito User Pools do not support outbound SCIM provisioning.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/managing-users.html"]
     },
     {
       "identifier": "scim_groups",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Amazon Cognito User Pools do not support SCIM groups provisioning.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/managing-users.html"]
     },
     {
       "identifier": "jit_provisioning",
       "status": "supported",
-      "description": "Just-in-time provisioning supported via SAML/OIDC federation."
+      "description": "Just-in-time provisioning supported via SAML/OIDC federation. Amazon Cognito creates a user profile on first federated sign-in by mapping IdP attributes.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-identity-federation.html"]
     },
     {
       "identifier": "lazy_migration",
@@ -222,7 +241,9 @@
     },
     {
       "identifier": "self_service_profile_management",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Managed Login does not support user self-service profile management such as attribute changes or MFA preference. Custom UI using Cognito APIs is required.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/cognito-user-pools-managed-login.html"]
     },
     {
       "identifier": "account_linking",
@@ -232,21 +253,26 @@
     {
       "identifier": "user_blocking",
       "status": "supported",
-      "description": "Disable user accounts to prevent authentication."
+      "description": "Disable user accounts to prevent authentication via AdminDisableUser API.",
+      "links": ["https://docs.aws.amazon.com/cognito-user-identity-pools/latest/APIReference/API_AdminDisableUser.html"]
     },
     {
       "identifier": "user_metadata",
       "status": "supported",
-      "description": "Custom user attributes stored in the user pool."
+      "description": "Custom user attributes stored in the user pool. Up to 50 custom attributes, max 2048 characters each.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
     },
     {
       "identifier": "app_metadata",
       "status": "supported",
-      "description": "Custom attributes can be marked as write-protected for end users."
+      "description": "Custom attributes can be marked as write-protected for end users, functioning as app-managed metadata.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
     },
     {
       "identifier": "metadata_size_limits",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Custom attribute values are limited to 2048 characters. A maximum of 50 custom attributes can be added per user pool.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/quotas.html"]
     },
     {
       "identifier": "user_search",
@@ -271,7 +297,9 @@
     },
     {
       "identifier": "username_restrictions",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Usernames are limited to 128 characters. Case sensitivity is configurable. Aliases (email, phone) can substitute for username at sign-in.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-settings-attributes.html"]
     },
     {
       "identifier": "progressive_profiling",
@@ -374,7 +402,9 @@
     },
     {
       "identifier": "customer_managed_keys",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "Amazon Cognito encrypts user pool data internally and does not support customer-provided or customer-managed KMS keys for user pool encryption.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/data-protection.html"]
     },
     {
       "identifier": "bot_detection",
@@ -401,11 +431,14 @@
     },
     {
       "identifier": "credential_guard",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No dedicated dark web credential monitoring. Cognito's compromised credentials detection (Plus tier) checks credentials against public breach lists, which is covered under breached_password_detection."
     },
     {
       "identifier": "tenant_acl",
-      "status": "unknown"
+      "status": "not_supported",
+      "description": "No native per-tenant IP allowlist/blocklist. IP-based access control requires AWS WAF integration with a web ACL attached to the user pool.",
+      "links": ["https://docs.aws.amazon.com/cognito/latest/developerguide/user-pool-waf.html"]
     },
     {
       "identifier": "device_fingerprinting",
@@ -490,7 +523,9 @@
     },
     {
       "identifier": "deploy_cli",
-      "status": "unknown"
+      "status": "supported",
+      "description": "Supported via AWS CDK, AWS CloudFormation, AWS SAM, and Amplify CLI. CDK provides L2 constructs for both User Pools and Identity Pools.",
+      "links": ["https://docs.aws.amazon.com/cdk/v2/guide/home.html"]
     },
     {
       "identifier": "terraform_provider",

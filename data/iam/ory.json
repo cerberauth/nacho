@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
   "name": "Ory",
-  "abstract": "Open-source (Apache 2.0) microservice-based IAM/CIAM platform. Modular architecture: Ory Kratos (identity), Ory Hydra (OAuth2/OIDC, OpenID Certified), Ory Keto (Zanzibar-based FGA permissions), Ory Oathkeeper (Zero Trust proxy). Unique aDAU pricing model.",
+  "abstract": "Open-source (Apache 2.0) microservice-based CIAM platform. Modular architecture: Ory Kratos (identity), Ory Hydra (OAuth2/OIDC, OpenID Certified), Ory Keto (Zanzibar-based FGA permissions), Ory Oathkeeper (Zero Trust proxy). Unique aDAU pricing model.",
   "identifier": "ory",
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/ory.svg"
@@ -9,9 +9,10 @@
   "website": "https://www.ory.com",
   "github": "https://github.com/ory",
   "license": "Apache 2.0",
+  "nationality": "Germany",
   "pricing": {
     "hasFreeTier": true,
-    "freeTierLimit": "Unlimited (self-hosted) / 1,000 aDAU (Ory Network)",
+    "freeTierLimit": "Unlimited (self-hosted) / $21 monthly credit (Ory Network)",
     "pricingModel": "mau",
     "pricingUrl": "https://www.ory.com/pricing",
     "plans": [
@@ -21,14 +22,18 @@
       },
       {
         "name": "Developer",
-        "price": "Free (1K aDAU)"
+        "price": "Free ($21 monthly credit)"
+      },
+      {
+        "name": "Production",
+        "price": "$770/year"
       },
       {
         "name": "Growth",
-        "price": "$29/month"
+        "price": "$9,350/year"
       },
       {
-        "name": "Scale",
+        "name": "Enterprise",
         "price": "Custom"
       }
     ]
@@ -168,7 +173,7 @@
       "description": "SAML SSO via BoxyHQ acquisition (May 2025). Enterprise tier or Enterprise License. Self-hosted (Open Source) has no restrictions.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/kratos/organizations"
@@ -193,7 +198,7 @@
       "plans": [
         "Open Source",
         "Growth",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/kratos/organizations"
@@ -202,10 +207,10 @@
     {
       "identifier": "saml_federation",
       "status": "supported",
-      "description": "SAML enterprise SSO available on Scale tier. Self-hosted (Open Source) has no restrictions.",
+      "description": "SAML enterprise SSO available on Enterprise tier. Self-hosted (Open Source) has no restrictions.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/kratos/organizations"
@@ -266,10 +271,10 @@
     {
       "identifier": "inbound_scim_provisioning",
       "status": "supported",
-      "description": "SCIM 2.0 provisioning via Ory Polis (BoxyHQ). Scale (Enterprise) tier or Enterprise License. Self-hosted (Open Source) has no restrictions.",
+      "description": "SCIM 2.0 provisioning via Ory Polis (BoxyHQ). Enterprise tier or Enterprise License. Self-hosted (Open Source) has no restrictions.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/kratos/manage-identities/scim"
@@ -278,10 +283,10 @@
     {
       "identifier": "outbound_scim_provisioning",
       "status": "supported",
-      "description": "SCIM 2.0 outbound provisioning via Ory Polis. Scale (Enterprise) tier. Launched April 2025.",
+      "description": "SCIM 2.0 outbound provisioning via Ory Polis. Enterprise tier. Launched April 2025.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://changelog.ory.com/announcements/scim-provisioning-support"
@@ -290,10 +295,10 @@
     {
       "identifier": "scim_groups",
       "status": "supported",
-      "description": "SCIM group sync via Ory Polis. Scale (Enterprise) tier. Self-hosted (Open Source) has no restrictions.",
+      "description": "SCIM group sync via Ory Polis. Enterprise tier. Self-hosted (Open Source) has no restrictions.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/kratos/manage-identities/scim"
@@ -368,10 +373,10 @@
     {
       "identifier": "organizations_multitenancy",
       "status": "supported",
-      "description": "B2B Organizations via Ory Polis. Multi-tenant production environments require Scale (Enterprise) tier on Ory Network. Self-hosted (Open Source) has no restrictions.",
+      "description": "B2B Organizations via Ory Polis. Multi-tenant production environments require Enterprise tier on Ory Network. Self-hosted (Open Source) has no restrictions.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/kratos/organizations"
@@ -480,8 +485,9 @@
       ],
       "plans": [
         "Open Source",
+        "Production",
         "Growth",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://www.ory.com/docs/guides/custom-domains"
@@ -507,10 +513,10 @@
     {
       "identifier": "audit_log_streaming",
       "status": "supported",
-      "description": "Live event streaming and event firehose to data lake on Scale (Enterprise) tier. Self-hosted has no restrictions.",
+      "description": "Live event streaming and event firehose to data lake on Enterprise tier. Self-hosted has no restrictions.",
       "plans": [
         "Open Source",
-        "Scale"
+        "Enterprise"
       ],
       "links": [
         "https://console.ory.com"

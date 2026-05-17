@@ -51,6 +51,7 @@ export type Provider = {
     contentUrl: string
   }
   license: string
+  nationality?: string
   pricing?: Pricing
   featureList: ProviderFeature[]
 }

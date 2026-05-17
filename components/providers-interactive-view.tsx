@@ -27,6 +27,7 @@ import { Button } from '@/components/ui/button'
 
 import { useBenchmarkParams } from '@/components/hooks/use-benchmark-params'
 import { PricingRows } from '@/components/benchmark/pricing-rows'
+import { getCountryFlag } from '@/lib/utils'
 
 type Props = {
   providers: Provider[]
@@ -307,10 +308,10 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                 onClick={() => setWizardStep(i)}
                 title={cat.name}
                 className={`h-1.5 flex-1 rounded-full transition-colors ${i === wizardStep
-                    ? 'bg-slate-900'
-                    : i < wizardStep
-                      ? 'bg-slate-400'
-                      : 'bg-slate-200'
+                  ? 'bg-slate-900'
+                  : i < wizardStep
+                    ? 'bg-slate-400'
+                    : 'bg-slate-200'
                   }`}
               />
             ))}
@@ -387,11 +388,10 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
             return (
               <div key={provider.identifier} className="sticky top-0 z-20 bg-white pt-2 pb-1 group/col relative">
                 <div
-                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${
-                    inTable
+                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${inTable
                       ? 'bg-slate-50 border-slate-200 hover:border-slate-300'
                       : 'bg-white border-slate-100 opacity-20 hover:opacity-40'
-                  }`}
+                    }`}
                 >
                   <div className="h-10 flex items-center justify-center">
                     {provider.icon?.contentUrl && (
@@ -404,13 +404,20 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                       />
                     )}
                   </div>
-                  <Link
-                    href={`${providerDetailUrlPrefix}/${provider.identifier}`}
-                    onClick={(e) => { trackVendorClick(provider.identifier) }}
-                    className="text-sm text-center text-slate-900 truncate w-full hover:underline"
-                  >
-                    {provider.name}
-                  </Link>
+                  <div className="flex items-center gap-1 w-full justify-center">
+                    <Link
+                      href={`${providerDetailUrlPrefix}/${provider.identifier}`}
+                      onClick={(e) => { trackVendorClick(provider.identifier) }}
+                      className="text-sm text-center text-slate-900 truncate hover:underline"
+                    >
+                      {provider.name}
+                    </Link>
+                    {provider.nationality && (
+                      <span title={provider.nationality} className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                        {getCountryFlag(provider.nationality)}
+                      </span>
+                    )}
+                  </div>
                   <span className="text-xs text-slate-400">{provider.license}</span>
                   {provider.pricing && (
                     <div className="flex flex-col items-center gap-0.5 w-full">
@@ -443,10 +450,9 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
             )
           })}
 
-          {/* ── Pricing & Plans section ── */}
-          <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
+            <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
 
-          {/* ── Categories + feature rows ── */}
+            {/* ── Categories + feature rows ── */}
           {filteredCategories.map(category => (
             <Fragment key={category.name}>
               {/* Category header spans all columns */}

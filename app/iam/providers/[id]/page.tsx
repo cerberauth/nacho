@@ -9,6 +9,7 @@ import { getIAMProviderById, getIAMProviderFeature, getIAMProviders } from '@/li
 import { providers as openIDProviders } from '@/data/openid/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
+import { getCountryFlag } from '@/lib/utils'
 import { getTableCells } from '../get-table-cells'
 
 type Props = {
@@ -79,9 +80,16 @@ export default async function ProviderPage({ params }: Props) {
             />
           )}
           <div className="flex flex-col gap-2">
-            <h1 className="text-5xl font-semibold leading-none tracking-tight mb-2">
-              {provider.name} IAM Provider
-            </h1>
+            <div className="flex items-center gap-3">
+              <h1 className="text-5xl font-semibold leading-none tracking-tight">
+                {provider.name} IAM Provider
+              </h1>
+              {provider.nationality && (
+                <span title={provider.nationality} className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                  {getCountryFlag(provider.nationality)}
+                </span>
+              )}
+            </div>
             <p className="text-md text-slate-600">
               {provider.abstract}
             </p>
@@ -95,7 +103,7 @@ export default async function ProviderPage({ params }: Props) {
         <BenchmarkTable categories={categories} />
 
         <p className="text-sm text-slate-600">
-          If you want to compare IAM features of different providers, please check out the <Link href="/iam/providers" className="text-primary hover:underline">CIAM Identity Providers benchmark</Link>.
+          If you want to compare IAM features of different providers, please check out the <Link href="/iam/providers" className="text-primary hover:underline">(C)IAM Identity Providers benchmark</Link>.
         </p>
         {openIDProvider && (
           <p className="text-sm text-slate-600">

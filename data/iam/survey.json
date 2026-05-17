@@ -1,5 +1,5 @@
 {
-  "title": "Find the best CIAM solution for your business",
+  "title": "Find the best (C)IAM solution for your business",
   "description": "Answer a few questions about your use case and we'll recommend the best identity providers for you.",
   "steps": [
     {
@@ -231,11 +231,6 @@
           "required": true,
           "mapsToDimension": "priceFit",
           "options": [
-            {
-              "value": "free",
-              "label": "Free / Open Source",
-              "description": "Looking for free tiers or self-hostable open-source solutions."
-            },
             {
               "value": "<100",
               "label": "Under $100 / month",

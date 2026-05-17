@@ -8,6 +8,7 @@
   },
   "website": "https://www.authlete.com",
   "license": "Proprietary",
+  "nationality": "Japan",
   "featureList": [
     {
       "identifier": "implicit_grant",

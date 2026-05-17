@@ -8,6 +8,7 @@
   },
   "website": "https://www.microsoft.com/en-us/security/business/identity-access/microsoft-entra-id",
   "license": "Proprietary",
+  "nationality": "USA",
   "featureList": [
     {
       "identifier": "implicit_grant",

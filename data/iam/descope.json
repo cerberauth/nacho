@@ -9,6 +9,7 @@
   "website": "https://www.descope.com",
   "github": "https://github.com/descope",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "7,500 MAU",
@@ -53,7 +54,9 @@
     },
     {
       "identifier": "anonymous_authentication",
-      "status": "not_supported"
+      "status": "supported",
+      "description": "Anonymous users issued a dedicated session JWT with a danu claim; seamlessly converted to full accounts on sign-up.",
+      "links": ["https://docs.descope.com/management/user-management/anonymous-users"]
     },
     {
       "identifier": "totp_mfa",
@@ -63,7 +66,8 @@
     {
       "identifier": "hotp_mfa",
       "status": "not_supported",
-      "description": "Not supported. Descope favors TOTP and WebAuthn."
+      "description": "Not supported. Descope supports TOTP (time-based) and WebAuthn/passkeys but not counter-based HOTP.",
+      "links": ["https://docs.descope.com/auth-methods"]
     },
     {
       "identifier": "u2f_mfa",
@@ -94,7 +98,9 @@
     },
     {
       "identifier": "push_notification_mfa",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Not supported. Descope provides OTP, TOTP, passkeys, and magic links as MFA channels but does not offer push notification MFA.",
+      "links": ["https://docs.descope.com/auth-methods"]
     },
     {
       "identifier": "adaptive_mfa",
@@ -105,7 +111,8 @@
     {
       "identifier": "cisco_duo_mfa",
       "status": "not_supported",
-      "description": "Descope provides native MFA orchestration. Cisco Duo integration is not a primary focus."
+      "description": "Descope provides native MFA orchestration. Cisco Duo is not listed as a supported connector or MFA integration.",
+      "links": ["https://docs.descope.com/connectors"]
     },
     {
       "identifier": "step_up_authentication",
@@ -125,7 +132,9 @@
     },
     {
       "identifier": "ws_federation_protocol",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Not supported. Descope supports OIDC and SAML 2.0 as federation protocols but not WS-Federation.",
+      "links": ["https://docs.descope.com/auth-methods/sso"]
     },
     {
       "identifier": "machine_to_machine",
@@ -146,29 +155,30 @@
     {
       "identifier": "active_directory_ldap",
       "status": "supported",
-      "description": "LDAP/Active Directory integration available on Growth plan.",
-      "links": ["https://docs.descope.com/sso"]
+      "description": "LDAP connector authenticates users against an LDAP directory server (including Active Directory) using username/password or mutual TLS (mTLS). Requires the LDAP server to be internet-accessible.",
+      "links": ["https://docs.descope.com/connectors/connector-configuration-guides/other/ldap"]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
-      "description": "Microsoft Entra ID SSO via SAML/OIDC."
+      "description": "Microsoft Entra ID (Azure AD) SSO via SAML/OIDC, with SCIM provisioning support.",
+      "links": ["https://docs.descope.com/auth-methods/sso/saml", "https://docs.descope.com/management/tenant-management/scim/azure-scim"]
     },
     {
       "identifier": "bulk_user_import",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "password_hash_import",
       "status": "supported",
       "description": "Password hash import supported on Pro plan.",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "bulk_user_export",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "bulk_user_update_delete",
@@ -179,32 +189,36 @@
     {
       "identifier": "upsert_on_import",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "legacy_username_import",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "mfa_enrollment_import",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Importing pre-existing MFA enrollments (e.g. TOTP secrets) is not supported. Users must re-enroll in MFA after migration.",
+      "links": ["https://docs.descope.com/migrate"]
     },
     {
       "identifier": "inbound_scim_provisioning",
       "status": "supported",
       "description": "SCIM 2.0 provisioning available on Growth plan.",
-      "links": ["https://docs.descope.com/provisioning/scim"]
+      "links": ["https://docs.descope.com/management/tenant-management/scim"]
     },
     {
       "identifier": "outbound_scim_provisioning",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "Descope only supports inbound SCIM (receiving provisioning from IdPs such as Okta and Azure). Outbound SCIM (pushing users from Descope to external directories) is not supported.",
+      "links": ["https://docs.descope.com/management/tenant-management/scim"]
     },
     {
       "identifier": "scim_groups",
       "status": "supported",
       "description": "SCIM group provisioning on Growth plan.",
-      "links": ["https://docs.descope.com/provisioning/scim"]
+      "links": ["https://docs.descope.com/management/tenant-management/scim"]
     },
     {
       "identifier": "jit_provisioning",
@@ -215,7 +229,7 @@
       "identifier": "lazy_migration",
       "status": "supported",
       "description": "Zero-downtime user migration available on Pro plan.",
-      "links": ["https://docs.descope.com/users/user-migration"]
+      "links": ["https://docs.descope.com/migrate"]
     },
     {
       "identifier": "self_service_profile_management",
@@ -225,33 +239,33 @@
     {
       "identifier": "account_linking",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "user_blocking",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "user_metadata",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "app_metadata",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "metadata_size_limits",
       "status": "supported",
       "description": "20KB per object.",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "user_search",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "rbac",
@@ -273,7 +287,7 @@
     {
       "identifier": "username_restrictions",
       "status": "supported",
-      "links": ["https://docs.descope.com/users"]
+      "links": ["https://docs.descope.com/management/user-management"]
     },
     {
       "identifier": "progressive_profiling",
@@ -302,42 +316,44 @@
     {
       "identifier": "soc2_type2",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "iso_27001",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "hipaa_baa",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "pci_dss",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "csa_star",
-      "status": "not_supported"
+      "status": "supported",
+      "description": "CSA STAR Level 2 certified.",
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "fedramp",
       "status": "supported",
       "description": "FedRAMP High authorized, making Descope suitable for US federal government use cases.",
-      "links": ["https://www.descope.com/fedramp"]
+      "links": ["https://www.descope.com/press-release/fedramp", "https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "gdpr_data_export",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "gdpr_right_to_erasure",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "consent_management",
@@ -350,12 +366,12 @@
       "status": "supported",
       "description": "Data residency in US and EU regions available on Growth plan.",
       "values": ["US", "EU"],
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "private_cloud_deployment",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "audit_log_retention",
@@ -372,22 +388,22 @@
     {
       "identifier": "security_center",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "encryption_at_rest",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "encryption_in_transit",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "customer_managed_keys",
       "status": "supported",
-      "links": ["https://www.descope.com/security"]
+      "links": ["https://www.descope.com/security-compliance"]
     },
     {
       "identifier": "bot_detection",
@@ -411,11 +427,15 @@
     },
     {
       "identifier": "credential_guard",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No Auth0-style credential guard feature. Descope offers breached password detection via the Have I Been Pwned connector.",
+      "links": ["https://docs.descope.com/connectors/connector-configuration-guides/fraud/pwned"]
     },
     {
       "identifier": "tenant_acl",
-      "status": "not_supported"
+      "status": "not_supported",
+      "description": "No dedicated tenant ACL (access control list) feature for restricting traffic to tenants. Access control is managed via RBAC and tenant-level roles.",
+      "links": ["https://docs.descope.com/management/tenant-management"]
     },
     {
       "identifier": "device_fingerprinting",
@@ -506,7 +526,8 @@
     {
       "identifier": "deploy_cli",
       "status": "supported",
-      "links": ["https://docs.descope.com/api"]
+      "description": "Descope CLI (descopecli) supports project snapshot export/import/validate, flows management, user/tenant operations, and CI/CD integration.",
+      "links": ["https://docs.descope.com/cli/descope"]
     },
     {
       "identifier": "terraform_provider",
@@ -542,7 +563,9 @@
     },
     {
       "identifier": "custom_oidc_claims",
-      "status": "supported"
+      "status": "supported",
+      "description": "Custom claims added to JWTs via the Custom Claims action in Flows or JWT templates. Supports the descope.custom_claims scope in OIDC applications.",
+      "links": ["https://docs.descope.com/customize/auth/oidc/", "https://docs.descope.com/flows/actions/custom-claims"]
     },
     {
       "identifier": "nocode_flow_builder",
@@ -566,7 +589,7 @@
       "identifier": "agentic_identity",
       "status": "supported",
       "description": "MCP server authentication for AI agents on Pro plan.",
-      "links": ["https://www.descope.com/blog/post/mcp-auth"]
+      "links": ["https://docs.descope.com/agentic-identity-hub/mcp-servers"]
     }
   ]
 }

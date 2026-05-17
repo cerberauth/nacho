@@ -30,9 +30,9 @@ export default function ProviderPage() {
           Compare OpenID Connect providers across grant types, token endpoint authentication methods, extensions, endpoints, FAPI compliance, and protocol features.
         </p>
         <p className="text-sm text-slate-500">
-          Looking for CIAM features like MFA, SSO, user management, and compliance?{' '}
+          Looking for (C)IAM features like MFA, SSO, user management, and compliance?{' '}
           <Link href="/iam/providers" className="text-primary hover:underline">
-            Check out the CIAM Identity Providers benchmark
+            Check out the (C)IAM Identity Providers benchmark
           </Link>
           .
         </p>

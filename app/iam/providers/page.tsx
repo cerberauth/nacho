@@ -9,8 +9,8 @@ import { getTableCells } from './get-table-cells'
 import { IAMProvidersInteractiveView } from './providers-interactive-view'
 
 export const metadata: Metadata = {
-  title: 'CIAM Identity Providers benchmark',
-  description: 'Compare CIAM identity providers across authentication methods, user management, compliance, and developer integration features.',
+  title: '(C)IAM Identity Providers benchmark',
+  description: 'Compare (C)IAM identity providers across authentication methods, user management, compliance, and developer integration features.',
   alternates: {
     canonical: '/iam/providers',
   },
@@ -24,10 +24,10 @@ export default function IAMProviderPage() {
     <main className="flex flex-col gap-8 py-24 items-center px-4">
       <div className="relative flex flex-col gap-4 max-w-full">
         <h1 className="text-5xl font-semibold leading-none tracking-tight mb-2">
-          CIAM Identity Providers benchmark
+          (C)IAM Identity Providers benchmark
         </h1>
         <p className="text-md text-slate-600">
-          Compare Customer Identity and Access Management (CIAM) providers across authentication methods,
+          Compare Identity and Access Management providers across authentication methods,
           user management, compliance, security, and developer integration features.
         </p>
         <p className="text-sm text-slate-500">

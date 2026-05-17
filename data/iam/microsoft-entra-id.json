@@ -1,13 +1,14 @@
 {
   "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
   "name": "Microsoft Entra External ID",
-  "abstract": "Azure-native CIAM platform (successor to Azure AD B2C). Simple per-MAU consumption pricing with a 50K free tier. FedRAMP High authorized with deep Microsoft ecosystem integration.",
+  "abstract": "Azure-native IAM platform (successor to Azure AD B2C). Simple per-MAU consumption pricing with a 50K free tier. FedRAMP High authorized with deep Microsoft ecosystem integration.",
   "identifier": "microsoft-entra-id",
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/microsoft-entra-id.svg"
   },
   "website": "https://learn.microsoft.com/en-us/entra/external-id/",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "50,000 MAU/month",

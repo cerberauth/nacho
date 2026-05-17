@@ -8,6 +8,7 @@
   },
   "website": "https://auth0.com",
   "license": "Proprietary",
+  "nationality": "USA",
   "pricing": {
     "hasFreeTier": true,
     "freeTierLimit": "25,000 MAU",
@@ -69,13 +70,14 @@
       ]
     },
     {
-      "description": "Magic links are NOT supported with Universal Login (Auth0's recommended and actively developed login experience). Works only with Classic Login, which reached EOL in July 2025. Same-browser requirement also creates mobile friction. Cannot combine with Passkeys/WebAuthn passwordless connections.",
+      "description": "Magic links are NOT supported with Universal Login (Auth0's recommended and actively developed login experience). Classic Login, which was the only way to use magic links, reached End of Life in July 2025. As of July 2025, magic link authentication is effectively unavailable for new or existing production deployments. Same-browser requirement also created mobile friction. Cannot combine with Passkeys/WebAuthn passwordless connections.",
       "identifier": "magic_link_authentication",
       "category": "authentication_methods",
-      "status": "partial",
+      "status": "not_supported",
       "links": [
         "https://auth0.com/docs/authenticate/passwordless/authentication-methods/email-magic-link",
-        "https://auth0.com/docs/authenticate/passwordless/passwordless-connection-limitations"
+        "https://auth0.com/docs/authenticate/passwordless/passwordless-connection-limitations",
+        "https://auth0.com/docs/troubleshoot/product-lifecycle/deprecations-and-migrations"
       ]
     },
     {
@@ -488,23 +490,23 @@
       ]
     },
     {
-      "description": "HIPAA BAA is available but requires an Enterprise plan agreement.",
+      "description": "HIPAA BAA is available upon request for Enterprise plans. Auth0 acts as a Business Associate under HIPAA/HITECH. BAA is not available for Azure-hosted deployments. Contact account team via the Support Center to request the agreement.",
       "identifier": "hipaa_baa",
       "plans": ["Enterprise"],
       "category": "compliance",
       "status": "partial",
       "links": [
-        "https://auth0.com/pricing"
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
       ]
     },
     {
-      "description": "Available as a Private Cloud add-on for payment processing environments. Enterprise plan only.",
+      "description": "PCI DSS compliance available as an add-on for Auth0 Private Cloud deployment. Annual independent audit. Attestation of Compliance (AOC) and SAQ-D available upon request via the Support Center. Enterprise plan only.",
       "identifier": "pci_dss",
       "plans": ["Enterprise"],
       "category": "compliance",
       "status": "partial",
       "links": [
-        "https://auth0.com/pricing"
+        "https://auth0.com/docs/secure/data-privacy-and-compliance"
       ]
     },
     {
@@ -544,7 +546,7 @@
       ]
     },
     {
-      "description": "Public cloud tenants available in US, EU, Australia, Japan, UK, and Canada. Tenant region cannot be changed after creation.",
+      "description": "Public cloud tenants available in US, EU, Australia, Japan, UK, and Canada. Tenant region is selected at creation and cannot be changed. Each region uses region-specific subdomains (e.g., [au|ca|eu|jp|uk].auth0.com).",
       "identifier": "region_deployment",
       "category": "compliance",
       "status": "supported",
@@ -557,7 +559,7 @@
         "CA"
       ],
       "links": [
-        "https://auth0.com/docs/deploy-monitor"
+        "https://auth0.com/docs/troubleshoot/customer-support/operational-policies/public-cloud-service-endpoints"
       ]
     },
     {
@@ -610,12 +612,12 @@
       ]
     },
     {
-      "description": "TLS 1.2 or higher required for all connections to Auth0 endpoints.",
+      "description": "TLS 1.2 or higher required for all connections to Auth0 endpoints. Cipher suites include ECDHE/AES-GCM variants. TLS 1.2 weak cipher suites reach end-of-support June 2026. mTLS (mutual TLS) also supported for client authentication.",
       "identifier": "encryption_in_transit",
       "category": "security",
       "status": "supported",
       "links": [
-        "https://auth0.com/docs/secure"
+        "https://auth0.com/docs/customize/custom-domains/self-managed-certificates/tls-ssl"
       ]
     },
     {
@@ -720,6 +722,7 @@
       "category": "developer_integration",
       "status": "supported",
       "links": [
+        "https://auth0.com/docs/api/management/v2",
         "https://auth0.com/docs/troubleshoot/customer-support/operational-policies/rate-limit-policy"
       ]
     },
@@ -860,7 +863,11 @@
       "identifier": "anonymous_authentication",
       "category": "authentication_methods",
       "status": "not_supported",
-      "description": "Auth0 does not support anonymous/guest authentication. Users must always authenticate with a registered credential."
+      "description": "Auth0 does not support anonymous/guest authentication. Users must always authenticate with a registered credential. Workarounds require custom M2M tokens or external logic.",
+      "links": [
+        "https://community.auth0.com/t/anonymous-user-flow/73792",
+        "https://community.auth0.com/t/guest-access-for-unauthenticated-user/37145"
+      ]
     },
     {
       "identifier": "machine_to_machine",
@@ -903,8 +910,12 @@
       "identifier": "device_fingerprinting",
       "category": "security",
       "status": "partial",
-      "description": "Device tracking is available via the Security Center and Adaptive MFA on Enterprise plans. No dedicated device fingerprinting API.",
-      "plans": ["Enterprise"]
+      "description": "Device tracking is available via the Security Center and Adaptive MFA on Enterprise plans. Adaptive MFA uses new device detection and impossible travel signals. No dedicated device fingerprinting API; third-party integrations (e.g., Fingerprint.com) can add device fingerprints to user profiles via Actions.",
+      "plans": ["Enterprise"],
+      "links": [
+        "https://auth0.com/docs/secure/multi-factor-authentication/adaptive-mfa",
+        "https://auth0.com/docs/secure/attack-protection"
+      ]
     },
     {
       "identifier": "per_org_branding",
@@ -957,8 +968,9 @@
       "identifier": "prebuilt_ui_components",
       "category": "branding_ux",
       "status": "supported",
-      "description": "Auth0 provides Lock (embeddable widget) and SDK-driven Universal Login. React components available via ACUL for embedded flows.",
+      "description": "Auth0 provides the Lock embeddable widget and SDK-driven Universal Login. Auth0 recommends Universal Login over Lock for new implementations. React components also available via the Advanced Custom UI Layer (ACUL) for embedded flows. Lock Passwordless is separately deprecated.",
       "links": [
+        "https://auth0.com/docs/authenticate/login/auth0-universal-login",
         "https://auth0.com/docs/libraries/lock"
       ]
     },
@@ -1005,7 +1017,10 @@
       "identifier": "billing_integration",
       "category": "advanced",
       "status": "not_supported",
-      "description": "Auth0 does not offer native billing or subscription management integration."
+      "description": "Auth0 does not offer native billing or subscription management integration. Organizations requiring billing must integrate third-party solutions (e.g., Stripe, Stigg) alongside Auth0.",
+      "links": [
+        "https://auth0.com/blog/auth0-stigg-integration/"
+      ]
     },
     {
       "identifier": "fedramp",
@@ -1016,8 +1031,12 @@
     {
       "identifier": "agentic_identity",
       "category": "advanced",
-      "status": "not_supported",
-      "description": "Auth0 does not currently offer dedicated MCP server authentication or AI agent identity primitives."
+      "status": "supported",
+      "description": "Auth0 Auth for MCP is generally available (May 2026). Enables OAuth 2.1-based authentication and authorization for MCP servers and AI agents. Supports On-Behalf-Of (OBO) token exchange, Client ID Metadata Document (CIMD) registration, resource identifier support per MCP spec, and Token Vault for managing third-party API credentials (Google, Microsoft, Jira). Users authenticate via existing IdPs and delegate scoped permissions to agents.",
+      "links": [
+        "https://auth0.com/ai/docs/auth-for-mcp",
+        "https://auth0.com/blog/auth0-auth-for-mcp-servers-generally-available/"
+      ]
     }
   ]
 }
