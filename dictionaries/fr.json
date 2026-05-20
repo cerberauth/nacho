@@ -1,0 +1,433 @@
+{
+  "nav": {
+    "clients": "Clients"
+  },
+  "footer": {
+    "clients": "Clients",
+    "templates": "Modèles",
+    "useCases": "Cas d'utilisation",
+    "iamBenchmark": "Benchmark (C)IAM",
+    "openidBenchmark": "Benchmark OpenID Connect",
+    "termsOfService": "Conditions d'utilisation",
+    "privacyPolicy": "Politique de confidentialité",
+    "github": "Github",
+    "partOfCerberAuth": "Fièrement membre de la communauté",
+    "cerberAuth": "CerberAuth",
+    "community": "."
+  },
+  "home": {
+    "title": "Assistant Client OAuth",
+    "description": "Vous accompagne tout au long du processus de création d'un client OpenID Connect (OAuth) et de son partage.",
+    "getStarted": "Commencer",
+    "chooseGrantType": "Je veux juste choisir un grant type"
+  },
+  "notFound": {
+    "title": "Oops ! Page introuvable !",
+    "description": "Il semble que la page que vous recherchez n'existe pas ou a été supprimée.",
+    "backToHome": "Retour à l'accueil"
+  },
+  "grantTypes": {
+    "pageTitle": "Choisir le bon grant type OAuth",
+    "metaDescription": "Découvrez quel grant type OAuth 2.0 convient à votre application.",
+    "recommendationTitle": "Recommandation de grant type(s)",
+    "authMethodTitle": "Recommandation de méthode d'authentification du token endpoint",
+    "possibleAuthMethods": "Méthodes d'authentification possibles"
+  },
+  "clients": {
+    "recentlyViewed": "Clients récemment consultés",
+    "metaDescription": "Consultez vos clients OAuth récemment créés.",
+    "noClients": "Aucun client. Créez-en un pour commencer.",
+    "actions": "Actions",
+    "copyTestIdClientId": "Copier l'ID client TestID",
+    "viewClient": "Voir le client",
+    "deleteClient": "Supprimer le client"
+  },
+  "createClient": {
+    "title": "Créer votre nouveau client",
+    "metaDescription": "Créez un nouveau client OAuth 2.0 / OpenID Connect étape par étape.",
+    "subtitle": "Choisissez le type d'application que vous développez et le type d'autorisation à utiliser.",
+    "loading": "Chargement...",
+    "technicalDetails": "Détails techniques",
+    "name": "Nom",
+    "nameRequired": "*",
+    "nameDescription": "Généralement le nom convivial de votre application. Sera affiché sur la page d'autorisation.",
+    "redirectUris": "URIs de redirection",
+    "redirectUrisRequired": "*",
+    "redirectUrisDescription": "Liste des URIs de redirection (séparées par des virgules) vers lesquelles votre client peut rediriger.",
+    "allowedCorsOrigins": "Origines CORS autorisées",
+    "allowedCorsOriginsDescription": "Liste des origines CORS autorisées (séparées par des virgules) pour votre application JavaScript.",
+    "scopes": "Scopes",
+    "scopesDescription": "Liste des scopes (séparés par des virgules) que votre client peut demander.",
+    "audiences": "Audiences",
+    "audiencesDescription": "Liste des audiences (séparées par des virgules) que votre client peut demander.",
+    "postLogoutRedirectUris": "URIs de redirection post-déconnexion",
+    "postLogoutRedirectUrisDescription": "Liste des URIs de redirection post-déconnexion (séparées par des virgules) vers lesquelles votre client peut rediriger après la déconnexion.",
+    "uiLegalSettings": "Paramètres UI et juridiques",
+    "uiLegalDetails": "Détails UI et juridiques",
+    "contactsEmail": "Email(s) de contact",
+    "contactsEmailDescription": "Liste des emails de contact (séparés par des virgules) pour votre client.",
+    "homepageUri": "URI de la page d'accueil",
+    "policyUri": "URI de la politique de confidentialité",
+    "tosUri": "URI des conditions d'utilisation",
+    "logoUri": "URI du logo",
+    "logoUriDescription": "L'URI du logo de votre application. Sera affiché sur la page d'autorisation.",
+    "showAdvancedSettings": "Afficher les paramètres avancés",
+    "advancedSettings": "Paramètres avancés",
+    "tokenEndpointAuthMethod": "Méthode d'authentification du token endpoint",
+    "tokenEndpointAuthMethodRequired": "*",
+    "tokenEndpointAuthMethodPlaceholder": "Méthode d'auth. du token endpoint",
+    "tokenEndpointAuthMethodDescription": "La méthode d'authentification du token endpoint de votre application.",
+    "grantTypes": "Grant Types",
+    "grantTypesRequired": "*",
+    "grantTypesDescription": "Les grant types que votre client peut utiliser.",
+    "dataUsageTitle": "Utilisation des données",
+    "dataUsageDescription": "Les données que vous fournissez ici ne seront pas envoyées à nos serveurs. Seul le stockage local du navigateur et l'encodage d'URL sont utilisés pour stocker et partager les données.",
+    "cancel": "Annuler",
+    "create": "Créer"
+  },
+  "clientView": {
+    "client": "Client",
+    "applicationType": "Type d'application",
+    "grantTypes": "Grant Types",
+    "tokenEndpointAuthMethod": "Méthode d'authentification du token endpoint",
+    "application": "Application",
+    "clientName": "Nom du client",
+    "redirectUris": "URIs de redirection",
+    "scopes": "Scopes",
+    "audiences": "Audiences",
+    "allowedOrigins": "Origines autorisées",
+    "postLogoutRedirectUris": "URIs de redirection post-déconnexion",
+    "uiLegal": "UI et juridique",
+    "uri": "URI",
+    "logoUri": "URI du logo",
+    "policyUri": "URI de la politique",
+    "tosUri": "URI des CGU",
+    "copyLink": "Copier le lien",
+    "shareByEmail": "Partager par email",
+    "developerTitle": "Vous êtes développeur ?",
+    "developerDescription": "Créer le client réel peut prendre du temps. Si vous souhaitez tester le client maintenant, vous pouvez créer un faux client de test.",
+    "createTestClient": "Créer un client de test",
+    "testClientDialogTitle": "Créer un client de test",
+    "testClientDialogDescription": "Cette fonctionnalité n'est pas encore disponible. Nous y travaillons.",
+    "continue": "Continuer",
+    "emailSubject": "Nouvelle demande de client",
+    "emailBody": "Nous aurions besoin que vous créiez un nouveau client OAuth2. Vous pouvez consulter le lien suivant pour tous les détails du client :"
+  },
+  "templates": {
+    "metaTitle": "Modèle de client OAuth / OpenID Connect {name}",
+    "applicationType": "Type d'application",
+    "technologies": "Technologies",
+    "clientTemplate": "Modèle de client",
+    "createClient": "Créer le client {name}",
+    "librariesTitle": "Quelles bibliothèques pour implémenter OpenID Connect pour {name} ?",
+    "librariesIntro": "Pour implémenter OpenID Connect pour {name}, vous pouvez utiliser l'une des bibliothèques suivantes :",
+    "grantTypesTitle": "Quels grant types pour {name} ?",
+    "grantTypesIntro": "{name} peut utiliser un ou plusieurs des grant types OAuth suivants :",
+    "authMethodsTitle": "Quelles méthodes d'authentification du token endpoint pour {name} ?",
+    "authMethodsIntro": "{name} peut utiliser une ou plusieurs des méthodes d'authentification OAuth suivantes :",
+    "relatedTemplates": "Modèles associés"
+  },
+  "useCases": {
+    "title": "Cas d'utilisation OpenID Connect et IAM",
+    "description": "Découvrez les cas d'utilisation courants d'OpenID Connect et IAM"
+  },
+  "iamProviders": {
+    "title": "Benchmark des fournisseurs d'identité (C)IAM",
+    "metaTitle": "{name} Fournisseur IAM",
+    "description": "Comparez les fournisseurs de gestion des identités et des accès selon les méthodes d'authentification, la gestion des utilisateurs, la conformité, la sécurité et les fonctionnalités d'intégration pour les développeurs.",
+    "lookingForOpenID": "Vous cherchez la compatibilité au niveau du protocole OpenID Connect ?",
+    "checkOpenID": "Consultez le benchmark des fournisseurs OpenID Connect",
+    "featuresTitle": "Fonctionnalités",
+    "faq": "Foire aux questions",
+    "compareNote": "Si vous souhaitez comparer les fonctionnalités IAM de différents fournisseurs, consultez le",
+    "iamBenchmark": "benchmark des fournisseurs d'identité (C)IAM",
+    "lookingForOpenIDProvider": "Vous cherchez la compatibilité du protocole OpenID Connect de {name} ?",
+    "viewOnOpenID": "Voir {name} sur le benchmark des fournisseurs OpenID Connect",
+    "lookingForOpenIDGeneral": "Vous cherchez la compatibilité au niveau du protocole OpenID Connect entre les fournisseurs ?",
+    "iamProvider": "Fournisseur IAM",
+    "authenticationMethod": "méthode d'authentification",
+    "mfa": "MFA",
+    "integrationProtocol": "protocole d'intégration",
+    "identityFederation": "fédération d'identité",
+    "userManagement": "gestion des utilisateurs",
+    "accessControl": "contrôle d'accès",
+    "security": "fonctionnalité de sécurité",
+    "multiTenancy": "multi-tenant",
+    "branding": "fonctionnalité de branding",
+    "analytics": "analytique",
+    "compliance": "conformité",
+    "developerIntegration": "intégration développeur",
+    "feature": "fonctionnalité",
+    "faqDoes": "{name} prend-il en charge {feature} ?",
+    "faqSupported": "{name} prend en charge {feature}.",
+    "faqNotSupported": "{name} ne prend pas en charge {feature}.",
+    "faqPartial": "{name} prend partiellement en charge {feature}.",
+    "faqDeprecated": "{name} prend en charge {featureName}, mais c'est déprécié ou n'est plus recommandé.",
+    "faqUnknown": "Le statut de {feature} est inconnu.",
+    "readMore": "En savoir plus",
+    "survey": {
+      "title": "Trouvez la meilleure solution (C)IAM pour votre entreprise",
+      "description": "Répondez à quelques questions sur votre cas d'utilisation et nous vous recommanderons les meilleurs fournisseurs d'identité pour vous.",
+      "retakeSurvey": "Recommencer le questionnaire",
+      "findMyBestMatch": "Trouver la meilleure solution",
+      "seeRecommendations": "Voir les recommandations",
+      "skipToResults": "Passer aux résultats",
+      "skipToFullComparison": "Passer au tableau comparatif complet",
+      "topRecommendations": "Meilleures recommandations pour votre profil",
+      "bestMatch": "Meilleure correspondance",
+      "estMonthlyCost": "Coût mensuel estimé",
+      "viewDetails": "Voir les détails",
+      "step": "Étape {current} sur {total}",
+      "next": "Suivant",
+      "back": "Retour",
+      "skip": "Passer",
+      "featuresSelected": "{count} fonctionnalité{plural} sélectionnée{plural}",
+      "filterByFeature": "Filtrer par fonctionnalité",
+      "clearFilters": "Effacer les filtres",
+      "personalizedRecommendationsText": "Répondez à quelques questions pour obtenir des recommandations de fournisseurs personnalisées.",
+      "scaleAffectsPricing": "L'échelle affecte considérablement le choix de la plateforme et les modèles de tarification.",
+      "monthlyActiveUsers": "Utilisateurs actifs mensuels (MAU)",
+      "steps": {
+        "step_audience": {
+          "title": "Qui sont vos utilisateurs ?",
+          "subtitle": "Cela nous aide à faire correspondre les fournisseurs à votre cas d'utilisation d'identité.",
+          "questions": {
+            "q_audience": {
+              "label": "Audience utilisateur principale",
+              "options": {
+                "b2c": {
+                  "label": "Consommateurs / Clients (B2C)",
+                  "description": "Utilisateurs finaux s'inscrivant à votre produit — connexion sociale, passkeys, liens magiques."
+                },
+                "b2b": {
+                  "label": "Entreprises / Clients professionnels (B2B)",
+                  "description": "Équipes et organisations — SSO d'entreprise, SAML, multi-tenancy."
+                },
+                "b2e": {
+                  "label": "Employés / Main-d'œuvre (B2E)",
+                  "description": "Utilisateurs internes — Active Directory, SAML, MFA adaptatif."
+                },
+                "mixed": {
+                  "label": "Plusieurs audiences",
+                  "description": "Un mélange des éléments ci-dessus — nous équilibrerons toutes les dimensions."
+                }
+              }
+            }
+          }
+        },
+        "step_scale": {
+          "title": "Quelle est votre échelle attendue ?",
+          "subtitle": "Les utilisateurs actifs mensuels (MAU) affectent considérablement la tarification et le choix de la plateforme.",
+          "questions": {
+            "q_mau": {
+              "label": "Utilisateurs actifs mensuels attendus"
+            }
+          }
+        },
+        "step_deployment": {
+          "title": "Comment voulez-vous l'exécuter ?",
+          "subtitle": "Le modèle de déploiement affecte le contrôle, la conformité et le coût total.",
+          "questions": {
+            "q_deployment": {
+              "label": "Préférence de déploiement",
+              "options": {
+                "saas": {
+                  "label": "Cloud SaaS",
+                  "description": "Entièrement géré — aucune infrastructure à exploiter, démarrage le plus rapide."
+                },
+                "self_hosted": {
+                  "label": "Auto-hébergé",
+                  "description": "Vous l'exécutez — contrôle total des données, idéal pour une conformité stricte ou les coûts à grande échelle."
+                },
+                "flexible": {
+                  "label": "Les deux conviennent",
+                  "description": "Ouvert aux deux — nous prendrons en compte d'autres dimensions."
+                }
+              }
+            }
+          }
+        },
+        "step_features": {
+          "title": "Quelles capacités comptent le plus ?",
+          "subtitle": "Sélectionnez tout ce qui s'applique. Nous évaluerons les fournisseurs sur leur support de ces fonctionnalités.",
+          "questions": {
+            "q_features": {
+              "label": "Capacités clés",
+              "options": {
+                "enterprise_sso": {
+                  "label": "SSO d'entreprise",
+                  "description": "SAML 2.0, connexions SSO par client pour le B2B."
+                },
+                "passkeys": {
+                  "label": "Passkeys / WebAuthn",
+                  "description": "Authentification sans mot de passe, résistante au phishing."
+                },
+                "social_login": {
+                  "label": "Connexion sociale",
+                  "description": "Connectez-vous avec Google, Apple, GitHub, et plus encore."
+                },
+                "passwordless": {
+                  "label": "Sans mot de passe / Liens magiques",
+                  "description": "Codes à usage unique et liens magiques par e-mail ou SMS."
+                },
+                "adaptive_mfa": {
+                  "label": "MFA adaptatif / basé sur le risque",
+                  "description": "MFA déclenché par des signaux anormaux (appareil, emplacement, IP)."
+                },
+                "m2m": {
+                  "label": "Machine-to-Machine (M2M)",
+                  "description": "OAuth 2.0 Client Credentials pour l'authentification service à service."
+                },
+                "custom_branding": {
+                  "label": "Personnalisation (Branding)",
+                  "description": "Pages de connexion et modèles d'e-mails entièrement personnalisables."
+                }
+              }
+            }
+          }
+        },
+        "step_compliance": {
+          "title": "Des exigences réglementaires ?",
+          "subtitle": "Sélectionnez tout ce qui s'applique. Les fournisseurs sans les certifications requises seront classés plus bas.",
+          "questions": {
+            "q_compliance": {
+              "label": "Exigences de conformité",
+              "options": {
+                "soc2": {
+                  "label": "SOC 2 Type II",
+                  "description": "Audits de sécurité et de disponibilité pour les entreprises SaaS."
+                },
+                "gdpr": {
+                  "label": "RGPD / Résidence des données UE",
+                  "description": "Conformité à la réglementation européenne sur la protection des données."
+                },
+                "hipaa": {
+                  "label": "HIPAA",
+                  "description": "Protection des données de santé aux États-Unis — nécessite un BAA."
+                },
+                "fedramp": {
+                  "label": "FedRAMP",
+                  "description": "Autorisation cloud du gouvernement fédéral américain."
+                },
+                "pci": {
+                  "label": "PCI DSS",
+                  "description": "Norme de sécurité des données de l'industrie des cartes de paiement."
+                },
+                "iso27001": {
+                  "label": "ISO 27001",
+                  "description": "Norme internationale de gestion de la sécurité de l'information."
+                }
+              }
+            }
+          }
+        },
+        "step_budget": {
+          "title": "Quel est votre budget mensuel ?",
+          "subtitle": "Cela aide à filtrer les fournisseurs qui pourraient être hors de portée pour votre stade de développement.",
+          "questions": {
+            "q_budget": {
+              "label": "Budget mensuel pour l'identité",
+              "options": {
+                "<100": {
+                  "label": "Moins de 100 $ / mois",
+                  "description": "Budget de démarrage — plans initiaux."
+                },
+                "100-1000": {
+                  "label": "100 $ – 1 000 $ / mois",
+                  "description": "Stade de croissance — plans professionnels."
+                },
+                "enterprise": {
+                  "label": "Budget entreprise",
+                  "description": "Tarification personnalisée négociable — l'échelle et les SLA comptent plus que le coût."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "categories": {
+      "authentication_methods": "Méthodes d'authentification",
+      "mfa": "Authentification multi-facteurs (MFA)",
+      "integration_protocols": "Protocoles d'intégration",
+      "identity_federation": "Fédération d'identité",
+      "user_management": "Gestion des utilisateurs",
+      "access_control": "Contrôle d'accès et autorisation",
+      "security": "Sécurité",
+      "multi_tenancy": "Multi-Tenancy / Organisations",
+      "branding_ux": "Branding et UX",
+      "analytics": "Analytique et audit",
+      "compliance": "Conformité",
+      "developer_integration": "Intégration développeur",
+      "advanced": "Avancé / Différenciateurs"
+    },
+    "features": {
+      "username_and_password_authentication": {
+        "name": "Nom d'utilisateur et mot de passe",
+        "description": "La méthode d'authentification par nom d'utilisateur et mot de passe est utilisée par les utilisateurs pour s'authentifier avec leur nom d'utilisateur et leur mot de passe connus."
+      },
+      "social_sign_in_authentication": {
+        "name": "Connexion sociale",
+        "description": "La méthode d'authentification par connexion sociale est utilisée par les utilisateurs pour s'authentifier avec leur compte de média social."
+      },
+      "passkey_authentication": {
+        "name": "Passkey",
+        "description": "La méthode d'authentification par Passkey est utilisée par les utilisateurs pour s'authentifier avec leur passkey (FIDO2/WebAuthn)."
+      }
+    }
+  },
+  "openidProviders": {
+    "title": "Benchmark des fournisseurs OpenID Connect",
+    "metaTitle": "{name} Fournisseur OpenID Connect",
+    "description": "Comparez les fournisseurs OpenID Connect selon les grant types, les méthodes d'authentification du token endpoint, les extensions, les endpoints, la conformité FAPI et les fonctionnalités du protocole.",
+    "lookingForIAM": "Vous cherchez des fonctionnalités (C)IAM comme MFA, SSO, gestion des utilisateurs et conformité ?",
+    "checkIAM": "Consultez le benchmark des fournisseurs d'identité (C)IAM",
+    "featuresTitle": "Fonctionnalités",
+    "faq": "Foire aux questions",
+
+    "compareNote": "Si vous souhaitez comparer les fonctionnalités OpenID Connect de différents fournisseurs, consultez le",
+    "openidBenchmark": "benchmark des fournisseurs OpenID Connect",
+    "lookingForIAMProvider": "Vous cherchez les fonctionnalités (C)IAM de {name} comme MFA, SSO et gestion des utilisateurs ?",
+    "viewOnIAM": "Voir {name} sur le benchmark des fournisseurs d'identité (C)IAM",
+    "lookingForIAMGeneral": "Vous cherchez des fonctionnalités (C)IAM comme MFA, SSO, gestion des utilisateurs et conformité ?",
+    "openIDProvider": "Fournisseur OpenID Connect",
+    "grantType": "grant type",
+    "extension": "extension",
+    "endpoint": "endpoint",
+    "tokenEndpointAuthMethod": "méthode d'authentification du token endpoint",
+    "prompt": "prompt",
+    "feature": "fonctionnalité",
+    "faqDoes": "{name} prend-il en charge {feature} ?",
+    "faqSupported": "{name} prend en charge {feature}.",
+    "faqNotSupported": "{name} ne prend pas en charge {feature}.",
+    "faqPartial": "{name} prend partiellement en charge {feature}.",
+    "faqDeprecated": "{name} prend en charge {featureName}, mais c'est déprécié ou n'est plus recommandé.",
+    "faqUnknown": "Le statut de {feature} est inconnu.",
+    "readMore": "En savoir plus",
+    "categories": {
+      "grant_types": "Grant Types",
+      "extensions": "Extensions",
+      "endpoints": "Endpoints",
+      "token_endpoint_authentication_methods": "Méthodes d'authentification du token endpoint",
+      "prompts": "Prompts",
+      "features": "Fonctionnalités",
+      "fapi": "Financial-grade API (FAPI)"
+    },
+    "features": {
+      "authorization_code_grant": {
+        "name": "Authorization Code",
+        "description": "Le grant type Authorization Code est utilisé par les clients confidentiels et publics pour échanger un authorization code contre un access token."
+      },
+      "refresh_token_grant": {
+        "name": "Refresh Token",
+        "description": "Le grant type Refresh Token est utilisé par les clients pour échanger un refresh token contre un access token lorsque l'access token a expiré."
+      }
+    }
+  },
+  "inaccuracyWarning": {
+    "note": "Remarque :",
+    "text": "Les données actuelles sont basées sur la documentation/l'expérience des fournisseurs et peuvent ne pas être exactes à 100 %. Veuillez",
+    "openIssue": "ouvrir un ticket",
+    "textAfter": "si vous avez constaté des incohérences."
+  }
+}

@@ -97,83 +97,161 @@ export {
   // supertokens,
 }
 
-export const featuresCategories = [
+export const getFeaturesCategories = (dict: any) => [
   {
-    name: 'Authentication Methods',
+    name: dict.categories.authentication_methods,
     identifier: IAMFeatureCategory.AuthenticationMethod,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.AuthenticationMethod),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.AuthenticationMethod)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Multi-Factor Authentication (MFA)',
+    name: dict.categories.mfa,
     identifier: IAMFeatureCategory.MFA,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.MFA),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.MFA)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Integration Protocols',
+    name: dict.categories.integration_protocols,
     identifier: IAMFeatureCategory.IntegrationProtocols,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.IntegrationProtocols),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.IntegrationProtocols)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Identity Federation',
+    name: dict.categories.identity_federation,
     identifier: IAMFeatureCategory.IdentityFederation,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.IdentityFederation),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.IdentityFederation)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'User Management',
+    name: dict.categories.user_management,
     identifier: IAMFeatureCategory.UserManagement,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.UserManagement),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.UserManagement)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Access Control & Authorization',
+    name: dict.categories.access_control,
     identifier: IAMFeatureCategory.AccessControl,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.AccessControl),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.AccessControl)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Security',
+    name: dict.categories.security,
     identifier: IAMFeatureCategory.Security,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.Security),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.Security)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Multi-Tenancy / Organizations',
+    name: dict.categories.multi_tenancy,
     identifier: IAMFeatureCategory.MultiTenancy,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.MultiTenancy),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.MultiTenancy)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Branding & UX',
+    name: dict.categories.branding_ux,
     identifier: IAMFeatureCategory.BrandingUX,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.BrandingUX),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.BrandingUX)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Analytics & Audit',
+    name: dict.categories.analytics,
     identifier: IAMFeatureCategory.Analytics,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.Analytics),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.Analytics)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Compliance',
+    name: dict.categories.compliance,
     identifier: IAMFeatureCategory.Compliance,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.Compliance),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.Compliance)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Developer Integration',
+    name: dict.categories.developer_integration,
     identifier: IAMFeatureCategory.DeveloperIntegration,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.DeveloperIntegration),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.DeveloperIntegration)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Advanced / Differentiators',
+    name: dict.categories.advanced,
     identifier: IAMFeatureCategory.Advanced,
-    features: iamFeatures.featureList.filter(feature => feature.category === IAMFeatureCategory.Advanced),
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.Advanced)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 ]
 
