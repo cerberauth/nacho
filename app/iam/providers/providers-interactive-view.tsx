@@ -42,6 +42,7 @@ type Props = {
   allCategories: BenchmarkCategoryProps[]
   featuresCategories: FeatureCategory[]
   providerDetailUrlPrefix: string
+  dict: any
 }
 
 type SurveyOption = {
@@ -79,9 +80,6 @@ function decodeAnswers(encoded: string): SurveyAnswers | null {
   }
 }
 
-const STEPS = survey.steps as SurveyStep[]
-const TOTAL_STEPS = STEPS.length
-
 const ANSWER_KEY_MAP: Record<string, keyof SurveyAnswers> = {
   q_audience: 'audience',
   q_mau: 'mau',
@@ -96,6 +94,7 @@ export function IAMProvidersInteractiveView({
   allCategories,
   featuresCategories,
   providerDetailUrlPrefix,
+  dict,
 }: Props) {
   const {
     selectedFeatures,
@@ -104,6 +103,34 @@ export function IAMProvidersInteractiveView({
     updateParams,
     searchParams,
   } = useBenchmarkParams()
+
+  const STEPS = useMemo<SurveyStep[]>(() => {
+    return (survey.steps as any[]).map((step) => {
+      const dictStep = dict.steps[step.stepId]
+      return {
+        ...step,
+        title: dictStep?.title || step.title,
+        subtitle: dictStep?.subtitle || step.subtitle,
+        questions: step.questions.map((q: any) => {
+          const dictQuestion = dictStep?.questions?.[q.questionId]
+          return {
+            ...q,
+            label: dictQuestion?.label || q.label,
+            options: q.options?.map((opt: any) => {
+              const dictOption = dictQuestion?.options?.[opt.value]
+              return {
+                ...opt,
+                label: dictOption?.label || opt.label,
+                description: dictOption?.description || opt.description,
+              }
+            }),
+          }
+        }),
+      }
+    })
+  }, [dict])
+
+  const TOTAL_STEPS = STEPS.length
 
   const savedAnswers = useMemo<SurveyAnswers | null>(() => {
     const raw = searchParams.get('answers')
@@ -350,10 +377,10 @@ export function IAMProvidersInteractiveView({
       }}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader>
-            <DialogTitle>{survey.title}</DialogTitle>
+            <DialogTitle>{dict.title}</DialogTitle>
           </DialogHeader>
 
-          <p className="text-sm text-slate-500 -mt-2">{survey.description}</p>
+          <p className="text-sm text-slate-500 -mt-2">{dict.description}</p>
 
           <div className="flex gap-1">
             {STEPS.map((step, i) => (
@@ -385,7 +412,7 @@ export function IAMProvidersInteractiveView({
                           {(draftAnswers.mauCount || 1000).toLocaleString()}
                         </span>
                         <span className="text-sm font-medium text-slate-500 text-center uppercase tracking-wider">
-                          Monthly Active Users
+                          {dict.monthlyActiveUsers}
                         </span>
                       </div>
 
@@ -409,7 +436,7 @@ export function IAMProvidersInteractiveView({
                       </div>
 
                       <p className="text-xs text-slate-500 text-center italic">
-                        Scale significantly affects platform choice and pricing models.
+                        {dict.scaleAffectsPricing}
                       </p>
                     </div>
                   ) : (
@@ -481,11 +508,11 @@ export function IAMProvidersInteractiveView({
               disabled={wizardStep === 0}
             >
               <ChevronLeft className="h-4 w-4 mr-1" />
-              Back
+              {dict.back}
             </Button>
 
             <span className="text-xs text-slate-400">
-              Step {wizardStep + 1} of {TOTAL_STEPS}
+              {dict.step.replace('{current}', wizardStep + 1).replace('{total}', TOTAL_STEPS)}
             </span>
 
             {wizardStep < TOTAL_STEPS - 1 ? (
@@ -494,7 +521,7 @@ export function IAMProvidersInteractiveView({
                 variant={isStepAnswered() ? 'default' : 'outline'}
                 onClick={() => setWizardStep(s => s + 1)}
               >
-                {isStepAnswered() ? 'Next' : 'Skip'}
+                {isStepAnswered() ? dict.next : dict.skip}
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             ) : (
@@ -502,9 +529,9 @@ export function IAMProvidersInteractiveView({
                 {isStepAnswered() ? (
                   <>
                     <Check className="h-4 w-4 mr-1" />
-                    See recommendations
+                    {dict.seeRecommendations}
                   </>
-                ) : 'Skip to results'}
+                ) : dict.skipToResults}
               </Button>
             )}
           </div>
@@ -515,14 +542,14 @@ export function IAMProvidersInteractiveView({
         <div className="w-full flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h2 className="text-lg font-semibold text-slate-900">
-              Top recommendations for your profile
+              {dict.topRecommendations}
             </h2>
             <button
               onClick={openWizard}
               className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-slate-900 transition-colors"
             >
               <RefreshCw className="h-3.5 w-3.5" />
-              Retake survey
+              {dict.retakeSurvey}
             </button>
           </div>
 
@@ -538,7 +565,7 @@ export function IAMProvidersInteractiveView({
                 >
                   {rank === 0 && (
                     <span className="absolute -top-2.5 left-4 text-xs font-semibold bg-slate-900 text-white px-2 py-0.5 rounded-full">
-                      Best match
+                      {dict.bestMatch}
                     </span>
                   )}
 
@@ -582,7 +609,7 @@ export function IAMProvidersInteractiveView({
                   </div>
 
                   <div className="flex items-center justify-between py-1 border-y border-slate-100">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">Est. Monthly Cost</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{dict.estMonthlyCost}</span>
                     <span className="text-xs font-bold text-slate-900">
                       {vs.estimatedPrice === 'Free' ? (
                         <span className="text-lime-600">Free</span>
@@ -612,7 +639,7 @@ export function IAMProvidersInteractiveView({
                     onClick={() => trackVendorClick(provider.identifier)}
                     className="text-xs text-slate-500 hover:text-slate-900 flex items-center gap-0.5 mt-auto"
                   >
-                    View details <ArrowUpRight className="h-3 w-3" />
+                    {dict.viewDetails} <ArrowUpRight className="h-3 w-3" />
                   </Link>
                 </div>
               )
@@ -623,7 +650,7 @@ export function IAMProvidersInteractiveView({
             href="#full-comparison"
             className="text-sm text-slate-500 hover:text-slate-900 underline underline-offset-2 w-fit"
           >
-            Skip to full comparison table
+            {dict.skipToFullComparison}
           </a>
         </div>
       )}
@@ -645,12 +672,12 @@ export function IAMProvidersInteractiveView({
             <SheetTrigger asChild>
               <button className="flex items-center gap-1 border border-dashed border-slate-300 text-slate-400 text-xs px-2 py-1 rounded-full hover:border-slate-500 hover:text-slate-600 transition-colors">
                 <Plus className="h-3 w-3" />
-                Filter by feature
+                {dict.filterByFeature}
               </button>
             </SheetTrigger>
             <SheetContent side="right" className="overflow-y-auto w-80">
               <SheetHeader>
-                <SheetTitle>Filter by feature</SheetTitle>
+                <SheetTitle>{dict.filterByFeature}</SheetTitle>
               </SheetHeader>
               <p className="text-sm text-slate-500 mt-1 mb-4">
                 Only providers supporting all selected features will be shown.
@@ -709,17 +736,17 @@ export function IAMProvidersInteractiveView({
               onClick={() => updateParams({ features: new Set(), hiddenRows: new Set() })}
               className="text-xs text-slate-400 hover:text-slate-700 transition-colors"
             >
-              Clear filters
+              {dict.clearFilters}
             </button>
           )}
         </div>
       ) : (
         <div className="flex justify-center items-center gap-3 px-4 py-3 rounded-lg border border-slate-900 bg-slate-50 w-full">
           <p className="text-sm text-slate-600">
-            Answer a few questions to get personalised vendor recommendations.
+            {dict.personalizedRecommendationsText}
           </p>
           <Button onClick={openWizard} className="gap-2 shrink-0">
-            Find my best match
+            {dict.findMyBestMatch}
           </Button>
         </div>
       )}

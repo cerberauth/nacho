@@ -1,0 +1,19 @@
+import type { Metadata } from 'next'
+import { notFound } from 'next/navigation'
+
+import { hasLocale, type Locale } from '@/lib/dictionaries'
+import { generateIAMProvidersMetadata, IAMProvidersPage } from '@/components/pages/iam-providers'
+
+type Props = { params: Promise<{ lang: string }> }
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { lang } = await params
+  if (!hasLocale(lang)) return {}
+  return generateIAMProvidersMetadata(lang as Locale)
+}
+
+export default async function Page({ params }: Props) {
+  const { lang } = await params
+  if (!hasLocale(lang)) notFound()
+  return <IAMProvidersPage lang={lang as Locale} />
+}

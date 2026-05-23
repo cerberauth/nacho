@@ -1,0 +1,411 @@
+{
+  "nav": {
+    "clients": "Clients"
+  },
+  "footer": {
+    "clients": "Clients",
+    "templates": "Templates",
+    "useCases": "Use Cases",
+    "iamBenchmark": "(C)IAM Providers Benchmark",
+    "openidBenchmark": "OpenID Connect Providers Benchmark",
+    "termsOfService": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "github": "Github",
+    "partOfCerberAuth": "Proudly part of",
+    "cerberAuth": "CerberAuth",
+    "community": "community."
+  },
+  "home": {
+    "title": "OAuth Client Helper",
+    "description": "Assists you throughout the process of creating an OpenID Connect (OAuth) client and sharing it.",
+    "getStarted": "Get Started",
+    "chooseGrantType": "I just want to choose a grant type"
+  },
+  "notFound": {
+    "title": "Oops! Page Not Found!",
+    "description": "It seems like the page you're looking for does not exist or might have been removed.",
+    "backToHome": "Back to Home"
+  },
+  "grantTypes": {
+    "pageTitle": "Choose the right OAuth Grant Type",
+    "metaDescription": "Find out which OAuth 2.0 grant type is right for your application.",
+    "recommendationTitle": "Grant Type(s) Recommendation",
+    "authMethodTitle": "Token Endpoint Authentication Method Recommendation",
+    "possibleAuthMethods": "Possible Authentication Methods"
+  },
+  "clients": {
+    "recentlyViewed": "Recently Viewed Clients",
+    "metaDescription": "View your recently created OAuth clients.",
+    "noClients": "No clients. Create one to get started.",
+    "actions": "Actions",
+    "copyTestIdClientId": "Copy TestID Client ID",
+    "viewClient": "View client",
+    "deleteClient": "Delete client"
+  },
+  "createClient": {
+    "title": "Create your new client",
+    "metaDescription": "Create a new OAuth 2.0 / OpenID Connect client step by step.",
+    "subtitle": "Choose the type of application you are building and the grant type you want to use.",
+    "loading": "Loading...",
+    "technicalDetails": "Technical details",
+    "name": "Name",
+    "nameRequired": "*",
+    "nameDescription": "Usually your application friendly name. Will be displayed in the authorization page.",
+    "redirectUris": "Redirect URIs",
+    "redirectUrisRequired": "*",
+    "redirectUrisDescription": "List of redirect URIs (comma separated) that your client can redirect to.",
+    "allowedCorsOrigins": "Allowed CORS Origins",
+    "allowedCorsOriginsDescription": "List of allowed CORS origins (comma separated) for your JavaScript Application.",
+    "scopes": "Scopes",
+    "scopesDescription": "List of scopes (comma separated) that your client can request.",
+    "audiences": "Audiences",
+    "audiencesDescription": "List of audiences (comma separated) that your client can request.",
+    "postLogoutRedirectUris": "Post Logout Redirect URIs",
+    "postLogoutRedirectUrisDescription": "List of post logout redirect URIs (comma separated) that your client can redirect to after logout.",
+    "uiLegalSettings": "UI & Legal Settings",
+    "uiLegalDetails": "UI & Legal Details",
+    "contactsEmail": "Contacts Email",
+    "contactsEmailDescription": "List of contacts email (comma separated) for your client.",
+    "homepageUri": "Homepage URI",
+    "policyUri": "Policy URI",
+    "tosUri": "Terms of Service URI",
+    "logoUri": "Logo URI",
+    "logoUriDescription": "The Logo URI of your application. Will be displayed in the authorization page.",
+    "showAdvancedSettings": "Show advanced settings",
+    "advancedSettings": "Advanced Settings",
+    "tokenEndpointAuthMethod": "Token Endpoint Authentication Method",
+    "tokenEndpointAuthMethodRequired": "*",
+    "tokenEndpointAuthMethodPlaceholder": "Token Endpoint Auth Method",
+    "tokenEndpointAuthMethodDescription": "The Token Endpoint Authentication Method of your application.",
+    "grantTypes": "Grant Types",
+    "grantTypesRequired": "*",
+    "grantTypesDescription": "The grant types your client can use.",
+    "dataUsageTitle": "Data Usage",
+    "dataUsageDescription": "The data you provide here won't be send to our servers. Only browser local storage and URL encoding is used to store and share the data.",
+    "cancel": "Cancel",
+    "create": "Create"
+  },
+  "clientView": {
+    "client": "Client",
+    "applicationType": "Application Type",
+    "grantTypes": "Grant Types",
+    "tokenEndpointAuthMethod": "Token Endpoint Authentication Method",
+    "application": "Application",
+    "clientName": "Client Name",
+    "redirectUris": "Redirect URIs",
+    "scopes": "Scopes",
+    "audiences": "Audiences",
+    "allowedOrigins": "Allowed Origins",
+    "postLogoutRedirectUris": "Post Logout Redirect URIs",
+    "uiLegal": "UI & Legal",
+    "uri": "URI",
+    "logoUri": "Logo URI",
+    "policyUri": "Policy URI",
+    "tosUri": "Terms of Service URI",
+    "copyLink": "Copy Link",
+    "shareByEmail": "Share by Email",
+    "developerTitle": "Are you a developer?",
+    "developerDescription": "Create the real client can take some time. If you want to test the client right now, you can create a fake test client.",
+    "createTestClient": "Create a Test Client",
+    "testClientDialogTitle": "Create a Test Client",
+    "testClientDialogDescription": "This feature is not available yet. We are working on it.",
+    "continue": "Continue",
+    "emailSubject": "New Client Request",
+    "emailBody": "Please we would need you to create a new OAuth2 client. You can check the following link for all the client details:"
+  },
+  "templates": {
+    "metaTitle": "{name} OAuth / OpenID Connect Client Template",
+    "applicationType": "Application Type",
+    "technologies": "Technologies",
+    "clientTemplate": "Client Template",
+    "createClient": "Create {name} Client",
+    "librariesTitle": "Which Libraries for implementing OpenID Connect for {name}?",
+    "librariesIntro": "To implement OpenID Connect for {name}, you can use one of the following libraries:",
+    "grantTypesTitle": "Which Grant Types for {name}?",
+    "grantTypesIntro": "{name} can use one or many of the following OAuth Grant Types:",
+    "authMethodsTitle": "Which Token Endpoint Authentication Methods for {name}?",
+    "authMethodsIntro": "{name} can use one or many of the following OAuth Token Endpoint Authentication Methods:",
+    "relatedTemplates": "Related Templates"
+  },
+  "useCases": {
+    "title": "OpenID Connect and IAM Use Cases",
+    "description": "Read about common use cases for OpenID Connect and IAM"
+  },
+  "iamProviders": {
+    "title": "(C)IAM Identity Providers benchmark",
+    "metaTitle": "{name} IAM Provider",
+    "description": "Compare Identity and Access Management providers across authentication methods, user management, compliance, security, and developer integration features.",
+    "lookingForOpenID": "Looking for OpenID Connect protocol-level compatibility?",
+    "checkOpenID": "Check out the OpenID Connect Providers benchmark",
+    "featuresTitle": "Features",
+    "faq": "Frequently Asked Questions",
+    "compareNote": "If you want to compare IAM features of different providers, please check out the",
+    "iamBenchmark": "(C)IAM Identity Providers benchmark",
+    "lookingForOpenIDProvider": "Looking for {name}’s OpenID Connect protocol compatibility?",
+    "viewOnOpenID": "View {name} on the OpenID Connect Providers benchmark",
+    "lookingForOpenIDGeneral": "Looking for OpenID Connect protocol-level compatibility across providers?",
+    "iamProvider": "IAM Provider",
+    "authenticationMethod": "authentication method",
+    "mfa": "MFA",
+    "integrationProtocol": "integration protocol",
+    "identityFederation": "identity federation",
+    "userManagement": "user management",
+    "accessControl": "access control",
+    "security": "security feature",
+    "multiTenancy": "multi-tenancy",
+    "branding": "branding feature",
+    "analytics": "analytics",
+    "compliance": "compliance",
+    "developerIntegration": "developer integration",
+    "feature": "feature",
+    "faqDoes": "Does {name} support {feature}?",
+    "faqSupported": "{name} supports {feature}.",
+    "faqNotSupported": "{name} does not support {feature}.",
+    "faqPartial": "{name} partially supports {feature}.",
+    "faqDeprecated": "{name} supports {featureName}, but it is deprecated or not recommended anymore.",
+    "faqUnknown": "The status of {feature} is unknown.",
+    "readMore": "Read more",
+    "survey": {
+      "title": "Find the best (C)IAM solution for your business",
+      "description": "Answer a few questions about your use case and we'll recommend the best identity providers for you.",
+      "retakeSurvey": "Retake survey",
+      "findMyBestMatch": "Find my best match",
+      "seeRecommendations": "See recommendations",
+      "skipToResults": "Skip to results",
+      "skipToFullComparison": "Skip to full comparison table",
+      "topRecommendations": "Top recommendations for your profile",
+      "bestMatch": "Best match",
+      "estMonthlyCost": "Est. Monthly Cost",
+      "viewDetails": "View details",
+      "step": "Step {current} of {total}",
+      "next": "Next",
+      "back": "Back",
+      "skip": "Skip",
+      "featuresSelected": "{count} feature{plural} selected",
+      "filterByFeature": "Filter by feature",
+      "clearFilters": "Clear filters",
+      "personalizedRecommendationsText": "Answer a few questions to get personalised vendor recommendations.",
+      "scaleAffectsPricing": "Scale significantly affects platform choice and pricing models.",
+      "monthlyActiveUsers": "Monthly Active Users",
+      "steps": {
+        "step_audience": {
+          "title": "Who are your users?",
+          "subtitle": "This helps us match vendors to your identity use case.",
+          "questions": {
+            "q_audience": {
+              "label": "Primary user audience",
+              "options": {
+                "b2c": {
+                  "label": "Consumers / Customers (B2C)",
+                  "description": "End-users signing up for your product — social login, passkeys, magic links."
+                },
+                "b2b": {
+                  "label": "Businesses / Enterprise customers (B2B)",
+                  "description": "Teams and organisations — enterprise SSO, SAML, multi-tenancy."
+                },
+                "b2e": {
+                  "label": "Employees / Workforce (B2E)",
+                  "description": "Internal users — Active Directory, SAML, adaptive MFA."
+                },
+                "mixed": {
+                  "label": "Multiple audiences",
+                  "description": "A mix of the above — we'll balance across all dimensions."
+                }
+              }
+            }
+          }
+        },
+        "step_scale": {
+          "title": "What's your expected scale?",
+          "subtitle": "Monthly active users (MAU) affect pricing and platform choice significantly.",
+          "questions": {
+            "q_mau": {
+              "label": "Expected monthly active users"
+            }
+          }
+        },
+        "step_deployment": {
+          "title": "How do you want to run it?",
+          "subtitle": "Deployment model affects control, compliance, and total cost.",
+          "questions": {
+            "q_deployment": {
+              "label": "Deployment preference",
+              "options": {
+                "saas": {
+                  "label": "Cloud SaaS",
+                  "description": "Fully managed — no infrastructure to operate, fastest to start."
+                },
+                "self_hosted": {
+                  "label": "Self-hosted",
+                  "description": "You run it — full data control, ideal for strict compliance or cost at scale."
+                },
+                "flexible": {
+                  "label": "Either works",
+                  "description": "Open to both — we'll factor in other dimensions more."
+                }
+              }
+            }
+          }
+        },
+        "step_features": {
+          "title": "Which capabilities matter most?",
+          "subtitle": "Select all that apply. We'll score vendors on how well they support these.",
+          "questions": {
+            "q_features": {
+              "label": "Key capabilities",
+              "options": {
+                "enterprise_sso": {
+                  "label": "Enterprise SSO",
+                  "description": "SAML 2.0, per-customer SSO connections for B2B."
+                },
+                "passkeys": {
+                  "label": "Passkeys / WebAuthn",
+                  "description": "Phishing-resistant, password-free authentication."
+                },
+                "social_login": {
+                  "label": "Social Login",
+                  "description": "Sign in with Google, Apple, GitHub, and more."
+                },
+                "passwordless": {
+                  "label": "Passwordless / Magic Links",
+                  "description": "One-time codes and magic links via email or SMS."
+                },
+                "adaptive_mfa": {
+                  "label": "Adaptive / Risk-Based MFA",
+                  "description": "MFA triggered by anomalous signals (device, location, IP)."
+                },
+                "m2m": {
+                  "label": "Machine-to-Machine (M2M)",
+                  "description": "OAuth 2.0 Client Credentials for service-to-service auth."
+                },
+                "custom_branding": {
+                  "label": "Custom Branding",
+                  "description": "Fully customisable login pages and email templates."
+                }
+              }
+            }
+          }
+        },
+        "step_compliance": {
+          "title": "Any regulatory requirements?",
+          "subtitle": "Select all that apply. Vendors without the required certifications will be ranked lower.",
+          "questions": {
+            "q_compliance": {
+              "label": "Compliance requirements",
+              "options": {
+                "soc2": {
+                  "label": "SOC 2 Type II",
+                  "description": "Security and availability audits for SaaS companies."
+                },
+                "gdpr": {
+                  "label": "GDPR / EU Data Residency",
+                  "description": "European data protection regulation compliance."
+                },
+                "hipaa": {
+                  "label": "HIPAA",
+                  "description": "US healthcare data protection — requires a BAA."
+                },
+                "fedramp": {
+                  "label": "FedRAMP",
+                  "description": "US federal government cloud authorization."
+                },
+                "pci": {
+                  "label": "PCI DSS",
+                  "description": "Payment card industry data security standard."
+                },
+                "iso27001": {
+                  "label": "ISO 27001",
+                  "description": "International information security management standard."
+                }
+              }
+            }
+          }
+        },
+        "step_budget": {
+          "title": "What's your monthly budget?",
+          "subtitle": "This helps filter out vendors that may be out of range for your stage.",
+          "questions": {
+            "q_budget": {
+              "label": "Monthly budget for identity",
+              "options": {
+                "<100": {
+                  "label": "Under $100 / month",
+                  "description": "Early-stage budget — starter plans."
+                },
+                "100-1000": {
+                  "label": "$100 – $1,000 / month",
+                  "description": "Growth-stage — professional plans."
+                },
+                "enterprise": {
+                  "label": "Enterprise budget",
+                  "description": "Custom pricing negotiable — scale and SLAs matter more than cost."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "categories": {
+      "authentication_methods": "Authentication Methods",
+      "mfa": "Multi-Factor Authentication (MFA)",
+      "integration_protocols": "Integration Protocols",
+      "identity_federation": "Identity Federation",
+      "user_management": "User Management",
+      "access_control": "Access Control & Authorization",
+      "security": "Security",
+      "multi_tenancy": "Multi-Tenancy / Organizations",
+      "branding_ux": "Branding & UX",
+      "analytics": "Analytics & Audit",
+      "compliance": "Compliance",
+      "developer_integration": "Developer Integration",
+      "advanced": "Advanced / Differentiators"
+    },
+    "features": {}
+  },
+  "openidProviders": {
+    "title": "OpenID Connect Providers Benchmark",
+    "metaTitle": "{name} OpenID Connect Provider",
+    "description": "Compare OpenID Connect providers across grant types, token endpoint authentication methods, extensions, endpoints, FAPI compliance, and protocol features.",
+    "lookingForIAM": "Looking for (C)IAM features like MFA, SSO, user management, and compliance?",
+    "checkIAM": "Check out the (C)IAM Identity Providers benchmark",
+    "featuresTitle": "Features",
+    "faq": "Frequently Asked Questions",
+
+    "compareNote": "If you want to compare OpenID Connect features of different providers, please check out the",
+    "openidBenchmark": "OpenID Connect Providers benchmark",
+    "lookingForIAMProvider": "Looking for {name}’s (C)IAM features like MFA, SSO, and user management?",
+    "viewOnIAM": "View {name} on the (C)IAM Identity Providers benchmark",
+    "lookingForIAMGeneral": "Looking for (C)IAM features like MFA, SSO, user management, and compliance?",
+    "openIDProvider": "OpenID Connect Provider",
+    "grantType": "grant type",
+    "extension": "extension",
+    "endpoint": "endpoint",
+    "tokenEndpointAuthMethod": "token endpoint authentication method",
+    "prompt": "prompt",
+    "feature": "feature",
+    "faqDoes": "Does {name} support the {feature}?",
+    "faqSupported": "{name} supports {feature}.",
+    "faqNotSupported": "{name} does not support {feature}.",
+    "faqPartial": "{name} partially supports {feature}.",
+    "faqDeprecated": "{name} supports {featureName}, but it is deprecated or not recommended anymore.",
+    "faqUnknown": "The status of {feature} is unknown.",
+    "readMore": "Read more",
+    "categories": {
+      "grant_types": "Grant Types",
+      "extensions": "Extensions",
+      "endpoints": "Endpoints",
+      "token_endpoint_authentication_methods": "Token Endpoint Authentication Methods",
+      "prompts": "Prompts",
+      "features": "Features",
+      "fapi": "Financial-grade API (FAPI)"
+    },
+    "features": {}
+  },
+  "inaccuracyWarning": {
+    "note": "Note:",
+    "text": "The current data is based on provider documentation/experience and may not be 100% accurate. Please",
+    "openIssue": "open an issue",
+    "textAfter": "if you have spotted any inconsistencies."
+  }
+}

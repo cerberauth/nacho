@@ -73,35 +73,67 @@ export {
   zitadel,
 }
 
-export const featuresCategories = [
+export const getFeaturesCategories = (dict: any) => [
   {
-    name: 'Grant Types',
+    name: dict.categories.grant_types,
     identifier: OpenIDConnectFeatureCategory.GrantType,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.GrantType),
+    features: openIDConnectFeatures.featureList
+      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.GrantType)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Extensions',
+    name: dict.categories.extensions,
     identifier: OpenIDConnectFeatureCategory.Extension,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Extension),
+    features: openIDConnectFeatures.featureList
+      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Extension)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Endpoints',
+    name: dict.categories.endpoints,
     identifier: OpenIDConnectFeatureCategory.Endpoint,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Endpoint),
+    features: openIDConnectFeatures.featureList
+      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Endpoint)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Token Endpoint Authentication Methods',
+    name: dict.categories.token_endpoint_authentication_methods,
     identifier: OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod),
+    features: openIDConnectFeatures.featureList
+      .filter(
+        (feature) => feature.category === OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod,
+      )
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Prompts',
+    name: dict.categories.prompts,
     identifier: OpenIDConnectFeatureCategory.Prompt,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Prompt),
+    features: openIDConnectFeatures.featureList
+      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Prompt)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   // {
@@ -115,16 +147,28 @@ export const featuresCategories = [
   // },
 
   {
-    name: 'Features',
+    name: dict.categories.features,
     identifier: OpenIDConnectFeatureCategory.Feature,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.Feature),
+    features: openIDConnectFeatures.featureList
+      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Feature)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
   },
 
   {
-    name: 'Financial-grade API (FAPI)',
+    name: dict.categories.fapi,
     identifier: OpenIDConnectFeatureCategory.FAPI,
-    features: openIDConnectFeatures.featureList.filter(feature => feature.category === OpenIDConnectFeatureCategory.FAPI),
-  }
+    features: openIDConnectFeatures.featureList
+      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.FAPI)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
+  },
 ]
 
 export const providers: OpenIDConnectProvider[] = [
