@@ -1,5 +1,31 @@
 import { ArrowUpRight, Check, CircleHelp, Info, Trash, X } from 'lucide-react'
 import Link from 'next/link'
+import {
+  SiJavascript,
+  SiTypescript,
+  SiReact,
+  SiAngular,
+  SiVuedotjs,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPython,
+  SiOpenjdk,
+  SiDotnet,
+  SiGo,
+  SiPhp,
+  SiRuby,
+  SiSwift,
+  SiKotlin,
+  SiFlutter,
+  SiAndroid,
+  SiExpo,
+  SiRemix,
+  SiGooglecloud,
+  SiDigitalocean,
+} from 'react-icons/si'
+import { FaAws } from 'react-icons/fa6'
+import { VscAzure } from 'react-icons/vsc'
+
 import { FeatureStatus } from '@/lib/types'
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
 
@@ -12,43 +38,41 @@ function getFlagEmoji(code: string): string {
   return [...normalized].map(c => String.fromCodePoint(c.charCodeAt(0) + 127397)).join('')
 }
 
-const DEVICON_SLUG_MAP: Record<string, string> = {
-  'JavaScript': 'javascript/javascript-original.svg',
-  'TypeScript': 'typescript/typescript-original.svg',
-  'React': 'react/react-original.svg',
-  'React Native': 'react/react-original.svg',
-  'Angular': 'angular/angular-original.svg',
-  'Vue': 'vuejs/vuejs-original.svg',
-  'Next.js': 'nextjs/nextjs-original.svg',
-  'Node.js': 'nodejs/nodejs-original.svg',
-  'Python': 'python/python-original.svg',
-  'Java': 'java/java-original.svg',
-  '.NET': 'dotnetcore/dotnetcore-original.svg',
-  'Go': 'go/go-original.svg',
-  'PHP': 'php/php-original.svg',
-  'Ruby': 'ruby/ruby-original.svg',
-  'Swift': 'swift/swift-original.svg',
-  'Kotlin': 'kotlin/kotlin-original.svg',
-  'Flutter': 'flutter/flutter-original.svg',
-  'Android': 'android/android-original.svg',
-  'Expo': 'expo/expo-original.svg',
-  'Remix': 'remix/remix-original.svg',
-  'AWS': 'amazonwebservices/amazonwebservices-original-wordmark.svg',
-  'Azure': 'azure/azure-original.svg',
-  'GCP': 'googlecloud/googlecloud-original.svg',
-  'Google Cloud': 'googlecloud/googlecloud-original.svg',
-  'DigitalOcean': 'digitalocean/digitalocean-original.svg',
+const ICON_MAP: Record<string, React.ElementType> = {
+  'JavaScript': SiJavascript,
+  'TypeScript': SiTypescript,
+  'React': SiReact,
+  'React Native': SiReact,
+  'Angular': SiAngular,
+  'Vue': SiVuedotjs,
+  'Next.js': SiNextdotjs,
+  'Node.js': SiNodedotjs,
+  'Python': SiPython,
+  'Java': SiOpenjdk,
+  '.NET': SiDotnet,
+  'Go': SiGo,
+  'PHP': SiPhp,
+  'Ruby': SiRuby,
+  'Swift': SiSwift,
+  'Kotlin': SiKotlin,
+  'Flutter': SiFlutter,
+  'Android': SiAndroid,
+  'Expo': SiExpo,
+  'Remix': SiRemix,
+  'AWS': FaAws,
+  'Azure': VscAzure,
+  'GCP': SiGooglecloud,
+  'Google Cloud': SiGooglecloud,
+  'DigitalOcean': SiDigitalocean,
 }
-
-const DEVICON_CDN = 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons'
 
 function getValueIcon(featureIdentifier: string, value: string): React.ReactNode {
   if (featureIdentifier === 'region_deployment') {
     return <span aria-label={value}>{getFlagEmoji(value)}</span>
   }
-  const slug = DEVICON_SLUG_MAP[value]
-  if (slug && (featureIdentifier === 'private_cloud_deployment' || featureIdentifier === 'sdk_coverage')) {
-    return <img src={`${DEVICON_CDN}/${slug}`} alt={value} className="inline-block shrink-0 h-3.5 w-auto" />
+  const Icon = ICON_MAP[value]
+  if (Icon && (featureIdentifier === 'private_cloud_deployment' || featureIdentifier === 'sdk_coverage')) {
+    return <Icon className="inline-block shrink-0 h-3.5 w-auto" title={value} />
   }
   return null
 }
