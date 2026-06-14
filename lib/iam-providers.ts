@@ -9,6 +9,12 @@ export const getIAMProviders = () => {
   })
 }
 
+export const getIAMProvidersByNationalities = (nationalities: string[]) => {
+  return getIAMProviders().filter(
+    (p) => p.nationality && nationalities.includes(p.nationality)
+  )
+}
+
 export const getIAMProviderById = (id: string) => {
   return getIAMProviders().find((p) => p.identifier === id)
 }

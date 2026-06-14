@@ -13,6 +13,12 @@ export const getProviders = () => {
   })
 }
 
+export const getProvidersByNationalities = (nationalities: string[]) => {
+  return getProviders().filter(
+    (p) => p.nationality && nationalities.includes(p.nationality)
+  )
+}
+
 export const getProviderById = (id: string) => {
   return getProviders().find((p) => p.identifier === id)
 }

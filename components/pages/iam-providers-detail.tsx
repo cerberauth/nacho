@@ -11,6 +11,7 @@ import { providers as openIDProviders } from '@/data/openid/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
 import { getCountryFlag } from '@/lib/utils'
+import { getCountryByNationality, getRegionsByNationality } from '@/lib/countries'
 import { getTableCells } from '@/app/iam/providers/get-table-cells'
 import { getDictionary, type Locale, type Dictionary } from '@/lib/dictionaries'
 import { langUrl } from '@/lib/lang'
@@ -75,11 +76,29 @@ export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: st
               <h1 className="text-5xl font-semibold leading-none tracking-tight">
                 {provider.name} {t.iamProvider}
               </h1>
-              {provider.nationality && (
-                <span title={provider.nationality} className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
-                  {getCountryFlag(provider.nationality)}
-                </span>
-              )}
+              {provider.nationality && (() => {
+                const countryConfig = getCountryByNationality(provider.nationality)
+                const regions = getRegionsByNationality(provider.nationality)
+                const allLinks = [...(countryConfig ? [countryConfig] : []), ...regions]
+                return allLinks.length > 0 ? (
+                  <div className="flex gap-1">
+                    {allLinks.map((c) => (
+                      <Link
+                        key={c.slug}
+                        href={langUrl(lang, `/iam/providers/country/${c.slug}`)}
+                        title={c.label}
+                        className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all"
+                      >
+                        {c.flag}
+                      </Link>
+                    ))}
+                  </div>
+                ) : (
+                  <span title={provider.nationality} className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                    {getCountryFlag(provider.nationality)}
+                  </span>
+                )
+              })()}
             </div>
             <p className="text-md text-slate-600">
               {provider.abstract}

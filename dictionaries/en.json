@@ -361,7 +361,8 @@
       "developer_integration": "Developer Integration",
       "advanced": "Advanced / Differentiators"
     },
-    "features": {}
+    "features": {},
+    "browseByCountry": "Browse by country"
   },
   "openidProviders": {
     "title": "OpenID Connect Providers Benchmark",
@@ -371,7 +372,6 @@
     "checkIAM": "Check out the (C)IAM Identity Providers benchmark",
     "featuresTitle": "Features",
     "faq": "Frequently Asked Questions",
-
     "compareNote": "If you want to compare OpenID Connect features of different providers, please check out the",
     "openidBenchmark": "OpenID Connect Providers benchmark",
     "lookingForIAMProvider": "Looking for {name}’s (C)IAM features like MFA, SSO, and user management?",
@@ -400,7 +400,26 @@
       "features": "Features",
       "fapi": "Financial-grade API (FAPI)"
     },
-    "features": {}
+    "features": {},
+    "browseByCountry": "Browse by country"
+  },
+  "iamProvidersCountry": {
+    "title": "Best (C)IAM Identity Provider for {country}",
+    "description": "Compare {country}-based Identity and Access Management providers across authentication methods, user management, compliance, security, and developer integration features.",
+    "lookingForOpenID": "Looking for OpenID Connect protocol-level compatibility?",
+    "checkOpenID": "Check out the OpenID Connect Providers benchmark",
+    "lookingForAllProviders": "Looking for providers from all countries?",
+    "checkAllProviders": "See the full (C)IAM Identity Providers benchmark",
+    "noProviders": "No (C)IAM providers found for {country} yet."
+  },
+  "openidProvidersCountry": {
+    "title": "Best OpenID Connect Provider for {country}",
+    "description": "Compare {country}-based OpenID Connect providers across grant types, token endpoint authentication methods, extensions, endpoints, FAPI compliance, and protocol features.",
+    "lookingForIAM": "Looking for (C)IAM features like MFA, SSO, user management, and compliance?",
+    "checkIAM": "Check out the (C)IAM Identity Providers benchmark",
+    "lookingForAllProviders": "Looking for providers from all countries?",
+    "checkAllProviders": "See the full OpenID Connect Providers benchmark",
+    "noProviders": "No OpenID Connect providers found for {country} yet."
   },
   "inaccuracyWarning": {
     "note": "Note:",
