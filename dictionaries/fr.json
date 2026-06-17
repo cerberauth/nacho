@@ -374,7 +374,8 @@
         "name": "Passkey",
         "description": "La méthode d'authentification par Passkey est utilisée par les utilisateurs pour s'authentifier avec leur passkey (FIDO2/WebAuthn)."
       }
-    }
+    },
+    "browseByCountry": "Parcourir par pays"
   },
   "openidProviders": {
     "title": "Benchmark des fournisseurs OpenID Connect",
@@ -384,7 +385,6 @@
     "checkIAM": "Consultez le benchmark des fournisseurs d'identité (C)IAM",
     "featuresTitle": "Fonctionnalités",
     "faq": "Foire aux questions",
-
     "compareNote": "Si vous souhaitez comparer les fonctionnalités OpenID Connect de différents fournisseurs, consultez le",
     "openidBenchmark": "benchmark des fournisseurs OpenID Connect",
     "lookingForIAMProvider": "Vous cherchez les fonctionnalités (C)IAM de {name} comme MFA, SSO et gestion des utilisateurs ?",
@@ -422,7 +422,26 @@
         "name": "Refresh Token",
         "description": "Le grant type Refresh Token est utilisé par les clients pour échanger un refresh token contre un access token lorsque l'access token a expiré."
       }
-    }
+    },
+    "browseByCountry": "Parcourir par pays"
+  },
+  "iamProvidersCountry": {
+    "title": "Meilleur fournisseur d'identité (C)IAM pour {country}",
+    "description": "Comparez les fournisseurs d'Identity and Access Management basés en {country} selon les méthodes d'authentification, la gestion des utilisateurs, la conformité, la sécurité et les fonctionnalités d'intégration.",
+    "lookingForOpenID": "Vous cherchez la compatibilité au niveau du protocole OpenID Connect ?",
+    "checkOpenID": "Consultez le benchmark des fournisseurs OpenID Connect",
+    "lookingForAllProviders": "Vous cherchez des fournisseurs de tous pays ?",
+    "checkAllProviders": "Voir le benchmark complet des fournisseurs d'identité (C)IAM",
+    "noProviders": "Aucun fournisseur (C)IAM trouvé pour {country} pour l'instant."
+  },
+  "openidProvidersCountry": {
+    "title": "Meilleur fournisseur OpenID Connect pour {country}",
+    "description": "Comparez les fournisseurs OpenID Connect basés en {country} selon les grant types, les méthodes d'authentification du token endpoint, les extensions, les endpoints, la conformité FAPI et les fonctionnalités du protocole.",
+    "lookingForIAM": "Vous cherchez des fonctionnalités (C)IAM comme MFA, SSO, gestion des utilisateurs et conformité ?",
+    "checkIAM": "Consultez le benchmark des fournisseurs d'identité (C)IAM",
+    "lookingForAllProviders": "Vous cherchez des fournisseurs de tous pays ?",
+    "checkAllProviders": "Voir le benchmark complet des fournisseurs OpenID Connect",
+    "noProviders": "Aucun fournisseur OpenID Connect trouvé pour {country} pour l'instant."
   },
   "inaccuracyWarning": {
     "note": "Remarque :",

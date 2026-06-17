@@ -4,14 +4,16 @@ import Link from 'next/link'
 
 import { getFeaturesCategories } from '@/data/iam/index'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
-import { getIAMProviders } from '@/lib/iam-providers'
+import { getIAMProviders, getIAMProvidersByNationalities } from '@/lib/iam-providers'
 import { getTableCells } from '@/app/iam/providers/get-table-cells'
 import { IAMProvidersInteractiveView } from '@/app/iam/providers/providers-interactive-view'
 import { getDictionary, type Locale } from '@/lib/dictionaries'
 import { langUrl } from '@/lib/lang'
 import { makeCanonical, makeLanguageAlternates } from '@/lib/metadata'
+import { countries } from '@/lib/countries'
 
 const allProviders = getIAMProviders()
+const countriesWithProviders = countries.filter((c) => getIAMProvidersByNationalities(c.nationalities).length > 0)
 
 export async function generateIAMProvidersMetadata(lang: Locale): Promise<Metadata> {
   const dict = await getDictionary(lang)
@@ -49,6 +51,21 @@ export async function IAMProvidersPage({ lang }: { lang: Locale }) {
           .
         </p>
         <ProviderInaccuracyWarning dict={dict.inaccuracyWarning} />
+        {countriesWithProviders.length > 0 && (
+          <div className="flex flex-wrap gap-2 items-center">
+            <span className="text-sm text-slate-500">{t.browseByCountry}:</span>
+            {countriesWithProviders.map((c) => (
+              <Link
+                key={c.slug}
+                href={langUrl(lang, `/iam/providers/country/${c.slug}`)}
+                className="inline-flex items-center gap-1 text-sm text-primary hover:underline"
+              >
+                <span>{c.flag}</span>
+                <span>{c.label}</span>
+              </Link>
+            ))}
+          </div>
+        )}
       </div>
 
       <Suspense>

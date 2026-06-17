@@ -3,6 +3,9 @@ import { templates } from '@/data/templates'
 import { baseUrl } from './seo.config'
 import { langUrl } from '@/lib/lang'
 import { locales } from '@/lib/dictionaries'
+import { countries } from '@/lib/countries'
+import { getIAMProvidersByNationalities } from '@/lib/iam-providers'
+import { getProvidersByNationalities } from '@/lib/providers'
 
 import useCasesJson from '@/data/mdx/use-cases.json'
 import { providers as openIDConnectProviders } from '@/data/openid/providers'
@@ -35,10 +38,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...openIDConnectProviders.flatMap((provider) =>
       makeEntry(`/openid/providers/${provider.identifier}`, 1)
     ),
+    ...countries
+      .filter((c) => getProvidersByNationalities(c.nationalities).length > 0)
+      .flatMap((c) => makeEntry(`/openid/providers/country/${c.slug}`, 0.9, 'weekly')),
     ...makeEntry('/iam/providers', 0.8, 'weekly'),
     ...iamProviders.flatMap((provider) =>
       makeEntry(`/iam/providers/${provider.identifier}`, 1)
     ),
+    ...countries
+      .filter((c) => getIAMProvidersByNationalities(c.nationalities).length > 0)
+      .flatMap((c) => makeEntry(`/iam/providers/country/${c.slug}`, 0.9, 'weekly')),
     ...makeEntry('/use-cases', 0.8, 'weekly'),
     ...useCasesJson.flatMap((useCase) =>
       makeEntry(`/use-cases/${useCase.slug}`, 1)
