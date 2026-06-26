@@ -66,15 +66,19 @@ export type IAMProvider = {
 import iamFeatures from './features.json'
 
 import auth0 from './auth0.json'
+import authlete from './authlete.json'
 import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
 // import descope from './descope.json'
 import microsoftEntraId from './microsoft-entra-id.json'
 // import firebaseAuth from './firebase-auth.json'
 import fusionauth from './fusionauth.json'
+import kinde from './kinde.json'
+import okta from './okta.json'
 import keycloak from './keycloak.json'
 import ory from './ory.json'
 import pingIdentity from './ping-identity.json'
+import zitadel from './zitadel.json'
 // import stytch from './stytch.json'
 // import supabaseAuth from './supabase-auth.json'
 // import supertokens from './supertokens.json'
@@ -83,15 +87,19 @@ export {
   iamFeatures,
 
   auth0,
+  authlete,
   awsCognito,
   clerk,
   // descope,
   microsoftEntraId,
   // firebaseAuth,
   fusionauth,
+  kinde,
   keycloak,
+  okta,
   ory,
   pingIdentity,
+  zitadel,
   // stytch,
   // supabaseAuth,
   // supertokens,
@@ -257,15 +265,19 @@ export const getFeaturesCategories = (dict: any) => [
 
 export const providers: IAMProvider[] = [
   auth0,
+  authlete,
   awsCognito,
   clerk,
   // descope,
   microsoftEntraId,
   // firebaseAuth,
   fusionauth,
+  kinde,
   keycloak,
+  okta,
   ory,
   pingIdentity,
+  zitadel,
   // stytch,
   // supabaseAuth,
   // supertokens,

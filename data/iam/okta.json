@@ -1,0 +1,637 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Okta",
+  "abstract": "Enterprise cloud identity platform from the USA offering workforce and customer identity. Features Universal Directory, Adaptive MFA, SSO to 7,000+ app integrations, lifecycle management, and zero-trust security. Native AD/LDAP integration, outbound SCIM provisioning, FIDO2 passkeys, and Okta Workflows no-code automation. FedRAMP and DoD IL4 authorized. SaaS-only deployment.",
+  "identifier": "okta",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/okta.svg"
+  },
+  "website": "https://www.okta.com",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": false,
+    "freeTierLimit": "Developer Edition available for non-production use only",
+    "pricingModel": "per_user",
+    "pricingUrl": "https://www.okta.com/pricing/",
+    "plans": [
+      { "name": "Starter", "price": "US$6/user/month (SSO + MFA + Universal Directory)" },
+      { "name": "Core Essentials", "price": "US$14/user/month" },
+      { "name": "Essentials", "price": "US$17/user/month (Adaptive MFA, Lifecycle Management, Access Governance)" },
+      { "name": "Professional", "price": "Custom (Device Access, Identity Threat Protection)" },
+      { "name": "Enterprise", "price": "Custom (API Access Management, Access Gateway)" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://help.okta.com/en-us/content/topics/security/general-authentication.htm"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Pre-built social IdP integrations for Google, Facebook, Apple, LinkedIn, Microsoft, GitHub, and any generic OIDC/SAML provider via the App Integration Network.",
+      "links": ["https://help.okta.com/en-us/content/topics/integrations/social-login-main.htm"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "FIDO2/WebAuthn passkeys as a first-factor passwordless method via Okta Identity Engine. Supports platform authenticators (Face ID, Touch ID, Windows Hello) and roaming security keys. Also available through Okta FastPass for device-bound authentication.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-webauthn.htm"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email magic link or one-time passcode for passwordless sign-in via the Email Authenticator.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-email.htm"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "SMS or voice OTP as a passwordless first-factor authenticator.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-phone.htm"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "description": "Email magic link for passwordless sign-in via the Email Authenticator. Users receive a link that signs them in without entering a password.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-email.htm"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "Okta requires authenticated user identity. Anonymous or guest sessions are not a built-in feature."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "Time-based OTP via Okta Verify app or any TOTP-compatible authenticator (Google Authenticator, Authy, Microsoft Authenticator, etc.).",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-okta-verify.htm"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "Only TOTP (time-based OTP) is natively supported. HOTP (counter-based OTP) is not available."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "FIDO2/WebAuthn security keys (YubiKey, etc.) as a second factor.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-webauthn.htm"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "description": "WebAuthn as second factor, supporting both platform authenticators and roaming security keys.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-webauthn.htm"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "description": "One-time passcode sent via email as a second factor.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-email.htm"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS or voice OTP as a second factor.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-phone.htm"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "not_supported",
+      "description": "Okta does not provide dedicated one-time backup/recovery codes. Account recovery is handled via email or phone factors."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "supported",
+      "description": "Okta Verify push notifications: users approve sign-in requests with a single tap on the Okta Verify mobile app. Number challenge support available to prevent MFA fatigue attacks.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/authenticators/configure-okta-verify.htm"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "supported",
+      "description": "Okta Adaptive MFA evaluates risk signals (device context, network zone, location, behavior analytics via ThreatInsight) and dynamically requires step-up authentication for high-risk sign-in attempts.",
+      "links": ["https://www.okta.com/products/adaptive-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "Okta does not natively integrate with Cisco Duo. Okta Verify is Okta's own push MFA product and competes with Cisco Duo."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "Step-up authentication via authentication policies with assurance levels and ACR (Authentication Context Class Reference) values, requiring re-authentication or additional factors for sensitive resources.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/policies/about-app-sign-on-policies.htm"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML 2.0 Identity Provider for enterprise SSO. Supports SP-initiated and IdP-initiated flows with 7,000+ pre-built app integrations.",
+      "links": ["https://developer.okta.com/docs/concepts/saml/"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "supported",
+      "description": "WS-Federation support for Microsoft AD FS integration. Okta can act as a WS-Federation Identity Provider for SharePoint, Dynamics, and other WS-Fed-aware apps.",
+      "links": ["https://help.okta.com/en-us/content/topics/microsoft/configure-ws-fed-app.htm"]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant for service-to-service and machine-to-machine authentication. Enterprise tier adds dedicated M2M Token management.",
+      "links": ["https://developer.okta.com/docs/guides/implement-grant-type/clientcreds/main/"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Generic OIDC identity provider federation for connecting per-tenant enterprise IdPs. Pre-built templates for Google Workspace, Salesforce, LinkedIn, GitHub, and others.",
+      "links": ["https://help.okta.com/en-us/content/topics/integrations/social-login-main.htm"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "SAML 2.0 identity provider federation via Okta's Identity Provider Routing Rules for per-tenant enterprise SSO.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/idp-discovery.htm"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "Native Okta Active Directory Agent for bidirectional AD sync with delegated authentication. Okta LDAP Interface exposes a virtual LDAP directory backed by Universal Directory for legacy LDAP-dependent apps.",
+      "links": ["https://help.okta.com/en-us/content/topics/directory/ad-agent-main.htm"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Native Okta integration with Microsoft Entra ID (Azure AD) for bidirectional user sync, OIDC federation, and SAML SSO.",
+      "links": ["https://help.okta.com/en-us/content/topics/integrations/microsoft.htm"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Bulk user import via CSV upload in the admin console or via the Users API.",
+      "links": ["https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-bulk-imports.htm"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Import users with existing password hashes via the Users API. Supported formats: bcrypt, SHA-512, SHA-256, SHA-1, MD5. Hashes are re-hashed on first successful login.",
+      "links": ["https://developer.okta.com/docs/reference/api/users/#create-user-with-imported-hashed-password"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Export users via the Users API with pagination and filtering support.",
+      "links": ["https://developer.okta.com/docs/reference/api/users/"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Bulk user update and delete operations via the Users API and Okta admin console.",
+      "links": ["https://developer.okta.com/docs/reference/api/users/"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "CSV imports and API operations support upsert behavior — creating new users or updating existing ones based on a matching identifier."
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "partial",
+      "description": "Username format is constrained by Okta's Universal Directory login format rules. Usernames with special characters may require transformation during migration."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported",
+      "description": "MFA enrollments (TOTP secrets, WebAuthn credentials) cannot be imported from external systems. Users must re-enroll in Okta authenticators after migration."
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "description": "Okta supports inbound SCIM 2.0 provisioning from external identity sources to push users and groups into Universal Directory.",
+      "links": ["https://developer.okta.com/docs/concepts/scim/"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "supported",
+      "description": "Okta acts as a SCIM 2.0 client to push user lifecycle changes (create, update, deactivate) to SCIM-enabled downstream applications. Core feature of Okta Lifecycle Management.",
+      "links": ["https://help.okta.com/en-us/content/topics/apps/apps-provisioning.htm"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "description": "Group Push synchronizes Okta groups to SCIM-enabled apps for access control.",
+      "links": ["https://help.okta.com/en-us/content/topics/apps/apps-provisioning.htm"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time user provisioning creates Okta user accounts on first login via federated IdP without pre-provisioning.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/idp-jit-provisioning.htm"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "description": "Trickle migration via the Okta Password Import Inline Hook: on first login, Okta delegates password validation to a legacy system endpoint, migrates the credential on success, and re-hashes it in Universal Directory — no forced password reset.",
+      "links": ["https://developer.okta.com/docs/reference/password-hook/"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Okta End-User Dashboard for managing profile information, connected apps, MFA device enrollment, and security settings.",
+      "links": ["https://help.okta.com/en-us/content/topics/end-user/euoverview.htm"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Link multiple authentication identities (social, enterprise, local) to a single Okta user account via profile enrollment policies.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/policies/about-profile-enrollment.htm"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Users can be deactivated (preventing all sign-in) or suspended (temporary block) via the admin console or Users API.",
+      "links": ["https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-deactivate-user-account.htm"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Universal Directory custom attributes: store arbitrary user-editable profile attributes beyond the standard Okta schema.",
+      "links": ["https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-extend-profiles.htm"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Per-user app profile attributes store app-specific metadata not exposed to end users.",
+      "links": ["https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-extend-profiles.htm"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "supported",
+      "description": "Universal Directory limits: up to 100 custom attributes per schema (base + app profiles), string attributes max 1,024 characters. Limits are documented in the developer reference.",
+      "links": ["https://developer.okta.com/docs/reference/api/schemas/"]
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "Universal Directory search with filtering by any profile attribute, group membership, and status via the admin console and Users API.",
+      "links": ["https://developer.okta.com/docs/reference/api/users/#list-users-with-search"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Role-based access control via Okta Groups and admin roles. Groups are surfaced in tokens as claims. Custom admin roles provide fine-grained admin RBAC.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/administrators-admin-comparison.htm"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Okta is architected as a single-org, single-tenant platform per customer. B2B multi-tenancy is typically implemented via separate Okta orgs per tenant (Hub-and-Spoke) or using groups/attributes within a single org. No native first-class 'Organization' isolation concept within a single Okta tenant.",
+      "links": ["https://developer.okta.com/docs/concepts/multi-tenancy/"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Configurable password policies: minimum length, complexity requirements, history, lockout, and expiration at the org or group level.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/default-policy.htm"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "description": "Login format restrictions configurable via the Profile Editor. Okta enforces email format by default; alternate username formats can be configured.",
+      "links": ["https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-main.htm"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "supported",
+      "description": "Progressive profiling via Identity Engine Profile Enrollment Policies: collect additional user attributes at sign-up or on subsequent logins based on policy conditions.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/policies/about-profile-enrollment.htm"]
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "Attribute-based access control via Okta Expression Language in Group Rules, authentication policies, and Sign-On Policies. Evaluate user profile attributes, device context, network zone, and risk level in access decisions.",
+      "links": ["https://help.okta.com/en-us/content/topics/users-groups-profiles/usgp-group-rules-main.htm"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "partial",
+      "description": "Okta Identity Governance includes entitlement management and access certification. A dedicated Fine-Grained Authorization (FGA) capability is in development. No built-in Zanzibar-style ReBAC engine in the standard platform.",
+      "links": ["https://www.okta.com/products/identity-governance/"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "Okta API Access Management: custom OAuth 2.0 authorization servers with configurable scopes, claims, and access policies for API protection.",
+      "links": ["https://developer.okta.com/docs/concepts/auth-servers/"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "description": "ISO/IEC 27001:2022, ISO 27017:2015 (cloud security), and ISO 27018:2019 (cloud privacy) certified.",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "supported",
+      "description": "PCI DSS v4.0 compliant.",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported",
+      "description": "CSA STAR Level 1 and Level 2 certified. CSA Trusted Cloud Provider.",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "supported",
+      "description": "FedRAMP Authorized (Class C and Class D) via Okta Government product. Also holds DoD IL4 authorization.",
+      "links": ["https://www.okta.com/solutions/federal/"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "User data exportable via the Users API and admin console for GDPR Article 20 portability requests.",
+      "links": ["https://www.okta.com/gdpr/"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "description": "Users can be fully deleted via the Users API or admin console to satisfy GDPR Article 17 right to erasure.",
+      "links": ["https://www.okta.com/gdpr/"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "OAuth 2.0 consent screen presented during authorization. Privacy consent management available via Okta's Privacy module.",
+      "links": ["https://help.okta.com/en-us/content/topics/privacy/privacy-consent.htm"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Available in US, EU, Canada, and Australia regions for data residency requirements.",
+      "values": ["US", "EU", "Canada", "Australia"],
+      "links": ["https://www.okta.com/trust/"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "not_supported",
+      "description": "Okta is SaaS-only with no self-hosted or on-premises deployment option. Enterprise customers can request dedicated cell infrastructure, but the platform is fully managed by Okta."
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Okta System Log retains events for 90 days by default; longer retention configurable via Log Streaming to external storage.",
+      "links": ["https://help.okta.com/en-us/content/topics/reports/reports_syslog.htm"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Log Streaming natively pushes System Log events to AWS EventBridge, Splunk Cloud, and Sumo Logic in real time.",
+      "links": ["https://help.okta.com/en-us/content/topics/reports/log-streaming-main.htm"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "supported",
+      "description": "Security Dashboard with authentication analytics and ThreatInsight threat monitoring, showing suspicious activity, attack patterns, and blocked sign-in attempts.",
+      "links": ["https://help.okta.com/en-us/content/topics/reports/reports-security-dashboard.htm"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "All data encrypted at rest. Okta manages encryption keys using AES-256.",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "All endpoints enforced over TLS 1.2+.",
+      "links": ["https://security.okta.com/"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "partial",
+      "description": "Bring-your-own-key (BYOK) available for Enterprise tier customers with AWS KMS-managed encryption keys. Not available on standard tiers.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/key-management.htm"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "description": "Okta ThreatInsight uses ML-based signals to detect and block bot activity, credential stuffing, and automated attacks on authentication endpoints.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/threat-insight/ti-index.htm"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Configurable account lockout after failed attempts. ThreatInsight adds IP-level blocking for coordinated brute force attacks.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/default-policy.htm"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "Okta ThreatInsight detects and automatically throttles or blocks sign-in attempts from IPs associated with credential stuffing and other threats.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/threat-insight/ti-index.htm"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "partial",
+      "description": "Okta ThreatInsight monitors for suspicious authentication patterns associated with credential compromise. No direct integration with breach databases (e.g., Have I Been Pwned) for password validation.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/threat-insight/ti-index.htm"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "partial",
+      "description": "Okta Identity Threat Protection (Professional/Enterprise) detects compromised credentials using continuous risk evaluation. Dedicated dark web monitoring is not available as a built-in feature.",
+      "links": ["https://www.okta.com/products/identity-threat-protection/"]
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "supported",
+      "description": "Network Zones: define IP allowlists, blocklists, and geographic zones to restrict or enforce authentication from specific IP ranges. Dynamic Zones integrate with threat intelligence feeds.",
+      "links": ["https://help.okta.com/en-us/content/topics/security/network/network-zones.htm"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "supported",
+      "description": "Okta Device Trust tracks registered devices and evaluates device health signals (managed status, OS version, disk encryption) in authentication policies. Device context is available as a risk signal in Adaptive MFA.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/devices/device-mgmt.htm"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Custom branding (logo, colors, background, domain) configurable per application. Supports separate branded experiences for different B2B tenants.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-customization.htm"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "Authentication policies configurable per application and per group, allowing different MFA requirements for different tenants or user populations.",
+      "links": ["https://help.okta.com/en-us/content/topics/identity-engine/policies/policies-overview.htm"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "Okta-hosted Sign-In Page with full HTML/CSS/JavaScript customization. Redirect-based flow managed by Okta.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-customization-general.htm"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "Okta Sign-In Widget can be embedded directly in the application for an inline login experience without redirect. Okta Identity Engine also provides an Embedded SDK for building fully custom UI.",
+      "links": ["https://developer.okta.com/docs/guides/embedded-siw/main/"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Full white-labeling: custom logos, colors, fonts, domain, and removal of Okta branding from the sign-in experience.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-customization.htm"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "Okta Sign-In Widget supports multiple languages with built-in translations and custom i18n string overrides.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-customization-general.htm"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "Okta Sign-In Widget (JavaScript), Auth JS SDK, and framework-specific SDKs (React, Angular, Vue) provide prebuilt UI components for rapid integration.",
+      "links": ["https://developer.okta.com/code/"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "System Log reports, Security Dashboard, and Reports section provide authentication success rates, active users, MFA adoption, suspicious activity, and sign-in funnel metrics.",
+      "links": ["https://help.okta.com/en-us/content/topics/reports/rpt-overview.htm"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Official SDKs for JavaScript/TypeScript, iOS/Swift, Android/Kotlin, Java, .NET, Python, Go, React, Angular, and Vue.",
+      "links": ["https://developer.okta.com/code/"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Comprehensive Okta REST API for managing users, groups, applications, policies, and all IAM resources.",
+      "links": ["https://developer.okta.com/docs/reference/"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "Per-endpoint rate limits documented and enforced. Rate limit headers returned in all API responses. Dynamic Scale add-on available for high-traffic scenarios.",
+      "links": ["https://developer.okta.com/docs/reference/rate-limits/"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Okta Hooks: Event Hooks push authentication events to external endpoints; Inline Hooks intercept flows (token, import, password, SAML, registration) for real-time customization.",
+      "links": ["https://developer.okta.com/docs/concepts/event-hooks/"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Okta Hooks are external HTTP endpoints with no restrictions on implementation language, but Okta does not provide a managed TypeScript/JavaScript runtime for hooks — you host the endpoint yourself."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Custom domain for the Okta Sign-In Page and authentication endpoints.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-customization-general.htm"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "Okta CLI for scaffolding and managing Okta resources. Okta Terraform provider enables full infrastructure-as-code configuration.",
+      "links": ["https://cli.okta.com/"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "supported",
+      "description": "Official Okta Terraform provider (registry.terraform.io/providers/okta/okta) for managing all Okta resources as code.",
+      "links": ["https://registry.terraform.io/providers/okta/okta/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "Okta Password Import Inline Hook enables delegated authentication to a legacy credential store. On first login, Okta calls a hosted endpoint to validate the password, then migrates the credential to Universal Directory.",
+      "links": ["https://developer.okta.com/docs/reference/password-hook/"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Okta Event Hooks deliver real-time event notifications to external HTTP endpoints.",
+      "links": ["https://developer.okta.com/docs/concepts/event-hooks/"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Okta-hosted Sign-In Page supports full HTML/CSS/JavaScript customization including Okta Sign-In Widget configuration.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-customization.htm"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "partial",
+      "description": "Custom email sender domain supported via verified domain configuration. Sending via a fully custom SMTP relay requires additional setup and is not available on all tiers.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-email.htm"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Fully customizable email templates for OTP, activation, password reset, and notification flows via the Email Template editor.",
+      "links": ["https://help.okta.com/en-us/content/topics/settings/settings-email.htm"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims added to access tokens and ID tokens via Okta Expression Language or Token Inline Hook for dynamic, real-time claim enrichment.",
+      "links": ["https://developer.okta.com/docs/guides/customize-tokens-returned-from-okta/main/"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "supported",
+      "description": "Okta Workflows: no-code automation platform with 600+ pre-built connectors for building identity lifecycle and event-driven automation flows without writing code.",
+      "links": ["https://help.okta.com/wf/en-us/content/topics/workflows/workflows-main.htm"]
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "supported",
+      "description": "Okta Identity Verification add-on: government-issued document verification and biometric liveness checks powered by Persona.",
+      "links": ["https://www.okta.com/products/identity-verification/"]
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported",
+      "description": "No built-in support for W3C Verifiable Credentials or decentralized identity (DID) standards."
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported",
+      "description": "No built-in billing or subscription management integration."
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "partial",
+      "description": "Okta for AI Agents provides OAuth 2.0 M2M tokens and Cross App Access Protocol (CAAP) for AI agent authentication. Dedicated agentic identity features (agent governance, MCP server auth) are actively being developed.",
+      "links": ["https://www.okta.com/okta-for-ai/"]
+    }
+  ]
+}

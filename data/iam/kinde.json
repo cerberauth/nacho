@@ -1,0 +1,620 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Kinde",
+  "abstract": "Developer-first CIAM platform built for modern SaaS. Ships authentication, billing, and access management in one SDK. Notable for making enterprise SSO (SAML) available on all paid plans rather than behind enterprise contracts, and a generous 10,500 MAU free tier.",
+  "identifier": "kinde",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/kinde.svg"
+  },
+  "website": "https://kinde.com",
+  "github": "https://github.com/kinde-oss",
+  "license": "Proprietary",
+  "nationality": "Australia",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "10,500 MAU",
+    "pricingModel": "mau",
+    "pricingUrl": "https://kinde.com/pricing/",
+    "plans": [
+      { "name": "Free", "price": "Free" },
+      { "name": "Pro", "price": "$25/month" },
+      { "name": "Plus", "price": "$75/month" },
+      { "name": "Scale", "price": "$250/month" },
+      { "name": "Enterprise", "price": "Custom" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "description": "Email and password authentication with 8-character minimum and top 1,000,000 common passwords blocked.",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Google, GitHub, Microsoft, Apple, Discord, and more. Accounts are automatically linked across providers that share a verified email address.",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "not_supported",
+      "description": "Passkey authentication is in development and listed on Kinde's roadmap but not yet available.",
+      "links": ["https://updates.kinde.com/"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP is Kinde's default authentication method for new businesses. Users receive a one-time code via email.",
+      "links": ["https://docs.kinde.com/authenticate/authentication-methods/passwordless-authentication/"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "SMS OTP via Twilio integration. Users enter their phone number and receive a one-time code via SMS.",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "description": "Email magic code (one-time link/code) for passwordless sign-in.",
+      "links": ["https://docs.kinde.com/authenticate/authentication-methods/passwordless-authentication/"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "Authenticator app TOTP (Google Authenticator, Authy, 1Password, etc.).",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "not_supported",
+      "description": "Hardware security keys are not supported. Passkeys (which would cover WebAuthn) are still on the roadmap.",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "not_supported",
+      "description": "WebAuthn-based MFA is not available. Passkeys are on the roadmap but not yet shipped.",
+      "links": ["https://updates.kinde.com/"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "description": "Email OTP as a second factor.",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS OTP as a second factor.",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "supported",
+      "description": "Backup recovery codes offered to users at first MFA enrollment. Can be disabled via dashboard toggle.",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/about-multi-factor-authentication/"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "partial",
+      "description": "Achievable via the Pre-MFA workflow trigger, which allows custom logic to enforce additional verification before sensitive actions. No built-in step-up UI.",
+      "links": ["https://docs.kinde.com/workflows/example-workflows/pre-mfa-workflow/"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML 2.0 as Identity Provider for enterprise SSO. Available on Plus plan and above — notably not gated behind an enterprise contract.",
+      "plans": ["Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/authenticate/enterprise-sso/saml-setup/"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant for M2M authentication.",
+      "links": ["https://docs.kinde.com/machine-to-machine-applications/about-m2m/authenticate-with-m2m/"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Any OAuth 2.0 compatible identity provider can be connected as an enterprise SSO connection. Available on Plus plan and above.",
+      "plans": ["Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "Per-organization SAML SSO enterprise connections. Available on Plus plan and above.",
+      "plans": ["Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/authenticate/enterprise-sso/saml-setup/"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "not_supported",
+      "description": "No native LDAP/Active Directory protocol support. Microsoft Entra ID can be connected via OAuth 2.0 or SAML enterprise connection.",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID via OAuth 2.0 and WS-Fed options as a social/enterprise connection. Available on Plus plan and above for SAML.",
+      "plans": ["Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Import users via CSV or NDJSON file upload (max 49MB). Kinde also provides migration guides from Auth0, Firebase, Okta, and other providers.",
+      "links": ["https://docs.kinde.com/manage-users/add-and-edit/import-users-in-bulk/"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Import password hashes in bcrypt, crypt, sha256, md5, and WordPress formats with configurable salt positioning.",
+      "links": ["https://docs.kinde.com/manage-users/add-and-edit/import-users-in-bulk/"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/manage-users/about/manage-users-across-organizations/"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "not_supported",
+      "description": "Bulk update and delete are not supported. Individual user operations are available via the Management API. Bulk update via re-import is explicitly blocked — re-imported records for existing users are ignored.",
+      "links": ["https://docs.kinde.com/manage-users/add-and-edit/import-users-in-bulk/"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "not_supported",
+      "description": "No upsert semantics. Re-importing records for existing users is silently ignored — changes to already-imported users will not be applied.",
+      "links": ["https://docs.kinde.com/manage-users/add-and-edit/import-users-in-bulk/"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "supported",
+      "description": "Username restrictions are not as strict as some providers; import supports a wide range of legacy user data formats.",
+      "links": ["https://docs.kinde.com/manage-users/add-and-edit/import-users-in-bulk/"]
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "supported",
+      "description": "MFA enrollments and settings are preserved when migrating users from supported providers (Auth0, Firebase, Okta).",
+      "links": ["https://docs.kinde.com/manage-users/add-and-edit/import-users-from-auth0/"]
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "partial",
+      "description": "SCIM inbound provisioning is on the roadmap and listed as 'coming soon' for Scale plan and above.",
+      "plans": ["Scale", "Enterprise"],
+      "links": ["https://updates.kinde.com/board/integrate-scim-identity-management"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported",
+      "links": ["https://updates.kinde.com/board/integrate-scim-identity-management"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported",
+      "links": ["https://updates.kinde.com/board/integrate-scim-identity-management"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Users are automatically created on first login via enterprise SSO connections.",
+      "links": ["https://docs.kinde.com/authenticate/enterprise-sso/saml-setup/"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "description": "Drip-feed/trickle migration supported via the User Pre-Registration workflow: check credentials against a legacy database before creating the user in Kinde, enabling zero-downtime password migration without forced resets.",
+      "links": ["https://docs.kinde.com/workflows/getting-started/workflow-examples/"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/manage-users/about/manage-users-across-organizations/"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Kinde automatically links accounts across different authentication providers when they share the same verified email address.",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/manage-users/access-control/reset-multi-factor-authentication-for-a-user/"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Custom user properties stored per user via Kinde's Properties feature.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Application-level properties and feature flags stored per user or organization.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/manage-users/about/manage-users-across-organizations/"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Roles and permissions with per-organization assignment. Custom roles available on Pro plan and above.",
+      "plans": ["Pro", "Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/manage-users/roles-and-permissions/about-roles-and-permissions/"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "description": "Full B2B organizations model with member management, roles, invitations, and per-org SSO configuration.",
+      "links": ["https://docs.kinde.com/manage-your-account/organizations/about-organizations/"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "8-character minimum enforced; top 1,000,000 most common passwords are blocked globally.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/authenticate/about-auth/authentication-methods/"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "partial",
+      "description": "Custom sign-up fields can be configured. Full conditional progressive profiling flows require custom workflow logic.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "abac",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "OAuth 2.0 scopes and audience-based API authorization. API scopes available on Plus plan and above.",
+      "plans": ["Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/developer-tools/your-apis/register-manage-apis/"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "description": "SOC 2 Type II certified (AssuranceLab). Full report available on Scale and Enterprise plans.",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "description": "ISO 27001:2022 certified by Compass Assurance Services. Certificate downloadable from Kinde's trust center.",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "description": "Kinde is HIPAA compliant and acts as a Business Associate. BAAs available upon request.",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "partial",
+      "description": "Kinde currently uses a third-party SAQ-A approach for payment processing. Preparing SAQ for full PCI DSS compliance as billing features expand. Not yet holding a QSA-issued ROC.",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/trust-center/privacy-and-compliance/compliance/"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "not_supported",
+      "description": "Kinde is a SaaS-only product with no data residency region selection for customers."
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Retention varies by plan: Free (1 day), Pro (7 days), Plus (14 days), Scale (30 days), Enterprise (contact sales).",
+      "links": ["https://docs.kinde.com/manage-users/view-activity/view-audit-log/"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "not_supported",
+      "description": "Audit logs are viewable in the Kinde dashboard only. Real-time streaming to external SIEM is not available; webhook delivery covers user events but not a full audit stream.",
+      "links": ["https://docs.kinde.com/manage-users/view-activity/view-audit-log/"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported",
+      "description": "No dedicated threat monitoring or security center dashboard. Security features are distributed across the Kinde dashboard.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "TLS 1.2 and 1.3 enforced on all public-facing endpoints with AES-GCM and ChaCha20-Poly1305 cipher suites.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "not_supported",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "description": "AWS WAF blocks traffic matching OWASP threat rules and known malicious IPs. Customers can add Cloudflare Turnstile for CAPTCHA on custom domains.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Accounts are automatically locked out after 5 consecutive failed login attempts.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "Application-level rate limiting restricts connections from individual IPs across API, admin, and authentication endpoints.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "supported",
+      "description": "Kinde checks passwords against known breach databases and warns users about compromised credentials.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "No standalone dark web monitoring product. Breached password detection at sign-up/sign-in is covered separately.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "not_supported",
+      "description": "No user-configurable IP-based ACLs or geo-blocking. Kinde applies internal WAF rules via AWS WAF.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "supported",
+      "description": "Device fingerprinting is used internally during authentication to prevent session hijacking between different browsers or devices.",
+      "links": ["https://docs.kinde.com/get-started/learn-about-kinde/kinde-product-security/"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Custom domains and branding can be configured per organization.",
+      "links": ["https://docs.kinde.com/manage-your-account/organizations/about-organizations/"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "MFA can be enforced at the organization level on Scale plan and above, with the ability to exclude certain roles or connection types.",
+      "plans": ["Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/authenticate/multi-factor-auth/mfa-per-org/"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "Kinde provides a centrally hosted authentication page by default.",
+      "links": ["https://docs.kinde.com/design/brand/"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "partial",
+      "description": "SDKs for 21+ frameworks include pre-built auth components. The primary flow is redirect-based (hosted page); fully embedded no-redirect login is not a first-class feature.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Custom domain for auth pages; Kinde branding removal available on paid plans.",
+      "links": ["https://docs.kinde.com/design/brand/"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "Supports English (en/en-US/en-AU/en-GB), Dutch, German, Polish, Hebrew, Italian, French, Malay, Spanish, Russian, Portuguese (Brazilian), Norwegian, and Swedish on user-facing auth pages.",
+      "links": ["https://docs.kinde.com/design/content-customization/set-language-for-pages/"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "Official SDKs for 21+ frameworks including React, JavaScript, Angular, Next.js, Vue, iOS, Android, Flutter, React Native, and Expo.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "Dashboard analytics for authentication events, active users, sign-up/sign-in trends.",
+      "links": ["https://docs.kinde.com/manage-users/view-activity/view-audit-log/"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "21+ official SDKs with TypeScript definitions throughout. Backends: .NET, Go, Python, Node.js, Express, Next.js, Java, Ruby, PHP, Elixir. Frontend: React, JavaScript, Angular. Mobile: iOS, Android, Flutter, React Native, Expo.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/api/"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/developer-tools/about/using-kinde-without-an-sdk/"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Workflows execute custom TypeScript/JavaScript at 9 trigger points: user pre-registration, post-authentication, token generation, M2M token generation, pre-MFA, new password, existing password, plan selection, plan cancellation. Code syncs from a connected Git repository.",
+      "links": ["https://docs.kinde.com/workflows/getting-started/workflow-examples/"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "supported",
+      "description": "Kinde Workflows natively support TypeScript, synced from a connected Git repository and run in your IDE.",
+      "links": ["https://docs.kinde.com/workflows/getting-started/workflow-examples/"]
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/design/brand/"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "Kinde CLI supports infrastructure-as-code workflows for managing environments, feature flags, and permissions via version control.",
+      "links": ["https://docs.kinde.com/developer-tools/kinde-cli/"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "partial",
+      "description": "A community-maintained Terraform provider (axatol/kinde) is available on the Terraform Registry. No official Kinde-maintained provider.",
+      "links": ["https://registry.terraform.io/providers/axatol/kinde/latest"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "partial",
+      "description": "Achievable via the lazy migration / drip-feed pattern using the User Pre-Registration workflow to proxy credentials against an external database. No dedicated 'custom database connection' UI as in Auth0.",
+      "links": ["https://docs.kinde.com/workflows/getting-started/workflow-examples/"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Webhook delivery for user events with JWT-signed payloads, idempotency headers, and automatic retry. Free plan: 1 webhook; Pro and above: unlimited.",
+      "plans": ["Pro", "Plus", "Scale", "Enterprise"],
+      "links": ["https://docs.kinde.com/integrate/webhooks/about-webhooks/"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Full visual customization via the Kinde dashboard Page Designer and custom HTML/CSS/JS.",
+      "links": ["https://docs.kinde.com/design/brand/"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Custom SMTP configuration supported, including a documented Resend integration.",
+      "links": ["https://docs.kinde.com/integrate/third-party-tools/kinde-resend-custom-smtp/"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "links": ["https://docs.kinde.com/design/content-customization/"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims added to access and ID tokens via the Token Generation workflow.",
+      "links": ["https://docs.kinde.com/workflows/getting-started/workflow-examples/"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "supported",
+      "description": "Native billing and subscription management built into the Kinde platform. Supports plan creation, pricing tables, and revenue collection directly from the identity layer.",
+      "links": ["https://docs.kinde.com/"]
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "supported",
+      "description": "Kinde provides an MCP (Model Context Protocol) server for AI agent authentication integration.",
+      "links": ["https://docs.kinde.com/"]
+    }
+  ]
+}
