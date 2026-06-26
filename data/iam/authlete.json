@@ -1,0 +1,579 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Authlete",
+  "abstract": "Headless OAuth 2.0 and OpenID Connect backend engine from Japan, founded 2015. Authlete is not a full-stack CIAM: it handles only the OAuth/OIDC protocol layer and token lifecycle management — authentication UI, user database, and MFA are customer-owned. Exceptionally strong protocol coverage: FAPI 1.0/2.0, CIBA, DPoP, PAR, JAR, mTLS, OpenID Identity Assurance, OID4VCI, and OpenID Federation. OpenID-certified across Basic, Implicit, Hybrid, FAPI 1.0 Advanced, FAPI-CIBA, FAPI 2.0, and multiple open banking profiles (UK, Australia CDR, Brazil, Saudi Arabia). ISO/IEC 27001 certified. Available as shared cloud, dedicated cloud, or self-managed.",
+  "identifier": "authlete",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/authlete.svg"
+  },
+  "website": "https://www.authlete.com",
+  "github": "https://github.com/authlete",
+  "license": "Proprietary",
+  "nationality": "Japan",
+  "pricing": {
+    "hasFreeTier": false,
+    "freeTierLimit": "30-day free trial (3 services, 100 client apps, shared cloud, no credit card required)",
+    "pricingModel": "usage",
+    "pricingUrl": "https://www.authlete.com/pricing/",
+    "plans": [
+      { "name": "Trial", "price": "Free (30 days)" },
+      { "name": "Business", "price": "$999+/month (shared cloud, usage-based on Monthly Active Tokens)" },
+      { "name": "Enterprise (Managed)", "price": "Custom (dedicated cloud, unlimited services)" },
+      { "name": "Enterprise (Self-Managed)", "price": "Custom (on-premises or private cloud)" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "not_supported",
+      "description": "Authlete is a headless OAuth/OIDC backend engine. End-user authentication (username/password, social, MFA, etc.) is entirely the responsibility of the customer's own authentication layer. Authlete only handles the protocol and token lifecycle."
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "not_supported",
+      "description": "Authlete does not implement authentication. Social sign-in must be handled by the customer's authentication frontend before Authlete issues tokens."
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "not_supported",
+      "description": "Authlete is a headless token engine. Passkey/WebAuthn authentication is the responsibility of the customer's own authentication layer."
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "not_supported",
+      "description": "No authentication UI or passwordless flows built in. Customer implements authentication; Authlete handles the downstream OAuth/OIDC token issuance."
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "not_supported",
+      "description": "No built-in SMS OTP or phone-based authentication. Customer-owned auth layer."
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "not_supported",
+      "description": "No built-in magic link flow. Customer-owned auth layer."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "No anonymous or guest session support built in. Customer-owned auth layer."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "not_supported",
+      "description": "MFA is not handled by Authlete. CIBA (Client-Initiated Backchannel Authentication) can be used to decouple the authentication challenge from the token issuance, enabling MFA in the customer's authentication server.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "MFA is delegated entirely to the customer's authentication system."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "not_supported",
+      "description": "MFA is delegated entirely to the customer's authentication system."
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "not_supported",
+      "description": "MFA is delegated entirely to the customer's authentication system."
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "not_supported",
+      "description": "MFA is delegated entirely to the customer's authentication system."
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "not_supported",
+      "description": "MFA is delegated entirely to the customer's authentication system."
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "not_supported",
+      "description": "MFA is delegated entirely to the customer's authentication system."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "description": "No built-in push MFA. However, CIBA (Client-Initiated Backchannel Authentication) natively supports decoupled push-style challenge flows that can drive push notifications in a custom authentication device.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "not_supported",
+      "description": "Risk-based and adaptive MFA are outside Authlete's scope. Authlete processes tokens; risk evaluation lives in the customer's authentication layer."
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "No Cisco Duo integration. MFA provider integrations are the customer's responsibility."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "partial",
+      "description": "OAuth 2.0 Step-Up Authentication (RFC 9470) is supported, enabling resource servers to request re-authentication at a higher ACR. The actual step-up challenge is handled by the customer's auth server.",
+      "links": ["https://authlete.webflow.io/product#conformance"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "Core product offering. OpenID-certified across Basic, Implicit, Hybrid, Config, Dynamic, and Form Post profiles. Supports OpenID Connect Core 1.0, Discovery 1.0, CIBA, Identity Assurance 1.0, and Federation 1.0.",
+      "links": ["https://authlete.webflow.io/product#conformance"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "not_supported",
+      "description": "Authlete is exclusively an OAuth 2.0 and OpenID Connect engine. SAML 2.0 is not supported."
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "description": "WS-Federation is not supported. Authlete is limited to OAuth 2.0 and OpenID Connect protocols."
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant (RFC 6749) natively supported for M2M authentication. DPoP and mTLS sender-constraining available for M2M tokens.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "OpenID Connect Federation 1.0 supported, enabling trust chain-based federated identity across organizations.",
+      "links": ["https://authlete.webflow.io/product#conformance"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "not_supported",
+      "description": "SAML federation is not supported. Authlete is a pure OAuth 2.0/OIDC engine."
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "not_supported",
+      "description": "Authlete is headless and does not connect to LDAP or Active Directory. Directory integration is the customer's responsibility in their own authentication layer."
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "not_supported",
+      "description": "No built-in Azure AD/Entra ID integration. Customers may federate via OIDC in their own authentication layer and then use Authlete for token issuance."
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "not_supported",
+      "description": "Authlete does not store or manage users. User databases are owned and operated by the customer."
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "not_supported",
+      "description": "No user or credential storage in Authlete."
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "not_supported",
+      "description": "No user storage in Authlete. Data export is the customer's responsibility for their own user store."
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "not_supported",
+      "description": "No user management in Authlete."
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "not_supported",
+      "description": "No user management in Authlete."
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "not_supported",
+      "description": "No user management in Authlete."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported",
+      "description": "No user or MFA enrollment management in Authlete."
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "Authlete has no user store and does not expose a SCIM endpoint."
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "No outbound SCIM provisioning. Authlete manages tokens and OAuth clients, not user accounts."
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported",
+      "description": "No SCIM or group management in Authlete."
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "not_supported",
+      "description": "JIT provisioning is not a built-in feature. Customers can implement JIT user creation in their own auth layer triggered at first login."
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "not_supported",
+      "description": "No lazy migration support. Credential validation and user migration are the customer's own concern."
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "not_supported",
+      "description": "No end-user portal. Authlete is a pure backend protocol engine with no user-facing UI."
+    },
+    {
+      "identifier": "account_linking",
+      "status": "not_supported",
+      "description": "No account linking built in. Subject identifiers in tokens are managed by the customer's authentication system."
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "not_supported",
+      "description": "No user management. Token revocation for a subject can be performed via the token revocation API, which achieves a similar result.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "partial",
+      "description": "Custom 'extra properties' can be bound to access tokens at issuance time, encoding user-level metadata. Authlete does not store a user profile; the customer's auth layer provides metadata at token request time.",
+      "links": ["https://authlete.webflow.io/developers/overview"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "OAuth client metadata is fully managed via Dynamic Client Registration (RFC 7591/7592) and the management API, supporting custom attributes per application.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown",
+      "description": "Specific limits on extra properties and client metadata size are not publicly documented."
+    },
+    {
+      "identifier": "user_search",
+      "status": "not_supported",
+      "description": "No user store in Authlete. User search is the customer's responsibility."
+    },
+    {
+      "identifier": "rbac",
+      "status": "partial",
+      "description": "Role-based access control is achieved via OAuth 2.0 scopes and custom claims injected at token issuance. No built-in role management UI; roles are modeled as scopes or extra properties.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "description": "Multi-tenancy supported via the 'Services' concept: each service is an isolated OAuth/OIDC tenant with its own clients, tokens, keys, and configuration. Multiple services managed from a single console.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "not_supported",
+      "description": "No credential or password management in Authlete."
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "not_supported",
+      "description": "No user or credential management in Authlete."
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "not_supported",
+      "description": "No authentication UI or profiling flows in Authlete. The headless architecture allows customers to build this in their own frontend."
+    },
+    {
+      "identifier": "abac",
+      "status": "partial",
+      "description": "Attribute-based access control achievable via Rich Authorization Requests (RAR, RFC 9396) and extra properties bound to tokens. No built-in policy engine; decisions are made in the customer's authorization layer.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "partial",
+      "description": "Rich Authorization Requests (RAR) enable fine-grained authorization details within tokens. Authlete processes RAR data but does not provide a policy engine; FGA logic resides in the customer's resource server or authorization layer.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "Core use case. OAuth 2.0 scopes, resource indicators (RFC 8707), token introspection (RFC 7662), DPoP (RFC 9449), mTLS sender-constraining (RFC 8705), and certificate-bound access tokens provide comprehensive API authorization.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "unknown",
+      "description": "SOC 2 Type II certification is not mentioned in public documentation. ISO/IEC 27001 is confirmed."
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "unknown"
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown"
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "unknown"
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "partial",
+      "description": "Authlete stores minimal data (tokens, client registrations). Token and client data deletion is available via API. Full GDPR data portability depends on the customer's own user data store.",
+      "links": ["https://www.authlete.com/privacy-policy/"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "partial",
+      "description": "Token revocation and client deletion APIs allow removal of Authlete-held data. User-level erasure must be handled in the customer's own systems.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "OAuth 2.0 consent is a built-in part of Authlete's authorization code flow. Consent UI is rendered by the customer; consent decisions are persisted and managed by Authlete.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Business plan offers cluster locations in United States, Japan, Brazil, and EU. Enterprise plan adds multi-region disaster recovery.",
+      "links": ["https://authlete.webflow.io/pricing"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Enterprise Self-Managed plan allows full on-premises or private cloud deployment. Dedicated Cloud Enterprise plan offers single-tenant managed hosting.",
+      "values": ["AWS", "Azure", "GCP", "On-premises"],
+      "links": ["https://authlete.webflow.io/pricing"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "partial",
+      "description": "Audit and activity logs available in the management console. Specific retention policies by plan are not publicly documented."
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "unknown",
+      "description": "External log streaming to SIEM systems is not explicitly documented in public materials."
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported",
+      "description": "No built-in threat monitoring dashboard. Authlete provides token and service management analytics in the console but no dedicated security center."
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "ISO/IEC 27001 certified managed cloud ensures encryption at rest for all stored tokens and client data.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "All API communication is over TLS. Mutual TLS (mTLS, RFC 8705) is natively supported for certificate-bound client authentication.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "partial",
+      "description": "Full key control available in the Enterprise Self-Managed deployment. In managed cloud, JWK key sets are customer-configurable for signing and encryption.",
+      "links": ["https://authlete.webflow.io/pricing"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "not_supported",
+      "description": "Authlete has no login UI and does not interact with end users directly. Bot detection is the responsibility of the customer's authentication frontend."
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "not_supported",
+      "description": "No credential validation in Authlete. Brute-force protection for login attempts is the customer's responsibility."
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "partial",
+      "description": "API rate limiting is applied at the Authlete service level. Token endpoint throttling can be configured. No dedicated suspicious IP detection for login flows.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "not_supported",
+      "description": "No credential or password management in Authlete."
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "supported",
+      "description": "IP allowlist and access control at the service level available. Enterprise dedicated and self-managed deployments support network-level ACLs.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "not_supported",
+      "description": "No user-facing login or device tracking in Authlete. Device context may be passed as extra properties by the customer's auth layer."
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "not_supported",
+      "description": "Authlete is headless with no login UI. Branding is entirely the customer's responsibility."
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "not_supported",
+      "description": "MFA policies are outside Authlete's scope. Per-organization MFA must be implemented in the customer's authentication layer."
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "not_supported",
+      "description": "Authlete is a headless backend engine. Authorization endpoints live in the customer's environment; Authlete provides no hosted login page.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "not_supported",
+      "description": "No embedded or native login components. The headless model gives customers complete freedom to build their own login UI."
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Fully white-labeled by design. Authlete never appears in the end-user experience; the entire login and consent UI is built and branded by the customer.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "localization",
+      "status": "not_supported",
+      "description": "No UI components to localize. Internationalization of the login experience is the customer's responsibility."
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "not_supported",
+      "description": "Authlete provides no UI components. Open-source sample implementations are available on GitHub as starting points.",
+      "links": ["https://github.com/authlete"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "partial",
+      "description": "The management console provides token issuance metrics and service-level usage analytics. No end-user login funnel or authentication event dashboard.",
+      "links": ["https://console.authlete.com"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Open-source server-side libraries and reference implementations for Java, Python, Go, Node.js, PHP (Laravel), C# (.NET), and Ruby available on GitHub.",
+      "links": ["https://github.com/authlete"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Comprehensive REST Web API covering service management, client registration (RFC 7591/7592), token operations, JWK management, and introspection. All features available programmatically.",
+      "links": ["https://docs.authlete.com"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "API rate limits apply per service. Business plan pricing is usage-based on Monthly Active Tokens (MAT), with documented limits on services and client applications per plan.",
+      "links": ["https://authlete.webflow.io/pricing"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "not_supported",
+      "description": "No event-driven extensibility pipeline. Authlete is API-driven: customers implement all custom logic in their own authorization server code that calls Authlete's Web APIs."
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "No server-side extensibility scripting in Authlete. Custom logic is implemented in the customer's own authorization server in any language."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Authorization endpoints are hosted in the customer's own environment, so any custom domain is inherently supported. The Authlete API backend is accessed internally.",
+      "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "partial",
+      "description": "No official deploy CLI. Service and client configuration can be managed programmatically via the management REST API, enabling CI/CD automation.",
+      "links": ["https://docs.authlete.com"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "unknown",
+      "description": "No official Terraform provider is documented. Infrastructure management relies on the management REST API."
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "not_supported",
+      "description": "Authlete does not connect to user databases. The customer's authentication layer handles all user lookups against any database or directory."
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "unknown",
+      "description": "Native webhook/event push support is not explicitly documented in public materials."
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "not_supported",
+      "description": "No hosted login page to customize. Authorization endpoints are fully customer-implemented."
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "not_supported",
+      "description": "Authlete does not send emails. All email communication (verification, OTP, notifications) is handled by the customer's own systems."
+    },
+    {
+      "identifier": "email_templates",
+      "status": "not_supported",
+      "description": "No email functionality in Authlete."
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims injected into access tokens and ID tokens via 'extra properties' and scope attributes at token issuance time. The customer's auth server provides claim values when calling Authlete APIs.",
+      "links": ["https://authlete.webflow.io/developers/overview"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported",
+      "description": "No visual flow builder. Authlete is a developer-oriented API-first product requiring code to implement authentication flows."
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported",
+      "description": "No document verification or identity proofing built in. OpenID Connect Identity Assurance 1.0 (IDA) protocol is supported for conveying identity assurance data in tokens issued by the customer's verified auth system.",
+      "links": ["https://authlete.webflow.io/product#conformance"]
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "supported",
+      "description": "OpenID for Verifiable Credential Issuance (OID4VCI), SD-JWT VC, and ISO/IEC 18013-5:2021 (mobile Driver's License, mDL) supported for decentralized and verifiable credential use cases.",
+      "links": ["https://authlete.webflow.io/product#conformance"]
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "partial",
+      "description": "Strong foundation for AI agent authentication: OAuth 2.0 Client Credentials, DPoP sender-constraining, mTLS certificate-bound tokens, and Token Exchange (RFC 8693) support autonomous agent identity patterns. No dedicated agentic identity product.",
+      "links": ["https://authlete.webflow.io/product"]
+    }
+  ]
+}
