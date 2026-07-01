@@ -54,6 +54,7 @@ import microsoftEntraID from './microsoft-entra-id.json'
 import okta from './okta.json'
 import oryHydra from './ory-hydra.json'
 import pingIdentity from './ping-identity.json'
+import sailpoint from './sailpoint.json'
 import zitadel from './zitadel.json'
 
 export {
@@ -70,6 +71,7 @@ export {
   okta,
   oryHydra,
   pingIdentity,
+  sailpoint,
   zitadel,
 }
 
@@ -184,5 +186,6 @@ export const providers: OpenIDConnectProvider[] = [
   okta,
   oryHydra,
   pingIdentity,
+  sailpoint,
   zitadel,
 ]

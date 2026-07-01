@@ -1,0 +1,617 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "SailPoint Identity Security Cloud",
+  "abstract": "Enterprise identity governance and administration (IGA) platform from the USA. SailPoint Identity Security Cloud (ISC) delivers AI-driven identity lifecycle management, access certification, role and entitlement management, and SCIM/SAML/OIDC federation. Primarily a workforce IGA solution, not a CIAM product. FedRAMP Moderate authorized, SOC 2 Type II and ISO 27001:2022 certified. SaaS (ISC) on AWS with US, EU, and UK regions; on-premises via IdentityIQ.",
+  "identifier": "sailpoint",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/sailpoint.svg"
+  },
+  "website": "https://www.sailpoint.com",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": false,
+    "pricingModel": "custom",
+    "pricingUrl": "https://www.sailpoint.com/contact/",
+    "plans": [
+      { "name": "Identity Security Cloud", "price": "Custom enterprise pricing (per user, annual contract)" },
+      { "name": "IdentityIQ", "price": "Custom perpetual or subscription software license" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "description": "Native ISC user accounts authenticate with username and password managed through ISC identity profiles. Users can also authenticate via connected sources (AD, LDAP) with delegated authentication.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/strong_auth.html"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "not_supported",
+      "description": "SailPoint ISC is a workforce IGA platform, not a CIAM product. Social identity provider login (Google, Facebook, etc.) into ISC is not a documented feature."
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "unknown",
+      "description": "Passkey / FIDO2 WebAuthn as a native ISC authentication method is not documented. ISC does not position itself as a CIAM platform with consumer-grade passwordless flows."
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "not_supported",
+      "description": "Email magic link or OTP-based passwordless authentication into ISC is not a documented native feature."
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "not_supported",
+      "description": "Phone / SMS OTP as a standalone passwordless authentication method for ISC login is not documented."
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "not_supported",
+      "description": "Magic link (email-click-to-login) authentication is not a documented ISC feature."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "Anonymous or guest authentication is not supported. ISC requires authenticated user identity for all operations."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "Time-based OTP (TOTP) via an external mobile authenticator app is natively supported. Users register their mobile device and provide the TOTP code on subsequent sign-ins.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/strong_auth.html"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "HOTP (counter-based OTP) is not documented as a native ISC MFA method."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "unknown",
+      "description": "FIDO U2F / hardware security key as a native ISC MFA factor is not explicitly documented."
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "unknown",
+      "description": "WebAuthn / FIDO2 as a native ISC MFA factor is not explicitly documented."
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "unknown",
+      "description": "Email OTP as a native ISC MFA method is not explicitly documented. External MFA providers integrated via PingFederate or similar may offer this."
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "unknown",
+      "description": "SMS OTP as a native ISC MFA method is not explicitly documented. RSA SecurID and Symantec VIP integrations support OTP-based authentication including phone-delivered codes."
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "not_supported",
+      "description": "Dedicated backup/recovery codes for MFA are not a documented ISC feature. Administrators can reset MFA enrollment for users via the admin console."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "supported",
+      "description": "Push notification MFA is supported via the native Cisco Duo integration for the administrator interface. External IdP integrations (PingFederate) may provide push for end-user logins.",
+      "links": ["https://community.sailpoint.com/t5/Customer-Success-Engineering-FAQ/What-types-of-multi-factor-authentication-MFA-integrations-does/ta-p/241540"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "partial",
+      "description": "SailPoint ISC supports risk-based authentication policies through identity profile configuration and external MFA provider integration. A dedicated native adaptive MFA engine with ML risk signals is not documented as a core ISC feature.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/strong_auth.html"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "supported",
+      "description": "Cisco Duo Security is documented as a supported MFA integration for the ISC administrator interface.",
+      "links": ["https://community.sailpoint.com/t5/Customer-Success-Engineering-FAQ/What-types-of-multi-factor-authentication-MFA-integrations-does/ta-p/241540"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "unknown",
+      "description": "Step-up authentication (requiring additional factors for sensitive actions) is not explicitly documented as a distinct ISC capability."
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "ISC exposes an OAuth 2.0 / OIDC authorization server with authorization, token, and userinfo endpoints. External applications can use ISC as an OIDC identity provider. Authorization code and client credentials grants are documented.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "ISC can act as a SAML 2.0 service provider, accepting authentication assertions from external identity providers via POST or Redirect bindings. JIT user provisioning on first SAML login is supported.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/config_isc_service_provider.html"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "description": "WS-Federation is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 client credentials grant for service-to-service and machine-to-machine authentication is documented as a primary use case for ISC API access.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "ISC can federate with external OIDC-compliant identity providers. Users authenticate at the external IdP and are granted access to ISC based on the OIDC assertion.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/config_isc_service_provider.html"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "SAML 2.0 federation with external enterprise identity providers (any SAML-compliant IdP) is a core ISC capability. Supports POST and Redirect bindings, custom attribute mapping, and authentication context classes.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/config_isc_service_provider.html"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "Native Active Directory and LDAP source connectors are available via Virtual Appliances (lightweight on-premises containers). Supports multi-domain AD aggregation, bidirectional provisioning, and delegated authentication.",
+      "links": ["https://developer.sailpoint.com/docs/"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID (Azure AD) is supported as both a source for user aggregation and as a federated identity provider. SCIM provisioning between ISC and Entra ID is documented.",
+      "links": ["https://developer.sailpoint.com/docs/"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Users are imported in bulk via source aggregation (AD, LDAP, SCIM, file-based connectors). ISC aggregates identities from connected sources rather than CSV upload to a standalone directory.",
+      "links": ["https://documentation.sailpoint.com/saas/help/getting_started/index.html"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "not_supported",
+      "description": "ISC is an identity governance platform and does not maintain a standalone credential store. Passwords are managed within authoritative source systems (AD, LDAP) rather than imported as hashes into ISC."
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Identity and access data can be exported via the ISC Search API (/v2025/search) with full-text and filtered queries across all aggregated identities.",
+      "links": ["https://developer.sailpoint.com/docs/api/v2024/"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Bulk user lifecycle operations (provisioning, deprovisioning, attribute updates) are handled through ISC lifecycle management workflows and outbound provisioning to authoritative sources.",
+      "links": ["https://documentation.sailpoint.com/saas/help/provisioning/create_profile.html"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "Source aggregation in ISC creates new identity records and updates existing ones based on correlation rules — effectively upsert behavior on import.",
+      "links": ["https://documentation.sailpoint.com/saas/help/getting_started/index.html"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "partial",
+      "description": "ISC can aggregate identities from legacy sources with custom username formats via source connectors. Identity correlation rules and transforms can normalize legacy username schemes during import."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported",
+      "description": "MFA enrollments (TOTP secrets, authenticator registrations) cannot be imported. Users must re-enroll in MFA after migration to ISC."
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "description": "SailPoint ISC acts as a SCIM 2.0 server (ISC Connector via SCIM). External systems can provision users and groups into ISC-connected sources.",
+      "links": ["https://scim.dev/guide/applications/sailpoint.html"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "supported",
+      "description": "ISC acts as a SCIM 2.0 client to push provisioning events (create, update, deprovision) to SCIM-enabled downstream applications. Includes 200+ pre-built connectors and a generic SCIM 2.0 connector.",
+      "links": ["https://documentation.sailpoint.com/connectors/scim_2_0/help/integrating_scim2/introduction.html"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "description": "SCIM group objects are supported both inbound and outbound, enabling role and group synchronization across connected systems.",
+      "links": ["https://documentation.sailpoint.com/connectors/scim_2_0/help/integrating_scim2/introduction.html"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-Time (JIT) account creation is supported for users authenticating into ISC via an external identity provider for the first time. Requires SAML assertion with at minimum email, firstName, and lastName attributes. Account is provisioned within ~15 seconds of first authentication.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/jit-accounts.html"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "not_supported",
+      "description": "ISC is a governance platform that aggregates identities from authoritative sources; it does not maintain a standalone credential store. Gradual credential migration (trickle/lazy migration) to ISC is not applicable in the same way as a CIAM platform."
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Users access a self-service portal to manage their profile, request access, view certifications, and manage MFA device enrollment.",
+      "links": ["https://documentation.sailpoint.com/saas/help/getting_started/index.html"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "ISC correlates identity records across multiple authoritative sources using configurable correlation rules (e.g., matching email, employee ID). Multiple accounts from different sources are linked to a single ISC identity.",
+      "links": ["https://developer.sailpoint.com/docs/"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "User access can be revoked through ISC's lifecycle management workflows (leaver process) and access certification campaigns. Deprovisioning can be triggered automatically or manually.",
+      "links": ["https://documentation.sailpoint.com/saas/help/provisioning/create_profile.html"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "ISC supports custom identity attributes aggregated from sources and via transforms. Custom schema attributes can be defined for the ISC identity data model and used in policies, rules, and provisioning.",
+      "links": ["https://documentation.sailpoint.com/saas/help/access/metadata.html"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "partial",
+      "description": "Access Model Metadata allows adding contextual attributes to entitlements, access profiles, and roles. Per-user-per-application metadata storage (distinct from identity attributes) is not a primary documented feature.",
+      "links": ["https://documentation.sailpoint.com/saas/help/access/metadata.html"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown",
+      "description": "Specific size limits for custom identity or access model metadata attributes are not publicly documented."
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "Full-text and filtered search across all aggregated identities is available via the ISC admin UI and the Search API (/v2025/search endpoint). Supports filtering by any identity attribute, entitlement, and access profile.",
+      "links": ["https://developer.sailpoint.com/docs/api/v2024/"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Role-based access control is a core IGA capability. ISC manages role definitions, role mining, role assignments, and role-based provisioning across all connected systems.",
+      "links": ["https://www.sailpoint.com/identity-library/what-is-role-based-access-control"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Each ISC deployment is a single tenant. Multi-tenant B2B use cases require separate ISC tenants per organization. There is no first-class sub-organization isolation model within a single ISC tenant.",
+      "links": ["https://developer.sailpoint.com/docs/api/v2024/tenant-context/"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Configurable password policies define requirements users must meet (minimum length, complexity, special characters, pattern restrictions, dictionary words). Policies apply to ISC-managed passwords and can sync policies to downstream sources.",
+      "links": ["https://documentation.sailpoint.com/saas/help/pwd/pwd_policies/index.html"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "partial",
+      "description": "Password policies include options to disallow users from using characters from their display name or account ID. Username format constraints are managed at the source level rather than as a standalone ISC configuration.",
+      "links": ["https://documentation.sailpoint.com/saas/help/pwd/pwd_policies/pwd_reqs.html"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "not_supported",
+      "description": "Progressive profiling (incrementally collecting user attributes across sessions) is a CIAM concept not applicable to SailPoint ISC's workforce IGA use case."
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "Attribute-based access control is supported through ISC role and access profile criteria that evaluate identity attributes, entitlement attributes, and contextual signals in access decisions.",
+      "links": ["https://www.sailpoint.com/identity-library/what-is-attribute-based-access-control"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Fine-grained entitlement management is a core ISC capability. Manages individual entitlements (permissions, roles, group memberships) across all connected systems with separation-of-duties policy enforcement.",
+      "links": ["https://www.sailpoint.com/products/identity-security-cloud"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "ISC's OAuth 2.0 authorization server issues access tokens for ISC API access. Scopes (sp:scopes:all and others) control API access authorization.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "description": "SailPoint completes a SOC 1 Type 2 and SOC 2 Type 2 audit of the Identity Security Cloud service annually.",
+      "links": ["https://www.sailpoint.com/why-us/trust/cybersecurity"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "description": "ISO 27001:2022 certified. Also holds ISO 27017 (cloud security), ISO 27018 (PII in the cloud), and ISO 27701 (privacy information management) certifications.",
+      "links": ["https://www.sailpoint.com/why-us/trust/cybersecurity"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "unknown",
+      "description": "SailPoint is used by healthcare organizations to support HIPAA compliance (access governance, certification, PHI access control). Whether SailPoint offers a formal HIPAA Business Associate Agreement (BAA) for ISC is not confirmed in public documentation."
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown",
+      "description": "SailPoint helps customers meet PCI-DSS access control and audit requirements but a product-level PCI DSS attestation from SailPoint is not confirmed in public documentation."
+    },
+    {
+      "identifier": "csa_star",
+      "status": "supported",
+      "description": "CSA STAR Level 1 (self-assessment) and Level 2 (third-party audit) certifications are held.",
+      "links": ["https://www.sailpoint.com/why-us/trust"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "supported",
+      "description": "FedRAMP Moderate Authority to Operate (ATO) achieved for SailPoint Identity Security Cloud (hosted in AWS GovCloud). Additional ISC modules (Data Access Security, Non-Employee Risk Management) have also achieved FedRAMP Moderate authorization.",
+      "links": ["https://www.sailpoint.com/solutions/fedramp-isc"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "Identity and access data can be exported via ISC APIs. The governance platform provides audit trails for GDPR compliance reporting and supports data portability requests through its comprehensive Search API.",
+      "links": ["https://www.sailpoint.com/solutions/maintain-compliance"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "description": "Identity records can be deleted from ISC and deprovisioned from connected systems via lifecycle management workflows, supporting GDPR right to erasure requests.",
+      "links": ["https://www.sailpoint.com/solutions/maintain-compliance"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "partial",
+      "description": "OAuth 2.0 consent screens are presented during authorization code flows for external applications. A dedicated end-user consent management platform is not a primary ISC feature.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "unknown",
+      "description": "Native bot detection for ISC login pages is not documented. The platform focuses on identity governance rather than CIAM threat detection."
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "partial",
+      "description": "Password policies support account lockout after failed attempts. Specific brute force protection controls beyond lockout are not documented as a distinct ISC feature.",
+      "links": ["https://documentation.sailpoint.com/saas/help/pwd/pwd_policies/index.html"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "unknown",
+      "description": "IP-level throttling or blocking for suspicious authentication attempts is not documented as a native ISC feature."
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "partial",
+      "description": "Password policies can prevent users from using words in a configurable password dictionary. Integration with breach databases (e.g., Have I Been Pwned) for real-time compromised password checking is not documented.",
+      "links": ["https://documentation.sailpoint.com/saas/help/pwd/pwd_policies/pwd_reqs.html"]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "unknown",
+      "description": "Credential Guard (dark web monitoring, credential theft detection) is not documented as a native ISC feature."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "unknown",
+      "description": "IP allowlisting or tenant-level network access control lists are not explicitly documented in ISC. Virtual Appliances and connectors can be scoped to specific network segments."
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "unknown",
+      "description": "Device fingerprinting as an authentication signal in ISC is not documented. ISC focuses on identity governance rather than device trust management."
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Multi-brand support allows separate login URLs with distinct product names, logos, and color schemes for different brands within an organization. Email templates automatically use the recipient's associated brand.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/customization.html"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "partial",
+      "description": "Different MFA requirements can be applied to different user populations via identity profile configuration. Full per-organization MFA isolation (sub-tenant level) is not documented.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/strong_auth.html"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "ISC hosts the login page at [tenant].login.sailpoint.com with customizable branding (logo, colors). Separate branded login URLs are generated per brand configuration.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/customization.html"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "not_supported",
+      "description": "An embeddable login widget or SDK for in-app authentication flows is not documented. ISC authentication uses redirect-based flows to the ISC-hosted login page."
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "SailPoint branding can be fully replaced with custom product name, logo, and colors throughout the ISC interface.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/customization.html"]
+    },
+    {
+      "identifier": "localization",
+      "status": "unknown",
+      "description": "Multi-language support for the ISC user interface is not documented in available public resources."
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "partial",
+      "description": "SailPoint provides a UI Development Kit for building custom connector UI components. Standard end-user authentication UI components are hosted by ISC rather than provided as embeddable libraries.",
+      "links": ["https://developer.sailpoint.com/docs/"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "ISC provides audit reports and dashboards covering authentication events, provisioning activity, access certifications, and identity risk insights. Full audit trail available via the Search API.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/audit-reports.html"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Official SDKs available for Go, PowerShell, Python, and TypeScript. All SDKs wrap the ISC REST APIs.",
+      "links": ["https://developer.sailpoint.com/docs/tools/sdk/"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Comprehensive REST management API (v2024/v2025) covering identities, sources, roles, access profiles, entitlements, certifications, provisioning, and platform configuration.",
+      "links": ["https://developer.sailpoint.com/docs/api/v2025/identity-security-cloud-v-2025-api/"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "ISC API rate limits are documented and enforced per endpoint. Rate limit headers are returned in API responses.",
+      "links": ["https://developer.sailpoint.com/docs/api/getting-started/"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "ISC provides event triggers (push-based webhooks), cloud-executed rules (BeanShell/Java), transforms (declarative JSON-based attribute transformations), and a no-code workflow builder for extensibility.",
+      "links": ["https://developer.sailpoint.com/docs/extensibility/event-triggers/"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Cloud-executed rules use BeanShell (Java-like scripting). Transforms use declarative JSON configuration. A managed TypeScript runtime for custom logic is not available."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "unknown",
+      "description": "Custom domain for ISC login URLs is not explicitly documented. Branding generates sub-URLs under the ISC domain per brand configuration."
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "SailPoint CLI is a terminal-based tool for interacting with ISC tenants, running API commands, managing configurations, and automating tasks.",
+      "links": ["https://developer.sailpoint.com/docs/tools/cli/"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "partial",
+      "description": "A community-maintained Terraform provider (AnasSahel/sailpoint-isc-community) is available in the Terraform Registry for managing ISC resources as IaC. No official SailPoint-published Terraform provider is available.",
+      "links": ["https://registry.terraform.io/providers/AnasSahel/sailpoint-isc-community/latest/docs"]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "not_supported",
+      "description": "ISC uses source connectors to integrate with external systems; it does not support custom database connections for authentication delegation in the CIAM sense. Connector extensibility uses the SaaS Connectivity framework."
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Event triggers deliver real-time HTTP webhook notifications to subscriber endpoints for identity lifecycle events (account changes, access requests, certifications). Subscribable via UI or API. Compatible with Zapier, Power Automate, and custom services.",
+      "links": ["https://developer.sailpoint.com/docs/extensibility/event-triggers/"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "The ISC login page supports customization of product name, logo, navigation bar color, action button color, and link color. Multi-brand support provides separate branded login pages.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/customization.html"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "partial",
+      "description": "Email templates (content, product name, logo) are customizable. Configuring a fully custom SMTP relay or external email sending provider is not documented.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/customization.html"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Email templates for user invitations, notifications, and lifecycle events are customizable. Templates automatically use the product name configured for the recipient's brand.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/customization.html"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "unknown",
+      "description": "Custom claims in ISC-issued OIDC tokens are not explicitly documented. ISC transforms can enrich identity attributes but how these map to token claims is not publicly specified."
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "supported",
+      "description": "ISC includes a built-in no-code workflow automation builder for identity lifecycle orchestration (joiner/mover/leaver processes, access requests, certifications) without requiring custom code.",
+      "links": ["https://developer.sailpoint.com/docs/extensibility/"]
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported",
+      "description": "Identity proofing (document verification, biometric liveness checks) is not a documented native ISC feature. SailPoint focuses on enterprise workforce IGA rather than consumer identity verification."
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported",
+      "description": "Decentralized identity (DIDs, W3C Verifiable Credentials) is not a documented SailPoint ISC capability."
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported",
+      "description": "No built-in billing or subscription management integration."
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "supported",
+      "description": "SailPoint launched Agent Identity Security (AIS) in 2025 — purpose-built governance for AI agents down to the entitlement level. SailPoint Agentic Fabric provides visibility, governance, and real-time controls for non-human and agentic identities. Also includes an MCP Server for AI-native identity security integration.",
+      "links": [
+        "https://www.sailpoint.com/products/agentic-fabric",
+        "https://www.sailpoint.com/press-releases/identity-security-cloud-identity-risk"
+      ]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "SailPoint ISC is hosted on AWS. Customers choose data residency from: US (Oregon or Virginia), EU (Frankfurt, Germany), or UK. FedRAMP-authorized instance runs in AWS GovCloud (US).",
+      "values": ["US", "EU", "UK"],
+      "links": ["https://www.sailpoint.com/solutions/fedramp-isc"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "SailPoint IdentityIQ is the on-premises / private cloud software edition. It delivers full lifecycle and compliance management and can be deployed in customer-managed data centers, private clouds, or VPC environments. ISC (SaaS) does not support self-hosted deployment.",
+      "links": ["https://www.sailpoint.com/products/identity-security-software/identity-iq"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Audit events are stored for one year plus the current month by default. Extended retention of up to five years is available on request via SailPoint support.",
+      "links": ["https://developer.sailpoint.com/discuss/t/default-log-retention-application-and-audit-logs/114339"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Audit logs can be streamed to SIEM platforms via the ISC Search API. Documented integrations include Splunk (native ISC AuditEvent Add-on), Elastic (native integration), and generic syslog/API-based ingestion for QRadar and others.",
+      "links": [
+        "https://www.elastic.co/docs/reference/integrations/sailpoint_identity_sc",
+        "https://community.sailpoint.com/t5/Identity-Security-Cloud-Wiki/SailPoint-Identity-Security-Cloud-AuditEvent-Add-on-for-Splunk/ta-p/77123"
+      ]
+    },
+    {
+      "identifier": "security_center",
+      "status": "partial",
+      "description": "ISC provides audit report dashboards and identity analytics for access risk visibility. A dedicated security center or threat monitoring console is not documented as a named product feature.",
+      "links": ["https://documentation.sailpoint.com/saas/help/common/audit-reports.html"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "SailPoint ISC implements Zero Knowledge Encryption — credentials are encrypted at the user's device and re-encrypted server-side before storage. IdentityIQ uses AES-256 encryption for sensitive data at rest.",
+      "links": ["https://www.sailpoint.com/why-us/trust/cybersecurity"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "All data in transit is encrypted via TLS. SSH is used for managed system connections where applicable.",
+      "links": ["https://www.sailpoint.com/why-us/trust/cybersecurity"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "unknown",
+      "description": "Bring-your-own-key (BYOK) or customer-managed encryption keys for ISC SaaS data are not publicly documented. IdentityIQ on-premises deployments allow customers to manage their own encryption keys."
+    }
+  ]
+}
