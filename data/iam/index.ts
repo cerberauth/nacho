@@ -69,7 +69,7 @@ import auth0 from './auth0.json'
 import authlete from './authlete.json'
 import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
-// import descope from './descope.json'
+import cyberark from './cyberark.json'
 import microsoftEntraId from './microsoft-entra-id.json'
 // import firebaseAuth from './firebase-auth.json'
 import fusionauth from './fusionauth.json'
@@ -78,6 +78,7 @@ import okta from './okta.json'
 import keycloak from './keycloak.json'
 import ory from './ory.json'
 import pingIdentity from './ping-identity.json'
+import sailpoint from './sailpoint.json'
 import zitadel from './zitadel.json'
 // import stytch from './stytch.json'
 // import supabaseAuth from './supabase-auth.json'
@@ -90,7 +91,7 @@ export {
   authlete,
   awsCognito,
   clerk,
-  // descope,
+  cyberark,
   microsoftEntraId,
   // firebaseAuth,
   fusionauth,
@@ -99,6 +100,7 @@ export {
   okta,
   ory,
   pingIdentity,
+  sailpoint,
   zitadel,
   // stytch,
   // supabaseAuth,
@@ -268,7 +270,7 @@ export const providers: IAMProvider[] = [
   authlete,
   awsCognito,
   clerk,
-  // descope,
+  cyberark,
   microsoftEntraId,
   // firebaseAuth,
   fusionauth,
@@ -277,6 +279,7 @@ export const providers: IAMProvider[] = [
   okta,
   ory,
   pingIdentity,
+  sailpoint,
   zitadel,
   // stytch,
   // supabaseAuth,

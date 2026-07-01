@@ -1,0 +1,237 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "SailPoint Identity Security Cloud",
+  "abstract": "Enterprise workforce identity governance platform from the USA. SailPoint Identity Security Cloud (ISC) exposes an OAuth 2.0 / OpenID Connect layer primarily for API access and external application SSO. Supports authorization code and client credentials grants; PKCE not yet supported. Hosted on AWS with US, EU, and UK regions. FedRAMP Moderate authorized, SOC 2 Type II and ISO 27001 certified.",
+  "identifier": "sailpoint",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/sailpoint.svg"
+  },
+  "website": "https://www.sailpoint.com",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "not_supported",
+      "description": "Implicit grant is not documented in SailPoint ISC OAuth 2.0 implementation."
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "description": "Clients exchange an authorization code for an access_token after user login on ISC. Authorization endpoint: https://[tenant].login.sailpoint.com/oauth/authorize. Token endpoint: https://[tenant].api.identitynow.com/oauth/token.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "not_supported",
+      "description": "SailPoint confirmed that ISC's authorization implementation does not currently support PKCE. It is being evaluated as part of potential OAuth 2.1 adoption, with no published timeline.",
+      "links": ["https://developer.sailpoint.com/discuss/t/oauth-code-flow-with-pkce/71635"]
+    },
+    {
+      "identifier": "par_extension",
+      "status": "not_supported",
+      "description": "Pushed Authorization Requests (PAR) are not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "not_supported",
+      "description": "Rich Authorization Requests (RAR) are not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "not_supported",
+      "description": "JWT Secured Authorization Requests (JAR) are not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "description": "Client credentials grant is supported for machine-to-machine / service-to-service authentication without user involvement (scripts, programs, system integrations).",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported",
+      "description": "Resource owner password credentials grant is not documented for SailPoint ISC."
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "description": "Clients use this grant type to exchange a refresh token for a new access_token when the existing one has expired.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported",
+      "description": "OAuth 2.0 Token Exchange (RFC 8693) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "not_supported",
+      "description": "Device Authorization Grant (RFC 8628) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported",
+      "description": "Client-Initiated Backchannel Authentication (CIBA) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "not_supported",
+      "description": "JWT Bearer grant type (RFC 7523) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported",
+      "description": "SAML 2.0 Bearer grant type (RFC 7522) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "description": "Authorization endpoint at https://[tenant].login.sailpoint.com/oauth/authorize.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "description": "Token endpoint at https://[tenant].api.identitynow.com/oauth/token.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "description": "Userinfo endpoint at https://[tenant].api.identitynow.com/oauth/userinfo. Returns id, uid, email, phone, workPhone, firstname, lastname, capabilities, displayName, name.",
+      "links": ["https://authjs.dev/getting-started/providers/sailpoint"]
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "unknown",
+      "description": "Token revocation endpoint (RFC 7009) is not explicitly documented in SailPoint ISC."
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "unknown",
+      "description": "A /oauth/info endpoint exists on the ISC API gateway but it is unclear whether it implements standard RFC 7662 token introspection or is a proprietary info endpoint."
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "not_supported",
+      "description": "Device authorization endpoint is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "unknown",
+      "description": "A /.well-known/openid-configuration discovery document is not referenced in SailPoint developer documentation. Third-party integrations (e.g., Auth.js) configure endpoints manually rather than via auto-discovery."
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "unknown",
+      "description": "OAuth Authorization Server metadata endpoint (RFC 8414) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "unknown",
+      "description": "The prompt=none parameter is not documented in SailPoint ISC's authorization request."
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "unknown",
+      "description": "The prompt=login parameter is not documented in SailPoint ISC's authorization request."
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "unknown",
+      "description": "The prompt=consent parameter is not documented in SailPoint ISC's authorization request."
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown",
+      "description": "The prompt=select_account parameter is not documented in SailPoint ISC's authorization request."
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "unknown",
+      "description": "The prompt=create parameter is not documented in SailPoint ISC's authorization request."
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Public client authentication (no client secret) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "partial",
+      "description": "HTTP Basic authentication with client_id and client_secret may be supported as a standard OAuth 2.0 pattern, but is not explicitly documented. Documentation shows form-body (client_secret_post) as the primary method."
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "description": "Client credentials submitted as form-encoded body parameters (client_id and client_secret in x-www-form-urlencoded body) are the documented authentication method for ISC token requests.",
+      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "not_supported",
+      "description": "client_secret_jwt token endpoint authentication is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "not_supported",
+      "description": "private_key_jwt token endpoint authentication is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "not_supported",
+      "description": "Mutual TLS client authentication (RFC 8705) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported",
+      "description": "Dynamic Client Registration (RFC 7591) is not supported. OAuth clients must be registered manually through the SailPoint ISC admin console."
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported",
+      "description": "Dynamic Client Registration Management (RFC 7592) is not supported in SailPoint ISC."
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "unknown",
+      "description": "Refresh token rotation behavior is not documented in SailPoint ISC's OAuth implementation."
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "unknown",
+      "description": "RP-Initiated Logout (OpenID Connect RP-Initiated Logout 1.0) is not documented in SailPoint ISC. SAML logout URLs are documented for federated SSO scenarios, but OIDC end_session_endpoint is not mentioned."
+    },
+    {
+      "identifier": "dpop",
+      "status": "not_supported",
+      "description": "Demonstrating Proof of Possession (DPoP / RFC 9449) is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported",
+      "description": "FAPI 1.0 Baseline profile is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported",
+      "description": "FAPI 1.0 Advanced profile is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "not_supported",
+      "description": "FAPI 2.0 Security Profile is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "not_supported",
+      "description": "FAPI 2.0 Message Signing is not documented in SailPoint ISC."
+    },
+    {
+      "identifier": "jarm",
+      "status": "not_supported",
+      "description": "JWT Secured Authorization Response Mode (JARM) is not documented in SailPoint ISC."
+    }
+  ]
+}
