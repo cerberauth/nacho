@@ -1,0 +1,616 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Curity",
+  "abstract": "Proprietary enterprise CIAM and API security platform from Sweden. FAPI-certified, OpenID Foundation compliant, SOC 2 Type 2 and ISO 27001 certified. Unique strength in financial-grade API security, phantom tokens, and AI agent identity (Access Intelligence). Community Edition available; full feature set requires paid tier.",
+  "identifier": "curity",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/curity.svg"
+  },
+  "website": "https://curity.io",
+  "github": "https://github.com/curityio",
+  "license": "Proprietary",
+  "nationality": "Sweden",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "Community Edition: username/password, social login, complete OAuth Server",
+    "pricingModel": "subscription",
+    "pricingUrl": "https://curity.io/pricing/",
+    "plans": [
+      { "name": "Community", "price": "Free (self-hosted)" },
+      { "name": "Standard", "price": "Custom (annual subscription)" },
+      { "name": "Enterprise", "price": "Custom (annual subscription)" }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Built-in authenticators for Facebook, Google, Twitter/X, Sign in with Apple, and any generic OIDC or SAML 2.0 identity provider.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "WebAuthn passkeys supported as a first or second factor via the dedicated WebAuthn/Passkey authenticator.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP and email back-channel authenticators enable passwordless email-based login.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "SMS OTP authenticator enables passwordless phone-based login.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "partial",
+      "description": "Email back-channel authenticator can be configured to deliver one-time login links. No dedicated magic-link authenticator out of the box.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "Curity requires user identity for authentication. Anonymous or guest sessions are not a built-in feature."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/totp/"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "unknown",
+      "description": "TOTP is explicitly supported. HOTP (counter-based OTP) is not separately documented."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "FIDO2/WebAuthn security keys support U2F-style authentication.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "description": "Email OTP authenticator usable as second factor in an MFA chain.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS OTP authenticator usable as second factor in an MFA chain.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "unknown",
+      "description": "Recovery codes are not explicitly documented as a built-in feature. Custom authenticator plugins can implement this."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "partial",
+      "description": "Native push notification MFA is not built-in. Cisco Duo integration provides push notifications via the Duo authenticator.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "supported",
+      "description": "Conditional MFA actions support risk-based triggering on any context: time of day, location, device, user attributes, or custom logic.",
+      "links": ["https://curity.io/docs/idsvr/latest/authentication-service-admin-guide/multi-factor-authentication.html"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "supported",
+      "description": "Built-in Duo authenticator for Cisco Duo MFA integration.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "Step-up authentication via conditional MFA actions triggered by scope, ACR, or custom policy.",
+      "links": ["https://curity.io/docs/idsvr/latest/authentication-service-admin-guide/multi-factor-authentication.html"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": ["https://curity.io/product/conformance/"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML 2.0 IdP profile available in the Enterprise tier.",
+      "links": ["https://curity.io/pricing/"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 client credentials grant natively supported.",
+      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Generic OIDC authenticator for federating with any OpenID Connect identity provider.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "SAML 2.0 authenticator for federating with Entra ID, ADFS, and other SAML identity providers.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "LDAP/Active Directory data source for user authentication and attribute lookup.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Azure AD/Entra ID federation via OIDC or SAML authenticator. PingFederate integration also available.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Bulk user import via SCIM 2.0 API.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "unknown",
+      "description": "Password hash import is not explicitly documented in the SCIM or user management APIs."
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Bulk user export via SCIM 2.0 and GraphQL APIs.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Bulk update and delete via SCIM 2.0 PATCH and DELETE operations.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "SCIM 2.0 PATCH supports upsert-style operations.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "partial",
+      "description": "Username constraints depend on the configured data source (JDBC, LDAP). No universal legacy username normalization built in."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "partial",
+      "description": "Credential data can be imported at the data source level. No dedicated bulk MFA enrollment import API is documented."
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "description": "Curity exposes a SCIM 2.0 server for inbound user provisioning from HR systems or identity platforms.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "supported",
+      "description": "Curity can act as a SCIM client to sync users to downstream systems via the SCIM data source.",
+      "links": ["https://curity.io/docs/identity-server/facilities/data-sources/scim/"]
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "description": "SCIM 2.0 Groups resource supported alongside Users.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time provisioning during first federated login via authentication actions.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authentication-actions/"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "partial",
+      "description": "Lazy migration can be achieved via the Dynamic Authenticator or a custom authenticator plugin that proxies credential validation to a legacy system.",
+      "links": ["https://curity.io/docs/identity-server/developer-guide/authenticators/"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Self-Service Portal application for user profile, credential, and MFA device management.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Account linking across multiple identity providers supported via authentication profile configuration.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "User accounts can be disabled via the SCIM API or GraphQL user management API.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Custom user attributes stored in the configured data source (JDBC, LDAP, SCIM, DynamoDB, MongoDB).",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Custom client attributes managed via the Database Clients GraphQL API.",
+      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "partial",
+      "description": "Attribute size limits are determined by the backend data source (database column sizes, LDAP attribute limits). No universal documented limit."
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "User search via SCIM 2.0 filter queries and GraphQL API.",
+      "links": ["https://curity.io/docs/identity-server/profiles/user-management-profile/scim/"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Role-based access control via OAuth 2.0 scopes and custom claims mapped from user attributes.",
+      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Multi-tenancy via separate authentication profiles per tenant. No built-in organisation management UI; tenant isolation is infrastructure-level.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Password policies configurable via the credential manager.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "supported",
+      "description": "Progressive profiling via authentication actions that conditionally collect additional user attributes during login.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authentication-actions/"]
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "Attribute-based access control via token procedures and custom claims enrichment.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/scripting/token-procedures.html"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Fine-grained authorization via OAuth 2.0 scopes, Rich Authorization Requests (for VCI), and token procedures.",
+      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "Core use case: token-based API security with phantom tokens, split tokens, and sender-constrained tokens.",
+      "links": ["https://curity.io/product/"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://curity.io/product/conformance/"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "links": ["https://curity.io/product/conformance/"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "unknown"
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown"
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "unknown"
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "User data export via SCIM 2.0 and GraphQL APIs. PII data minimization and audit trails built in.",
+      "links": ["https://curity.io/resources/learn/privacy-and-gdpr/"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "description": "User deletion via SCIM DELETE and GraphQL APIs. Audit records support right-to-erasure workflows.",
+      "links": ["https://curity.io/resources/learn/privacy-and-gdpr/"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "OAuth 2.0 consent delegation audited by the authorization server. Consent can be configured per-flow.",
+      "links": ["https://curity.io/resources/learn/privacy-and-gdpr/"]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Self-hosted deployment in any region. Data residency fully controlled by the operator.",
+      "links": ["https://curity.io/product/"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Supports on-premise, Docker, Kubernetes (AWS EKS, Azure AKS, GCP GKE), and hybrid deployments.",
+      "values": ["AWS", "Azure", "GCP"],
+      "links": ["https://curity.io/product/"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Audit logging via Apache Log4j 2 in Syslog RFC 5424 structured data format. Retention is operator-configured.",
+      "links": ["https://curity.io/docs/identity-server/system-and-operation/operation-and-monitoring/audit-logging/"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Structured audit logs and OpenTelemetry metrics/tracing export supported in version 10.0+.",
+      "links": ["https://curity.io/news/curity-identity-server-10-0/"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "Encryption at rest via database-level TDE or filesystem encryption. HSM support available for key material.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "TLS enforced for all endpoints. Mutual TLS (mTLS) supported for client authentication.",
+      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "Full key management via self-hosted deployment and HSM integration.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "partial",
+      "description": "No built-in CAPTCHA or bot detection. Throttling framework limits request rates from misbehaving clients.",
+      "links": ["https://curity.io/docs/idsvr/latest/system-admin-guide/throttling/index.html"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Throttling framework provides configurable brute-force protection at endpoint and credential level.",
+      "links": ["https://curity.io/docs/idsvr/latest/system-admin-guide/throttling/index.html"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "Throttling framework supports per-IP rate limiting and request rejection.",
+      "links": ["https://curity.io/docs/idsvr/latest/system-admin-guide/throttling/index.html"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "unknown",
+      "description": "No built-in Have I Been Pwned integration documented."
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "unknown"
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "supported",
+      "description": "IP-based access control configurable at the infrastructure level; profile-level restrictions via Curity configuration.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "partial",
+      "description": "Geo-location and context-based MFA triggering is documented. Explicit device fingerprinting is not a built-in feature.",
+      "links": ["https://curity.io/resources/mfa/"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Full theme customization per application profile, supporting different branding per tenant or application.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/front-end-development/ui-builder.html"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "MFA policies and authentication flows configured independently per authentication profile.",
+      "links": ["https://curity.io/docs/idsvr/latest/authentication-service-admin-guide/multi-factor-authentication.html"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/front-end-development/ui-builder.html"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "HAAPI (Hypermedia Authentication API) enables native embedded authentication flows without browser redirects in mobile and SPA apps.",
+      "links": ["https://curity.io/docs/identity-server/developer-guide/sdk/"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Full UI theming and branding customization via the UI Kit and template system.",
+      "links": ["https://github.com/curityio/ui-kit"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "Multi-language support with localized login pages and email templates.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/front-end-development/ui-builder.html"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "Curity UI Kit provides a component library for React and pre-built login and self-service portal templates.",
+      "links": ["https://github.com/curityio/ui-kit"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "partial",
+      "description": "Structured audit events and OpenTelemetry metrics available. No built-in analytics dashboard; external tools (Grafana, ELK) recommended.",
+      "links": ["https://curity.io/docs/identity-server/system-and-operation/operation-and-monitoring/audit-logging/"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "partial",
+      "description": "Java Plugins SDK is the primary extension framework. iOS, Android, and JavaScript SDKs available for HAAPI and Token Handler patterns.",
+      "links": ["https://curity.io/docs/identity-server/developer-guide/sdk/"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "RESTCONF API for configuration management, GraphQL APIs for client and user management.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "Throttling configurable per endpoint, client, and credential to enforce authentication request rate limits.",
+      "links": ["https://curity.io/docs/idsvr/latest/system-admin-guide/throttling/index.html"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Extensible via Java Plugins SDK: custom authenticators, authentication actions, token procedures, claims providers, event listeners, and data source plugins. Groovy scripting also supported.",
+      "links": ["https://curity.io/docs/identity-server/developer-guide/authenticators/"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Extensibility is Java-based (SDK plugins) or Groovy scripts. No TypeScript/JavaScript runtime for server-side logic."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Self-hosted deployment supports any custom domain.",
+      "links": ["https://curity.io/product/"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "CLI scripting via RESTCONF API and commit hooks for GitOps workflows and CI/CD automation.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "not_supported",
+      "description": "No official Terraform provider available. Infrastructure management relies on RESTCONF API, CLI scripts, and Helm charts for Kubernetes deployments."
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "Multiple data source types: JDBC (PostgreSQL, MySQL, etc.), LDAP, SCIM, JSON/REST, DynamoDB, MongoDB, and CouchDB.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Event listener plugins and server events system support webhook notifications. Webhook alarm handler available for operational alerts.",
+      "links": ["https://curity.io/docs/idsvr/latest/system-admin-guide/observability/server-events/index.html"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Full HTML/CSS customization via the UI builder, template system, and Curity UI Kit.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/front-end-development/ui-builder.html"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Custom SMTP server and pluggable email provider via the Java Plugins SDK.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/index.html"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Fully customizable email templates for OTP, verification, and notification flows.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/front-end-development/ui-builder.html"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims via token procedures (Groovy scripts) and claims value provider plugins.",
+      "links": ["https://curity.io/docs/idsvr/latest/developer-guide/scripting/token-procedures.html"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported",
+      "description": "Authentication flows are configured via the admin UI and XML configuration. No visual drag-and-drop flow builder."
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "partial",
+      "description": "Built-in support for strong national eIDs: Swedish BankID, SITHS (healthcare), and Entrust IDaaS. No general document verification.",
+      "links": ["https://curity.io/docs/identity-server/profiles/authentication-profile/authenticators/"]
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "partial",
+      "description": "OpenID Wallet authenticator and verifiable credential issuance support experimental decentralized identity use cases.",
+      "links": ["https://curity.io/docs/identity-server/profiles/token-profile/verifiable-credential-issuance/"]
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "supported",
+      "description": "Access Intelligence and Token Intelligence features provide scoped, auditable tokens for AI agents, automated workflows, and machine-to-machine API access with ephemeral client support.",
+      "links": ["https://curity.io/product/"]
+    }
+  ]
+}
