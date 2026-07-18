@@ -61,6 +61,8 @@ import javaVaadinApp from './java-vaadin-app.json' with { type: 'json' }
 import koaApp from './koa-app.json' with { type: 'json' }
 import kotlinWebApp from './kotlin-web-app.json' with { type: 'json' }
 import laravelApp from './laravel-app.json' with { type: 'json' }
+import litSpa from './lit-spa.json' with { type: 'json' }
+import loopbackApp from './loopback-app.json' with { type: 'json' }
 import meteorJsApp from './meteorjs-app.json' with { type: 'json' }
 import nestJsApp from './nestjs-app.json' with { type: 'json' }
 import nextjsApp from './nextjs-app.json' with { type: 'json' }
@@ -74,6 +76,7 @@ import pythonFastAPIApp from './python-fastapi-app.json' with { type: 'json' }
 import pythonFlaskApp from './python-flask-app.json' with { type: 'json' }
 import pythonFletApp from './python-flet-app.json' with { type: 'json' }
 import pythonStarletteApp from './python-starlette-app.json' with { type: 'json' }
+import quarkusApp from './quarkus-app.json' with { type: 'json' }
 import qwikSpa from './qwik-spa.json' with { type: 'json' }
 import reactSpa from './react-spa.json' with { type: 'json' }
 import remixApp from './remix-app.json' with { type: 'json' }
@@ -85,6 +88,7 @@ import rustAxumApp from './rust-axum-app.json' with { type: 'json' }
 import rustRocketApp from './rust-rocket-app.json' with { type: 'json' }
 import sailsJsApp from './sailsjs-app.json' with { type: 'json' }
 import scalaApp from './scala-app.json' with { type: 'json' }
+import sinatraApp from './sinatra-app.json' with { type: 'json' }
 import solidSpa from './solid-spa.json' with { type: 'json' }
 import spa from './spa.json' with { type: 'json' }
 import svelteSpa from './svelte-spa.json' with { type: 'json' }
@@ -129,6 +133,8 @@ const templateInputs = [
   koaApp,
   kotlinWebApp,
   laravelApp,
+  litSpa,
+  loopbackApp,
   meteorJsApp,
   nestJsApp,
   nextjsApp,
@@ -142,6 +148,7 @@ const templateInputs = [
   pythonFlaskApp,
   pythonFletApp,
   pythonStarletteApp,
+  quarkusApp,
   qwikSpa,
   reactSpa,
   remixApp,
@@ -153,6 +160,7 @@ const templateInputs = [
   rustRocketApp,
   sailsJsApp,
   scalaApp,
+  sinatraApp,
   solidSpa,
   spa,
   svelteSpa,
