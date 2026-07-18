@@ -13,43 +13,59 @@
     {
       "identifier": "implicit_grant",
       "status": "deprecated",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-implicit-grant-flow"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-implicit-grant-flow"
+      ]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"
+      ]
     },
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-client-creds-grant-flow"
+      ]
     },
     {
       "identifier": "password_grant",
       "status": "deprecated",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth-ropc"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth-ropc"
+      ]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/refresh-tokens"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/refresh-tokens"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow#first-case-access-token-request-with-a-shared-secret"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow#first-case-access-token-request-with-a-shared-secret"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "not_supported",
       "description": "Microsoft Entra ID uses the On-Behalf-Of flow instead of the standard RFC 8693 token exchange grant type",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-on-behalf-of-flow"
+      ]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
@@ -59,12 +75,16 @@
       "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
       "status": "partial",
       "description": "Supports exchange of SAML v1.1 tokens issued by AD FS, not SAMLv2 tokens issued by Entra ID itself",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-saml-bearer-assertion"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-saml-bearer-assertion"
+      ]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow"
+      ]
     },
     {
       "identifier": "par_extension",
@@ -81,22 +101,30 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/userinfo"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/userinfo"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "not_supported",
-      "links": ["https://learn.microsoft.com/en-us/answers/questions/1426223/entraid-(azuread)-oidc-implementation-missing-revo"]
+      "links": [
+        "https://learn.microsoft.com/en-us/answers/questions/1426223/entraid-(azuread)-oidc-implementation-missing-revo"
+      ]
     },
     {
       "identifier": "token_introspection_endpoint",
@@ -105,38 +133,52 @@
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code"
+      ]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"
+      ]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "partial",
       "description": "Supports through OpenID Connect Discovery",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#fetch-the-openid-configuration-document"
+      ]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+      ]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+      ]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+      ]
     },
     {
       "identifier": "select_account_prompt",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-the-sign-in-request"
+      ]
     },
     {
       "identifier": "create_prompt",
@@ -149,12 +191,16 @@
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"]
+      "links": [
+        "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+      ]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"]
+      "links": [
+        "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
@@ -163,7 +209,9 @@
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"]
+      "links": [
+        "https://login.microsoftonline.com/common/v2.0/.well-known/openid-configuration"
+      ]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
@@ -180,18 +228,32 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/refresh-tokens"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/refresh-tokens"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "supported",
+      "description": "The Microsoft identity platform doesn't revoke the previous refresh token when it's used to acquire a new one, so the rotated-out token stays valid rather than being invalidated immediately; there is no configurable short-lived overlap window.",
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/refresh-tokens"
+      ]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": ["https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-a-sign-out-request"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc#send-a-sign-out-request"
+      ]
     },
     {
       "identifier": "dpop",
       "status": "not_supported",
       "description": "Microsoft Entra ID uses SHR-based proof of possession instead of the standard DPoP (RFC 9449)",
-      "links": ["https://learn.microsoft.com/en-us/entra/msal/dotnet/advanced/proof-of-possession-tokens"]
+      "links": [
+        "https://learn.microsoft.com/en-us/entra/msal/dotnet/advanced/proof-of-possession-tokens"
+      ]
     },
     {
       "identifier": "fapi_1_0_baseline",

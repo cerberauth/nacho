@@ -421,6 +421,10 @@
       "refresh_token_grant": {
         "name": "Refresh Token",
         "description": "Le grant type Refresh Token est utilisé par les clients pour échanger un refresh token contre un access token lorsque l'access token a expiré."
+      },
+      "refresh_token_rotation_grace_period": {
+        "name": "Délai de grâce pour la rotation des refresh tokens",
+        "description": "Période de grâce/recouvrement (leeway/overlap) permettant à un refresh token de rotation précédemment utilisé de rester valide pendant une courte période afin de limiter les conditions de concurrence et les échecs de requêtes réseau."
       }
     },
     "browseByCountry": "Parcourir par pays"

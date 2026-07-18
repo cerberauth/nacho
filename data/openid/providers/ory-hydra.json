@@ -26,17 +26,23 @@
     {
       "identifier": "par_extension",
       "status": "not_supported",
-      "links": ["https://github.com/ory/hydra/discussions/3071"]
+      "links": [
+        "https://github.com/ory/hydra/discussions/3071"
+      ]
     },
     {
       "identifier": "rar_extension",
       "status": "not_supported",
-      "links": ["https://github.com/ory/fosite/issues/822"]
+      "links": [
+        "https://github.com/ory/fosite/issues/822"
+      ]
     },
     {
       "identifier": "jar_extension",
       "status": "not_supported",
-      "links": ["https://github.com/ory/hydra/discussions/3305"]
+      "links": [
+        "https://github.com/ory/hydra/discussions/3305"
+      ]
     },
     {
       "identifier": "client_credentials_grant",
@@ -73,47 +79,65 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/oAuth2Authorize"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/oAuth2Authorize"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/oauth2TokenExchange"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/oauth2TokenExchange"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oidc/operation/getOidcUserInfo"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oidc/operation/getOidcUserInfo"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/revokeOAuth2Token"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/revokeOAuth2Token"
+      ]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/introspectOAuth2Token"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/introspectOAuth2Token"
+      ]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.com/docs/reference/api#tag/oAuth2/operation/oAuth2DeviceFlow"]
+      "links": [
+        "https://www.ory.com/docs/reference/api#tag/oAuth2/operation/oAuth2DeviceFlow"
+      ]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oidc/operation/discoverOidcConfiguration"
+      ]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "links": ["https://github.com/ory/hydra/releases/tag/v25.4.0"]
+      "links": [
+        "https://github.com/ory/hydra/releases/tag/v25.4.0"
+      ]
     },
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
+      ]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
@@ -122,48 +146,66 @@
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
+      ]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
       "status": "not_supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
+      ]
     },
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"]
+      "links": [
+        "https://www.ory.sh/docs/reference/api#tag/oAuth2/operation/createOAuth2Client"
+      ]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"]
+      "links": [
+        "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+      ]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"]
+      "links": [
+        "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+      ]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "links": ["https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"]
+      "links": [
+        "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+      ]
     },
     {
       "identifier": "select_account_prompt",
       "status": "not_supported",
-      "links": ["https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"]
+      "links": [
+        "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+      ]
     },
     {
       "identifier": "create_prompt",
       "status": "partial",
       "description": "Uses registration prompt",
-      "links": ["https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"]
+      "links": [
+        "https://www.ory.sh/docs/oauth2-oidc/authorization-code-flow#step-1-get-the-users-permission"
+      ]
     },
     {
       "identifier": "dynamic_client_registration",
@@ -175,12 +217,25 @@
     },
     {
       "identifier": "refresh_token_rotation",
-      "status": "supported"
+      "status": "supported",
+      "links": [
+        "https://www.ory.com/docs/hydra/guides/graceful-token-refresh"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "supported",
+      "description": "Configurable via 'rotation_grace_period' (up to 180 days when combined with 'rotation_grace_reuse_count') so a rotated-out refresh token stays valid, optionally capped to a limited number of reuses.",
+      "links": [
+        "https://www.ory.com/docs/hydra/guides/graceful-token-refresh"
+      ]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": ["https://www.ory.com/docs/oauth2-oidc/oidc-logout"]
+      "links": [
+        "https://www.ory.com/docs/oauth2-oidc/oidc-logout"
+      ]
     },
     {
       "identifier": "dpop",
@@ -189,22 +244,30 @@
     {
       "identifier": "fapi_1_0_baseline",
       "status": "not_supported",
-      "links": ["https://github.com/ory/hydra/discussions/3833"]
+      "links": [
+        "https://github.com/ory/hydra/discussions/3833"
+      ]
     },
     {
       "identifier": "fapi_1_0_advanced",
       "status": "not_supported",
-      "links": ["https://github.com/ory/hydra/discussions/3833"]
+      "links": [
+        "https://github.com/ory/hydra/discussions/3833"
+      ]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "not_supported",
-      "links": ["https://github.com/ory/hydra/discussions/3833"]
+      "links": [
+        "https://github.com/ory/hydra/discussions/3833"
+      ]
     },
     {
       "identifier": "fapi_2_0_message_signing",
       "status": "not_supported",
-      "links": ["https://github.com/ory/hydra/discussions/3833"]
+      "links": [
+        "https://github.com/ory/hydra/discussions/3833"
+      ]
     },
     {
       "identifier": "jarm",

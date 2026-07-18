@@ -13,17 +13,23 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#implicit-grant"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#implicit-grant"
+      ]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#authorization-code-grant"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#authorization-code-grant"
+      ]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#authorization-code-grant-with-pkce"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#authorization-code-grant-with-pkce"
+      ]
     },
     {
       "identifier": "jar_extension",
@@ -40,27 +46,37 @@
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#client-credentials-grant"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#client-credentials-grant"
+      ]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#resource-owner-password-credentials-grant"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#resource-owner-password-credentials-grant"
+      ]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#refresh-token-grant"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#refresh-token-grant"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#device-authorization-grant"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/#device-authorization-grant"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "not_supported",
-      "links": ["https://github.com/FusionAuth/fusionauth-issues/issues/1943"]
+      "links": [
+        "https://github.com/FusionAuth/fusionauth-issues/issues/1943"
+      ]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
@@ -77,42 +93,58 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#authorize"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#authorize"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#userinfo"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#userinfo"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/apis/jwt#revoke-refresh-tokens"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/login-api/json-web-tokens"
+      ]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#introspect"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#introspect"
+      ]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#device-authorize"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#device-authorize"
+      ]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#openid-connect-discovery"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#openid-connect-discovery"
+      ]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#openid-connect-discovery"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#openid-connect-discovery"
+      ]
     },
     {
       "identifier": "none_prompt",
@@ -137,17 +169,23 @@
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"
+      ]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"
+      ]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#token"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
@@ -172,17 +210,31 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/apis/jwt#revoke-refresh-tokens"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/login-api/json-web-tokens"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "supported",
+      "description": "When Refresh Token Usage Policy is set to one-time use, a configurable grace period (in seconds, up to 24 hours) lets a rotated-out token still be reused, e.g. for clustered/asynchronous clients.",
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/login-api/json-web-tokens"
+      ]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": ["https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#logout"]
+      "links": [
+        "https://fusionauth.io/docs/lifecycle/authenticate-users/oauth/endpoints#logout"
+      ]
     },
     {
       "identifier": "dpop",
       "status": "not_supported",
-      "links": ["https://github.com/FusionAuth/fusionauth-issues/issues/1679"]
+      "links": [
+        "https://github.com/FusionAuth/fusionauth-issues/issues/1679"
+      ]
     },
     {
       "identifier": "fapi_1_0_baseline",

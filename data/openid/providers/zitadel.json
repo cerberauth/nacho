@@ -14,22 +14,30 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#implicit"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#implicit"
+      ]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#authorization-code"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#authorization-code"
+      ]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#authorization-code-with-pkce"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#authorization-code-with-pkce"
+      ]
     },
     {
       "identifier": "par_extension",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#pushed-authorization-request-endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#pushed-authorization-request-endpoint"
+      ]
     },
     {
       "identifier": "rar_extension",
@@ -42,27 +50,37 @@
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#client-credentials"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#client-credentials"
+      ]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#password"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#password"
+      ]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#refresh-token"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#refresh-token"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#token-exchange"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#token-exchange"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#device-authorization"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#device-authorization"
+      ]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
@@ -71,7 +89,9 @@
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#jwt-profile"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#jwt-profile"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
@@ -80,82 +100,114 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#authorization_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#authorization_endpoint"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#token_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#token_endpoint"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#userinfo_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#userinfo_endpoint"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#revocation_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#revocation_endpoint"
+      ]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#introspection_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#introspection_endpoint"
+      ]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#device_authorization_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#device_authorization_endpoint"
+      ]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#discovery_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#discovery_endpoint"
+      ]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#discovery_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#discovery_endpoint"
+      ]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authrequest"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authrequest"
+      ]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authrequest"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authrequest"
+      ]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authrequest"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authrequest"
+      ]
     },
     {
       "identifier": "select_account_prompt",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authrequest"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authrequest"
+      ]
     },
     {
       "identifier": "create_prompt",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authrequest"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authrequest"
+      ]
     },
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authn-methods"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authn-methods"
+      ]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authn-methods"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authn-methods"
+      ]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authn-methods"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authn-methods"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
@@ -164,7 +216,9 @@
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/authn-methods#private-key-jwt"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/authn-methods#private-key-jwt"
+      ]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
@@ -181,12 +235,20 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/grant-types#refresh-token"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/grant-types#refresh-token"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "not_supported"
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": ["https://zitadel.com/docs/apis/openidoauth/endpoints#end_session_endpoint"]
+      "links": [
+        "https://zitadel.com/docs/apis/openidoauth/endpoints#end_session_endpoint"
+      ]
     },
     {
       "identifier": "dpop",

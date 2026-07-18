@@ -14,63 +14,87 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
+      "links": [
+        "https://curity.io/resources/learn/openid-connect-overview/"
+      ]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/oauth-pkce/"]
+      "links": [
+        "https://curity.io/resources/learn/oauth-pkce/"
+      ]
     },
     {
       "identifier": "par_extension",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"
+      ]
     },
     {
       "identifier": "rar_extension",
       "status": "partial",
       "description": "RAR (RFC 9396) support is limited to the openid_credential type for verifiable credential issuance. General-purpose RAR is not supported.",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/verifiable-credentials/rar-for-vci.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/verifiable-credentials/rar-for-vci.html"
+      ]
     },
     {
       "identifier": "jar_extension",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"
+      ]
     },
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/oauth-flows/index.html"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
@@ -83,57 +107,79 @@
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/endpoints.html"
+      ]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
+      "links": [
+        "https://curity.io/resources/learn/openid-connect-overview/"
+      ]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
+      "links": [
+        "https://curity.io/resources/learn/openid-connect-overview/"
+      ]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
+      "links": [
+        "https://curity.io/resources/learn/openid-connect-overview/"
+      ]
     },
     {
       "identifier": "select_account_prompt",
@@ -146,84 +192,120 @@
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"
+      ]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"
+      ]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"
+      ]
     },
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"
+      ]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
       "status": "supported",
       "description": "Mutual TLS (mTLS) client authentication and certificate-bound tokens.",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"
+      ]
     },
     {
       "identifier": "dynamic_client_registration",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/dcr/dcr.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/dcr/dcr.html"
+      ]
     },
     {
       "identifier": "dynamic_client_registration_management",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/dcr/dcr-api.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/dcr/dcr-api.html"
+      ]
     },
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/clients.html"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "not_supported"
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
+      "links": [
+        "https://curity.io/resources/learn/openid-connect-overview/"
+      ]
     },
     {
       "identifier": "dpop",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"
+      ]
     },
     {
       "identifier": "fapi_1_0_baseline",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"
+      ]
     },
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "links": ["https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"]
+      "links": [
+        "https://curity.io/docs/idsvr/latest/token-service-admin-guide/financial-grade.html"
+      ]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "supported",
-      "links": ["https://curity.io/blog/the-state-of-fapi-2/"]
+      "links": [
+        "https://curity.io/blog/the-state-of-fapi-2/"
+      ]
     },
     {
       "identifier": "fapi_2_0_message_signing",
       "status": "partial",
       "description": "FAPI 2.0 Message Signing profile support is in progress; JARM is implemented but full message signing certification is pending.",
-      "links": ["https://curity.io/blog/the-state-of-fapi-2/"]
+      "links": [
+        "https://curity.io/blog/the-state-of-fapi-2/"
+      ]
     },
     {
       "identifier": "jarm",
       "status": "supported",
-      "links": ["https://curity.io/resources/learn/jwt-secured-authorization-response-mode/"]
+      "links": [
+        "https://curity.io/resources/learn/jwt-secured-authorization-response-mode/"
+      ]
     }
   ]
 }

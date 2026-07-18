@@ -13,22 +13,30 @@
     {
       "identifier": "implicit_grant",
       "status": "deprecated",
-      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/#implicit-flow"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/oauth-openid/#implicit-flow"
+      ]
     },
     {
       "identifier": "authorization_code_grant",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"
+      ]
     },
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/oauth-openid/#authorization-code-flow-with-pkce-flow"
+      ]
     },
     {
       "identifier": "par_extension",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/"
+      ]
     },
     {
       "identifier": "rar_extension",
@@ -41,132 +49,184 @@
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/#client-credentials-flow"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/oauth-openid/#client-credentials-flow"
+      ]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/#resource-owner-password-flow"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/oauth-openid/#resource-owner-password-flow"
+      ]
     },
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/refresh-tokens/main/"]
+      "links": [
+        "https://developer.okta.com/docs/guides/refresh-tokens/main/"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/device-authorization-grant/main/"]
+      "links": [
+        "https://developer.okta.com/docs/guides/device-authorization-grant/main/"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/set-up-token-exchange/-/main/"]
+      "links": [
+        "https://developer.okta.com/docs/guides/set-up-token-exchange/-/main/"
+      ]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/configure-ciba/main/"]
+      "links": [
+        "https://developer.okta.com/docs/guides/configure-ciba/main/"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/overview/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/overview/"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/oauth-openid/#saml-2-0-assertion-flow"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/oauth-openid/#saml-2-0-assertion-flow"
+      ]
     },
     {
       "identifier": "authorization_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/tokenOptions"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/tokenOptions"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/userinfo"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/userinfo"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/revoke"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/revoke"
+      ]
     },
     {
       "identifier": "token_introspection_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/introspect"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/introspect"
+      ]
     },
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/device-authorization-grant/main/"]
+      "links": [
+        "https://developer.okta.com/docs/guides/device-authorization-grant/main/"
+      ]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"
+      ]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"]
+      "links": [
+        "https://developer.okta.com/docs/concepts/auth-servers/#discovery-endpoints-org-authorization-servers"
+      ]
     },
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+      ]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+      ]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+      ]
     },
     {
       "identifier": "select_account_prompt",
       "status": "not_supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+      ]
     },
     {
       "identifier": "create_prompt",
       "status": "not_supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/OrgAS/#tag/OrgAS/operation/authorize!in=query&path=prompt&t=request"
+      ]
     },
     {
       "identifier": "none_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+      ]
     },
     {
       "identifier": "client_secret_basic_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+      ]
     },
     {
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+      ]
     },
     {
       "identifier": "private_key_jwt_token_endpoint_auth",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/guides/client-auth/"
+      ]
     },
     {
       "identifier": "tls_client_auth_token_endpoint_auth",
@@ -175,27 +235,44 @@
     {
       "identifier": "dynamic_client_registration",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"
+      ]
     },
     {
       "identifier": "dynamic_client_registration_management",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/Client/"
+      ]
     },
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/refresh-tokens/main/#refresh-token-rotation"]
+      "links": [
+        "https://developer.okta.com/docs/guides/refresh-tokens/main/#refresh-token-rotation"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "supported",
+      "links": [
+        "https://developer.okta.com/docs/guides/refresh-tokens/main/#refresh-token-rotation"
+      ]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/#tag/CustomAS/operation/logoutCustomAS"]
+      "links": [
+        "https://developer.okta.com/docs/api/openapi/okta-oauth/oauth/tag/CustomAS/#tag/CustomAS/operation/logoutCustomAS"
+      ]
     },
     {
       "identifier": "dpop",
       "status": "supported",
-      "links": ["https://developer.okta.com/docs/guides/dpop/nonoktaresourceserver/main/"]
+      "links": [
+        "https://developer.okta.com/docs/guides/dpop/nonoktaresourceserver/main/"
+      ]
     },
     {
       "identifier": "fapi_1_0_baseline",
@@ -204,7 +281,9 @@
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "links": ["https://www.okta.com/products/regulated-identity/"]
+      "links": [
+        "https://www.okta.com/products/regulated-identity/"
+      ]
     },
     {
       "identifier": "fapi_2_0_security_profile",
