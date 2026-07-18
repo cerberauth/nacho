@@ -1,0 +1,21 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "Sinatra App",
+  "description": "Sinatra Application with OpenID Connect.",
+  "identifier": "sinatra-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/ruby.svg"
+  },
+  "technologies": [
+    "ruby",
+    "sinatra"
+  ],
+  "libraries": [
+    {
+      "name": "omniauth-openid-connect",
+      "description": "OmniAuth strategy for OpenID Connect.",
+      "url": "https://github.com/omniauth/omniauth_openid_connect"
+    }
+  ],
+  "extends": "ruby-app"
+}

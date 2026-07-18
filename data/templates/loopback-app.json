@@ -1,0 +1,16 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "LoopBack App",
+  "description": "LoopBack Application with OpenID Connect.",
+  "identifier": "loopback-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/loopback.svg"
+  },
+  "technologies": [
+    "javascript",
+    "typescript",
+    "node.js",
+    "loopback"
+  ],
+  "extends": "nodejs-app"
+}

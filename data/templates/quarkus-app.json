@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "Quarkus Application",
+  "description": "Quarkus Application with OpenID Connect.",
+  "identifier": "quarkus-app",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/quarkus.svg"
+  },
+  "technologies": [
+    "java",
+    "quarkus"
+  ],
+  "extends": "java-web-app"
+}

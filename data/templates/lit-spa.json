@@ -1,0 +1,14 @@
+{
+  "$schema": "https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json",
+  "name": "Lit SPA",
+  "description": "Lit Single Page Application with OpenID Connect.",
+  "identifier": "lit-spa",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/lit.svg"
+  },
+  "technologies": [
+    "javascript",
+    "lit"
+  ],
+  "extends": "spa"
+}
