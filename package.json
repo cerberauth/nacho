@@ -68,7 +68,7 @@
     "tailwindcss": "4.3.3",
     "tailwindcss-animate": "1.0.7",
     "tsx": "4.23.1",
-    "typescript": "5",
+    "typescript": "7",
     "wrangler": "4.112.0"
   },
   "prettier": {
