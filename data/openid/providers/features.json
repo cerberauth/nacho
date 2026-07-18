@@ -290,6 +290,13 @@
       "status": "supported"
     },
     {
+      "name": "Refresh Token Rotation Grace Period",
+      "description": "Refresh Token Rotation Grace Period (or leeway/overlap window) is a configuration that allows a previously used refresh token to remain valid for a short window, mitigating race conditions or network retries.",
+      "identifier": "refresh_token_rotation_grace_period",
+      "category": "feature",
+      "status": "supported"
+    },
+    {
       "name": "OAuth 2.0 Demonstrating Proof of Possession (DPoP)",
       "description": "Demonstrating Proof of Possession (DPoP) is an application-level mechanism for sender-constraining OAuth access and refresh tokens. It enables a client to prove the possession of a public/private key pair by including a DPoP header in an HTTP request.",
       "identifier": "dpop",

@@ -19,13 +19,17 @@
       "identifier": "authorization_code_grant",
       "status": "supported",
       "description": "Clients exchange an authorization code for an access_token after user login on ISC. Authorization endpoint: https://[tenant].login.sailpoint.com/oauth/authorize. Token endpoint: https://[tenant].api.identitynow.com/oauth/token.",
-      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+      "links": [
+        "https://developer.sailpoint.com/docs/api/authentication/"
+      ]
     },
     {
       "identifier": "pkce_extension",
       "status": "not_supported",
       "description": "SailPoint confirmed that ISC's authorization implementation does not currently support PKCE. It is being evaluated as part of potential OAuth 2.1 adoption, with no published timeline.",
-      "links": ["https://developer.sailpoint.com/discuss/t/oauth-code-flow-with-pkce/71635"]
+      "links": [
+        "https://developer.sailpoint.com/discuss/t/oauth-code-flow-with-pkce/71635"
+      ]
     },
     {
       "identifier": "par_extension",
@@ -46,7 +50,9 @@
       "identifier": "client_credentials_grant",
       "status": "supported",
       "description": "Client credentials grant is supported for machine-to-machine / service-to-service authentication without user involvement (scripts, programs, system integrations).",
-      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+      "links": [
+        "https://developer.sailpoint.com/docs/api/authentication/"
+      ]
     },
     {
       "identifier": "password_grant",
@@ -57,7 +63,9 @@
       "identifier": "refresh_token_grant",
       "status": "supported",
       "description": "Clients use this grant type to exchange a refresh token for a new access_token when the existing one has expired.",
-      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+      "links": [
+        "https://developer.sailpoint.com/docs/api/authentication/"
+      ]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
@@ -88,19 +96,25 @@
       "identifier": "authorization_endpoint",
       "status": "supported",
       "description": "Authorization endpoint at https://[tenant].login.sailpoint.com/oauth/authorize.",
-      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+      "links": [
+        "https://developer.sailpoint.com/docs/api/authentication/"
+      ]
     },
     {
       "identifier": "token_endpoint",
       "status": "supported",
       "description": "Token endpoint at https://[tenant].api.identitynow.com/oauth/token.",
-      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+      "links": [
+        "https://developer.sailpoint.com/docs/api/authentication/"
+      ]
     },
     {
       "identifier": "userinfo_endpoint",
       "status": "supported",
       "description": "Userinfo endpoint at https://[tenant].api.identitynow.com/oauth/userinfo. Returns id, uid, email, phone, workPhone, firstname, lastname, capabilities, displayName, name.",
-      "links": ["https://authjs.dev/getting-started/providers/sailpoint"]
+      "links": [
+        "https://authjs.dev/getting-started/providers/sailpoint"
+      ]
     },
     {
       "identifier": "token_revocation_endpoint",
@@ -166,7 +180,9 @@
       "identifier": "client_secret_post_token_endpoint_auth",
       "status": "supported",
       "description": "Client credentials submitted as form-encoded body parameters (client_id and client_secret in x-www-form-urlencoded body) are the documented authentication method for ISC token requests.",
-      "links": ["https://developer.sailpoint.com/docs/api/authentication/"]
+      "links": [
+        "https://developer.sailpoint.com/docs/api/authentication/"
+      ]
     },
     {
       "identifier": "client_secret_jwt_token_endpoint_auth",
@@ -197,6 +213,10 @@
       "identifier": "refresh_token_rotation",
       "status": "unknown",
       "description": "Refresh token rotation behavior is not documented in SailPoint ISC's OAuth implementation."
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "unknown"
     },
     {
       "identifier": "rp_initiated_logout",
