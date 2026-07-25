@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 import { FeatureStatus } from '@/lib/types'
 import { getFeaturesCategories, OpenIDConnectFeatureCategory, type OpenIDConnectFeature, type OpenIDConnectProvider } from '@/data/openid/providers'
-import { getProviderById, getProviderFeature, getProviders } from '@/lib/providers'
+import { getProviderById, getProviderFeature, getProviders, getProviderVsOrder } from '@/lib/providers'
 import { providers as iamProviders } from '@/data/iam/index'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
@@ -24,7 +24,10 @@ type FAQFeature = {
 
 export async function generateOpenIDProviderDetailMetadata(lang: Locale, id: string): Promise<Metadata> {
   const provider = getProviderById(id)
-  if (!provider) return {}
+  if (!provider) {
+    return {}
+  }
+
   const dict = await getDictionary(lang)
   return {
     title: dict.openidProviders.metaTitle.replace('{name}', provider.name),
@@ -41,7 +44,9 @@ export async function generateOpenIDProviderDetailMetadata(lang: Locale, id: str
 
 export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id: string }) {
   const provider = getProviderById(id)
-  if (!provider) return notFound()
+  if (!provider) {
+    return notFound()
+  }
 
   const dict = await getDictionary(lang)
   const t = dict.openidProviders
@@ -60,6 +65,25 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
 
   return (
     <main className="flex flex-col gap-8 py-24 items-center px-4">
+      <div className="w-full max-w-2xl mx-auto bg-blue-50 border-l-4 border-blue-400 text-blue-800 text-sm p-4">
+        {t.focusNote.replace('{name}', provider.name)}{' '}
+        {iamProvider ? (
+          <>
+            {t.lookingForIAMProvider.replace('{name}', provider.name)}{' '}
+            <Link href={langUrl(lang, `/iam/providers/${iamProvider.identifier}`)} className="underline font-medium">
+              {t.viewOnIAM.replace('{name}', provider.name)}
+            </Link>.
+          </>
+        ) : (
+          <>
+            {t.lookingForIAMGeneral}{' '}
+            <Link href={langUrl(lang, '/iam/providers')} className="underline font-medium">
+              {t.checkIAM}
+            </Link>.
+          </>
+        )}
+      </div>
+
       <div className="relative flex flex-col max-w-full">
         <div className="flex items-center gap-4">
           {provider.icon?.contentUrl && (
@@ -145,6 +169,30 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
             t={t}
           />
         ))}
+      </div>
+
+      <div className="flex flex-col gap-4 max-w-full mt-8 w-full">
+        <h2 className="text-2xl font-semibold leading-none tracking-tight">{t.compareWith}</h2>
+        <div className="flex flex-wrap gap-2">
+          {getProviders()
+            .filter((p) => p.identifier !== provider.identifier)
+            .map((p) => {
+              const order = getProviderVsOrder(provider.identifier, p.identifier)
+              if (!order) {
+                return null
+              }
+
+              return (
+                <Link
+                  key={`vs-${p.identifier}`}
+                  href={langUrl(lang, `/openid/providers/${order[0]}/vs/${order[1]}`)}
+                  className="text-sm text-primary hover:underline bg-slate-50 border border-slate-200 rounded-full px-3 py-1"
+                >
+                  {provider.name} vs {p.name}
+                </Link>
+              )
+            })}
+        </div>
       </div>
 
       <div className="flex flex-col gap-8 max-w-full mt-8">

@@ -1,29 +1,15 @@
-import { FeatureStatus } from '@/lib/types'
 import { openIDConnectFeatures, providers } from '@/data/openid/providers'
+import { createProviderListHelpers } from '@/lib/provider-list'
 
 export const getOpenIDConnectFeatures = () => {
   return openIDConnectFeatures
 }
 
-export const getProviders = () => {
-  return [...providers].sort((a, b) => {
-    const countSupported = (p: typeof a) =>
-      p.featureList.filter((f) => f.status === FeatureStatus.Supported).length
-    return countSupported(b) - countSupported(a)
-  })
-}
+const helpers = createProviderListHelpers(providers)
 
-export const getProvidersByNationalities = (nationalities: string[]) => {
-  return getProviders().filter(
-    (p) => p.nationality && nationalities.includes(p.nationality)
-  )
-}
-
-export const getProviderById = (id: string) => {
-  return getProviders().find((p) => p.identifier === id)
-}
-
-export const getProviderFeature = (providerId: string, featureId: string) => {
-  const provider = getProviderById(providerId)
-  return provider?.featureList.find((f) => f.identifier === featureId)
-}
+export const getProviders = helpers.getAll
+export const getProvidersByNationalities = helpers.getByNationalities
+export const getProviderById = helpers.getById
+export const getProviderFeature = helpers.getFeature
+export const getProviderVsPairs = helpers.getVsPairs
+export const getProviderVsOrder = helpers.getVsOrder

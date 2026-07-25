@@ -6,7 +6,7 @@ import type { Metadata } from 'next'
 
 import { FeatureStatus } from '@/lib/types'
 import { getFeaturesCategories, IAMFeatureCategory, type IAMFeature, type IAMProvider } from '@/data/iam/index'
-import { getIAMProviderById, getIAMProviderFeature, getIAMProviders } from '@/lib/iam-providers'
+import { getIAMProviderById, getIAMProviderFeature, getIAMProviders, getIAMProviderVsOrder } from '@/lib/iam-providers'
 import { providers as openIDProviders } from '@/data/openid/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
@@ -145,6 +145,30 @@ export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: st
             t={t}
           />
         ))}
+      </div>
+
+      <div className="flex flex-col gap-4 max-w-full mt-8 w-full">
+        <h2 className="text-2xl font-semibold leading-none tracking-tight">{t.compareWith}</h2>
+        <div className="flex flex-wrap gap-2">
+          {getIAMProviders()
+            .filter((p) => p.identifier !== provider.identifier)
+            .map((p) => {
+              const order = getIAMProviderVsOrder(provider.identifier, p.identifier)
+              if (!order) {
+                return null
+              }
+
+              return (
+                <Link
+                  key={`vs-${p.identifier}`}
+                  href={langUrl(lang, `/iam/providers/${order[0]}/vs/${order[1]}`)}
+                  className="text-sm text-primary hover:underline bg-slate-50 border border-slate-200 rounded-full px-3 py-1"
+                >
+                  {provider.name} vs {p.name}
+                </Link>
+              )
+            })}
+        </div>
       </div>
 
       <div className="flex flex-col gap-8 max-w-full mt-8">

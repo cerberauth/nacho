@@ -375,7 +375,19 @@
         "description": "La méthode d'authentification par Passkey est utilisée par les utilisateurs pour s'authentifier avec leur passkey (FIDO2/WebAuthn)."
       }
     },
-    "browseByCountry": "Parcourir par pays"
+    "browseByCountry": "Parcourir par pays",
+    "compareWith": "Comparer avec d'autres fournisseurs"
+  },
+  "iamProvidersVs": {
+    "metaTitle": "{nameA} vs {nameB}",
+    "description": "Comparez {nameA} et {nameB} côte à côte selon les méthodes d'authentification, la gestion des utilisateurs, la conformité, la sécurité et les fonctionnalités d'intégration pour les développeurs.",
+    "featuresTitle": "Comparaison des fonctionnalités",
+    "verdict": "{nameA} prend en charge {countA} des {total} fonctionnalités suivies, {nameB} en prend en charge {countB}.",
+    "compareNote": "Vous cherchez une autre comparaison ?",
+    "browseAll": "Voir le benchmark complet des fournisseurs d'identité (C)IAM",
+    "lookingForOpenID": "Vous cherchez leur compatibilité avec le protocole OpenID Connect ?",
+    "viewOnOpenID": "Comparez {nameA} vs {nameB} sur OpenID Connect",
+    "moreComparisons": "Plus de comparaisons pour {name}"
   },
   "openidProviders": {
     "title": "Benchmark des fournisseurs OpenID Connect",
@@ -383,6 +395,7 @@
     "description": "Comparez les fournisseurs OpenID Connect selon les grant types, les méthodes d'authentification du token endpoint, les extensions, les endpoints, la conformité FAPI et les fonctionnalités du protocole.",
     "lookingForIAM": "Vous cherchez des fonctionnalités (C)IAM comme MFA, SSO, gestion des utilisateurs et conformité ?",
     "checkIAM": "Consultez le benchmark des fournisseurs d'identité (C)IAM",
+    "focusNote": "Cette page se concentre sur la prise en charge du protocole OpenID Connect par {name}.",
     "featuresTitle": "Fonctionnalités",
     "faq": "Foire aux questions",
     "compareNote": "Si vous souhaitez comparer les fonctionnalités OpenID Connect de différents fournisseurs, consultez le",
@@ -427,7 +440,20 @@
         "description": "Période de grâce/recouvrement (leeway/overlap) permettant à un refresh token de rotation précédemment utilisé de rester valide pendant une courte période afin de limiter les conditions de concurrence et les échecs de requêtes réseau."
       }
     },
-    "browseByCountry": "Parcourir par pays"
+    "browseByCountry": "Parcourir par pays",
+    "compareWith": "Comparer avec d'autres fournisseurs"
+  },
+  "openidProvidersVs": {
+    "metaTitle": "{nameA} vs {nameB}",
+    "description": "Comparez {nameA} et {nameB} côte à côte selon les grant types, les méthodes d'authentification du token endpoint, les extensions, les endpoints, la conformité FAPI et les fonctionnalités du protocole.",
+    "focusNote": "Cette comparaison se concentre sur la prise en charge du protocole OpenID Connect par {nameA} et {nameB}.",
+    "featuresTitle": "Comparaison des fonctionnalités",
+    "verdict": "{nameA} prend en charge {countA} des {total} fonctionnalités suivies, {nameB} en prend en charge {countB}.",
+    "compareNote": "Vous cherchez une autre comparaison ?",
+    "browseAll": "Voir le benchmark complet des fournisseurs OpenID Connect",
+    "lookingForIAM": "Vous cherchez leurs fonctionnalités (C)IAM comme MFA, SSO et gestion des utilisateurs ?",
+    "viewOnIAM": "Comparez {nameA} vs {nameB} sur les fonctionnalités (C)IAM",
+    "moreComparisons": "Plus de comparaisons pour {name}"
   },
   "iamProvidersCountry": {
     "title": "Meilleur fournisseur d'identité (C)IAM pour {country}",
