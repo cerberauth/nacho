@@ -362,7 +362,19 @@
       "advanced": "Advanced / Differentiators"
     },
     "features": {},
-    "browseByCountry": "Browse by country"
+    "browseByCountry": "Browse by country",
+    "compareWith": "Compare with other providers"
+  },
+  "iamProvidersVs": {
+    "metaTitle": "{nameA} vs {nameB}",
+    "description": "Compare {nameA} and {nameB} side by side across authentication methods, user management, compliance, security, and developer integration features.",
+    "featuresTitle": "Feature Comparison",
+    "verdict": "{nameA} supports {countA} of {total} tracked features, {nameB} supports {countB}.",
+    "compareNote": "Looking for a different comparison?",
+    "browseAll": "See the full (C)IAM Identity Providers benchmark",
+    "lookingForOpenID": "Looking for their OpenID Connect protocol compatibility?",
+    "viewOnOpenID": "Compare {nameA} vs {nameB} on OpenID Connect",
+    "moreComparisons": "More {name} comparisons"
   },
   "openidProviders": {
     "title": "OpenID Connect Providers Benchmark",
@@ -370,6 +382,7 @@
     "description": "Compare OpenID Connect providers across grant types, token endpoint authentication methods, extensions, endpoints, FAPI compliance, and protocol features.",
     "lookingForIAM": "Looking for (C)IAM features like MFA, SSO, user management, and compliance?",
     "checkIAM": "Check out the (C)IAM Identity Providers benchmark",
+    "focusNote": "This page focuses on {name}'s OpenID Connect protocol support.",
     "featuresTitle": "Features",
     "faq": "Frequently Asked Questions",
     "compareNote": "If you want to compare OpenID Connect features of different providers, please check out the",
@@ -401,7 +414,20 @@
       "fapi": "Financial-grade API (FAPI)"
     },
     "features": {},
-    "browseByCountry": "Browse by country"
+    "browseByCountry": "Browse by country",
+    "compareWith": "Compare with other providers"
+  },
+  "openidProvidersVs": {
+    "metaTitle": "{nameA} vs {nameB}",
+    "description": "Compare {nameA} and {nameB} side by side across grant types, token endpoint authentication methods, extensions, endpoints, FAPI compliance, and protocol features.",
+    "focusNote": "This comparison focuses on {nameA} and {nameB}'s OpenID Connect protocol support.",
+    "featuresTitle": "Feature Comparison",
+    "verdict": "{nameA} supports {countA} of {total} tracked features, {nameB} supports {countB}.",
+    "compareNote": "Looking for a different comparison?",
+    "browseAll": "See the full OpenID Connect Providers benchmark",
+    "lookingForIAM": "Looking for their (C)IAM features like MFA, SSO, and user management?",
+    "viewOnIAM": "Compare {nameA} vs {nameB} on (C)IAM features",
+    "moreComparisons": "More {name} comparisons"
   },
   "iamProvidersCountry": {
     "title": "Best (C)IAM Identity Provider for {country}",

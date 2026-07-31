@@ -1,25 +1,11 @@
-import { FeatureStatus } from '@/lib/types'
 import { providers } from '@/data/iam/index'
+import { createProviderListHelpers } from '@/lib/provider-list'
 
-export const getIAMProviders = () => {
-  return [...providers].sort((a, b) => {
-    const countSupported = (p: typeof a) =>
-      p.featureList.filter((f) => f.status === FeatureStatus.Supported).length
-    return countSupported(b) - countSupported(a)
-  })
-}
+const helpers = createProviderListHelpers(providers)
 
-export const getIAMProvidersByNationalities = (nationalities: string[]) => {
-  return getIAMProviders().filter(
-    (p) => p.nationality && nationalities.includes(p.nationality)
-  )
-}
-
-export const getIAMProviderById = (id: string) => {
-  return getIAMProviders().find((p) => p.identifier === id)
-}
-
-export const getIAMProviderFeature = (providerId: string, featureId: string) => {
-  const provider = getIAMProviderById(providerId)
-  return provider?.featureList.find((f) => f.identifier === featureId)
-}
+export const getIAMProviders = helpers.getAll
+export const getIAMProvidersByNationalities = helpers.getByNationalities
+export const getIAMProviderById = helpers.getById
+export const getIAMProviderFeature = helpers.getFeature
+export const getIAMProviderVsPairs = helpers.getVsPairs
+export const getIAMProviderVsOrder = helpers.getVsOrder
