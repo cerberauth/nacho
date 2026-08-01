@@ -16,7 +16,7 @@ const eslintConfig = [...nextCoreWebVitals, ...nextTypescript, ...compat.extends
     '@typescript-eslint/no-explicit-any': 'warn'
   }
 }, {
-  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts"]
+  ignores: ["node_modules/**", ".next/**", "out/**", "build/**", "next-env.d.ts", ".open-next/**", ".wrangler/**"]
 }]
 
 export default eslintConfig
