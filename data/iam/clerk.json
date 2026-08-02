@@ -16,40 +16,62 @@
     "pricingModel": "mau",
     "pricingUrl": "https://clerk.com/pricing",
     "plans": [
-      { "name": "Free", "price": "Free" },
-      { "name": "Pro", "price": "$20/month (annual) / $25/month" },
-      { "name": "Business", "price": "$250/month (annual) / $300/month" },
-      { "name": "Enterprise", "price": "Custom" }
+      {
+        "name": "Free",
+        "price": "Free"
+      },
+      {
+        "name": "Pro",
+        "price": "$20/month (annual) / $25/month"
+      },
+      {
+        "name": "Business",
+        "price": "$250/month (annual) / $300/month"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom"
+      }
     ]
   },
   "featureList": [
     {
       "identifier": "username_and_password_authentication",
       "status": "supported",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"
+      ]
     },
     {
       "identifier": "social_sign_in_authentication",
       "status": "supported",
       "description": "20+ OAuth providers. Free plan limited to 3 social connections; Pro and above allow unlimited connections.",
-      "links": ["https://clerk.com/docs/authentication/social-connections/overview"]
+      "links": [
+        "https://clerk.com/docs/authentication/social-connections/overview"
+      ]
     },
     {
       "identifier": "passkey_authentication",
       "status": "supported",
       "description": "Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#passkeys"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#passkeys"
+      ]
     },
     {
       "identifier": "email_passwordless_authentication",
       "status": "supported",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"
+      ]
     },
     {
       "identifier": "phone_passwordless_authentication",
       "status": "supported",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"
+      ]
     },
     {
       "identifier": "magic_link_authentication",
@@ -60,34 +82,44 @@
       "identifier": "anonymous_authentication",
       "status": "not_supported",
       "description": "Anonymous/guest authentication is not supported. It is listed on Clerk's product roadmap.",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"
+      ]
     },
     {
       "identifier": "totp_mfa",
       "status": "supported",
       "description": "Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "hotp_mfa",
       "status": "not_supported",
       "description": "Not supported. Clerk favors TOTP and WebAuthn/Passkeys.",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "u2f_mfa",
       "status": "supported",
       "description": "Supported via WebAuthn/Passkey implementation (roaming and platform authenticators). Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "webauthn_mfa",
       "status": "supported",
       "description": "Hardware security key MFA available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "email_code_mfa",
@@ -98,30 +130,40 @@
       "status": "supported",
       "description": "SMS MFA available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "recovery_code_mfa",
       "status": "supported",
       "description": "Backup codes for MFA recovery. Requires MFA to be enabled (Pro plan and above).",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "push_notification_mfa",
       "status": "not_supported",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "adaptive_mfa",
       "status": "not_supported",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "cisco_duo_mfa",
       "status": "not_supported",
       "description": "No native Cisco Duo integration. Duo can be used as a generic TOTP authenticator app but there is no dedicated Duo MFA provider.",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options#multi-factor-authentication"
+      ]
     },
     {
       "identifier": "step_up_authentication",
@@ -141,45 +183,59 @@
       "status": "supported",
       "description": "SAML SSO as identity provider and service provider. Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/saml/overview"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/saml/overview"
+      ]
     },
     {
       "identifier": "ws_federation_protocol",
       "status": "not_supported",
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"
+      ]
     },
     {
       "identifier": "machine_to_machine",
       "status": "supported",
       "description": "M2M tokens are generally available (since October 2025). Supports opaque tokens and JWTs for authenticating requests between backend services.",
-      "links": ["https://clerk.com/docs/guides/development/machine-auth/overview"]
+      "links": [
+        "https://clerk.com/docs/guides/development/machine-auth/overview"
+      ]
     },
     {
       "identifier": "oidc_federation",
       "status": "supported",
       "description": "OIDC enterprise SSO connections per organization. Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/oidc/overview"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/oidc/overview"
+      ]
     },
     {
       "identifier": "saml_federation",
       "status": "supported",
       "description": "SAML enterprise SSO connections per organization. Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/saml/overview"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/saml/overview"
+      ]
     },
     {
       "identifier": "active_directory_ldap",
       "status": "not_supported",
       "description": "No native LDAP/Active Directory protocol support. Microsoft Entra ID is supported via SAML/OIDC enterprise connections.",
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/overview"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/overview"
+      ]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
       "description": "Microsoft Entra ID SSO via SAML/OIDC enterprise connections. Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/saml/azure"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/saml/azure"
+      ]
     },
     {
       "identifier": "bulk_user_import",
@@ -214,7 +270,9 @@
       "identifier": "legacy_username_import",
       "status": "not_supported",
       "description": "Clerk enforces username restrictions: Latin-based characters only (4-64 chars), no special characters (^$!.#+~). Legacy usernames with special characters or non-Latin scripts cannot be imported.",
-      "links": ["https://clerk.com/docs/authentication/configuration/restrictions"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/restrictions"
+      ]
     },
     {
       "identifier": "mfa_enrollment_import",
@@ -233,21 +291,27 @@
       "identifier": "outbound_scim_provisioning",
       "status": "not_supported",
       "description": "Clerk only supports inbound SCIM provisioning (IdP pushes to Clerk). Outbound provisioning (Clerk pushing changes to external apps) is not supported.",
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/directory-sync"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/directory-sync"
+      ]
     },
     {
       "identifier": "scim_groups",
       "status": "partial",
       "description": "Group/role sync via SCIM B2B Auth add-on. IdP groups are mapped to Clerk roles. Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/directory-sync"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/directory-sync"
+      ]
     },
     {
       "identifier": "jit_provisioning",
       "status": "supported",
       "description": "Just-in-time provisioning via enterprise SSO connections. Requires Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/enterprise-connections/jit-provisioning"]
+      "links": [
+        "https://clerk.com/docs/authentication/enterprise-connections/jit-provisioning"
+      ]
     },
     {
       "identifier": "lazy_migration",
@@ -265,7 +329,9 @@
     {
       "identifier": "account_linking",
       "status": "supported",
-      "links": ["https://clerk.com/docs/authentication/social-connections/account-linking"]
+      "links": [
+        "https://clerk.com/docs/authentication/social-connections/account-linking"
+      ]
     },
     {
       "identifier": "user_blocking",
@@ -322,14 +388,18 @@
       "identifier": "username_restrictions",
       "status": "supported",
       "description": "Usernames must be 4-64 characters, Latin-based only. Special characters (^$!.#+~) and non-Latin scripts are not allowed to prevent Unicode spoofing attacks.",
-      "links": ["https://clerk.com/docs/authentication/configuration/restrictions"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/restrictions"
+      ]
     },
     {
       "identifier": "progressive_profiling",
       "status": "partial",
       "description": "Customizable sign-up forms with required fields. Available on Pro plan and above.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/sign-up-sign-in-options"
+      ]
     },
     {
       "identifier": "abac",
@@ -467,7 +537,9 @@
       "identifier": "tenant_acl",
       "status": "not_supported",
       "description": "No IP-based access control lists. Clerk supports email/phone-based allowlists and blocklists for sign-up and sign-in restrictions.",
-      "links": ["https://clerk.com/docs/authentication/configuration/restrictions"]
+      "links": [
+        "https://clerk.com/docs/authentication/configuration/restrictions"
+      ]
     },
     {
       "identifier": "device_fingerprinting",
@@ -570,7 +642,9 @@
       "status": "supported",
       "description": "Official Terraform provider for managing Clerk configuration.",
       "plans": ["Pro", "Business", "Enterprise"],
-      "links": ["https://registry.terraform.io/providers/clerk/clerk/latest/docs"]
+      "links": [
+        "https://registry.terraform.io/providers/clerk/clerk/latest/docs"
+      ]
     },
     {
       "identifier": "custom_database_connections",
@@ -602,7 +676,9 @@
       "identifier": "custom_oidc_claims",
       "status": "supported",
       "description": "Custom claims can be added to session tokens and JWT templates via the Clerk Dashboard. Supports shortcodes for dynamic user attribute values.",
-      "links": ["https://clerk.com/docs/backend-requests/resources/session-tokens"]
+      "links": [
+        "https://clerk.com/docs/backend-requests/resources/session-tokens"
+      ]
     },
     {
       "identifier": "nocode_flow_builder",
@@ -628,6 +704,50 @@
       "status": "supported",
       "description": "Clerk supports MCP server authentication, the @clerk/agent-toolkit for Vercel AI SDK and LangChain, and OAuth-secured MCP endpoints for AI agent identity.",
       "links": ["https://clerk.com/docs/guides/ai/mcp/clerk-mcp-server"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "No direct vendor statement on PQC TLS support found. Clerk's public API (api.clerk.com) responds with 'server: cloudflare' and Cloudflare request-tracing headers, and a Clerk engineer's 2024 blog post describes shifting Clerk's critical-path traffic onto Cloudflare Workers/KV/Durable Objects. Cloudflare enabled hybrid PQC key exchange (X25519+ML-KEM) by default for TLS 1.3 in 2023-2024, but this is infrastructure-inherited, not a Clerk-specific commitment - Cloudflare does not appear on Clerk's own published GDPR subprocessor list (which lists only AWS).",
+      "links": [
+        "https://thekevinwang.com/2024/05/11/on-durable-objects",
+        "https://trust.clerk.io/gdpr/sub-processors"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence Clerk supports ML-DSA/Dilithium, SLH-DSA/SPHINCS+, or FN-DSA/Falcon for JWT/OIDC token signing. A Clerk-published article mentions 'quantum-resistant cryptography preparation' only as generic industry advice, not as a Clerk product capability or commitment.",
+      "links": [
+        "https://clerk.com/articles/authentication-security-in-web-applications"
+      ]
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public roadmap, whitepaper, or trust-center statement found describing a Clerk-specific plan or timeline for migrating to FIPS 203/204/205 algorithms.",
+      "links": ["https://trust.clerk.io/"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

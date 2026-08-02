@@ -13,9 +13,7 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/legal/spec_sheet/"
-      ]
+      "links": ["https://www.authlete.com/legal/spec_sheet/"]
     },
     {
       "identifier": "authorization_code_grant",
@@ -27,9 +25,7 @@
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/pkce/"
-      ]
+      "links": ["https://www.authlete.com/developers/pkce/"]
     },
     {
       "identifier": "jar_extension",
@@ -55,16 +51,12 @@
     {
       "identifier": "client_credentials_grant",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/legal/spec_sheet/"
-      ]
+      "links": ["https://www.authlete.com/legal/spec_sheet/"]
     },
     {
       "identifier": "password_grant",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/legal/spec_sheet/"
-      ]
+      "links": ["https://www.authlete.com/legal/spec_sheet/"]
     },
     {
       "identifier": "refresh_token_grant",
@@ -76,37 +68,27 @@
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/device_flow/"
-      ]
+      "links": ["https://www.authlete.com/developers/device_flow/"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/token_exchange/"
-      ]
+      "links": ["https://www.authlete.com/developers/token_exchange/"]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/ciba/"
-      ]
+      "links": ["https://www.authlete.com/developers/ciba/"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/jwt_authorization_grant/"
-      ]
+      "links": ["https://www.authlete.com/developers/jwt_authorization_grant/"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
       "status": "not_supported",
-      "links": [
-        "https://www.authlete.com/legal/spec_sheet/"
-      ]
+      "links": ["https://www.authlete.com/legal/spec_sheet/"]
     },
     {
       "identifier": "authorization_endpoint",
@@ -118,9 +100,7 @@
     {
       "identifier": "token_endpoint",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/legal/spec_sheet/"
-      ]
+      "links": ["https://www.authlete.com/legal/spec_sheet/"]
     },
     {
       "identifier": "userinfo_endpoint",
@@ -146,9 +126,7 @@
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/device_flow/"
-      ]
+      "links": ["https://www.authlete.com/developers/device_flow/"]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
@@ -274,37 +252,27 @@
     {
       "identifier": "fapi_1_0_baseline",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/fapi/"
-      ]
+      "links": ["https://www.authlete.com/developers/fapi/"]
     },
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/fapi/"
-      ]
+      "links": ["https://www.authlete.com/developers/fapi/"]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/fapi2/"
-      ]
+      "links": ["https://www.authlete.com/developers/fapi2/"]
     },
     {
       "identifier": "fapi_2_0_message_signing",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/fapi2/ms/authres/"
-      ]
+      "links": ["https://www.authlete.com/developers/fapi2/ms/authres/"]
     },
     {
       "identifier": "jarm",
       "status": "supported",
-      "links": [
-        "https://www.authlete.com/developers/fapi2/ms/authres/"
-      ]
+      "links": ["https://www.authlete.com/developers/fapi2/ms/authres/"]
     }
   ]
 }

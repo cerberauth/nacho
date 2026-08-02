@@ -16,6 +16,7 @@ export enum IAMFeatureCategory {
   Compliance = 'compliance',
   DeveloperIntegration = 'developer_integration',
   Advanced = 'advanced',
+  PostQuantum = 'post_quantum_cryptography',
 }
 
 export type IAMFeature = {
@@ -259,6 +260,18 @@ export const getFeaturesCategories = (dict: any) => [
     identifier: IAMFeatureCategory.Advanced,
     features: iamFeatures.featureList
       .filter((feature) => feature.category === IAMFeatureCategory.Advanced)
+      .map((feature) => ({
+        ...feature,
+        name: dict.features?.[feature.identifier]?.name || feature.name,
+        description: dict.features?.[feature.identifier]?.description || feature.description,
+      })),
+  },
+
+  {
+    name: dict.categories.post_quantum_cryptography,
+    identifier: IAMFeatureCategory.PostQuantum,
+    features: iamFeatures.featureList
+      .filter((feature) => feature.category === IAMFeatureCategory.PostQuantum)
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,

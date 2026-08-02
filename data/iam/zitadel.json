@@ -16,10 +16,22 @@
     "pricingModel": "freemium",
     "pricingUrl": "https://zitadel.com/pricing",
     "plans": [
-      { "name": "Free", "price": "US$0/month (100 DAU, cloud)" },
-      { "name": "Pro", "price": "US$100/month (25,000 DAU, cloud)" },
-      { "name": "Enterprise", "price": "Custom (cloud or self-hosted)" },
-      { "name": "Open Source", "price": "Free (self-hosted)" }
+      {
+        "name": "Free",
+        "price": "US$0/month (100 DAU, cloud)"
+      },
+      {
+        "name": "Pro",
+        "price": "US$100/month (25,000 DAU, cloud)"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom (cloud or self-hosted)"
+      },
+      {
+        "name": "Open Source",
+        "price": "Free (self-hosted)"
+      }
     ]
   },
   "featureList": [
@@ -32,7 +44,9 @@
       "identifier": "social_sign_in_authentication",
       "status": "supported",
       "description": "Built-in templates for Google, GitHub, GitLab, Apple, Entra ID, Okta, and any generic OIDC or SAML 2.0 identity provider.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/introduction"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/introduction"
+      ]
     },
     {
       "identifier": "passkey_authentication",
@@ -113,7 +127,9 @@
       "identifier": "adaptive_mfa",
       "status": "partial",
       "description": "Login Policies allow enforcing MFA at the instance or per-organization level. No risk-based or fully adaptive MFA engine built in.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "cisco_duo_mfa",
@@ -124,7 +140,9 @@
       "identifier": "step_up_authentication",
       "status": "supported",
       "description": "Step-up authentication via ACR values and Login Policies that enforce re-authentication or additional factors for sensitive operations.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "oidc_protocol",
@@ -145,31 +163,41 @@
       "identifier": "machine_to_machine",
       "status": "supported",
       "description": "Service users with OAuth 2.0 client credentials grant for M2M and backend-to-backend authentication.",
-      "links": ["https://zitadel.com/docs/guides/integrate/service-users/authenticate-service-users"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/service-users/authenticate-service-users"
+      ]
     },
     {
       "identifier": "oidc_federation",
       "status": "supported",
       "description": "Generic OIDC identity provider template for federating with any OpenID Connect provider. Pre-built templates for Google, GitHub, GitLab, Apple, Entra ID, Okta.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/introduction"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/introduction"
+      ]
     },
     {
       "identifier": "saml_federation",
       "status": "supported",
       "description": "SAML 2.0 identity provider federation for enterprise SSO. Pre-built templates for Entra ID and Okta SAML.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/introduction"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/introduction"
+      ]
     },
     {
       "identifier": "active_directory_ldap",
       "status": "supported",
       "description": "LDAP identity provider for federating with Active Directory and LDAP-compatible directories.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/introduction"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/introduction"
+      ]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
       "description": "Built-in Entra ID (Azure AD) identity provider templates for both OIDC and SAML 2.0 federation.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/azure-ad"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/azure-ad"
+      ]
     },
     {
       "identifier": "bulk_user_import",
@@ -233,7 +261,9 @@
       "identifier": "jit_provisioning",
       "status": "supported",
       "description": "Users are automatically created on first login via a federated identity provider without pre-provisioning.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/introduction"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/introduction"
+      ]
     },
     {
       "identifier": "lazy_migration",
@@ -251,7 +281,9 @@
       "identifier": "account_linking",
       "status": "supported",
       "description": "Link external identity providers (social, enterprise, LDAP) to an existing Zitadel user account.",
-      "links": ["https://zitadel.com/docs/guides/integrate/identity-providers/introduction"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/identity-providers/introduction"
+      ]
     },
     {
       "identifier": "user_blocking",
@@ -298,13 +330,17 @@
       "identifier": "password_strength_policy",
       "status": "supported",
       "description": "Configurable password complexity policies (minimum length, character requirements) at instance and organization level.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "username_restrictions",
       "status": "supported",
       "description": "Username format and character restrictions configurable via login policies.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "progressive_profiling",
@@ -326,7 +362,9 @@
       "identifier": "api_authorization",
       "status": "supported",
       "description": "OAuth 2.0 scopes and project roles for API authorization. Supports token introspection for API resource servers.",
-      "links": ["https://zitadel.com/docs/guides/integrate/token-introspection/"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/token-introspection/"
+      ]
     },
     {
       "identifier": "soc2_type2",
@@ -429,7 +467,9 @@
       "identifier": "brute_force_protection",
       "status": "supported",
       "description": "Configurable lockout policy: lock user accounts after a defined number of failed login attempts.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "suspicious_ip_throttling",
@@ -449,7 +489,9 @@
       "identifier": "tenant_acl",
       "status": "partial",
       "description": "Allowed origins and CORS configuration available at instance level. No IP-based access control lists built into the application layer.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "device_fingerprinting",
@@ -466,7 +508,9 @@
       "identifier": "per_org_mfa_policy",
       "status": "supported",
       "description": "Login Policies configurable per organization, allowing different MFA requirements per tenant.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "hosted_login_page",
@@ -520,7 +564,9 @@
       "identifier": "authentication_api_rate_limits",
       "status": "supported",
       "description": "Rate limits enforced on authentication endpoints. Configurable per instance.",
-      "links": ["https://zitadel.com/docs/guides/manage/console/default-settings"]
+      "links": [
+        "https://zitadel.com/docs/guides/manage/console/default-settings"
+      ]
     },
     {
       "identifier": "actions_extensibility",
@@ -550,7 +596,9 @@
       "identifier": "terraform_provider",
       "status": "supported",
       "description": "Official Terraform provider (registry.terraform.io/providers/zitadel/zitadel) for managing all Zitadel resources as code.",
-      "links": ["https://registry.terraform.io/providers/zitadel/zitadel/latest/docs"]
+      "links": [
+        "https://registry.terraform.io/providers/zitadel/zitadel/latest/docs"
+      ]
     },
     {
       "identifier": "custom_database_connections",
@@ -611,7 +659,50 @@
       "identifier": "agentic_identity",
       "status": "partial",
       "description": "Service users with OAuth 2.0 client credentials grant and JWT profile support machine and AI agent authentication. No dedicated MCP server auth or agentic identity features.",
-      "links": ["https://zitadel.com/docs/guides/integrate/service-users/authenticate-service-users"]
+      "links": [
+        "https://zitadel.com/docs/guides/integrate/service-users/authenticate-service-users"
+      ]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "Zitadel is written in Go and supports a native 'TLS enabled' mode where its Go HTTP/2 server serves HTTPS directly. While Go 1.24 (Feb 2025) enables X25519MLKEM768 hybrid key exchange by default in crypto/tls, no Zitadel-specific statement or documentation confirms PQC TLS support, and most self-hosted deployments use an external reverse proxy. Without vendor evidence, status is unknown.",
+      "links": [
+        "https://github.com/golang/go/issues/69985",
+        "https://zitadel.com/docs/self-hosting/manage/tls_modes"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of ML-DSA/SLH-DSA/Falcon support for OIDC ID token or JWT signing in Zitadel. No GitHub issues or discussions proposing PQC signature algorithms were found in the zitadel/zitadel repository."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public roadmap, blog post, or GitHub discussion found describing PQC migration plans for Zitadel. Zitadel's Trust Center does not surface any mention of post-quantum or quantum-safe cryptography in accessible content.",
+      "links": ["https://trust.zitadel.com/"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

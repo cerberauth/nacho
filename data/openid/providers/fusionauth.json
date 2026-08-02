@@ -74,9 +74,7 @@
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "not_supported",
-      "links": [
-        "https://github.com/FusionAuth/fusionauth-issues/issues/1943"
-      ]
+      "links": ["https://github.com/FusionAuth/fusionauth-issues/issues/1943"]
     },
     {
       "identifier": "urn:openid:params:grant-type:ciba",
@@ -232,9 +230,7 @@
     {
       "identifier": "dpop",
       "status": "not_supported",
-      "links": [
-        "https://github.com/FusionAuth/fusionauth-issues/issues/1679"
-      ]
+      "links": ["https://github.com/FusionAuth/fusionauth-issues/issues/1679"]
     },
     {
       "identifier": "fapi_1_0_baseline",

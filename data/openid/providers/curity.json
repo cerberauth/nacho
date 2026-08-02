@@ -14,9 +14,7 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "links": [
-        "https://curity.io/resources/learn/openid-connect-overview/"
-      ]
+      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
     },
     {
       "identifier": "authorization_code_grant",
@@ -28,9 +26,7 @@
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": [
-        "https://curity.io/resources/learn/oauth-pkce/"
-      ]
+      "links": ["https://curity.io/resources/learn/oauth-pkce/"]
     },
     {
       "identifier": "par_extension",
@@ -163,23 +159,17 @@
     {
       "identifier": "none_prompt",
       "status": "supported",
-      "links": [
-        "https://curity.io/resources/learn/openid-connect-overview/"
-      ]
+      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
     },
     {
       "identifier": "login_prompt",
       "status": "supported",
-      "links": [
-        "https://curity.io/resources/learn/openid-connect-overview/"
-      ]
+      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
     },
     {
       "identifier": "consent_prompt",
       "status": "supported",
-      "links": [
-        "https://curity.io/resources/learn/openid-connect-overview/"
-      ]
+      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
     },
     {
       "identifier": "select_account_prompt",
@@ -260,9 +250,7 @@
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": [
-        "https://curity.io/resources/learn/openid-connect-overview/"
-      ]
+      "links": ["https://curity.io/resources/learn/openid-connect-overview/"]
     },
     {
       "identifier": "dpop",
@@ -288,17 +276,13 @@
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "supported",
-      "links": [
-        "https://curity.io/blog/the-state-of-fapi-2/"
-      ]
+      "links": ["https://curity.io/blog/the-state-of-fapi-2/"]
     },
     {
       "identifier": "fapi_2_0_message_signing",
       "status": "partial",
       "description": "FAPI 2.0 Message Signing profile support is in progress; JARM is implemented but full message signing certification is pending.",
-      "links": [
-        "https://curity.io/blog/the-state-of-fapi-2/"
-      ]
+      "links": ["https://curity.io/blog/the-state-of-fapi-2/"]
     },
     {
       "identifier": "jarm",

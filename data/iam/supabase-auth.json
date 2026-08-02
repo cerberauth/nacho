@@ -1,12 +1,13 @@
 {
   "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
   "name": "Supabase Auth",
-  "abstract": "Open-source Postgres-native authentication with RLS-based authorization. 50K MAU free tier, self-hostable, bundled with a full backend platform including database, storage, and edge functions.",
+  "abstract": "Open-source Postgres-native authentication backed by GoTrue. 50K MAU free tier, self-hostable on any infrastructure, and tightly integrated with the Supabase platform (database, storage, edge functions). Row Level Security is the authorization primitive.",
   "identifier": "supabase-auth",
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/supabase-auth.svg"
   },
   "website": "https://supabase.com/docs/guides/auth",
+  "github": "https://github.com/supabase/auth",
   "license": "Apache 2.0",
   "nationality": "USA",
   "pricing": {
@@ -15,77 +16,860 @@
     "pricingModel": "mau",
     "pricingUrl": "https://supabase.com/pricing",
     "plans": [
-      { "name": "Free", "price": "Free (50K MAU)" },
-      { "name": "Pro", "price": "$25/month" },
-      { "name": "Team", "price": "$599/month" },
-      { "name": "Enterprise", "price": "Custom" }
+      {
+        "name": "Free",
+        "price": "Free"
+      },
+      {
+        "name": "Pro",
+        "price": "$25/month"
+      },
+      {
+        "name": "Team",
+        "price": "$599/month"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom"
+      }
     ]
   },
   "featureList": [
-    { "identifier": "username_and_password_authentication", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/password-based/email-password"] },
-    { "identifier": "social_sign_in_authentication", "status": "supported", "description": "20+ OAuth providers", "links": ["https://supabase.com/docs/guides/auth/social-login"] },
-    { "identifier": "magic_link_authentication", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/passwordless/magic-link"] },
-    { "identifier": "phone_passwordless_authentication", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/passwordless/phone"] },
-    { "identifier": "email_passwordless_authentication", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/passwordless/email-otp"] },
-    { "identifier": "passkey_authentication", "status": "partial", "description": "Supported as a second factor (MFA) for existing users.", "links": ["https://supabase.com/docs/guides/auth/auth-mfa"] },
-    { "identifier": "anonymous_authentication", "status": "supported" },
-    { "identifier": "totp_mfa", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/auth-mfa/totp"] },
-    { "identifier": "hotp_mfa", "status": "not_supported" },
-    { "identifier": "u2f_mfa", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/auth-mfa/totp"] },
-    { "identifier": "webauthn_mfa", "status": "supported", "links": ["https://supabase.com/docs/guides/auth/auth-mfa/totp"] },
-    { "identifier": "phone_code_mfa", "status": "supported", "description": "Phone MFA (SMS/WhatsApp) as paid factor on Pro+.", "links": ["https://supabase.com/docs/guides/auth/auth-mfa/phone"] },
-    { "identifier": "email_code_mfa", "status": "not_supported" },
-    { "identifier": "recovery_code_mfa", "status": "not_supported", "description": "Not supported. Supabase recommends enrolling multiple factors to prevent lockout." },
-    { "identifier": "push_notification_mfa", "status": "not_supported", "description": "Supported via SAML/OIDC integration with external providers.", "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"] },
-    { "identifier": "adaptive_mfa", "status": "not_supported", "description": "Supported via SAML/OIDC integration with external providers.", "links": ["https://supabase.com/docs/guides/auth/sso"] },
-    { "identifier": "cisco_duo_mfa", "status": "not_supported", "description": "Supported via SAML/OIDC integration.", "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"] },
-    { "identifier": "step_up_authentication", "status": "supported", "description": "Supported via session level verification (AAL check).", "links": ["https://supabase.com/docs/guides/auth/auth-mfa#step-up-authentication-aal"] },
-    { "identifier": "saml2_protocol", "status": "supported", "description": "Available on Pro+ at $0.015/SAML SSO MAU" },
-    { "identifier": "oidc_protocol", "status": "supported" },
-    { "identifier": "machine_to_machine", "status": "supported", "description": "OAuth 2.1 server for M2M and MCP auth" },
-    { "identifier": "user_search", "status": "supported" },
-    { "identifier": "bulk_user_import", "status": "supported" },
-    { "identifier": "user_metadata", "status": "supported" },
-    { "identifier": "progressive_profiling", "status": "not_supported" },
-    { "identifier": "account_linking", "status": "supported" },
-    { "identifier": "rbac", "status": "partial", "description": "Via Row Level Security + custom claims; no built-in RBAC UI" },
-    { "identifier": "abac", "status": "supported", "description": "Row Level Security policies provide attribute-based control" },
-    { "identifier": "fine_grained_authorization", "status": "partial", "description": "RLS provides row-level granularity but no ReBAC graph model" },
-    { "identifier": "api_authorization", "status": "supported" },
-    { "identifier": "brute_force_protection", "status": "supported" },
-    { "identifier": "breached_password_detection", "status": "not_supported" },
-    { "identifier": "bot_detection", "status": "not_supported" },
-    { "identifier": "suspicious_ip_throttling", "status": "not_supported" },
-    { "identifier": "device_fingerprinting", "status": "not_supported" },
-    { "identifier": "organizations_multitenancy", "status": "not_supported", "description": "Must be built manually via RLS and custom tables" },
-    { "identifier": "per_org_branding", "status": "not_supported" },
-    { "identifier": "per_org_mfa_policy", "status": "not_supported" },
-    { "identifier": "inbound_scim_provisioning", "status": "not_supported" },
-    { "identifier": "universal_login_customization", "status": "supported" },
-    { "identifier": "embedded_login", "status": "supported" },
-    { "identifier": "custom_domain", "status": "supported", "description": "Available on Pro+" },
-    { "identifier": "white_label", "status": "supported" },
-    { "identifier": "localization", "status": "partial" },
-    { "identifier": "prebuilt_ui_components", "status": "supported", "description": "supabase-js SDK plus community UI kits" },
-    { "identifier": "custom_database_connections", "status": "supported", "description": "Postgres is the database — fully accessible" },
-    { "identifier": "oidc_federation", "status": "not_supported" },
-    { "identifier": "saml_federation", "status": "supported", "description": "SAML 2.0 SSO per organization available on Pro+.", "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"] },
-    { "identifier": "active_directory_ldap", "status": "not_supported" },
-    { "identifier": "native_webhooks", "status": "supported", "description": "Database webhooks and Edge Functions" },
-    { "identifier": "actions_extensibility", "status": "supported", "description": "Edge Functions and database triggers" },
-    { "identifier": "terraform_provider", "status": "supported" },
-    { "identifier": "lazy_migration", "status": "partial" },
-    { "identifier": "password_hash_import", "status": "partial" },
-    { "identifier": "login_analytics", "status": "partial" },
-    { "identifier": "audit_log_retention", "status": "partial", "description": "Via Postgres logs" },
-    { "identifier": "audit_log_streaming", "status": "partial", "description": "Log drains available on Pro+" },
-    { "identifier": "consent_management", "status": "not_supported" },
-    { "identifier": "region_deployment", "status": "supported", "description": "12+ AWS regions available on Pro+.", "values": ["US", "EU", "AP", "CA", "SA"] },
-    { "identifier": "private_cloud_deployment", "status": "supported", "description": "Supabase Cloud runs on AWS; self-hosted deployable on any cloud.", "values": ["AWS", "Azure", "GCP"] },
-    { "identifier": "nocode_flow_builder", "status": "not_supported" },
-    { "identifier": "identity_proofing", "status": "not_supported" },
-    { "identifier": "decentralized_identity", "status": "not_supported" },
-    { "identifier": "billing_integration", "status": "not_supported" },
-    { "identifier": "agentic_identity", "status": "partial", "description": "OAuth 2.1 server supports MCP auth flows" }
+    {
+      "identifier": "username_and_password_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "description": "Email and password authentication available on all plans. Supports sign-up, sign-in, password reset via email, and email confirmation flows. Passwords stored as bcrypt hashes. Email enumeration protection is configurable.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/password-based/email-password"
+      ]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "description": "20 built-in OAuth providers: Google, Facebook, Apple, Azure/Microsoft, Twitter/X, GitHub, GitLab, Bitbucket, Discord, Figma, Kakao, Keycloak, LinkedIn, Notion, Slack, Spotify, Twitch, WorkOS, Zoom, and Fly.io. Additional custom OAuth2/OIDC providers configurable via the dashboard.",
+      "links": ["https://supabase.com/docs/guides/auth/social-login"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "category": "authentication_methods",
+      "status": "partial",
+      "description": "Passkeys (WebAuthn) are supported as an MFA factor for existing authenticated users, not as a standalone primary sign-in method. Users must first register with another method (email/password, magic link, etc.) before enrolling a passkey as a second factor.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "description": "Email OTP (6-digit one-time code) for passwordless sign-in. Rate limited to 30 OTPs per hour project-wide and 60-second window per user before a new OTP can be requested. Requires custom SMTP for production (built-in SMTP limited to 2 emails/hour).",
+      "links": ["https://supabase.com/docs/guides/auth/passwordless/email-otp"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "description": "Phone OTP via SMS for passwordless sign-in. Supports Twilio, Messagebird, Vonage, and custom SMS hooks. SMS costs are separate from Supabase billing. Requires a configured SMS provider.",
+      "links": ["https://supabase.com/docs/guides/auth/passwordless/phone"]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "description": "Email magic link (one-time URL) for passwordless sign-in. Same rate limits as email OTP: 30 per hour project-wide, 60-second per-user cooldown. Requires custom SMTP for production use.",
+      "links": ["https://supabase.com/docs/guides/auth/passwordless/magic-link"]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "category": "authentication_methods",
+      "status": "supported",
+      "description": "Anonymous sign-ins create a real user record in auth.users without credentials. Anonymous users can be converted to permanent accounts by linking an email, phone, or OAuth identity. Rate limited to 30 anonymous sign-ins per hour per IP address. Available on all plans.",
+      "links": ["https://supabase.com/docs/guides/auth/anonymous-auth"]
+    },
+    {
+      "identifier": "totp_mfa",
+      "category": "mfa",
+      "status": "supported",
+      "description": "TOTP (Time-based One-Time Password) MFA via authenticator apps (Google Authenticator, Authy, etc.). Free on all plans, enabled by default on every Supabase project. 30-second code validity with one-interval clock skew tolerance. Developers are responsible for building the enrollment and challenge UI.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa/totp"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "category": "mfa",
+      "status": "not_supported",
+      "description": "Counter-based HOTP is not supported. Supabase MFA supports TOTP (time-based) and phone/passkey factors only.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "u2f_mfa",
+      "category": "mfa",
+      "status": "supported",
+      "description": "Hardware security keys (YubiKey, etc.) supported as a WebAuthn MFA factor. Implemented via the same WebAuthn/passkey MFA API. Available on all plans.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "category": "mfa",
+      "status": "supported",
+      "description": "WebAuthn/passkey MFA factor (Touch ID, Face ID, Windows Hello, hardware keys). Supported as an additional factor alongside TOTP. Users enroll via the Factor API. Available on all plans.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "category": "mfa",
+      "status": "not_supported",
+      "description": "Email OTP is available as a primary authentication method but not as a dedicated MFA second factor. Supported MFA factors are TOTP, phone (SMS), and WebAuthn/passkeys.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "category": "mfa",
+      "status": "partial",
+      "description": "Phone/SMS MFA available as a paid add-on: $75/month for the first project, $10/month per additional project. Not included in the base Pro or Team plan subscription. Requires a configured SMS provider (Twilio, etc.).",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa/phone"]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "category": "mfa",
+      "status": "not_supported",
+      "description": "Recovery/backup codes are not supported. Supabase recommends enrolling multiple MFA factors (e.g., both TOTP and passkey) to prevent account lockout.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "category": "mfa",
+      "status": "not_supported",
+      "description": "Push notification MFA is not supported natively. Can be approximated by integrating an external IdP (e.g., Okta, Duo) via SAML SSO.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "category": "mfa",
+      "status": "not_supported",
+      "description": "Risk-based or adaptive MFA is not supported. MFA policy is all-or-nothing (require MFA for all users or none). Can be partially implemented via the MFA Verification Attempt hook.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "category": "mfa",
+      "status": "not_supported",
+      "description": "No native Cisco Duo integration. Duo can be reached indirectly by configuring Duo as a SAML IdP via Enterprise SSO (Pro+ plan).",
+      "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "category": "mfa",
+      "status": "supported",
+      "description": "Step-up authentication via Authenticator Assurance Level (AAL) checks. Routes users through MFA verification when accessing sensitive resources by inspecting the `aal` claim in the session JWT. Available on all plans.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/auth-mfa#step-up-authentication-aal"
+      ]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "category": "integration_protocols",
+      "status": "supported",
+      "description": "Supabase Auth issues JWTs compliant with OpenID Connect. The auth server exposes JWKS endpoints for token verification. Acts as an OIDC provider for downstream services and supports OIDC-based social login.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "category": "integration_protocols",
+      "status": "supported",
+      "plans": ["Pro", "Team", "Enterprise"],
+      "description": "SAML 2.0 Single Sign-On available on Pro plan and above. Priced at $0.015 per SSO MAU with 50 SSO MAU included per project. Works with any SAML 2.0-compatible IdP (Google Workspace, Okta, Auth0, Microsoft Entra ID, PingIdentity, OneLogin, etc.).",
+      "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "category": "integration_protocols",
+      "status": "not_supported",
+      "description": "WS-Federation is not supported. Supabase Auth supports OIDC and SAML 2.0 as federation protocols.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "machine_to_machine",
+      "category": "integration_protocols",
+      "status": "supported",
+      "description": "OAuth 2.1 authorization server available for M2M and MCP (Model Context Protocol) auth flows. Service role keys provide admin-level API access for backend services. Anonymous tokens can also serve lightweight M2M patterns.",
+      "links": ["https://supabase.com/docs/guides/auth/server-side"]
+    },
+    {
+      "identifier": "oidc_federation",
+      "category": "identity_federation",
+      "status": "not_supported",
+      "description": "Supabase Auth does not support configuring external OIDC providers as enterprise IdP connections for SSO federation. Only SAML 2.0 is supported for enterprise SSO. Custom OAuth2/OIDC providers can be added for social login but not for federated enterprise identity.",
+      "links": ["https://supabase.com/docs/guides/auth/sso"]
+    },
+    {
+      "identifier": "saml_federation",
+      "category": "identity_federation",
+      "status": "supported",
+      "plans": ["Pro", "Team", "Enterprise"],
+      "description": "SAML 2.0 enterprise identity federation. Supabase acts as the Service Provider (SP). Any SAML 2.0-compatible IdP is supported. Attribute mapping for user metadata configurable. Priced at $0.015/SSO MAU (50 included).",
+      "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "category": "identity_federation",
+      "status": "not_supported",
+      "description": "No native LDAP/Active Directory connector. AD users can federate via SAML 2.0 (e.g., Microsoft Entra ID, ADFS as SAML IdP) on Pro+ plans.",
+      "links": ["https://supabase.com/docs/guides/auth/sso/auth-sso-saml"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "category": "identity_federation",
+      "status": "supported",
+      "description": "Microsoft Entra ID (Azure AD) supported both as a social OAuth provider (Microsoft app) and as an enterprise SAML 2.0 IdP (Pro+ plans). Full attribute mapping available via the SAML SSO configuration.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/social-login/auth-azure",
+        "https://supabase.com/docs/guides/auth/sso/auth-sso-saml"
+      ]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Bulk user import via the Admin API (createUser per user) or directly via SQL INSERT into auth.users. No native bulk import endpoint \u2014 large migrations require scripted API calls or direct database operations. Available on all plans.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-admin-createuser"
+      ]
+    },
+    {
+      "identifier": "password_hash_import",
+      "category": "user_management",
+      "status": "partial",
+      "description": "Password hash import supported for bcrypt and scrypt formats via direct database operations. Limited documentation on supported hash algorithms. Firebase scrypt is specifically documented as importable. MD5, SHA, Argon2 not natively supported without custom migration scripts.",
+      "links": [
+        "https://supabase.com/docs/guides/platform/migrating-to-supabase/auth0"
+      ]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Users can be exported by querying the auth.users and auth.identities tables via the SQL Editor (CSV export available). No dedicated REST endpoint for bulk export \u2014 requires direct database access.",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "category": "user_management",
+      "status": "partial",
+      "description": "Individual update and delete available via Admin API (updateUserById, deleteUser). No bulk update/delete endpoint \u2014 operations must be scripted. Direct SQL DELETE on auth.users also works for mass deletions.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-admin-deleteuser"
+      ]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "No native upsert-on-import functionality. Importing a user whose email already exists will fail. Handle deduplication before importing or use direct SQL with ON CONFLICT clauses.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-admin-createuser"
+      ]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "category": "user_management",
+      "status": "partial",
+      "description": "Supabase Auth uses email (not username) as the primary identifier. A username field can be stored in a custom public.profiles table or in raw_user_meta_data but requires application-level uniqueness enforcement. No built-in username authentication.",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "Importing pre-existing MFA enrollments (TOTP secrets, phone numbers for MFA) is not supported. Users must re-enroll in MFA after migration.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "No SCIM 2.0 endpoint. User lifecycle management must use the Admin REST API directly or third-party bridges. SCIM is not on the public roadmap.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "No outbound SCIM provisioning to downstream applications.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "scim_groups",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "No group objects or SCIM group management. Groups must be implemented via custom tables and RLS policies in the public schema.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Just-in-time provisioning: users are automatically created in auth.users on first sign-in via social OAuth, magic link, or SAML SSO. The Before User Created Auth Hook can customize or block provisioning.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-hooks"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "category": "user_management",
+      "status": "partial",
+      "description": "Lazy migration possible via the Password Verification Attempt Auth Hook, which can intercept failed local password checks and verify against a legacy system, then update the local hash on success. Requires Pro+ for Auth Hooks. No official zero-downtime migration tooling.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/auth-hooks",
+        "https://supabase.com/docs/guides/platform/migrating-to-supabase"
+      ]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "category": "user_management",
+      "status": "partial",
+      "description": "Users can update their own email, phone, password, and raw_user_meta_data via the client SDK. No built-in profile management UI \u2014 developers must build their own using the supabase-js SDK or @supabase/auth-ui-react components.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-updateuser"
+      ]
+    },
+    {
+      "identifier": "account_linking",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Multiple authentication providers (email, phone, OAuth) can be linked to a single user account. Anonymous users are automatically converted to permanent accounts when they link an identity. Manual linking via the linkIdentity API is supported.",
+      "links": ["https://supabase.com/docs/guides/auth/identities"]
+    },
+    {
+      "identifier": "user_blocking",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Disable user accounts via the Admin API (updateUserById with banned_until set to a future date or '9999-12-31'). Blocked users cannot sign in. Ban can be time-limited or permanent.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-admin-updateuserbyid"
+      ]
+    },
+    {
+      "identifier": "user_metadata",
+      "category": "user_management",
+      "status": "supported",
+      "description": "User-editable metadata stored in raw_user_meta_data (JSONB column on auth.users). Updated via the client SDK (updateUser). No strict field schema \u2014 any JSON structure is accepted. Size is constrained by Postgres JSONB practical limits (not explicitly documented by Supabase).",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "app_metadata",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Admin-only metadata stored in raw_app_meta_data (JSONB column). Cannot be updated by the client SDK \u2014 requires the service role key or Admin API. Used for storing authorization data like roles that should not be user-editable.",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "category": "user_management",
+      "status": "partial",
+      "description": "No explicit documented size limits on user_metadata or app_metadata fields. Both are stored as Postgres JSONB, so practical limits depend on the database row size and Postgres TOAST limits. Claims included in JWT access tokens are limited by typical JWT size constraints (should stay under 8 KB to avoid HTTP header issues).",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "user_search",
+      "category": "user_management",
+      "status": "partial",
+      "description": "Admin API provides listUsers with pagination (page, perPage) but no server-side search or filtering. To search by email, name, or metadata, query auth.users directly via SQL (requires service role access). No full-text search index on user fields.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-admin-listusers"
+      ]
+    },
+    {
+      "identifier": "rbac",
+      "category": "user_management",
+      "status": "partial",
+      "description": "No built-in RBAC system with a roles/permissions management UI. RBAC is implemented by storing role claims in raw_app_meta_data (via admin API) and enforcing them in Postgres RLS policies or application middleware. The Custom Access Token Hook can add role claims to JWTs.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/custom-claims-and-role-based-access-control-rbac"
+      ]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "No built-in organization or multi-tenancy model. Must be built manually using custom tables (organizations, memberships), RLS policies scoped by organization_id, and JWT claims. Each Supabase project is effectively a single tenant.",
+      "links": ["https://supabase.com/docs/guides/auth/row-level-security"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "category": "user_management",
+      "status": "supported",
+      "description": "Password policy configurable in the Auth settings: minimum length, require uppercase/lowercase/numbers/special characters, and minimum password strength (using zxcvbn scoring). Leaked password protection (Have I Been Pwned integration) available on Pro+ plans.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/password-based/email-password"
+      ]
+    },
+    {
+      "identifier": "username_restrictions",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "Supabase Auth does not have a native username field with uniqueness constraints or format restrictions. The email field is the primary identifier. Username-based auth requires custom implementation (e.g., a unique username field in a public.profiles table with RLS).",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "category": "user_management",
+      "status": "not_supported",
+      "description": "No built-in progressive profiling flow. Custom progressive profiling can be implemented in the application layer using auth state and the updateUser API.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "abac",
+      "category": "access_control",
+      "status": "supported",
+      "description": "Row Level Security (RLS) policies provide fine-grained attribute-based access control at the Postgres level. Policies can reference user attributes from auth.uid() and auth.jwt() to filter rows. The combination of RLS + JWT claims implements a full ABAC model for database resources.",
+      "links": ["https://supabase.com/docs/guides/auth/row-level-security"]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "category": "access_control",
+      "status": "partial",
+      "description": "Row-level granularity via Postgres RLS \u2014 every SELECT/INSERT/UPDATE/DELETE can be controlled per-user per-row. However, no relationship-based access control (ReBAC) graph model. Complex sharing models (e.g., 'user A can edit document B because A is in group C which has editor access') require custom join logic in RLS policies.",
+      "links": ["https://supabase.com/docs/guides/auth/row-level-security"]
+    },
+    {
+      "identifier": "api_authorization",
+      "category": "access_control",
+      "status": "supported",
+      "description": "Supabase auto-generates a REST and GraphQL (pg_graphql) API with RLS enforcement. JWT access tokens are validated on every request. Service role bypasses RLS for admin operations. OAuth scopes via the OIDC provider.",
+      "links": ["https://supabase.com/docs/guides/api"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "category": "compliance",
+      "status": "supported",
+      "plans": ["Team", "Enterprise"],
+      "description": "SOC 2 Type 2 compliant. SOC 2 reports are available to Team and Enterprise customers via the Supabase dashboard.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "iso_27001",
+      "category": "compliance",
+      "status": "supported",
+      "plans": ["Team", "Enterprise"],
+      "description": "ISO 27001 certified. Certificate available to Team and Enterprise customers.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "category": "compliance",
+      "status": "partial",
+      "plans": ["Team", "Enterprise"],
+      "description": "HIPAA BAA available on Team and Enterprise plans for storing Protected Health Information. Requires signing a Business Associate Agreement with Supabase. Not available on Free or Pro plans.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "pci_dss",
+      "category": "compliance",
+      "status": "not_supported",
+      "description": "Supabase is not PCI DSS certified. Payment processing on the Supabase platform is handled by Stripe (PCI Level 1), but Supabase itself does not claim PCI compliance for customer workloads.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "csa_star",
+      "category": "compliance",
+      "status": "not_supported",
+      "description": "CSA STAR certification not mentioned in Supabase security documentation.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "fedramp",
+      "category": "compliance",
+      "status": "not_supported",
+      "description": "FedRAMP authorization is not held by Supabase. Supabase is not suitable for US federal government workloads requiring FedRAMP.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "category": "compliance",
+      "status": "supported",
+      "description": "User data export possible via SQL queries on auth.users and associated tables, and via the Admin API. GDPR data portability (Article 20) supported through direct database access.",
+      "links": ["https://supabase.com/docs/guides/platform/gdpr-and-privacy"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "category": "compliance",
+      "status": "supported",
+      "description": "User deletion via Admin API deleteUser() removes the auth record. Application data in other tables should use ON DELETE CASCADE foreign keys to auto-delete. Developers responsible for purging data from storage buckets and other services.",
+      "links": [
+        "https://supabase.com/docs/reference/javascript/auth-admin-deleteuser"
+      ]
+    },
+    {
+      "identifier": "consent_management",
+      "category": "compliance",
+      "status": "not_supported",
+      "description": "No built-in consent management or cookie consent flows. Must be implemented at the application layer.",
+      "links": ["https://supabase.com/docs/guides/platform/gdpr-and-privacy"]
+    },
+    {
+      "identifier": "region_deployment",
+      "category": "compliance",
+      "status": "supported",
+      "description": "17 AWS regions available: US West (N. California, Oregon), US East (N. Virginia, Ohio), Canada Central, South America (S\u00e3o Paulo), EU West (Ireland, London, Paris), EU Central (Frankfurt, Zurich), EU North (Stockholm), Asia Pacific (Mumbai, Singapore, Tokyo, Seoul, Sydney).",
+      "values": ["US", "EU", "AP", "CA", "SA"],
+      "links": ["https://supabase.com/docs/guides/platform/regions"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "category": "compliance",
+      "status": "supported",
+      "description": "Supabase Cloud runs on AWS. Self-hosted deployment is fully supported (Docker Compose or Kubernetes) on any cloud provider or on-premises. Enterprise plan includes Bring Your Own Cloud (BYO Cloud) for dedicated infrastructure managed by Supabase.",
+      "values": ["AWS", "Azure", "GCP", "Self-hosted"],
+      "links": ["https://supabase.com/docs/guides/self-hosting"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "category": "security",
+      "status": "partial",
+      "description": "Auth events are logged in Postgres via the GoTrue server. On managed cloud, log retention is limited. Log Drains (paid add-on: $60/drain/month + usage) available on Pro+ for streaming to external SIEM/logging services. On self-hosted, log retention is infrastructure-managed.",
+      "links": ["https://supabase.com/docs/guides/platform/log-drains"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "category": "security",
+      "status": "partial",
+      "plans": ["Pro", "Team", "Enterprise"],
+      "description": "Log Drains available on Pro+ as a paid add-on ($60/drain/month + $0.20/million events + $0.09/GB egress). Supports streaming to BigQuery, Datadog, Elastic, HTTPS endpoints. Auth events included. Not available on Free plan.",
+      "links": ["https://supabase.com/docs/guides/platform/log-drains"]
+    },
+    {
+      "identifier": "security_center",
+      "category": "security",
+      "status": "not_supported",
+      "description": "No dedicated security dashboard or threat intelligence center. Auth metrics available via the Supabase dashboard (sign-ins, errors) but no real-time security alerting.",
+      "links": ["https://supabase.com/docs/guides/platform/metrics"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "category": "security",
+      "status": "supported",
+      "description": "AES-256 encryption at rest for all data and backups on Supabase Cloud. Self-hosted encryption depends on the underlying infrastructure provider.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "category": "security",
+      "status": "supported",
+      "description": "All connections to Supabase APIs require TLS. HTTP connections are automatically redirected to HTTPS. Database connections use SSL/TLS by default.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "category": "security",
+      "status": "not_supported",
+      "description": "Customer-managed encryption keys (CMEK) are not available. Encryption keys are managed by Supabase.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "bot_detection",
+      "category": "security",
+      "status": "not_supported",
+      "description": "No native bot detection or CAPTCHA integration in Supabase Auth. Bot protection can be added at the application layer (e.g., Cloudflare Turnstile, hCaptcha) before calling Supabase Auth APIs.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "category": "security",
+      "status": "supported",
+      "description": "Built-in rate limiting on all auth endpoints (e.g., 360 verify requests/hour by IP, 1800 token refreshes/hour by IP). Anomalous refresh token reuse detected and triggers session revocation. Some limits are configurable via the dashboard.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/sessions",
+        "https://supabase.com/docs/guides/auth/rate-limits"
+      ]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "category": "security",
+      "status": "partial",
+      "description": "Auth API rate limits are enforced per IP address (e.g., anonymous sign-ins: 30/hour per IP; OTP: 30/hour project-wide). No dedicated suspicious-IP detection or block-list management. Cloudflare DDoS mitigation applies at the infrastructure level.",
+      "links": ["https://supabase.com/docs/guides/auth/rate-limits"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "category": "security",
+      "status": "partial",
+      "plans": ["Pro", "Team", "Enterprise"],
+      "description": "Leaked password protection available on Pro+ plans. Checks passwords against the Have I Been Pwned database during sign-up and password changes. Not available on Free plan.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/password-based/email-password"
+      ]
+    },
+    {
+      "identifier": "credential_guard",
+      "category": "security",
+      "status": "not_supported",
+      "description": "No proactive continuous monitoring for compromised credentials beyond the standard leaked password protection check at sign-up/password-change.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/password-based/email-password"
+      ]
+    },
+    {
+      "identifier": "tenant_acl",
+      "category": "security",
+      "status": "not_supported",
+      "description": "No tenant-level access control lists for restricting sign-in traffic by IP, geography, or other signals. IP filtering must be applied at the infrastructure or reverse proxy layer.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "category": "security",
+      "status": "not_supported",
+      "description": "No native device fingerprinting. Sessions track a session_id in the JWT but do not fingerprint the device. Can be added at the application layer via third-party services.",
+      "links": ["https://supabase.com/docs/guides/auth/sessions"]
+    },
+    {
+      "identifier": "per_org_branding",
+      "category": "multi_tenancy",
+      "status": "not_supported",
+      "description": "No per-organization or per-tenant branding in Supabase Auth. The auth UI theme is configured project-wide. Per-tenant branding must be fully custom-built.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "category": "multi_tenancy",
+      "status": "not_supported",
+      "description": "MFA policy is configured globally per project, not per tenant or organization. Per-tenant MFA enforcement requires custom application logic.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-mfa"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "category": "branding_ux",
+      "status": "partial",
+      "description": "No centrally hosted login page like Auth0 Universal Login. Auth UI must be embedded in the developer's application using the @supabase/auth-ui-react library or a custom implementation. A minimal hosted sign-in/sign-up UI is available in the Supabase dashboard for admin use only.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-helpers/auth-ui"]
+    },
+    {
+      "identifier": "embedded_login",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Auth is designed to be embedded in the application. The supabase-js SDK handles all auth flows client-side. The @supabase/auth-ui-react library provides pre-built React components for sign-in, sign-up, and password reset flows.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-helpers/auth-ui"]
+    },
+    {
+      "identifier": "white_label",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "Full white-labeling available. Since Supabase Auth is open source (Apache 2.0), the entire auth layer can be customized. Email templates can remove Supabase branding on Pro+ plans.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "localization",
+      "category": "branding_ux",
+      "status": "partial",
+      "description": "The @supabase/auth-ui-react library has limited built-in i18n support. Localization must be handled at the application layer. Email templates support custom text but lack a translation framework. Auth error messages from the server are English-only.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-helpers/auth-ui"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "category": "branding_ux",
+      "status": "supported",
+      "description": "@supabase/auth-ui-react provides prebuilt React components for common auth flows (sign-in, sign-up, magic link, forgot password, social login buttons). Themed with appearance props. Community UI kits available for Next.js, SvelteKit, and others.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-helpers/auth-ui"]
+    },
+    {
+      "identifier": "login_analytics",
+      "category": "analytics",
+      "status": "partial",
+      "description": "Basic auth metrics (sign-in counts, error rates) available in the Supabase dashboard. No dedicated authentication analytics dashboard. Detailed analytics require exporting logs to BigQuery or an external tool via Log Drains.",
+      "links": ["https://supabase.com/docs/guides/platform/metrics"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Official Supabase SDKs: supabase-js (JavaScript/TypeScript), supabase-dart (Flutter/Dart), supabase-swift (iOS), supabase-kt (Kotlin/Android), supabase-py (Python), supabase-csharp (.NET). Community SDKs for Go, Ruby, Rust. Auth UI React/SvelteKit. Next.js and SvelteKit SSR auth helpers.",
+      "values": [
+        "JavaScript",
+        "TypeScript",
+        "React",
+        "Next.js",
+        "SvelteKit",
+        "Flutter",
+        "Swift",
+        "Kotlin",
+        "Python",
+        ".NET",
+        "Go"
+      ],
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "management_api",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Full Admin REST API for user management (CRUD), SSO configuration, and MFA management. Requires service role key (bypasses RLS). Available in all official SDKs under the auth.admin namespace. Management API also available for project-level configuration.",
+      "links": ["https://supabase.com/docs/reference/javascript/auth-admin-api"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Documented per-endpoint rate limits: signup/magic link: 2/hour with built-in SMTP (unlimited with custom SMTP); OTP: 30/hour project-wide; token refresh: 1,800/hour per IP (burst: 30); verify: 360/hour per IP (burst: 30); MFA challenge/verify: 15/hour per IP; anonymous sign-ins: 30/hour per IP. Some limits configurable via dashboard.",
+      "links": ["https://supabase.com/docs/guides/auth/rate-limits"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Auth Hooks provide six extensibility points: Before User Created, Custom Access Token (add JWT claims), Send SMS (custom provider), Send Email (custom provider), MFA Verification Attempt (custom MFA logic), Password Verification Attempt (custom password checks / lazy migration). Hooks implemented as Postgres functions or HTTPS endpoints (Edge Functions or external). Signed payloads for security.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-hooks"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Auth Hooks implemented as Edge Functions run on Deno and support TypeScript natively. Postgres function hooks are written in PL/pgSQL or PL/v8 (JavaScript/TypeScript).",
+      "links": ["https://supabase.com/docs/guides/functions"]
+    },
+    {
+      "identifier": "custom_domain",
+      "category": "developer_integration",
+      "status": "supported",
+      "plans": ["Pro", "Team", "Enterprise"],
+      "description": "Custom domain available as a paid add-on ($10/month per domain per project) on paid plans. Only one custom domain per project. CNAME records only \u2014 not compatible with root domain A records. Activating/removing a custom domain requires re-configuring OAuth and SAML integrations.",
+      "links": ["https://supabase.com/docs/guides/platform/custom-domains"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Supabase CLI supports full project configuration as code: auth settings via config.toml, database migrations, Edge Functions deployment, and local development with supabase start. CI/CD integration via GitHub Actions.",
+      "links": ["https://supabase.com/docs/guides/cli"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Official Supabase Terraform provider for managing projects, auth configuration, edge functions, and database settings. Available in the Terraform Registry.",
+      "links": [
+        "https://registry.terraform.io/providers/supabase/supabase/latest/docs"
+      ]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Supabase Auth stores user data in a Postgres auth schema \u2014 fully accessible via SQL. Developers have direct access to the underlying Postgres database for custom queries, triggers, and integrations. The auth schema is separate from the public schema but queryable with the service role.",
+      "links": ["https://supabase.com/docs/guides/auth/managing-user-data"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Auth Hooks act as synchronous webhooks at auth flow points (HTTP endpoint or Postgres function). Database webhooks via pg_net extension for async event notifications. Edge Functions can be triggered on database changes for post-auth workflows.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/auth-hooks",
+        "https://supabase.com/docs/guides/database/webhooks"
+      ]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "category": "developer_integration",
+      "status": "partial",
+      "description": "No centrally hosted login page. Auth UI customization done via the @supabase/auth-ui-react library using appearance props, custom CSS variables, and theme overrides. Email template customization (13 template types) available in the Auth settings. Full custom UI builds are the recommended approach for production.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-helpers/auth-ui"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Custom SMTP provider configurable on all plans. Works with any SMTP-compatible service (Resend, AWS SES, Postmark, SendGrid, Brevo, ZeptoMail, etc.). Built-in SMTP is limited to 2 emails/hour with no SLA \u2014 custom SMTP is required for production. The Send Email Auth Hook enables routing via non-SMTP providers.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-smtp"]
+    },
+    {
+      "identifier": "email_templates",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "13 customizable email templates: 6 authentication (confirm signup, invite user, magic link/OTP, change email, reset password, reauthentication) and 7 security notifications (password changed, email changed, phone changed, sign-in method linked/removed, verification method added/removed). Templates use Go Templates syntax with variables like {{ .ConfirmationURL }} and {{ .Token }}. Configured via dashboard or config.toml.",
+      "links": ["https://supabase.com/docs/guides/auth/auth-email-templates"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "category": "developer_integration",
+      "status": "supported",
+      "description": "Custom JWT claims added via the Custom Access Token Auth Hook. The hook receives the standard claims and can add, modify, or remove claims before the token is signed. Available on all plans. Hooks implemented as Postgres functions or HTTP endpoints.",
+      "links": [
+        "https://supabase.com/docs/guides/auth/auth-hooks/custom-access-token-hook"
+      ]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "No visual/no-code authentication flow builder. Flows are configured programmatically via the supabase-js SDK and Auth Hooks.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "identity_proofing",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "No built-in identity document verification or biometric liveness proofing. Must integrate third-party services at the application layer.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "decentralized_identity",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "No support for W3C Verifiable Credentials, Decentralized Identifiers (DIDs), or wallet-based authentication.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "billing_integration",
+      "category": "advanced",
+      "status": "not_supported",
+      "description": "No native billing or subscription management integration. Billing must be handled via third-party services (Stripe, etc.) at the application layer.",
+      "links": ["https://supabase.com/docs/guides/auth"]
+    },
+    {
+      "identifier": "agentic_identity",
+      "category": "advanced",
+      "status": "partial",
+      "description": "OAuth 2.1 authorization server supports MCP (Model Context Protocol) authentication flows for AI agent identity. No dedicated MCP auth tooling yet \u2014 implementable using the existing OAuth 2.1 client credentials and token exchange flows.",
+      "links": ["https://supabase.com/docs/guides/auth/server-side"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "Supabase's own security page states it uses 'protection at the CDN level via Cloudflare' in addition to fail2ban, confirming Cloudflare fronts at least part of Supabase's platform. Cloudflare has enabled hybrid post-quantum (X25519Kyber768/X25519MLKEM768) TLS 1.3 key exchange by default across its edge network since 2023-2024. This is infra-level, Cloudflare-driven support, not a GoTrue/Supabase Auth-specific implementation, and Supabase has made no direct statement about PQC.",
+      "links": [
+        "https://supabase.com/security",
+        "https://blog.cloudflare.com/post-quantum-for-all/"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that Supabase Auth (GoTrue) supports ML-DSA/SLH-DSA/Falcon for JWT signing. Supabase Auth uses standard JOSE algorithms (HS256/RS256/ES256/etc.); no PQC algorithm support is documented."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public roadmap, blog post, or trust-center statement found describing PQC migration plans specific to Supabase or Supabase Auth. The Supabase security page contains no mention of post-quantum or quantum-safe cryptography.",
+      "links": ["https://supabase.com/security"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
+    }
   ]
 }

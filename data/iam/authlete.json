@@ -1,7 +1,7 @@
 {
   "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
   "name": "Authlete",
-  "abstract": "Headless OAuth 2.0 and OpenID Connect backend engine from Japan, founded 2015. Authlete is not a full-stack CIAM: it handles only the OAuth/OIDC protocol layer and token lifecycle management — authentication UI, user database, and MFA are customer-owned. Exceptionally strong protocol coverage: FAPI 1.0/2.0, CIBA, DPoP, PAR, JAR, mTLS, OpenID Identity Assurance, OID4VCI, and OpenID Federation. OpenID-certified across Basic, Implicit, Hybrid, FAPI 1.0 Advanced, FAPI-CIBA, FAPI 2.0, and multiple open banking profiles (UK, Australia CDR, Brazil, Saudi Arabia). ISO/IEC 27001 certified. Available as shared cloud, dedicated cloud, or self-managed.",
+  "abstract": "Headless OAuth 2.0 and OpenID Connect backend engine from Japan, founded 2015. Authlete is not a full-stack CIAM: it handles only the OAuth/OIDC protocol layer and token lifecycle management \u2014 authentication UI, user database, and MFA are customer-owned. Exceptionally strong protocol coverage: FAPI 1.0/2.0, CIBA, DPoP, PAR, JAR, mTLS, OpenID Identity Assurance, OID4VCI, and OpenID Federation. OpenID-certified across Basic, Implicit, Hybrid, FAPI 1.0 Advanced, FAPI-CIBA, FAPI 2.0, and multiple open banking profiles (UK, Australia CDR, Brazil, Saudi Arabia). ISO/IEC 27001 certified. Available as shared cloud, dedicated cloud, or self-managed.",
   "identifier": "authlete",
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/authlete.svg"
@@ -16,10 +16,22 @@
     "pricingModel": "usage",
     "pricingUrl": "https://www.authlete.com/pricing/",
     "plans": [
-      { "name": "Trial", "price": "Free (30 days)" },
-      { "name": "Business", "price": "$999+/month (shared cloud, usage-based on Monthly Active Tokens)" },
-      { "name": "Enterprise (Managed)", "price": "Custom (dedicated cloud, unlimited services)" },
-      { "name": "Enterprise (Self-Managed)", "price": "Custom (on-premises or private cloud)" }
+      {
+        "name": "Trial",
+        "price": "Free (30 days)"
+      },
+      {
+        "name": "Business",
+        "price": "$999+/month (shared cloud, usage-based on Monthly Active Tokens)"
+      },
+      {
+        "name": "Enterprise (Managed)",
+        "price": "Custom (dedicated cloud, unlimited services)"
+      },
+      {
+        "name": "Enterprise (Self-Managed)",
+        "price": "Custom (on-premises or private cloud)"
+      }
     ]
   },
   "featureList": [
@@ -574,6 +586,42 @@
       "status": "partial",
       "description": "Strong foundation for AI agent authentication: OAuth 2.0 Client Credentials, DPoP sender-constraining, mTLS certificate-bound tokens, and Token Exchange (RFC 8693) support autonomous agent identity patterns. No dedicated agentic identity product.",
       "links": ["https://authlete.webflow.io/product"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "Authlete is a hosted/cloud OAuth 2.0/OIDC backend service; no public documentation, blog post, or announcement addressing TLS-layer post-quantum hybrid key exchange was found on authlete.com or in press materials."
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of ML-DSA, SLH-DSA, or Falcon support for JWT/ID token signing in Authlete's knowledge base, API docs, or blog."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public PQC roadmap, whitepaper, or statement located for Authlete."
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

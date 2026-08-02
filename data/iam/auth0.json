@@ -15,12 +15,30 @@
     "pricingModel": "mau",
     "pricingUrl": "https://auth0.com/pricing",
     "plans": [
-      { "name": "Free", "price": "Free" },
-      { "name": "B2C Essentials", "price": "$35/month" },
-      { "name": "B2C Professional", "price": "$240/month" },
-      { "name": "B2B Essentials", "price": "$150/month" },
-      { "name": "B2B Professional", "price": "$800/month" },
-      { "name": "Enterprise", "price": "Custom" }
+      {
+        "name": "Free",
+        "price": "Free"
+      },
+      {
+        "name": "B2C Essentials",
+        "price": "$35/month"
+      },
+      {
+        "name": "B2C Professional",
+        "price": "$240/month"
+      },
+      {
+        "name": "B2B Essentials",
+        "price": "$150/month"
+      },
+      {
+        "name": "B2B Professional",
+        "price": "$800/month"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom"
+      }
     ]
   },
   "featureList": [
@@ -29,9 +47,7 @@
       "identifier": "username_and_password_authentication",
       "category": "authentication_methods",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/authenticate/database-connections"
-      ]
+      "links": ["https://auth0.com/docs/authenticate/database-connections"]
     },
     {
       "description": "30+ built-in social providers (Google, Facebook, Apple, GitHub, LinkedIn, etc.) plus custom OAuth2/OIDC. Free plan limited to 2 social connections. Dashboard shows only 1 connection per social strategy; additional connections require Management API.",
@@ -56,9 +72,7 @@
       "identifier": "email_passwordless_authentication",
       "category": "authentication_methods",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/authenticate/passwordless"
-      ]
+      "links": ["https://auth0.com/docs/authenticate/passwordless"]
     },
     {
       "description": "SMS OTP passwordless login. Requires customer-configured Twilio or custom SMS provider for production. Auth0's built-in SMS provider is test-only. Rate limit of 10 messages/hour/user.",
@@ -83,7 +97,13 @@
     {
       "description": "Authenticator app TOTP (Google Authenticator, Authy, etc.). Available on Essentials plan and above. Not included in the Free plan.",
       "identifier": "totp_mfa",
-      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "plans": [
+        "B2C Essentials",
+        "B2C Professional",
+        "B2B Essentials",
+        "B2B Professional",
+        "Enterprise"
+      ],
       "category": "mfa",
       "status": "supported",
       "links": [
@@ -95,9 +115,7 @@
       "identifier": "hotp_mfa",
       "category": "mfa",
       "status": "partial",
-      "links": [
-        "https://auth0.com/docs/secure/multi-factor-authentication"
-      ]
+      "links": ["https://auth0.com/docs/secure/multi-factor-authentication"]
     },
     {
       "description": "Roaming authenticators (YubiKey, Titan Key) supported via WebAuthn. U2F is the predecessor spec; Auth0 implements the successor WebAuthn standard. Requires Professional plan or above.",
@@ -167,7 +185,7 @@
       ]
     },
     {
-      "description": "Cisco Duo integration supported but can only be used as the sole MFA factor — cannot be combined with other Auth0 MFA factors simultaneously. Requires Professional plan or above.",
+      "description": "Cisco Duo integration supported but can only be used as the sole MFA factor \u2014 cannot be combined with other Auth0 MFA factors simultaneously. Requires Professional plan or above.",
       "identifier": "cisco_duo_mfa",
       "category": "mfa",
       "status": "partial",
@@ -177,11 +195,17 @@
       ]
     },
     {
-      "description": "Supported via Actions post-login triggers using acr_values claims. Not a dashboard toggle — requires developer implementation in JavaScript. Requires Essentials plan or above.",
+      "description": "Supported via Actions post-login triggers using acr_values claims. Not a dashboard toggle \u2014 requires developer implementation in JavaScript. Requires Essentials plan or above.",
       "identifier": "step_up_authentication",
       "category": "mfa",
       "status": "supported",
-      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "plans": [
+        "B2C Essentials",
+        "B2C Professional",
+        "B2B Essentials",
+        "B2B Professional",
+        "Enterprise"
+      ],
       "links": [
         "https://auth0.com/docs/secure/multi-factor-authentication/step-up-authentication"
       ]
@@ -200,18 +224,14 @@
       "identifier": "saml2_protocol",
       "category": "integration_protocols",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/authenticate/protocols/saml"
-      ]
+      "links": ["https://auth0.com/docs/authenticate/protocols/saml"]
     },
     {
       "description": "Auto-assigned WS-Fed endpoints for every application. Cannot combine with SAML addon on the same client. Not compatible with the Organizations feature.",
       "identifier": "ws_federation_protocol",
       "category": "integration_protocols",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/authenticate/protocols/ws-fed-protocol"
-      ]
+      "links": ["https://auth0.com/docs/authenticate/protocols/ws-fed-protocol"]
     },
     {
       "identifier": "oidc_federation",
@@ -316,9 +336,7 @@
       "identifier": "inbound_scim_provisioning",
       "category": "user_management",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/authenticate/protocols/scim"
-      ]
+      "links": ["https://auth0.com/docs/authenticate/protocols/scim"]
     },
     {
       "description": "No native outbound SCIM provisioning from Auth0 to third-party applications. Requires custom implementation via Actions or external tooling.",
@@ -334,9 +352,7 @@
       "identifier": "scim_groups",
       "category": "user_management",
       "status": "partial",
-      "links": [
-        "https://auth0.com/docs/authenticate/protocols/scim"
-      ]
+      "links": ["https://auth0.com/docs/authenticate/protocols/scim"]
     },
     {
       "description": "Automatic user creation in Auth0 on first enterprise SSO login. Configurable via connection settings.",
@@ -399,9 +415,7 @@
       "identifier": "app_metadata",
       "category": "user_management",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/manage-users/user-accounts/metadata"
-      ]
+      "links": ["https://auth0.com/docs/manage-users/user-accounts/metadata"]
     },
     {
       "description": "Combined metadata hard limits: 16 MB total, 1 MB searchable, 32 KB per Actions session. Recommended to keep individual fields under 2 KB for search performance. These overlapping limits are a common source of production surprises.",
@@ -476,18 +490,14 @@
       "identifier": "soc2_type2",
       "category": "compliance",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/secure/data-privacy-and-compliance"
-      ]
+      "links": ["https://auth0.com/docs/secure/data-privacy-and-compliance"]
     },
     {
       "description": "Cloud information security and privacy controls. Annually audited.",
       "identifier": "iso_27001",
       "category": "compliance",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/secure/data-privacy-and-compliance"
-      ]
+      "links": ["https://auth0.com/docs/secure/data-privacy-and-compliance"]
     },
     {
       "description": "HIPAA BAA is available upon request for Enterprise plans. Auth0 acts as a Business Associate under HIPAA/HITECH. BAA is not available for Azure-hosted deployments. Contact account team via the Support Center to request the agreement.",
@@ -495,9 +505,7 @@
       "plans": ["Enterprise"],
       "category": "compliance",
       "status": "partial",
-      "links": [
-        "https://auth0.com/docs/secure/data-privacy-and-compliance"
-      ]
+      "links": ["https://auth0.com/docs/secure/data-privacy-and-compliance"]
     },
     {
       "description": "PCI DSS compliance available as an add-on for Auth0 Private Cloud deployment. Annual independent audit. Attestation of Compliance (AOC) and SAQ-D available upon request via the Support Center. Enterprise plan only.",
@@ -505,18 +513,14 @@
       "plans": ["Enterprise"],
       "category": "compliance",
       "status": "partial",
-      "links": [
-        "https://auth0.com/docs/secure/data-privacy-and-compliance"
-      ]
+      "links": ["https://auth0.com/docs/secure/data-privacy-and-compliance"]
     },
     {
       "description": "Cloud Security Alliance STAR Gold certification for cloud security practices.",
       "identifier": "csa_star",
       "category": "compliance",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/secure/data-privacy-and-compliance"
-      ]
+      "links": ["https://auth0.com/docs/secure/data-privacy-and-compliance"]
     },
     {
       "description": "User data export (Article 20) available via Dashboard or Management API in JSON format.",
@@ -550,14 +554,7 @@
       "identifier": "region_deployment",
       "category": "compliance",
       "status": "supported",
-      "values": [
-        "US",
-        "EU",
-        "AU",
-        "JP",
-        "UK",
-        "CA"
-      ],
+      "values": ["US", "EU", "AU", "JP", "UK", "CA"],
       "links": [
         "https://auth0.com/docs/troubleshoot/customer-support/operational-policies/public-cloud-service-endpoints"
       ]
@@ -569,28 +566,28 @@
       "category": "compliance",
       "status": "partial",
       "values": ["AWS", "Azure"],
-      "links": [
-        "https://auth0.com/docs/deploy-monitor/deploy-private-cloud"
-      ]
+      "links": ["https://auth0.com/docs/deploy-monitor/deploy-private-cloud"]
     },
     {
       "description": "Log retention is critically short: Free = 1 day, Essentials = 5 days, Professional = 10 days, Enterprise = 30 days. No option to extend retention within Auth0 on lower tiers. Log streaming to external SIEM is required for any compliance use case.",
       "identifier": "audit_log_retention",
       "category": "security",
       "status": "partial",
-      "links": [
-        "https://auth0.com/docs/deploy-monitor/logs/log-data-retention"
-      ]
+      "links": ["https://auth0.com/docs/deploy-monitor/logs/log-data-retention"]
     },
     {
       "description": "Stream logs to Splunk, Datadog, Amazon EventBridge, Azure Event Grid, Sumo Logic, and custom webhooks. At-least-once delivery guarantee. PII masking/hashing supported. Not available on the Free plan.",
       "identifier": "audit_log_streaming",
-      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "plans": [
+        "B2C Essentials",
+        "B2C Professional",
+        "B2B Essentials",
+        "B2B Professional",
+        "Enterprise"
+      ],
       "category": "security",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/customize/log-streams"
-      ]
+      "links": ["https://auth0.com/docs/customize/log-streams"]
     },
     {
       "description": "Near real-time threat monitoring dashboard with custom alert configuration. Available on B2B Professional plan and above for B2B; Enterprise only for B2C.",
@@ -598,9 +595,7 @@
       "plans": ["B2B Professional", "Enterprise"],
       "category": "security",
       "status": "partial",
-      "links": [
-        "https://auth0.com/docs/secure/attack-protection"
-      ]
+      "links": ["https://auth0.com/docs/secure/attack-protection"]
     },
     {
       "description": "AES-256 GCM envelope encryption for all stored data and backups.",
@@ -635,9 +630,7 @@
       "identifier": "bot_detection",
       "category": "security",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/anomaly-detection/bot-detection"
-      ]
+      "links": ["https://auth0.com/docs/anomaly-detection/bot-detection"]
     },
     {
       "description": "Blocks a single IP address after a configurable number of failed login attempts. Enabled by default on all plans. Blocks by IP only \u2014 no per-account lockout mechanism.",
@@ -651,7 +644,13 @@
     {
       "description": "Detects and throttles rapid login or signup attempts from a single IP address. Available on all paid plans.",
       "identifier": "suspicious_ip_throttling",
-      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "plans": [
+        "B2C Essentials",
+        "B2C Professional",
+        "B2B Essentials",
+        "B2B Professional",
+        "Enterprise"
+      ],
       "category": "security",
       "status": "supported",
       "links": [
@@ -661,7 +660,13 @@
     {
       "description": "Checks user credentials against publicly known breach databases. Configurable to block signups, block logins, or notify users. Not available on Free plan. Standard detection uses public breach data only (not real-time dark web monitoring).",
       "identifier": "breached_password_detection",
-      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
+      "plans": [
+        "B2C Essentials",
+        "B2C Professional",
+        "B2B Essentials",
+        "B2B Professional",
+        "Enterprise"
+      ],
       "category": "security",
       "status": "supported",
       "links": [
@@ -712,9 +717,7 @@
         "React Native",
         "Flutter"
       ],
-      "links": [
-        "https://auth0.com/docs/libraries"
-      ]
+      "links": ["https://auth0.com/docs/libraries"]
     },
     {
       "description": "Full CRUD REST API for all tenant resources. Rate limits: 2 RPS (Free), 15 RPS (Paid), 50 RPS (Enterprise). 24-hour access token expiry. No TypeScript SDK for Management API.",
@@ -750,9 +753,7 @@
       "identifier": "typescript_in_actions",
       "category": "developer_integration",
       "status": "not_supported",
-      "links": [
-        "https://auth0.com/docs/customize/actions/limitations"
-      ]
+      "links": ["https://auth0.com/docs/customize/actions/limitations"]
     },
     {
       "description": "Rules were deprecated in May 2023, became read-only in November 2024, and reach End of Life on November 18, 2026. Some functionality (e.g., SAML custom attribute mapping to app_metadata, upstream IdP token passing) has no equivalent in Actions \u2014 a known migration gap.",
@@ -790,9 +791,7 @@
       "identifier": "deploy_cli",
       "category": "developer_integration",
       "status": "supported",
-      "links": [
-        "https://github.com/auth0/auth0-deploy-cli"
-      ]
+      "links": ["https://github.com/auth0/auth0-deploy-cli"]
     },
     {
       "description": "Official auth0/auth0 Terraform provider with 28+ resource types covering all major tenant entities. Supports Terraform 1.5+. Auto-generation via auth0 tf generate CLI command.",
@@ -837,18 +836,14 @@
       "identifier": "custom_email_provider",
       "category": "developer_integration",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/customize/email"
-      ]
+      "links": ["https://auth0.com/docs/customize/email"]
     },
     {
       "description": "10+ template types with HTML and Liquid syntax. Only 1 template per type \u2014 per-application branding requires Liquid conditionals. ~64 KB practical template size limit.",
       "identifier": "email_templates",
       "category": "developer_integration",
       "status": "supported",
-      "links": [
-        "https://auth0.com/docs/customize/email/email-templates"
-      ]
+      "links": ["https://auth0.com/docs/customize/email/email-templates"]
     },
     {
       "description": "Custom claims added to access and ID tokens via Actions using api.accessToken.setCustomClaim(). Both namespaced and non-namespaced claims now supported. Up to 1,000 custom scopes per API resource server.",
@@ -883,9 +878,7 @@
       "category": "access_control",
       "status": "partial",
       "description": "Attribute-based policies can be implemented via Actions rules and token claims, but there is no native ABAC policy engine. Available via OpenFGA on Enterprise.",
-      "links": [
-        "https://auth0.com/docs/manage-users/access-control"
-      ]
+      "links": ["https://auth0.com/docs/manage-users/access-control"]
     },
     {
       "identifier": "fine_grained_authorization",
@@ -893,18 +886,14 @@
       "status": "supported",
       "description": "Auth0 FGA is powered by OpenFGA (open-source Zanzibar implementation). Available as an Enterprise add-on.",
       "plans": ["Enterprise"],
-      "links": [
-        "https://auth0.com/fine-grained-authorization"
-      ]
+      "links": ["https://auth0.com/fine-grained-authorization"]
     },
     {
       "identifier": "api_authorization",
       "category": "access_control",
       "status": "supported",
       "description": "Define API resource servers with scopes and permissions. Integrate with RBAC and token claims for authorization.",
-      "links": [
-        "https://auth0.com/docs/get-started/apis"
-      ]
+      "links": ["https://auth0.com/docs/get-started/apis"]
     },
     {
       "identifier": "device_fingerprinting",
@@ -950,10 +939,14 @@
       "category": "branding_ux",
       "status": "supported",
       "description": "Full white-labeling with custom domain, custom branding, and removal of Auth0 branding is possible on paid plans.",
-      "plans": ["B2C Essentials", "B2C Professional", "B2B Essentials", "B2B Professional", "Enterprise"],
-      "links": [
-        "https://auth0.com/docs/customize/custom-domains"
-      ]
+      "plans": [
+        "B2C Essentials",
+        "B2C Professional",
+        "B2B Essentials",
+        "B2B Professional",
+        "Enterprise"
+      ],
+      "links": ["https://auth0.com/docs/customize/custom-domains"]
     },
     {
       "identifier": "localization",
@@ -988,18 +981,14 @@
       "category": "analytics",
       "status": "supported",
       "description": "Dashboard with login success/failure rates, active users, and sign-up trends. Available on Professional plan and above.",
-      "links": [
-        "https://auth0.com/docs/deploy-monitor/monitor-auth0"
-      ]
+      "links": ["https://auth0.com/docs/deploy-monitor/monitor-auth0"]
     },
     {
       "identifier": "nocode_flow_builder",
       "category": "advanced",
       "status": "partial",
       "description": "Auth0 Forms (Progressive Profiling) and Actions provide event-driven extensibility, but no visual drag-and-drop flow orchestration engine.",
-      "links": [
-        "https://auth0.com/docs/customize/forms"
-      ]
+      "links": ["https://auth0.com/docs/customize/forms"]
     },
     {
       "identifier": "identity_proofing",
@@ -1018,9 +1007,7 @@
       "category": "advanced",
       "status": "not_supported",
       "description": "Auth0 does not offer native billing or subscription management integration. Organizations requiring billing must integrate third-party solutions (e.g., Stripe, Stigg) alongside Auth0.",
-      "links": [
-        "https://auth0.com/blog/auth0-stigg-integration/"
-      ]
+      "links": ["https://auth0.com/blog/auth0-stigg-integration/"]
     },
     {
       "identifier": "fedramp",
@@ -1037,6 +1024,50 @@
         "https://auth0.com/ai/docs/auth-for-mcp",
         "https://auth0.com/blog/auth0-auth-for-mcp-servers-generally-available/"
       ]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public statement found on post-quantum TLS support for Auth0's authentication endpoints. Auth0's own architecture blog documents its public cloud running on AWS behind AWS ALB/NLB/ELB and internal NGINX proxies, not behind CloudFront or Cloudflare by default. No evidence AWS ALB's opt-in PQ-TLS listener policy (GA November 2025) has been enabled by Auth0.",
+      "links": [
+        "https://auth0.com/blog/auth0-architecture-running-in-multiple-cloud-providers-and-regions/",
+        "https://aws.amazon.com/about-aws/whats-new/2025/11/network-load-balancers-post-quantum-key-exchange-tls"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "Auth0 signs ID tokens/JWTs with RS256 (or HS256); no ML-DSA/SLH-DSA option is documented. Auth0's community forum has open, unanswered questions asking whether JOSE will ever support PQC signature algorithms, confirming no current support.",
+      "links": [
+        "https://community.auth0.com/t/will-jwt-support-pqc-post-quantum-cryptography-replace-rsa-and-ecdsa-as-a-new-standard/192970"
+      ]
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "Auth0 published one educational blog post explaining PQC concepts (NIST FIPS 203/204/205, ML-KEM/ML-DSA/SLH-DSA), written by a member of Auth0's IAM-Core-Crypto team, but it contains no Auth0-specific migration timeline, roadmap, or platform commitment - no product roadmap statement found.",
+      "links": ["https://auth0.com/blog/post-quantum-cryptography/"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

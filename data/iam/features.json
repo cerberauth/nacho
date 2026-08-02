@@ -841,6 +841,55 @@
       "category": "advanced",
       "tier": "enterprise",
       "status": "supported"
+    },
+
+    {
+      "name": "Post-Quantum Hybrid TLS Key Exchange",
+      "description": "Support for NIST-standardized post-quantum hybrid key exchange (ML-KEM/Kyber, e.g. X25519MLKEM768) on public authentication endpoints, protecting against 'harvest now, decrypt later' attacks.",
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "tier": "advanced",
+      "status": "supported"
+    },
+    {
+      "name": "Post-Quantum Digital Signature Algorithms",
+      "description": "Support for NIST-standardized post-quantum digital signature algorithms (ML-DSA/Dilithium, SLH-DSA/SPHINCS+) for signing tokens (JWTs), SAML assertions, or certificates.",
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "tier": "enterprise",
+      "status": "supported"
+    },
+    {
+      "name": "Post-Quantum Migration Roadmap",
+      "description": "A publicly documented roadmap, statement, or crypto-agility framework describing the vendor's plan to migrate to NIST post-quantum cryptography standards.",
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "tier": "standard",
+      "status": "supported"
+    },
+    {
+      "name": "Post-Quantum Token & Data Encryption",
+      "description": "Support for NIST-standardized post-quantum key encapsulation mechanisms (ML-KEM/Kyber) or HPKE (RFC 9180) for encrypting JSON Web Encryption (JWE) payloads, SAML assertion bodies, or user secrets.",
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "tier": "enterprise",
+      "status": "supported"
+    },
+    {
+      "name": "Post-Quantum Certificate & mTLS Support",
+      "description": "Support for post-quantum or hybrid X.509 certificates (ML-DSA / Dilithium) in Mutual TLS (mTLS) client authentication and identity provider federation endpoints.",
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "tier": "enterprise",
+      "status": "supported"
+    },
+    {
+      "name": "Post-Quantum Stateful Hash Signatures",
+      "description": "Support for NIST SP 800-208 stateful hash-based signature schemes (LMS/HSS, XMSS/XMSS^MT) in high-security firmware, software updates, or root-of-trust authentication.",
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "tier": "enterprise",
+      "status": "supported"
     }
   ]
 }
