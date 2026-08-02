@@ -16,8 +16,14 @@
     "pricingModel": "pay-as-you-go",
     "pricingUrl": "https://firebase.google.com/pricing",
     "plans": [
-      { "name": "Spark", "price": "Free" },
-      { "name": "Blaze (Identity Platform)", "price": "$0.0015/MAU" }
+      {
+        "name": "Spark",
+        "price": "Free"
+      },
+      {
+        "name": "Blaze (Identity Platform)",
+        "price": "$0.0015/MAU"
+      }
     ]
   },
   "featureList": [
@@ -36,7 +42,9 @@
       "identifier": "passkey_authentication",
       "status": "not_supported",
       "description": "No native passkey/WebAuthn sign-in in Firebase Auth SDKs. Third-party extensions (e.g., Corbado) or a custom OIDC provider workaround are the only options.",
-      "links": ["https://firebase.uservoice.com/forums/948424-general/suggestions/46647016-support-authentication-with-passkeys"]
+      "links": [
+        "https://firebase.uservoice.com/forums/948424-general/suggestions/46647016-support-authentication-with-passkeys"
+      ]
     },
     {
       "identifier": "email_passwordless_authentication",
@@ -111,7 +119,9 @@
       "identifier": "adaptive_mfa",
       "status": "not_supported",
       "description": "Not supported natively. Implement via custom Blocking Functions.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "cisco_duo_mfa",
@@ -123,7 +133,9 @@
       "identifier": "step_up_authentication",
       "status": "supported",
       "description": "Supported via reauthenticateWithCredential() and incremental MFA enrollment/verification patterns.",
-      "links": ["https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user"]
+      "links": [
+        "https://firebase.google.com/docs/auth/web/manage-users#re-authenticate_a_user"
+      ]
     },
     {
       "identifier": "oidc_protocol",
@@ -141,13 +153,17 @@
       "identifier": "ws_federation_protocol",
       "status": "not_supported",
       "description": "Only SAML 2.0 and OIDC are supported as federated protocols; WS-Federation is not.",
-      "links": ["https://docs.cloud.google.com/identity-platform/docs/product-comparison"]
+      "links": [
+        "https://docs.cloud.google.com/identity-platform/docs/product-comparison"
+      ]
     },
     {
       "identifier": "machine_to_machine",
       "status": "partial",
       "description": "Custom tokens signed by a Google service account can authenticate backend services to Firebase. No native OAuth 2.0 client credentials (M2M) flow.",
-      "links": ["https://firebase.google.com/docs/auth/admin/create-custom-tokens"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/create-custom-tokens"
+      ]
     },
     {
       "identifier": "oidc_federation",
@@ -187,13 +203,17 @@
     {
       "identifier": "bulk_user_export",
       "status": "supported",
-      "links": ["https://firebase.google.com/docs/auth/admin/manage-users#list_all_users"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/manage-users#list_all_users"
+      ]
     },
     {
       "identifier": "bulk_user_update_delete",
       "status": "supported",
       "description": "deleteUsers() accepts up to 1,000 UIDs per call; getUsers() accepts up to 100 identifiers. Available since Admin Node.js SDK v8.12.0.",
-      "links": ["https://firebase.google.com/docs/auth/admin/manage-users#bulk_delete_users"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/manage-users#bulk_delete_users"
+      ]
     },
     {
       "identifier": "upsert_on_import",
@@ -235,13 +255,17 @@
       "identifier": "jit_provisioning",
       "status": "supported",
       "description": "Users are created automatically on first sign-in via social/SAML/OIDC providers. Blocking functions allow custom logic during this flow.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "lazy_migration",
       "status": "partial",
       "description": "Gradual migration via blocking functions that call an existing auth system.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "self_service_profile_management",
@@ -281,7 +305,9 @@
       "identifier": "user_search",
       "status": "partial",
       "description": "List users with pagination. Limited search capabilities via Admin SDK.",
-      "links": ["https://firebase.google.com/docs/auth/admin/manage-users#list_all_users"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/manage-users#list_all_users"
+      ]
     },
     {
       "identifier": "rbac",
@@ -293,7 +319,9 @@
       "identifier": "organizations_multitenancy",
       "status": "partial",
       "description": "Multi-tenancy via separate Identity Platform tenants. Basic B2B model, no native organization abstraction.",
-      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"]
+      "links": [
+        "https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"
+      ]
     },
     {
       "identifier": "password_strength_policy",
@@ -311,7 +339,9 @@
       "identifier": "progressive_profiling",
       "status": "not_supported",
       "description": "No built-in progressive profiling flow. Can be implemented with custom UI and Blocking Functions.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "abac",
@@ -419,13 +449,17 @@
       "identifier": "customer_managed_keys",
       "status": "supported",
       "description": "Customer-managed encryption keys (CMEK) available via Identity Platform on Cloud KMS.",
-      "links": ["https://cloud.google.com/identity-platform/docs/customer-managed-encryption-keys"]
+      "links": [
+        "https://cloud.google.com/identity-platform/docs/customer-managed-encryption-keys"
+      ]
     },
     {
       "identifier": "bot_detection",
       "status": "supported",
       "description": "Identity Platform integrates natively with reCAPTCHA Enterprise for bot detection and SMS toll-fraud protection. App Check with reCAPTCHA Enterprise/v3 can also protect all Firebase backend endpoints.",
-      "links": ["https://docs.cloud.google.com/identity-platform/docs/recaptcha-enterprise"]
+      "links": [
+        "https://docs.cloud.google.com/identity-platform/docs/recaptcha-enterprise"
+      ]
     },
     {
       "identifier": "brute_force_protection",
@@ -437,7 +471,9 @@
       "identifier": "suspicious_ip_throttling",
       "status": "not_supported",
       "description": "No built-in suspicious-IP throttling dashboard or policy. Implement via Blocking Functions or App Check with reCAPTCHA Enterprise.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "breached_password_detection",
@@ -455,25 +491,33 @@
       "identifier": "tenant_acl",
       "status": "not_supported",
       "description": "No tenant-level access control lists. Per-tenant isolation is achieved via Identity Platform multi-tenancy, but fine-grained tenant ACLs are not supported natively.",
-      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"]
+      "links": [
+        "https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"
+      ]
     },
     {
       "identifier": "device_fingerprinting",
       "status": "not_supported",
       "description": "No native device fingerprinting. reCAPTCHA Enterprise signals (via Identity Platform) provide some device-level risk assessment.",
-      "links": ["https://docs.cloud.google.com/identity-platform/docs/recaptcha-enterprise"]
+      "links": [
+        "https://docs.cloud.google.com/identity-platform/docs/recaptcha-enterprise"
+      ]
     },
     {
       "identifier": "per_org_branding",
       "status": "not_supported",
       "description": "No per-tenant/org custom branding in the hosted UI. Each Identity Platform tenant can have its own sign-in providers but shares the same FirebaseUI theme unless a fully custom UI is built per tenant.",
-      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-ui"]
+      "links": [
+        "https://cloud.google.com/identity-platform/docs/multi-tenancy-ui"
+      ]
     },
     {
       "identifier": "per_org_mfa_policy",
       "status": "not_supported",
       "description": "MFA policies cannot be configured per tenant/organization in Identity Platform multi-tenancy.",
-      "links": ["https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"]
+      "links": [
+        "https://cloud.google.com/identity-platform/docs/multi-tenancy-overview"
+      ]
     },
     {
       "identifier": "hosted_login_page",
@@ -532,7 +576,9 @@
       "identifier": "actions_extensibility",
       "status": "supported",
       "description": "Blocking functions (beforeCreate, beforeSignIn) for custom auth logic. Cloud Functions for post-event hooks.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "typescript_in_actions",
@@ -555,7 +601,9 @@
       "identifier": "terraform_provider",
       "status": "partial",
       "description": "Google Cloud Terraform provider covers some Firebase Identity Platform resources.",
-      "links": ["https://registry.terraform.io/providers/hashicorp/google/latest/docs"]
+      "links": [
+        "https://registry.terraform.io/providers/hashicorp/google/latest/docs"
+      ]
     },
     {
       "identifier": "custom_database_connections",
@@ -566,7 +614,9 @@
       "identifier": "native_webhooks",
       "status": "supported",
       "description": "Blocking functions and Cloud Functions Firestore triggers act as event hooks.",
-      "links": ["https://firebase.google.com/docs/auth/admin/blocking-functions"]
+      "links": [
+        "https://firebase.google.com/docs/auth/admin/blocking-functions"
+      ]
     },
     {
       "identifier": "universal_login_customization",
@@ -620,6 +670,53 @@
       "status": "not_supported",
       "description": "No native OAuth 2.0 M2M/agent identity flows or MCP-spec authorization. The Firebase MCP server for developer tooling uses CLI credentials, not a standards-based agentic auth model.",
       "links": ["https://firebase.google.com/docs/ai-assistance/mcp-server"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "Google has enabled hybrid post-quantum TLS key exchange (X25519Kyber768, later X25519MLKEM768) between Chrome and Google's server infrastructure since Chrome 116 (Aug 2023), rolled out across the Google front-end infrastructure that also terminates TLS for *.googleapis.com (which includes Firebase Auth's identitytoolkit.googleapis.com). This is a general Google-infrastructure statement, not Firebase-specific, and a 2026 Google Cloud blog post states Google is still 'currently working on migrating' some public APIs beyond default network encryption - so full coverage of Firebase Auth's endpoints isn't confirmed complete.",
+      "links": [
+        "https://thehackernews.com/2023/08/enhancing-tls-security-google-adds.html",
+        "https://cloud.google.com/blog/products/identity-security/how-were-helping-customers-prepare-for-a-quantum-safe-future"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No evidence Firebase Authentication supports ML-DSA/SLH-DSA/Falcon for signing ID tokens or custom tokens; Firebase Auth ID tokens use RS256. Google Cloud KMS separately added ML-DSA/SLH-DSA signing support, but this is a distinct product not used for Firebase's own token signing.",
+      "links": [
+        "https://cloud.google.com/blog/products/identity-security/future-proofing-data-integrity-quantum-safe-digital-signatures-in-cloud-kms"
+      ]
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "Google has published general, company-level PQC roadmap statements (PQC on internal ALTS protocol since Nov 2022, Cloud KMS PQC GA) via Google Cloud's blog, but these are Google Cloud/corporate infrastructure statements, not documents specific to Firebase Authentication or Identity Platform. No Firebase-Auth-specific PQC migration timeline was found.",
+      "links": [
+        "https://cloud.google.com/blog/products/identity-security/how-were-helping-customers-prepare-for-a-quantum-safe-future",
+        "https://cloud.google.com/blog/products/identity-security/why-google-now-uses-post-quantum-cryptography-for-internal-comms"
+      ]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

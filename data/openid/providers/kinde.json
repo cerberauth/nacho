@@ -13,9 +13,7 @@
     {
       "identifier": "implicit_grant",
       "status": "not_supported",
-      "links": [
-        "https://docs.kinde.com/build/applications/about-applications/"
-      ]
+      "links": ["https://docs.kinde.com/build/applications/about-applications/"]
     },
     {
       "identifier": "authorization_code_grant",
@@ -57,9 +55,7 @@
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": [
-        "https://docs.kinde.com/build/tokens/refresh-tokens/"
-      ]
+      "links": ["https://docs.kinde.com/build/tokens/refresh-tokens/"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
@@ -108,9 +104,7 @@
     {
       "identifier": "token_revocation_endpoint",
       "status": "supported",
-      "links": [
-        "https://docs.kinde.com/build/tokens/configure-tokens/"
-      ]
+      "links": ["https://docs.kinde.com/build/tokens/configure-tokens/"]
     },
     {
       "identifier": "token_introspection_endpoint",
@@ -201,16 +195,12 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": [
-        "https://docs.kinde.com/build/tokens/refresh-tokens/"
-      ]
+      "links": ["https://docs.kinde.com/build/tokens/refresh-tokens/"]
     },
     {
       "identifier": "refresh_token_rotation_grace_period",
       "status": "supported",
-      "links": [
-        "https://docs.kinde.com/build/tokens/refresh-tokens/"
-      ]
+      "links": ["https://docs.kinde.com/build/tokens/refresh-tokens/"]
     },
     {
       "identifier": "rp_initiated_logout",

@@ -16,9 +16,18 @@
     "pricingModel": "mau",
     "pricingUrl": "https://www.descope.com/pricing",
     "plans": [
-      { "name": "Free", "price": "Free" },
-      { "name": "Growth", "price": "$0.05/MAU" },
-      { "name": "Enterprise", "price": "Custom" }
+      {
+        "name": "Free",
+        "price": "Free"
+      },
+      {
+        "name": "Growth",
+        "price": "$0.05/MAU"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom"
+      }
     ]
   },
   "featureList": [
@@ -56,7 +65,9 @@
       "identifier": "anonymous_authentication",
       "status": "supported",
       "description": "Anonymous users issued a dedicated session JWT with a danu claim; seamlessly converted to full accounts on sign-up.",
-      "links": ["https://docs.descope.com/management/user-management/anonymous-users"]
+      "links": [
+        "https://docs.descope.com/management/user-management/anonymous-users"
+      ]
     },
     {
       "identifier": "totp_mfa",
@@ -156,13 +167,18 @@
       "identifier": "active_directory_ldap",
       "status": "supported",
       "description": "LDAP connector authenticates users against an LDAP directory server (including Active Directory) using username/password or mutual TLS (mTLS). Requires the LDAP server to be internet-accessible.",
-      "links": ["https://docs.descope.com/connectors/connector-configuration-guides/other/ldap"]
+      "links": [
+        "https://docs.descope.com/connectors/connector-configuration-guides/other/ldap"
+      ]
     },
     {
       "identifier": "azure_ad_integration",
       "status": "supported",
       "description": "Microsoft Entra ID (Azure AD) SSO via SAML/OIDC, with SCIM provisioning support.",
-      "links": ["https://docs.descope.com/auth-methods/sso/saml", "https://docs.descope.com/management/tenant-management/scim/azure-scim"]
+      "links": [
+        "https://docs.descope.com/auth-methods/sso/saml",
+        "https://docs.descope.com/management/tenant-management/scim/azure-scim"
+      ]
     },
     {
       "identifier": "bulk_user_import",
@@ -292,7 +308,7 @@
     {
       "identifier": "progressive_profiling",
       "status": "supported",
-      "description": "Progressive profiling via Flows builder — collect additional data at any step.",
+      "description": "Progressive profiling via Flows builder \u2014 collect additional data at any step.",
       "links": ["https://docs.descope.com/flows"]
     },
     {
@@ -343,7 +359,10 @@
       "identifier": "fedramp",
       "status": "supported",
       "description": "FedRAMP High authorized, making Descope suitable for US federal government use cases.",
-      "links": ["https://www.descope.com/press-release/fedramp", "https://www.descope.com/security-compliance"]
+      "links": [
+        "https://www.descope.com/press-release/fedramp",
+        "https://www.descope.com/security-compliance"
+      ]
     },
     {
       "identifier": "gdpr_data_export",
@@ -429,7 +448,9 @@
       "identifier": "credential_guard",
       "status": "not_supported",
       "description": "No Auth0-style credential guard feature. Descope offers breached password detection via the Have I Been Pwned connector.",
-      "links": ["https://docs.descope.com/connectors/connector-configuration-guides/fraud/pwned"]
+      "links": [
+        "https://docs.descope.com/connectors/connector-configuration-guides/fraud/pwned"
+      ]
     },
     {
       "identifier": "tenant_acl",
@@ -532,7 +553,9 @@
     {
       "identifier": "terraform_provider",
       "status": "supported",
-      "links": ["https://registry.terraform.io/providers/descope/descope/latest/docs"]
+      "links": [
+        "https://registry.terraform.io/providers/descope/descope/latest/docs"
+      ]
     },
     {
       "identifier": "custom_database_connections",
@@ -565,12 +588,15 @@
       "identifier": "custom_oidc_claims",
       "status": "supported",
       "description": "Custom claims added to JWTs via the Custom Claims action in Flows or JWT templates. Supports the descope.custom_claims scope in OIDC applications.",
-      "links": ["https://docs.descope.com/customize/auth/oidc/", "https://docs.descope.com/flows/actions/custom-claims"]
+      "links": [
+        "https://docs.descope.com/customize/auth/oidc/",
+        "https://docs.descope.com/flows/actions/custom-claims"
+      ]
     },
     {
       "identifier": "nocode_flow_builder",
       "status": "supported",
-      "description": "Descope Flows — visual drag-and-drop authentication journey builder. Available on Free plan.",
+      "description": "Descope Flows \u2014 visual drag-and-drop authentication journey builder. Available on Free plan.",
       "links": ["https://docs.descope.com/flows"]
     },
     {
@@ -590,6 +616,44 @@
       "status": "supported",
       "description": "MCP server authentication for AI agents on Pro plan.",
       "links": ["https://docs.descope.com/agentic-identity-hub/mcp-servers"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "No public vendor statement on PQC TLS support found. Descope's public API (api.descope.com) responds with 'server: cloudflare', a cf-ray header, and a __cf_bm (Cloudflare Bot Management) cookie, indicating Descope's API is fronted by Cloudflare. Cloudflare enabled hybrid PQC key exchange by default for TLS 1.3 in 2023-2024, but this is infra-inherited, not a documented Descope-specific commitment.",
+      "links": ["https://trust.descope.com/"]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that Descope supports ML-DSA, SLH-DSA, or FN-DSA for JWT, SAML, or OIDC signing. Descope's documented signing algorithms are conventional (RS256/ES256 family)."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public roadmap, blog post, or trust-center statement describing a PQC/FIPS 203-205 migration plan or crypto-agility framework was found for Descope.",
+      "links": ["https://www.descope.com/security-compliance"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

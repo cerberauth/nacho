@@ -42,49 +42,37 @@
     {
       "identifier": "username_and_password_authentication",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/kratos/self-service/flows/user-login"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/self-service/flows/user-login"]
     },
     {
       "identifier": "social_sign_in_authentication",
       "status": "supported",
       "description": "Unlimited social connections on all tiers. Native Sign in with Google and Apple on iOS/Android.",
-      "links": [
-        "https://www.ory.com/docs/kratos/social-signin/overview"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/social-signin/overview"]
     },
     {
       "identifier": "passkey_authentication",
       "status": "supported",
       "description": "WebAuthn/FIDO2 passkeys on all tiers including free.",
-      "links": [
-        "https://www.ory.com/docs/kratos/passwordless/passkeys"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/passwordless/passkeys"]
     },
     {
       "identifier": "email_passwordless_authentication",
       "status": "supported",
       "description": "Passwordless magic code (email OTP) for sign-up and login.",
-      "links": [
-        "https://www.ory.com/docs/kratos/passwordless/passkeys"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/passwordless/passkeys"]
     },
     {
       "identifier": "phone_passwordless_authentication",
       "status": "supported",
       "description": "Passwordless SMS code.",
-      "links": [
-        "https://www.ory.com/docs/kratos/self-service/flows/user-login"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/self-service/flows/user-login"]
     },
     {
       "identifier": "magic_link_authentication",
       "status": "supported",
       "description": "Passwordless magic code via email (email OTP). Classic magic links supported.",
-      "links": [
-        "https://www.ory.com/docs/kratos/passwordless/passkeys"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/passwordless/passkeys"]
     },
     {
       "identifier": "anonymous_authentication",
@@ -94,9 +82,7 @@
       "identifier": "totp_mfa",
       "status": "supported",
       "description": "TOTP authenticator app MFA on all tiers including free.",
-      "links": [
-        "https://www.ory.com/docs/kratos/mfa/totp"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/mfa/totp"]
     },
     {
       "identifier": "hotp_mfa",
@@ -106,30 +92,22 @@
       "identifier": "u2f_mfa",
       "status": "supported",
       "description": "WebAuthn hardware security keys for U2F MFA.",
-      "links": [
-        "https://www.ory.com/docs/kratos/passwordless/webauthn"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/passwordless/webauthn"]
     },
     {
       "identifier": "webauthn_mfa",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/kratos/passwordless/webauthn"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/passwordless/webauthn"]
     },
     {
       "identifier": "email_code_mfa",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/kratos/mfa/totp"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/mfa/totp"]
     },
     {
       "identifier": "phone_code_mfa",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/kratos/mfa/totp"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/mfa/totp"]
     },
     {
       "identifier": "recovery_code_mfa",
@@ -155,29 +133,20 @@
       "identifier": "step_up_authentication",
       "status": "supported",
       "description": "Enforce aal2 (second factor) for specific operations via the ?aal=aal2 query parameter on the login endpoint.",
-      "links": [
-        "https://www.ory.com/docs/kratos/mfa/step-up-authentication"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/mfa/step-up-authentication"]
     },
     {
       "identifier": "oidc_protocol",
       "status": "supported",
       "description": "Ory Hydra is OpenID Certified.",
-      "links": [
-        "https://www.ory.com/docs/hydra/"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/"]
     },
     {
       "identifier": "saml2_protocol",
       "status": "supported",
       "description": "SAML SSO via BoxyHQ acquisition (May 2025). Enterprise tier or Enterprise License. Self-hosted (Open Source) has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/kratos/organizations"
-      ]
+      "plans": ["Open Source", "Enterprise"],
+      "links": ["https://www.ory.com/docs/kratos/organizations"]
     },
     {
       "identifier": "ws_federation_protocol",
@@ -187,34 +156,21 @@
       "identifier": "machine_to_machine",
       "status": "supported",
       "description": "OAuth 2.0 client credentials grant via Ory Hydra. Billed per token.",
-      "links": [
-        "https://www.ory.com/docs/hydra/guides/oauth2-clients"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/guides/oauth2-clients"]
     },
     {
       "identifier": "oidc_federation",
       "status": "supported",
       "description": "OIDC-based B2B SSO available on Growth tier+. Self-hosted (Open Source) has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Growth",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/kratos/organizations"
-      ]
+      "plans": ["Open Source", "Growth", "Enterprise"],
+      "links": ["https://www.ory.com/docs/kratos/organizations"]
     },
     {
       "identifier": "saml_federation",
       "status": "supported",
       "description": "SAML enterprise SSO available on Enterprise tier. Self-hosted (Open Source) has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/kratos/organizations"
-      ]
+      "plans": ["Open Source", "Enterprise"],
+      "links": ["https://www.ory.com/docs/kratos/organizations"]
     },
     {
       "identifier": "active_directory_ldap",
@@ -272,22 +228,14 @@
       "identifier": "inbound_scim_provisioning",
       "status": "supported",
       "description": "SCIM 2.0 provisioning via Ory Polis (BoxyHQ). Enterprise tier or Enterprise License. Self-hosted (Open Source) has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/kratos/manage-identities/scim"
-      ]
+      "plans": ["Open Source", "Enterprise"],
+      "links": ["https://www.ory.com/docs/kratos/manage-identities/scim"]
     },
     {
       "identifier": "outbound_scim_provisioning",
       "status": "supported",
       "description": "SCIM 2.0 outbound provisioning via Ory Polis. Enterprise tier. Launched April 2025.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
+      "plans": ["Open Source", "Enterprise"],
       "links": [
         "https://changelog.ory.com/announcements/scim-provisioning-support"
       ]
@@ -296,13 +244,8 @@
       "identifier": "scim_groups",
       "status": "supported",
       "description": "SCIM group sync via Ory Polis. Enterprise tier. Self-hosted (Open Source) has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/kratos/manage-identities/scim"
-      ]
+      "plans": ["Open Source", "Enterprise"],
+      "links": ["https://www.ory.com/docs/kratos/manage-identities/scim"]
     },
     {
       "identifier": "jit_provisioning",
@@ -313,9 +256,7 @@
       "identifier": "lazy_migration",
       "status": "supported",
       "description": "Zero-downtime migrations on all tiers. Password migration hook for lazy migration.",
-      "links": [
-        "https://www.ory.com/docs/kratos/hooks/configure-hooks"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/hooks/configure-hooks"]
     },
     {
       "identifier": "self_service_profile_management",
@@ -329,9 +270,7 @@
       "identifier": "account_linking",
       "status": "supported",
       "description": "Automatic account linking for social + password accounts sharing the same email.",
-      "links": [
-        "https://www.ory.com/docs/kratos/social-signin/overview"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/social-signin/overview"]
     },
     {
       "identifier": "user_blocking",
@@ -358,29 +297,20 @@
     {
       "identifier": "user_search",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/kratos/reference/api"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/reference/api"]
     },
     {
       "identifier": "rbac",
       "status": "supported",
       "description": "Via Ory Keto Zanzibar-based permission system. Permission checks billed per-use.",
-      "links": [
-        "https://www.ory.com/docs/keto/"
-      ]
+      "links": ["https://www.ory.com/docs/keto/"]
     },
     {
       "identifier": "organizations_multitenancy",
       "status": "supported",
       "description": "B2B Organizations via Ory Polis. Multi-tenant production environments require Enterprise tier on Ory Network. Self-hosted (Open Source) has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/kratos/organizations"
-      ]
+      "plans": ["Open Source", "Enterprise"],
+      "links": ["https://www.ory.com/docs/kratos/organizations"]
     },
     {
       "identifier": "password_strength_policy",
@@ -403,39 +333,29 @@
       "identifier": "abac",
       "status": "supported",
       "description": "Ory Keto supports relationship-based checks that model ABAC patterns.",
-      "links": [
-        "https://www.ory.com/docs/keto/"
-      ]
+      "links": ["https://www.ory.com/docs/keto/"]
     },
     {
       "identifier": "fine_grained_authorization",
       "status": "supported",
       "description": "Ory Keto implements Google Zanzibar. FGA available on all paid tiers.",
-      "links": [
-        "https://www.ory.com/docs/keto/"
-      ]
+      "links": ["https://www.ory.com/docs/keto/"]
     },
     {
       "identifier": "api_authorization",
       "status": "supported",
       "description": "OAuth 2.0 scopes and audience restrictions via Ory Hydra.",
-      "links": [
-        "https://www.ory.com/docs/hydra/"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/"]
     },
     {
       "identifier": "soc2_type2",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/security"
-      ]
+      "links": ["https://www.ory.com/security"]
     },
     {
       "identifier": "iso_27001",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/security"
-      ]
+      "links": ["https://www.ory.com/security"]
     },
     {
       "identifier": "hipaa_baa",
@@ -459,9 +379,7 @@
       "identifier": "gdpr_data_export",
       "status": "supported",
       "description": "GDPR-friendly storage with data locality built-in.",
-      "links": [
-        "https://www.ory.com/security"
-      ]
+      "links": ["https://www.ory.com/security"]
     },
     {
       "identifier": "gdpr_right_to_erasure",
@@ -471,56 +389,34 @@
       "identifier": "consent_management",
       "status": "supported",
       "description": "OAuth 2.0 consent flows via Ory Hydra. GDPR-friendly consent management.",
-      "links": [
-        "https://www.ory.com/docs/hydra/"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/"]
     },
     {
       "identifier": "region_deployment",
       "status": "supported",
       "description": "PII region storage selection on all paid tiers. Migrate PII storage regions supported. Self-hosted (Open Source) can deploy in any region.",
-      "values": [
-        "US",
-        "EU"
-      ],
-      "plans": [
-        "Open Source",
-        "Production",
-        "Growth",
-        "Enterprise"
-      ],
-      "links": [
-        "https://www.ory.com/docs/guides/custom-domains"
-      ]
+      "values": ["US", "EU"],
+      "plans": ["Open Source", "Production", "Growth", "Enterprise"],
+      "links": ["https://www.ory.com/docs/guides/custom-domains"]
     },
     {
       "identifier": "private_cloud_deployment",
       "status": "supported",
       "description": "Self-hosted or Ory Enterprise License for dedicated deployment on AWS or Azure.",
-      "values": [
-        "AWS",
-        "Azure"
-      ]
+      "values": ["AWS", "Azure"]
     },
     {
       "identifier": "audit_log_retention",
       "status": "supported",
       "description": "Customer activity insights with historical depth varying by tier.",
-      "links": [
-        "https://console.ory.com"
-      ]
+      "links": ["https://console.ory.com"]
     },
     {
       "identifier": "audit_log_streaming",
       "status": "supported",
       "description": "Live event streaming and event firehose to data lake on Enterprise tier. Self-hosted has no restrictions.",
-      "plans": [
-        "Open Source",
-        "Enterprise"
-      ],
-      "links": [
-        "https://console.ory.com"
-      ]
+      "plans": ["Open Source", "Enterprise"],
+      "links": ["https://console.ory.com"]
     },
     {
       "identifier": "security_center",
@@ -544,9 +440,7 @@
       "identifier": "bot_detection",
       "status": "supported",
       "description": "Fully managed CAPTCHA on all tiers.",
-      "links": [
-        "https://www.ory.com/docs/kratos/concepts/security"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/concepts/security"]
     },
     {
       "identifier": "brute_force_protection",
@@ -560,17 +454,13 @@
       "identifier": "suspicious_ip_throttling",
       "status": "supported",
       "description": "Suspicious IP throttling on all tiers.",
-      "links": [
-        "https://www.ory.com/docs/kratos/concepts/security"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/concepts/security"]
     },
     {
       "identifier": "breached_password_detection",
       "status": "supported",
       "description": "Breached password detection on all tiers including free.",
-      "links": [
-        "https://www.ory.com/docs/kratos/hooks/configure-hooks"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/hooks/configure-hooks"]
     },
     {
       "identifier": "credential_guard",
@@ -589,9 +479,7 @@
       "identifier": "per_org_branding",
       "status": "supported",
       "description": "Multi-brand projects and themeable self-service pages.",
-      "links": [
-        "https://www.ory.com/docs/kratos/"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/"]
     },
     {
       "identifier": "per_org_mfa_policy",
@@ -602,80 +490,60 @@
       "identifier": "hosted_login_page",
       "status": "supported",
       "description": "No-code self-service pages (hosted login, registration, recovery, settings).",
-      "links": [
-        "https://www.ory.com/docs/kratos/self-service/flows/user-login"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/self-service/flows/user-login"]
     },
     {
       "identifier": "embedded_login",
       "status": "supported",
       "description": "Headless API-first architecture. Bring Your Own UI with full flow control. Ory Elements (React/Preact/Next.js).",
-      "links": [
-        "https://www.ory.com/docs/elements"
-      ]
+      "links": ["https://www.ory.com/docs/elements"]
     },
     {
       "identifier": "white_label",
       "status": "supported",
       "description": "No Ory branding required. Headless architecture means full brand control.",
-      "links": [
-        "https://www.ory.com/docs/elements"
-      ]
+      "links": ["https://www.ory.com/docs/elements"]
     },
     {
       "identifier": "localization",
       "status": "supported",
       "description": "Multi-language (i18n) with built-in translations for multiple languages.",
-      "links": [
-        "https://www.ory.com/docs/kratos/concepts/ui-user-interface"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/concepts/ui-user-interface"]
     },
     {
       "identifier": "prebuilt_ui_components",
       "status": "supported",
       "description": "Ory Elements: React, Preact, Next.js component library. Plus no-code self-service pages.",
-      "links": [
-        "https://www.ory.com/docs/elements"
-      ]
+      "links": ["https://www.ory.com/docs/elements"]
     },
     {
       "identifier": "login_analytics",
       "status": "supported",
       "description": "Live analytics on all paid tiers. Historical analytics: 7 days (Production), 30 days (Growth), 90 days (Enterprise).",
-      "links": [
-        "https://console.ory.com"
-      ]
+      "links": ["https://console.ory.com"]
     },
     {
       "identifier": "sdk_coverage",
       "status": "supported",
       "description": "SDKs for Go, JavaScript/TypeScript, Python, PHP, Rust, .NET, Java, and more.",
-      "links": [
-        "https://www.ory.com/docs/sdk"
-      ]
+      "links": ["https://www.ory.com/docs/sdk"]
     },
     {
       "identifier": "management_api",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/reference/api"
-      ]
+      "links": ["https://www.ory.com/docs/reference/api"]
     },
     {
       "identifier": "authentication_api_rate_limits",
       "status": "supported",
       "description": "Per-plan rate limits documented: Developer 5 rps burst/150 rpm; Production 40 rps burst/900 rpm.",
-      "links": [
-        "https://www.ory.com/docs/guides/rate-limits"
-      ]
+      "links": ["https://www.ory.com/docs/guides/rate-limits"]
     },
     {
       "identifier": "actions_extensibility",
       "status": "supported",
       "description": "Actions/webhooks for auth flow customization. Ory Oathkeeper for Zero Trust proxy with mutation rules.",
-      "links": [
-        "https://www.ory.com/docs/kratos/hooks/configure-hooks"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/hooks/configure-hooks"]
     },
     {
       "identifier": "typescript_in_actions",
@@ -686,79 +554,59 @@
       "identifier": "custom_domain",
       "status": "supported",
       "description": "1 custom domain per project on Production/Growth, custom count on Enterprise.",
-      "links": [
-        "https://www.ory.com/docs/guides/custom-domains"
-      ]
+      "links": ["https://www.ory.com/docs/guides/custom-domains"]
     },
     {
       "identifier": "deploy_cli",
       "status": "supported",
       "description": "Ory CLI for automation, configuration management, and CI/CD.",
-      "links": [
-        "https://www.ory.com/docs/guides/cli/installation"
-      ]
+      "links": ["https://www.ory.com/docs/guides/cli/installation"]
     },
     {
       "identifier": "terraform_provider",
       "status": "supported",
-      "links": [
-        "https://registry.terraform.io/providers/ory/ory/latest/docs"
-      ]
+      "links": ["https://registry.terraform.io/providers/ory/ory/latest/docs"]
     },
     {
       "identifier": "custom_database_connections",
       "status": "partial",
       "description": "Ory Kratos uses its own DB. Password migration hooks enable connecting to external DBs for lazy migration.",
-      "links": [
-        "https://www.ory.com/docs/kratos/hooks/configure-hooks"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/hooks/configure-hooks"]
     },
     {
       "identifier": "native_webhooks",
       "status": "supported",
       "description": "Actions and webhooks for auth events on all tiers. Live event streaming on Enterprise.",
-      "links": [
-        "https://www.ory.com/docs/kratos/hooks/configure-hooks"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/hooks/configure-hooks"]
     },
     {
       "identifier": "universal_login_customization",
       "status": "supported",
       "description": "Fully customizable self-service pages and custom email templates.",
-      "links": [
-        "https://www.ory.com/docs/kratos/concepts/ui-user-interface"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/concepts/ui-user-interface"]
     },
     {
       "identifier": "custom_email_provider",
       "status": "supported",
       "description": "Custom SMTP via Ory's courier system.",
-      "links": [
-        "https://www.ory.com/docs/kratos/self-hosted/email-http"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/self-hosted/email-http"]
     },
     {
       "identifier": "email_templates",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/kratos/self-hosted/email-http"
-      ]
+      "links": ["https://www.ory.com/docs/kratos/self-hosted/email-http"]
     },
     {
       "identifier": "custom_oidc_claims",
       "status": "supported",
       "description": "Custom claims via token hooks and Ory Hydra token enrichment.",
-      "links": [
-        "https://www.ory.com/docs/hydra/guides/claims-at-refresh"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/guides/claims-at-refresh"]
     },
     {
       "identifier": "nocode_flow_builder",
       "status": "partial",
       "description": "No-code self-service pages via Ory Network console. Not a visual drag-and-drop flow builder.",
-      "links": [
-        "https://console.ory.com"
-      ]
+      "links": ["https://console.ory.com"]
     },
     {
       "identifier": "identity_proofing",
@@ -768,9 +616,7 @@
       "identifier": "decentralized_identity",
       "status": "supported",
       "description": "OAuth2 Verifiable Credentials support via Ory Hydra.",
-      "links": [
-        "https://www.ory.com/docs/hydra/"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/"]
     },
     {
       "identifier": "billing_integration",
@@ -780,9 +626,48 @@
       "identifier": "agentic_identity",
       "status": "partial",
       "description": "Ory positions for agentic AI identity. OAuth2 M2M via Ory Hydra for agent authentication.",
+      "links": ["https://www.ory.com/docs/hydra/"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "Ory Kratos/Hydra are written in Go and can serve TLS natively, though Ory's own production docs recommend terminating TLS at a gateway/load balancer instead. While Go 1.24 (Feb 2025) enables X25519MLKEM768 in crypto/tls by default when native TLS is used, no Ory-specific statement or documentation confirms PQC TLS support. Without vendor evidence, status is unknown.",
       "links": [
-        "https://www.ory.com/docs/hydra/"
+        "https://github.com/golang/go/issues/69985",
+        "https://www.ory.com/docs/hydra/self-hosted/production"
       ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of ML-DSA/SLH-DSA/Falcon support for OIDC ID token or JWT signing in Ory Hydra/Kratos. No GitHub issues, discussions, or blog posts on PQC signatures were found for any Ory repository."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public roadmap, blog post, whitepaper, or GitHub discussion found describing PQC migration plans for Ory. Ory's public security page and trust center make no mention of post-quantum or quantum-safe cryptography.",
+      "links": ["https://www.ory.com/security", "https://trust.ory.com/"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
     }
   ]
 }

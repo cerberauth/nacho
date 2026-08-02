@@ -157,6 +157,7 @@
     "analytics": "analytique",
     "compliance": "conformité",
     "developerIntegration": "intégration développeur",
+    "postQuantum": "fonctionnalité de cryptographie post-quantique",
     "feature": "fonctionnalité",
     "faqDoes": "{name} prend-il en charge {feature} ?",
     "faqSupported": "{name} prend en charge {feature}.",
@@ -359,7 +360,8 @@
       "analytics": "Analytique et audit",
       "compliance": "Conformité",
       "developer_integration": "Intégration développeur",
-      "advanced": "Avancé / Différenciateurs"
+      "advanced": "Avancé / Différenciateurs",
+      "post_quantum_cryptography": "Cryptographie post-quantique"
     },
     "features": {
       "username_and_password_authentication": {

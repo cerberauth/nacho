@@ -26,23 +26,17 @@
     {
       "identifier": "par_extension",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/hydra/discussions/3071"
-      ]
+      "links": ["https://github.com/ory/hydra/discussions/3071"]
     },
     {
       "identifier": "rar_extension",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/fosite/issues/822"
-      ]
+      "links": ["https://github.com/ory/fosite/issues/822"]
     },
     {
       "identifier": "jar_extension",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/hydra/discussions/3305"
-      ]
+      "links": ["https://github.com/ory/hydra/discussions/3305"]
     },
     {
       "identifier": "client_credentials_grant",
@@ -128,9 +122,7 @@
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "supported",
-      "links": [
-        "https://github.com/ory/hydra/releases/tag/v25.4.0"
-      ]
+      "links": ["https://github.com/ory/hydra/releases/tag/v25.4.0"]
     },
     {
       "identifier": "none_token_endpoint_auth",
@@ -218,24 +210,18 @@
     {
       "identifier": "refresh_token_rotation",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/hydra/guides/graceful-token-refresh"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/guides/graceful-token-refresh"]
     },
     {
       "identifier": "refresh_token_rotation_grace_period",
       "status": "supported",
       "description": "Configurable via 'rotation_grace_period' (up to 180 days when combined with 'rotation_grace_reuse_count') so a rotated-out refresh token stays valid, optionally capped to a limited number of reuses.",
-      "links": [
-        "https://www.ory.com/docs/hydra/guides/graceful-token-refresh"
-      ]
+      "links": ["https://www.ory.com/docs/hydra/guides/graceful-token-refresh"]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": [
-        "https://www.ory.com/docs/oauth2-oidc/oidc-logout"
-      ]
+      "links": ["https://www.ory.com/docs/oauth2-oidc/oidc-logout"]
     },
     {
       "identifier": "dpop",
@@ -244,30 +230,22 @@
     {
       "identifier": "fapi_1_0_baseline",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/hydra/discussions/3833"
-      ]
+      "links": ["https://github.com/ory/hydra/discussions/3833"]
     },
     {
       "identifier": "fapi_1_0_advanced",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/hydra/discussions/3833"
-      ]
+      "links": ["https://github.com/ory/hydra/discussions/3833"]
     },
     {
       "identifier": "fapi_2_0_security_profile",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/hydra/discussions/3833"
-      ]
+      "links": ["https://github.com/ory/hydra/discussions/3833"]
     },
     {
       "identifier": "fapi_2_0_message_signing",
       "status": "not_supported",
-      "links": [
-        "https://github.com/ory/hydra/discussions/3833"
-      ]
+      "links": ["https://github.com/ory/hydra/discussions/3833"]
     },
     {
       "identifier": "jarm",

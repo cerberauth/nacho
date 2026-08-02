@@ -14,9 +14,7 @@
     {
       "identifier": "implicit_grant",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/securing-apps/oidc-layers#_implicit"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_implicit"]
     },
     {
       "identifier": "authorization_code_grant",
@@ -28,9 +26,7 @@
     {
       "identifier": "pkce_extension",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/docs/latest/securing_apps/#_pkce"
-      ]
+      "links": ["https://www.keycloak.org/docs/latest/securing_apps/#_pkce"]
     },
     {
       "identifier": "par_extension",
@@ -42,9 +38,7 @@
     {
       "identifier": "rar_extension",
       "status": "not_supported",
-      "links": [
-        "https://github.com/keycloak/keycloak/discussions/29340"
-      ]
+      "links": ["https://github.com/keycloak/keycloak/discussions/29340"]
     },
     {
       "identifier": "jar_extension",
@@ -77,9 +71,7 @@
     {
       "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/securing-apps/token-exchange"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/token-exchange"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
@@ -144,24 +136,18 @@
     {
       "identifier": "device_authorization_endpoint",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"]
     },
     {
       "identifier": "openid_connect_discovery_endpoint",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"]
     },
     {
       "identifier": "oauth_authorization_server_metadata_endpoint",
       "status": "partial",
       "description": "Supports through OpenID Connect Discovery",
-      "links": [
-        "https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_endpoints"]
     },
     {
       "identifier": "none_prompt",
@@ -250,9 +236,7 @@
     {
       "identifier": "dynamic_client_registration_management",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/securing-apps/client-registration"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/client-registration"]
     },
     {
       "identifier": "refresh_token_rotation",
@@ -265,16 +249,12 @@
       "identifier": "refresh_token_rotation_grace_period",
       "status": "supported",
       "description": "Configurable via a realm's 'Revoke Refresh Token' and 'Refresh Token Max Reuse' settings, letting a rotated-out refresh token be reused a limited number of times to absorb race conditions.",
-      "links": [
-        "https://www.keycloak.org/docs/latest/server_admin/"
-      ]
+      "links": ["https://www.keycloak.org/docs/latest/server_admin/"]
     },
     {
       "identifier": "rp_initiated_logout",
       "status": "supported",
-      "links": [
-        "https://www.keycloak.org/securing-apps/oidc-layers#_logout"
-      ]
+      "links": ["https://www.keycloak.org/securing-apps/oidc-layers#_logout"]
     },
     {
       "identifier": "dpop",

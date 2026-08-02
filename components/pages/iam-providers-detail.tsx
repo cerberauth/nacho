@@ -201,6 +201,7 @@ function FAQFeatureComponent({
     case IAMFeatureCategory.Analytics: featureSuffix = t.analytics; break
     case IAMFeatureCategory.Compliance: featureSuffix = t.compliance; break
     case IAMFeatureCategory.DeveloperIntegration: featureSuffix = t.developerIntegration; break
+    case IAMFeatureCategory.PostQuantum: featureSuffix = t.postQuantum; break
     default: featureSuffix = t.feature; break
   }
   const fullFeatureName = `${feature.feature.name} ${featureSuffix}`

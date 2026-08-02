@@ -157,6 +157,7 @@
     "analytics": "analytics",
     "compliance": "compliance",
     "developerIntegration": "developer integration",
+    "postQuantum": "post-quantum cryptography feature",
     "feature": "feature",
     "faqDoes": "Does {name} support {feature}?",
     "faqSupported": "{name} supports {feature}.",
@@ -359,7 +360,8 @@
       "analytics": "Analytics & Audit",
       "compliance": "Compliance",
       "developer_integration": "Developer Integration",
-      "advanced": "Advanced / Differentiators"
+      "advanced": "Advanced / Differentiators",
+      "post_quantum_cryptography": "Post-Quantum Cryptography"
     },
     "features": {},
     "browseByCountry": "Browse by country",

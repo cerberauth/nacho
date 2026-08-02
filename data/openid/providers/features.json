@@ -48,7 +48,9 @@
       "identifier": "urn:openid:params:grant-type:ciba",
       "category": "grant_type",
       "status": "supported",
-      "links": ["https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"]
+      "links": [
+        "https://openid.net/specs/openid-client-initiated-backchannel-authentication-core-1_0.html"
+      ]
     },
     {
       "name": "Device Authorization Grant",
@@ -189,7 +191,9 @@
       "identifier": "none_prompt",
       "category": "prompt",
       "status": "supported",
-      "links": ["https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"]
+      "links": [
+        "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+      ]
     },
     {
       "name": "login",
@@ -197,7 +201,9 @@
       "identifier": "login_prompt",
       "category": "prompt",
       "status": "supported",
-      "links": ["https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"]
+      "links": [
+        "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+      ]
     },
     {
       "name": "consent",
@@ -205,7 +211,9 @@
       "identifier": "consent_prompt",
       "category": "prompt",
       "status": "supported",
-      "links": ["https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"]
+      "links": [
+        "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+      ]
     },
     {
       "name": "select_account",
@@ -213,7 +221,9 @@
       "identifier": "select_account_prompt",
       "category": "prompt",
       "status": "supported",
-      "links": ["https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"]
+      "links": [
+        "https://openid.net/specs/openid-connect-core-1_0.html#AuthRequest"
+      ]
     },
     {
       "name": "create",
@@ -221,7 +231,9 @@
       "identifier": "create_prompt",
       "category": "prompt",
       "status": "supported",
-      "links": ["https://openid.net/specs/openid-connect-prompt-create-1_0.html"]
+      "links": [
+        "https://openid.net/specs/openid-connect-prompt-create-1_0.html"
+      ]
     },
     {
       "name": "none",

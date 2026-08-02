@@ -63,9 +63,7 @@
     {
       "identifier": "refresh_token_grant",
       "status": "supported",
-      "links": [
-        "https://developer.okta.com/docs/guides/refresh-tokens/main/"
-      ]
+      "links": ["https://developer.okta.com/docs/guides/refresh-tokens/main/"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:device_code",
@@ -84,9 +82,7 @@
     {
       "identifier": "urn:openid:params:grant-type:ciba",
       "status": "supported",
-      "links": [
-        "https://developer.okta.com/docs/guides/configure-ciba/main/"
-      ]
+      "links": ["https://developer.okta.com/docs/guides/configure-ciba/main/"]
     },
     {
       "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
@@ -281,9 +277,7 @@
     {
       "identifier": "fapi_1_0_advanced",
       "status": "supported",
-      "links": [
-        "https://www.okta.com/products/regulated-identity/"
-      ]
+      "links": ["https://www.okta.com/products/regulated-identity/"]
     },
     {
       "identifier": "fapi_2_0_security_profile",
