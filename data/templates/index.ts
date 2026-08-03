@@ -31,6 +31,7 @@ type TemplateInput = Omit<Template, 'client'> & {
   client?: Template['client']
 }
 
+import adonisJsApp from './adonisjs-app.json' with { type: 'json' }
 import angularSpa from './angular-spa.json' with { type: 'json' }
 import astroApp from './astro-app.json' with { type: 'json' }
 import codeigniterApp from './codeigniter-app.json' with { type: 'json' }
@@ -103,6 +104,7 @@ import yiiApp from './yii-app.json' with { type: 'json' }
 import zendFrameworkApp from './zend-framework-app.json' with { type: 'json' }
 
 const templateInputs = [
+  adonisJsApp,
   angularSpa,
   astroApp,
   codeigniterApp,
@@ -181,15 +183,21 @@ function resolveTemplate(input: TemplateInput, all: TemplateInput[]): Template {
     return rest as Template
   }
   if (!input.extends) {
-    throw new Error(`Template "${input.identifier}" has no client and no extends`)
+    throw new Error(
+      `Template "${input.identifier}" has no client and no extends`,
+    )
   }
   const parent = all.find((t) => t.identifier === input.extends)
   if (!parent) {
-    throw new Error(`Template "${input.identifier}" extends "${input.extends}" which was not found`)
+    throw new Error(
+      `Template "${input.identifier}" extends "${input.extends}" which was not found`,
+    )
   }
   const resolved = resolveTemplate(parent, all)
   const { extends: _, ...rest } = input
   return { ...rest, client: resolved.client } as Template
 }
 
-export const templates: Template[] = templateInputs.map((t) => resolveTemplate(t, templateInputs))
+export const templates: Template[] = templateInputs.map((t) =>
+  resolveTemplate(t, templateInputs),
+)
