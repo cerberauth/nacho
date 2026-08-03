@@ -3,7 +3,16 @@
 import { Fragment, useState, useMemo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, Plus, RefreshCw, Trash, X } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Plus,
+  RefreshCw,
+  Trash,
+  X,
+} from 'lucide-react'
 
 import { FeatureStatus, type Provider, type FeatureCategory } from '@/lib/types'
 import { StatusCell } from '@/components/benchmark/status-cell'
@@ -30,7 +39,7 @@ import {
   COMMON_FEATURES,
   AUDIENCE_FEATURES,
   FEATURE_MAP,
-  COMPLIANCE_MAP
+  COMPLIANCE_MAP,
 } from '@/lib/iam-scoring'
 
 import { useBenchmarkParams } from '@/components/hooks/use-benchmark-params'
@@ -139,15 +148,20 @@ export function IAMProvidersInteractiveView({
 
   const [wizardOpen, setWizardOpen] = useState(!savedAnswers)
   const [wizardStep, setWizardStep] = useState(0)
-  const [draftAnswers, setDraftAnswers] = useState<SurveyAnswers>(savedAnswers ?? {})
+  const [draftAnswers, setDraftAnswers] = useState<SurveyAnswers>(
+    savedAnswers ?? {},
+  )
 
   const vendorScores = useMemo<VendorScore[]>(() => {
     if (!savedAnswers) return []
-    return scoreVendors(providers as Parameters<typeof scoreVendors>[0], savedAnswers)
+    return scoreVendors(
+      providers as Parameters<typeof scoreVendors>[0],
+      savedAnswers,
+    )
   }, [providers, savedAnswers])
 
   const scoreMap = useMemo(() => {
-    return new Map(vendorScores.map(v => [v.identifier, v]))
+    return new Map(vendorScores.map((v) => [v.identifier, v]))
   }, [vendorScores])
 
   const allSortedProviders = useMemo(() => {
@@ -161,69 +175,89 @@ export function IAMProvidersInteractiveView({
 
   const tableProviderIds = useMemo(() => {
     return allSortedProviders
-      .filter(p => !hiddenProviders.has(p.identifier))
-      .filter(p => {
+      .filter((p) => !hiddenProviders.has(p.identifier))
+      .filter((p) => {
         if (selectedFeatures.size === 0) return true
         for (const featureId of selectedFeatures) {
-          const feat = p.featureList.find(f => f.identifier === featureId)
+          const feat = p.featureList.find((f) => f.identifier === featureId)
           const status = feat?.status
-          if (status === FeatureStatus.NotSupported || status === FeatureStatus.Deprecated) {
+          if (
+            status === FeatureStatus.NotSupported ||
+            status === FeatureStatus.Deprecated
+          ) {
             return false
           }
         }
         return true
       })
-      .map(p => p.identifier)
+      .map((p) => p.identifier)
   }, [allSortedProviders, hiddenProviders, selectedFeatures])
 
   const sortedProviders = useMemo(
-    () => allSortedProviders.filter(p => !hiddenProviders.has(p.identifier)),
+    () => allSortedProviders.filter((p) => !hiddenProviders.has(p.identifier)),
     [allSortedProviders, hiddenProviders],
   )
 
   const hiddenProviderList = useMemo(
-    () => providers.filter(p => hiddenProviders.has(p.identifier)),
+    () => providers.filter((p) => hiddenProviders.has(p.identifier)),
     [providers, hiddenProviders],
   )
 
   const dimmedProviders = useMemo(
-    () => new Set(sortedProviders.filter(p => !tableProviderIds.includes(p.identifier)).map(p => p.identifier)),
+    () =>
+      new Set(
+        sortedProviders
+          .filter((p) => !tableProviderIds.includes(p.identifier))
+          .map((p) => p.identifier),
+      ),
     [sortedProviders, tableProviderIds],
   )
 
   const filteredCategories = useMemo(() => {
-    const sortedIds = sortedProviders.map(p => p.identifier)
+    const sortedIds = sortedProviders.map((p) => p.identifier)
     return allCategories
-      .map(cat => ({
+      .map((cat) => ({
         ...cat,
         rows: cat.rows
-          .filter(row => !hiddenRows.has(row.identifier))
-          .filter(row => selectedFeatures.size === 0 || selectedFeatures.has(row.identifier))
-          .map(row => ({
+          .filter((row) => !hiddenRows.has(row.identifier))
+          .filter(
+            (row) =>
+              selectedFeatures.size === 0 ||
+              selectedFeatures.has(row.identifier),
+          )
+          .map((row) => ({
             ...row,
             cells: sortedIds.map(
-              id => row.cells.find(cell => cell.identifier === id) ?? { identifier: id, status: FeatureStatus.Unknown },
+              (id) =>
+                row.cells.find((cell) => cell.identifier === id) ?? {
+                  identifier: id,
+                  status: FeatureStatus.Unknown,
+                },
             ),
           })),
       }))
-      .filter(cat => cat.rows.length > 0)
+      .filter((cat) => cat.rows.length > 0)
   }, [allCategories, selectedFeatures, hiddenRows, sortedProviders])
 
   const hiddenRowDetails = useMemo(() => {
     if (hiddenRows.size === 0) return []
-    const allRowsList = allCategories.flatMap(c => c.rows)
+    const allRowsList = allCategories.flatMap((c) => c.rows)
     return Array.from(hiddenRows)
-      .map(id => allRowsList.find(r => r.identifier === id))
+      .map((id) => allRowsList.find((r) => r.identifier === id))
       .filter(Boolean) as (typeof allRowsList)[number][]
   }, [hiddenRows, allCategories])
 
   const excludedFeaturesSorted = useMemo(() => {
     return [...hiddenRowDetails].sort((a, b) => {
-      const countA = sortedProviders.filter(p =>
-        p.featureList.find(f => f.identifier === a.identifier)?.status === FeatureStatus.Supported
+      const countA = sortedProviders.filter(
+        (p) =>
+          p.featureList.find((f) => f.identifier === a.identifier)?.status ===
+          FeatureStatus.Supported,
       ).length
-      const countB = sortedProviders.filter(p =>
-        p.featureList.find(f => f.identifier === b.identifier)?.status === FeatureStatus.Supported
+      const countB = sortedProviders.filter(
+        (p) =>
+          p.featureList.find((f) => f.identifier === b.identifier)?.status ===
+          FeatureStatus.Supported,
       ).length
       return countB - countA
     })
@@ -231,7 +265,7 @@ export function IAMProvidersInteractiveView({
 
   const toggleProvider = (id: string) => {
     const next = new Set(hiddenProviders)
-    const visibleCount = providers.filter(p => !next.has(p.identifier)).length
+    const visibleCount = providers.filter((p) => !next.has(p.identifier)).length
     if (next.has(id)) {
       next.delete(id)
     } else if (visibleCount > 1) {
@@ -249,7 +283,9 @@ export function IAMProvidersInteractiveView({
 
   const trackVendorClick = (identifier: string) => {
     import('@plausible-analytics/tracker').then(({ track }) =>
-      track('Benchmark Vendor Click', { props: { vendor: identifier, benchmark: 'iam' } })
+      track('Benchmark Vendor Click', {
+        props: { vendor: identifier, benchmark: 'iam' },
+      }),
     )
   }
 
@@ -258,7 +294,13 @@ export function IAMProvidersInteractiveView({
     if (next.has(featureId)) next.delete(featureId)
     else next.add(featureId)
     import('@plausible-analytics/tracker').then(({ track }) =>
-      track('Benchmark Feature Filter', { props: { feature: featureId, action: next.has(featureId) ? 'add' : 'remove', benchmark: 'iam' } })
+      track('Benchmark Feature Filter', {
+        props: {
+          feature: featureId,
+          action: next.has(featureId) ? 'add' : 'remove',
+          benchmark: 'iam',
+        },
+      }),
     )
     updateParams({ features: next })
   }
@@ -272,11 +314,13 @@ export function IAMProvidersInteractiveView({
   const setDraftAnswer = (questionId: string, value: string | number) => {
     const key = ANSWER_KEY_MAP[questionId]
     if (!key) return
-    const step = STEPS.find(s => s.questions.some(q => q.questionId === questionId))
-    const question = step?.questions.find(q => q.questionId === questionId)
+    const step = STEPS.find((s) =>
+      s.questions.some((q) => q.questionId === questionId),
+    )
+    const question = step?.questions.find((q) => q.questionId === questionId)
     if (!question) return
 
-    setDraftAnswers(prev => {
+    setDraftAnswers((prev) => {
       if (questionId === 'q_mau' && typeof value === 'number') {
         let bucket: SurveyAnswers['mau'] = '<1k'
         if (value >= 1000000) bucket = '1m+'
@@ -291,13 +335,16 @@ export function IAMProvidersInteractiveView({
       }
       const current = (prev[key] as string[] | undefined) ?? []
       const next = current.includes(value as string)
-        ? current.filter(v => v !== (value as string))
+        ? current.filter((v) => v !== (value as string))
         : [...current, value as string]
       return { ...prev, [key]: next }
     })
   }
 
-  const isDraftAnswerSelected = (questionId: string, value: string): boolean => {
+  const isDraftAnswerSelected = (
+    questionId: string,
+    value: string,
+  ): boolean => {
     const key = ANSWER_KEY_MAP[questionId]
     if (!key) return false
     const current = draftAnswers[key]
@@ -316,7 +363,7 @@ export function IAMProvidersInteractiveView({
 
   const isStepAnswered = (): boolean => {
     const step = STEPS[wizardStep]
-    return step.questions.every(q => isQuestionAnswered(q.questionId))
+    return step.questions.every((q) => isQuestionAnswered(q.questionId))
   }
 
   const canAdvance = (): boolean => {
@@ -325,7 +372,7 @@ export function IAMProvidersInteractiveView({
 
   const finishSurvey = () => {
     import('@plausible-analytics/tracker').then(({ track }) =>
-      track('Benchmark Survey Complete', { props: { benchmark: 'iam' } })
+      track('Benchmark Survey Complete', { props: { benchmark: 'iam' } }),
     )
 
     // Build the set of features to display based on answers
@@ -334,47 +381,54 @@ export function IAMProvidersInteractiveView({
     // Add audience-specific features
     if (draftAnswers.audience) {
       if (draftAnswers.audience === 'mixed') {
-        Object.values(AUDIENCE_FEATURES).flat().forEach(f => nextSelectedFeatures.add(f))
+        Object.values(AUDIENCE_FEATURES)
+          .flat()
+          .forEach((f) => nextSelectedFeatures.add(f))
       } else if (AUDIENCE_FEATURES[draftAnswers.audience]) {
-        AUDIENCE_FEATURES[draftAnswers.audience].forEach(f => nextSelectedFeatures.add(f))
+        AUDIENCE_FEATURES[draftAnswers.audience].forEach((f) =>
+          nextSelectedFeatures.add(f),
+        )
       }
     }
 
     // Add compliance features
     if (draftAnswers.compliance) {
-      draftAnswers.compliance.forEach(c => {
+      draftAnswers.compliance.forEach((c) => {
         const mapped = COMPLIANCE_MAP[c]
-        if (mapped) mapped.forEach(f => nextSelectedFeatures.add(f))
+        if (mapped) mapped.forEach((f) => nextSelectedFeatures.add(f))
       })
     }
 
     // Add user-selected capabilities
     if (draftAnswers.features) {
-      draftAnswers.features.forEach(feat => {
+      draftAnswers.features.forEach((feat) => {
         const mapped = FEATURE_MAP[feat]
-        if (mapped) mapped.forEach(f => nextSelectedFeatures.add(f))
+        if (mapped) mapped.forEach((f) => nextSelectedFeatures.add(f))
       })
     }
 
     updateParams({
       features: nextSelectedFeatures,
-      extra: { answers: encodeAnswers(draftAnswers) }
+      extra: { answers: encodeAnswers(draftAnswers) },
     })
     setWizardOpen(false)
   }
 
   const recommendedVendors = useMemo(
-    () => vendorScores.filter(v => v.recommended).slice(0, 3),
+    () => vendorScores.filter((v) => v.recommended).slice(0, 3),
     [vendorScores],
   )
 
   return (
     <>
-      <Dialog open={wizardOpen} onOpenChange={(open) => {
-        if (!open && savedAnswers) setWizardOpen(false)
-        else if (!open && !savedAnswers) setWizardOpen(false)
-        else setWizardOpen(open)
-      }}>
+      <Dialog
+        open={wizardOpen}
+        onOpenChange={(open) => {
+          if (!open && savedAnswers) setWizardOpen(false)
+          else if (!open && !savedAnswers) setWizardOpen(false)
+          else setWizardOpen(open)
+        }}
+      >
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader>
             <DialogTitle>{dict.title}</DialogTitle>
@@ -386,24 +440,29 @@ export function IAMProvidersInteractiveView({
             {STEPS.map((step, i) => (
               <div
                 key={step.stepId}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${i === wizardStep
-                  ? 'bg-slate-900'
-                  : i < wizardStep
-                    ? 'bg-slate-400'
-                    : 'bg-slate-200'
-                  }`}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
+                  i === wizardStep
+                    ? 'bg-slate-900'
+                    : i < wizardStep
+                      ? 'bg-slate-400'
+                      : 'bg-slate-200'
+                }`}
               />
             ))}
           </div>
 
           <div className="flex-1 flex flex-col py-4 overflow-hidden">
-            <h3 className="font-semibold text-slate-900 mb-0.5">{STEPS[wizardStep].title}</h3>
+            <h3 className="font-semibold text-slate-900 mb-0.5">
+              {STEPS[wizardStep].title}
+            </h3>
             {STEPS[wizardStep].subtitle && (
-              <p className="text-xs text-slate-500 mb-4">{STEPS[wizardStep].subtitle}</p>
+              <p className="text-xs text-slate-500 mb-4">
+                {STEPS[wizardStep].subtitle}
+              </p>
             )}
 
             <div className="flex-1 overflow-y-auto pr-2">
-              {STEPS[wizardStep].questions.map(question => (
+              {STEPS[wizardStep].questions.map((question) => (
                 <div key={question.questionId} className="flex flex-col gap-2">
                   {question.questionId === 'q_mau' ? (
                     <div className="flex flex-col gap-8 py-8 px-4 bg-slate-50 rounded-xl border border-slate-200">
@@ -423,7 +482,9 @@ export function IAMProvidersInteractiveView({
                           max="1000000"
                           step="1000"
                           value={draftAnswers.mauCount || 1000}
-                          onChange={(e) => setDraftAnswer('q_mau', parseInt(e.target.value))}
+                          onChange={(e) =>
+                            setDraftAnswer('q_mau', parseInt(e.target.value))
+                          }
                           className="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-slate-900"
                         />
                         <div className="flex justify-between mt-4 text-[10px] font-bold text-slate-400 uppercase tracking-tighter">
@@ -443,20 +504,33 @@ export function IAMProvidersInteractiveView({
                     <>
                       {question.inputType === 'single_select' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {question.options?.map(option => {
-                            const selected = isDraftAnswerSelected(question.questionId, option.value)
+                          {question.options?.map((option) => {
+                            const selected = isDraftAnswerSelected(
+                              question.questionId,
+                              option.value,
+                            )
                             return (
                               <button
                                 key={option.value}
-                                onClick={() => setDraftAnswer(question.questionId, option.value)}
-                                className={`flex flex-col items-start text-left px-4 py-3 rounded-lg border transition-all ${selected
-                                  ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
-                                  : 'border-slate-200 hover:border-slate-400'
-                                  }`}
+                                onClick={() =>
+                                  setDraftAnswer(
+                                    question.questionId,
+                                    option.value,
+                                  )
+                                }
+                                className={`flex flex-col items-start text-left px-4 py-3 rounded-lg border transition-all ${
+                                  selected
+                                    ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                                    : 'border-slate-200 hover:border-slate-400'
+                                }`}
                               >
-                                <span className="text-sm font-medium text-slate-900">{option.label}</span>
+                                <span className="text-sm font-medium text-slate-900">
+                                  {option.label}
+                                </span>
                                 {option.description && (
-                                  <span className="text-xs text-slate-500 mt-0.5">{option.description}</span>
+                                  <span className="text-xs text-slate-500 mt-0.5">
+                                    {option.description}
+                                  </span>
                                 )}
                               </button>
                             )
@@ -466,26 +540,39 @@ export function IAMProvidersInteractiveView({
 
                       {question.inputType === 'multi_select' && (
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {question.options?.map(option => {
-                            const selected = isDraftAnswerSelected(question.questionId, option.value)
+                          {question.options?.map((option) => {
+                            const selected = isDraftAnswerSelected(
+                              question.questionId,
+                              option.value,
+                            )
                             return (
                               <label
                                 key={option.value}
-                                className={`flex items-start gap-3 px-4 py-2.5 rounded-lg border cursor-pointer transition-all ${selected
-                                  ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
-                                  : 'border-slate-200 hover:border-slate-400'
-                                  }`}
+                                className={`flex items-start gap-3 px-4 py-2.5 rounded-lg border cursor-pointer transition-all ${
+                                  selected
+                                    ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                                    : 'border-slate-200 hover:border-slate-400'
+                                }`}
                               >
                                 <input
                                   type="checkbox"
                                   checked={selected}
-                                  onChange={() => setDraftAnswer(question.questionId, option.value)}
+                                  onChange={() =>
+                                    setDraftAnswer(
+                                      question.questionId,
+                                      option.value,
+                                    )
+                                  }
                                   className="accent-slate-900 h-4 w-4 mt-0.5 shrink-0"
                                 />
                                 <div>
-                                  <span className="text-sm font-medium text-slate-900">{option.label}</span>
+                                  <span className="text-sm font-medium text-slate-900">
+                                    {option.label}
+                                  </span>
                                   {option.description && (
-                                    <p className="text-xs text-slate-500 mt-0.5">{option.description}</p>
+                                    <p className="text-xs text-slate-500 mt-0.5">
+                                      {option.description}
+                                    </p>
                                   )}
                                 </div>
                               </label>
@@ -504,7 +591,7 @@ export function IAMProvidersInteractiveView({
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setWizardStep(s => s - 1)}
+              onClick={() => setWizardStep((s) => s - 1)}
               disabled={wizardStep === 0}
             >
               <ChevronLeft className="h-4 w-4 mr-1" />
@@ -512,26 +599,34 @@ export function IAMProvidersInteractiveView({
             </Button>
 
             <span className="text-xs text-slate-400">
-              {dict.step.replace('{current}', wizardStep + 1).replace('{total}', TOTAL_STEPS)}
+              {dict.step
+                .replace('{current}', wizardStep + 1)
+                .replace('{total}', TOTAL_STEPS)}
             </span>
 
             {wizardStep < TOTAL_STEPS - 1 ? (
               <Button
                 size="sm"
                 variant={isStepAnswered() ? 'default' : 'outline'}
-                onClick={() => setWizardStep(s => s + 1)}
+                onClick={() => setWizardStep((s) => s + 1)}
               >
                 {isStepAnswered() ? dict.next : dict.skip}
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             ) : (
-              <Button size="sm" onClick={finishSurvey} variant={isStepAnswered() ? 'default' : 'outline'}>
+              <Button
+                size="sm"
+                onClick={finishSurvey}
+                variant={isStepAnswered() ? 'default' : 'outline'}
+              >
                 {isStepAnswered() ? (
                   <>
                     <Check className="h-4 w-4 mr-1" />
                     {dict.seeRecommendations}
                   </>
-                ) : dict.skipToResults}
+                ) : (
+                  dict.skipToResults
+                )}
               </Button>
             )}
           </div>
@@ -555,13 +650,18 @@ export function IAMProvidersInteractiveView({
 
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {recommendedVendors.map((vs, rank) => {
-              const provider = providers.find(p => p.identifier === vs.identifier)
+              const provider = providers.find(
+                (p) => p.identifier === vs.identifier,
+              )
               if (!provider) return null
               return (
                 <div
                   key={vs.identifier}
-                  className={`relative flex flex-col gap-3 rounded-xl border p-4 ${rank === 0 ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900' : 'border-slate-200'
-                    }`}
+                  className={`relative flex flex-col gap-3 rounded-xl border p-4 ${
+                    rank === 0
+                      ? 'border-slate-900 bg-slate-50 ring-1 ring-slate-900'
+                      : 'border-slate-200'
+                  }`}
                 >
                   {rank === 0 && (
                     <span className="absolute -top-2.5 left-4 text-xs font-semibold bg-slate-900 text-white px-2 py-0.5 rounded-full">
@@ -589,12 +689,17 @@ export function IAMProvidersInteractiveView({
                           {provider.name}
                         </Link>
                         {provider.nationality && (
-                          <span title={provider.nationality} className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                          <span
+                            title={provider.nationality}
+                            className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help"
+                          >
                             {getCountryFlag(provider.nationality)}
                           </span>
                         )}
                       </div>
-                      <p className="text-xs text-slate-500">{provider.license}</p>
+                      <p className="text-xs text-slate-500">
+                        {provider.license}
+                      </p>
                     </div>
                   </div>
 
@@ -605,11 +710,15 @@ export function IAMProvidersInteractiveView({
                         style={{ width: `${vs.score}%` }}
                       />
                     </div>
-                    <span className="text-xs font-semibold text-slate-700 tabular-nums">{vs.score}%</span>
+                    <span className="text-xs font-semibold text-slate-700 tabular-nums">
+                      {vs.score}%
+                    </span>
                   </div>
 
                   <div className="flex items-center justify-between py-1 border-y border-slate-100">
-                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">{dict.estMonthlyCost}</span>
+                    <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider">
+                      {dict.estMonthlyCost}
+                    </span>
                     <span className="text-xs font-bold text-slate-900">
                       {vs.estimatedPrice === 'Free' ? (
                         <span className="text-lime-600">Free</span>
@@ -625,8 +734,11 @@ export function IAMProvidersInteractiveView({
 
                   {vs.topReasons.length > 0 && (
                     <ul className="flex flex-col gap-1">
-                      {vs.topReasons.map(reason => (
-                        <li key={reason} className="flex items-start gap-1.5 text-xs text-slate-600">
+                      {vs.topReasons.map((reason) => (
+                        <li
+                          key={reason}
+                          className="flex items-start gap-1.5 text-xs text-slate-600"
+                        >
                           <Check className="h-3.5 w-3.5 shrink-0 mt-0.5 text-slate-900" />
                           {reason}
                         </li>
@@ -656,8 +768,11 @@ export function IAMProvidersInteractiveView({
       )}
 
       {savedAnswers ? (
-        <div id="full-comparison" className="flex items-center gap-2 flex-wrap w-full">
-          {excludedFeaturesSorted.map(feature => (
+        <div
+          id="full-comparison"
+          className="flex items-center gap-2 flex-wrap w-full"
+        >
+          {excludedFeaturesSorted.map((feature) => (
             <button
               key={feature.identifier}
               onClick={() => toggleRow(feature.identifier)}
@@ -683,11 +798,13 @@ export function IAMProvidersInteractiveView({
                 Only providers supporting all selected features will be shown.
               </p>
               <div className="flex flex-col gap-6">
-                {featuresCategories.map(category => (
+                {featuresCategories.map((category) => (
                   <div key={category.identifier}>
-                    <h3 className="text-sm font-semibold text-slate-700 mb-2">{category.name}</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 mb-2">
+                      {category.name}
+                    </h3>
                     <div className="flex flex-col gap-0.5">
-                      {category.features.map(feature => (
+                      {category.features.map((feature) => (
                         <label
                           key={feature.identifier}
                           className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 px-1 py-1 rounded"
@@ -707,14 +824,18 @@ export function IAMProvidersInteractiveView({
 
                 {hiddenRowDetails.length > 0 && (
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-700 mb-2">Hidden rows</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 mb-2">
+                      Hidden rows
+                    </h3>
                     <div className="flex flex-col gap-0.5">
-                      {hiddenRowDetails.map(row => (
+                      {hiddenRowDetails.map((row) => (
                         <div
                           key={row.identifier}
                           className="flex items-center justify-between px-1 py-1 rounded hover:bg-slate-50"
                         >
-                          <span className="text-sm text-slate-500"><code>{row.name}</code></span>
+                          <span className="text-sm text-slate-500">
+                            <code>{row.name}</code>
+                          </span>
                           <button
                             onClick={() => toggleRow(row.identifier)}
                             className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-700 transition-colors"
@@ -733,7 +854,9 @@ export function IAMProvidersInteractiveView({
 
           {(selectedFeatures.size > 0 || hiddenRows.size > 0) && (
             <button
-              onClick={() => updateParams({ features: new Set(), hiddenRows: new Set() })}
+              onClick={() =>
+                updateParams({ features: new Set(), hiddenRows: new Set() })
+              }
               className="text-xs text-slate-400 hover:text-slate-700 transition-colors"
             >
               {dict.clearFilters}
@@ -754,20 +877,26 @@ export function IAMProvidersInteractiveView({
       <div className="w-full overflow-x-auto overflow-y-clip">
         <div
           className="grid gap-x-1"
-          style={{ gridTemplateColumns: `280px repeat(${sortedProviders.length}, minmax(124px, 1fr))` }}
+          style={{
+            gridTemplateColumns: `280px repeat(${sortedProviders.length}, minmax(124px, 1fr))`,
+          }}
         >
           <div className="sticky top-0 left-0 z-30 bg-white" />
 
-          {sortedProviders.map(provider => {
+          {sortedProviders.map((provider) => {
             const inTable = tableProviderIds.includes(provider.identifier)
             const vs = scoreMap.get(provider.identifier)
             return (
-              <div key={provider.identifier} className="sticky top-0 z-20 bg-white pt-2 pb-1 group/col relative">
+              <div
+                key={provider.identifier}
+                className="sticky top-0 z-20 bg-white pt-2 pb-1 group/col relative"
+              >
                 <div
-                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${inTable
-                    ? 'bg-slate-50 border-slate-200 hover:border-slate-300'
-                    : 'bg-white border-slate-100 opacity-20 hover:opacity-40'
-                    }`}
+                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${
+                    inTable
+                      ? 'bg-slate-50 border-slate-200 hover:border-slate-300'
+                      : 'bg-white border-slate-100 opacity-20 hover:opacity-40'
+                  }`}
                 >
                   {provider.icon?.contentUrl && (
                     <Image
@@ -787,12 +916,17 @@ export function IAMProvidersInteractiveView({
                       {provider.name}
                     </Link>
                     {provider.nationality && (
-                      <span title={provider.nationality} className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                      <span
+                        title={provider.nationality}
+                        className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help"
+                      >
                         {getCountryFlag(provider.nationality)}
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-slate-400">{provider.license}</span>
+                  <span className="text-xs text-slate-400">
+                    {provider.license}
+                  </span>
 
                   {vs && savedAnswers && (
                     <div className="flex items-center gap-1 w-full">
@@ -802,16 +936,22 @@ export function IAMProvidersInteractiveView({
                           style={{ width: `${vs.score}%` }}
                         />
                       </div>
-                      <span className="text-xs text-slate-500 tabular-nums">{vs.score}%</span>
+                      <span className="text-xs text-slate-500 tabular-nums">
+                        {vs.score}%
+                      </span>
                     </div>
                   )}
 
                   {provider.pricing && (
                     <div className="flex flex-col items-center gap-0.5 w-full">
                       {provider.pricing.hasFreeTier ? (
-                        <span className="text-xs text-lime-700 bg-lime-50 rounded px-1">Free tier</span>
+                        <span className="text-xs text-lime-700 bg-lime-50 rounded px-1">
+                          Free tier
+                        </span>
                       ) : (
-                        <span className="text-xs text-slate-400">No free tier</span>
+                        <span className="text-xs text-slate-400">
+                          No free tier
+                        </span>
                       )}
                       {provider.pricing.pricingUrl && (
                         <Link
@@ -837,9 +977,12 @@ export function IAMProvidersInteractiveView({
             )
           })}
 
-            <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
+          <PricingRows
+            providers={sortedProviders}
+            dimmedProviders={dimmedProviders}
+          />
 
-            {filteredCategories.map(category => (
+          {filteredCategories.map((category) => (
             <Fragment key={category.name}>
               <div
                 id={category.name.trim()}
@@ -852,7 +995,7 @@ export function IAMProvidersInteractiveView({
                 </a>
               </div>
 
-              {category.rows.map(row => (
+              {category.rows.map((row) => (
                 <Fragment key={row.identifier}>
                   <div className="sticky left-0 z-10 bg-white flex items-center px-2 group/row">
                     <Link
@@ -861,9 +1004,13 @@ export function IAMProvidersInteractiveView({
                       title={row.description || row.name}
                       target="_blank"
                     >
-                      <span className="min-w-0"><code>{row.name}</code></span>
+                      <span className="min-w-0">
+                        <code>{row.name}</code>
+                      </span>
                       {row.status === FeatureStatus.Deprecated && (
-                        <span className="text-red-600 shrink-0"><Trash className="h-4 w-4" /></span>
+                        <span className="text-red-600 shrink-0">
+                          <Trash className="h-4 w-4" />
+                        </span>
                       )}
                     </Link>
                     <button
@@ -875,7 +1022,7 @@ export function IAMProvidersInteractiveView({
                     </button>
                   </div>
 
-                  {row.cells.map(cell => (
+                  {row.cells.map((cell) => (
                     <div
                       key={cell.identifier}
                       className={`flex items-center justify-center transition-opacity ${dimmedProviders.has(cell.identifier) ? 'opacity-25' : ''}`}
@@ -900,7 +1047,7 @@ export function IAMProvidersInteractiveView({
       {hiddenProviderList.length > 0 && (
         <div className="flex items-center gap-2 flex-wrap mt-2">
           <span className="text-xs text-slate-400">Hidden:</span>
-          {hiddenProviderList.map(p => (
+          {hiddenProviderList.map((p) => (
             <button
               key={p.identifier}
               onClick={() => toggleProvider(p.identifier)}

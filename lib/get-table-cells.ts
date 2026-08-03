@@ -14,17 +14,23 @@ type FeatureCategoryInput = {
   features: FeatureInput[]
 }
 
-type ProviderFeatureResult = {
-  description?: string
-  status: string
-  links?: string[]
-  values?: string[]
-} | null | undefined
+type ProviderFeatureResult =
+  | {
+      description?: string
+      status: string
+      links?: string[]
+      values?: string[]
+    }
+  | null
+  | undefined
 
 export function getTableCells(
   featuresCategories: FeatureCategoryInput[],
   providerIdentifiers: string[],
-  getProviderFeature: (providerId: string, featureId: string) => ProviderFeatureResult
+  getProviderFeature: (
+    providerId: string,
+    featureId: string,
+  ) => ProviderFeatureResult,
 ): BenchmarkCategoryProps[] {
   return featuresCategories.map(({ name, features }) => ({
     name,
@@ -35,7 +41,10 @@ export function getTableCells(
       status: feature.status as FeatureStatus,
       links: feature.links,
       cells: providerIdentifiers.map((providerIdentifier) => {
-        const cellFeature = getProviderFeature(providerIdentifier, feature.identifier)
+        const cellFeature = getProviderFeature(
+          providerIdentifier,
+          feature.identifier,
+        )
         if (!cellFeature) {
           return {
             identifier: providerIdentifier,

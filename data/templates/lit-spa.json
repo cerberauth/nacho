@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/lit.svg"
   },
-  "technologies": [
-    "javascript",
-    "lit"
-  ],
+  "technologies": ["javascript", "lit"],
   "extends": "spa"
 }

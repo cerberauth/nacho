@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/remix.svg"
   },
-  "technologies": [
-    "javascript",
-    "react",
-    "remix"
-  ],
+  "technologies": ["javascript", "react", "remix"],
   "extends": "web-app"
 }

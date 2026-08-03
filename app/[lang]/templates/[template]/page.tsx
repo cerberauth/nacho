@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation'
 
 import { hasLocale, locales, type Locale } from '@/lib/dictionaries'
 import { templates } from '@/data/templates'
-import { generateTemplateDetailMetadata, TemplateDetailPage } from '@/components/pages/templates-detail'
+import {
+  generateTemplateDetailMetadata,
+  TemplateDetailPage,
+} from '@/components/pages/templates-detail'
 
 type Props = { params: Promise<{ lang: string; template: string }> }
 
@@ -25,5 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function Page({ params }: Props) {
   const { lang, template: templateParam } = await params
   if (!hasLocale(lang)) notFound()
-  return <TemplateDetailPage lang={lang as Locale} templateParam={templateParam} />
+  return (
+    <TemplateDetailPage lang={lang as Locale} templateParam={templateParam} />
+  )
 }

@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation'
 
 import { getProviders } from '@/lib/providers'
 import { hasLocale, locales, type Locale } from '@/lib/dictionaries'
-import { generateOpenIDProviderDetailMetadata, OpenIDProviderDetailPage } from '@/components/pages/openid-providers-detail'
+import {
+  generateOpenIDProviderDetailMetadata,
+  OpenIDProviderDetailPage,
+} from '@/components/pages/openid-providers-detail'
 
 type Props = { params: Promise<{ lang: string; id: string }> }
 

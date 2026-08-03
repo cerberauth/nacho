@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/pc-soft.svg"
   },
-  "technologies": [
-    "windev",
-    "webdev"
-  ],
+  "technologies": ["windev", "webdev"],
   "extends": "web-app"
 }

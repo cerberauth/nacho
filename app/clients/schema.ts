@@ -1,22 +1,30 @@
 import { z } from 'zod'
-import { ApplicationTypes, GrantTypes, TokenEndpointAuthMethods } from '@/lib/consts'
+import {
+  ApplicationTypes,
+  GrantTypes,
+  TokenEndpointAuthMethods,
+} from '@/lib/consts'
 
-const urlSchema = z.union([
-  z.url().trim().startsWith('http://'),
-  z.url().trim().startsWith('https://'),
-], { error: () => ({ message: 'URL must begin with http:// or https://' }) })
+const urlSchema = z.union(
+  [z.url().trim().startsWith('http://'), z.url().trim().startsWith('https://')],
+  { error: () => ({ message: 'URL must begin with http:// or https://' }) },
+)
 export const clientSchema = z.object({
   template: z.string().optional(),
   applicationType: z.enum(Object.values(ApplicationTypes) as [ApplicationType]),
   grantTypes: z.array(z.enum(Object.values(GrantTypes) as [GrantType])),
-  tokenEndpointAuthMethod: z.enum(Object.values(TokenEndpointAuthMethods) as [TokenEndpointAuthMethod]),
+  tokenEndpointAuthMethod: z.enum(
+    Object.values(TokenEndpointAuthMethods) as [TokenEndpointAuthMethod],
+  ),
 
   name: z.string(),
   uri: z.union([z.literal(''), urlSchema]).optional(),
   allowedCorsOrigins: z.array(z.string()).optional(),
   scopes: z.array(z.string()).optional(),
   audiences: z.array(z.string()).optional(),
-  redirectUris: urlSchema.array().min(1, { message: 'At least one redirect URI is required' }),
+  redirectUris: urlSchema
+    .array()
+    .min(1, { message: 'At least one redirect URI is required' }),
   postLogoutRedirectUris: urlSchema.array().optional(),
 
   contacts: z.array(z.string()).optional(),

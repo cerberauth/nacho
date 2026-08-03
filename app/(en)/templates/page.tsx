@@ -1,6 +1,9 @@
 import type { Metadata } from 'next'
 
-import { generateTemplatesMetadata, TemplatesPage } from '@/components/pages/templates'
+import {
+  generateTemplatesMetadata,
+  TemplatesPage,
+} from '@/components/pages/templates'
 
 export const generateMetadata = (): Metadata => generateTemplatesMetadata('en')
 

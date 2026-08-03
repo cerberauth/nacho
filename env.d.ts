@@ -5,9 +5,28 @@ interface CloudflareEnv {} // eslint-disable-line
 
 // https://openid.net/specs/openid-connect-registration-1_0.html#RegistrationResponse
 
-type ApplicationType = 'spa' | 'webApplication' | 'mobileApplication' | 'desktopApplication' | 'machineToMachine' | 'cli' | 'smartTvAndLimitedInputDevice'
-type TokenEndpointAuthMethod = 'none' | 'client_secret_post' | 'client_secret_basic' | 'mtls'
-type GrantType = 'authorization_code' | 'pkce' | 'refresh_token' | 'client_credentials' | 'implicit' | 'password' | 'urn:ietf:params:oauth:grant-type:jwt-bearer' | 'urn:ietf:params:oauth:grant-type:device_code'
+type ApplicationType =
+  | 'spa'
+  | 'webApplication'
+  | 'mobileApplication'
+  | 'desktopApplication'
+  | 'machineToMachine'
+  | 'cli'
+  | 'smartTvAndLimitedInputDevice'
+type TokenEndpointAuthMethod =
+  | 'none'
+  | 'client_secret_post'
+  | 'client_secret_basic'
+  | 'mtls'
+type GrantType =
+  | 'authorization_code'
+  | 'pkce'
+  | 'refresh_token'
+  | 'client_credentials'
+  | 'implicit'
+  | 'password'
+  | 'urn:ietf:params:oauth:grant-type:jwt-bearer'
+  | 'urn:ietf:params:oauth:grant-type:device_code'
 
 // https://openid.net/specs/openid-connect-registration-1_0.html#ClientMetadata
 type OAuth2Client = {

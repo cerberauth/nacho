@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/java-play-framework.svg"
   },
-  "technologies": [
-    "java",
-    "play framework"
-  ],
+  "technologies": ["java", "play framework"],
   "extends": "java-web-app"
 }

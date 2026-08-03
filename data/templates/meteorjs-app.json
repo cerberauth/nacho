@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/meteorjs.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js",
-    "meteor.js"
-  ],
+  "technologies": ["javascript", "typescript", "node.js", "meteor.js"],
   "extends": "nodejs-app"
 }

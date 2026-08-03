@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/scala.svg"
   },
-  "technologies": [
-    "java",
-    "scala"
-  ],
+  "technologies": ["java", "scala"],
   "extends": "java-web-app"
 }

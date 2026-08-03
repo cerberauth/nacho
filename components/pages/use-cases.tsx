@@ -6,7 +6,9 @@ import { langUrl } from '@/lib/lang'
 import { makeCanonical, makeLanguageAlternates } from '@/lib/metadata'
 import useCasesJson from '@/data/mdx/use-cases.json'
 
-export async function generateUseCasesMetadata(lang: Locale): Promise<Metadata> {
+export async function generateUseCasesMetadata(
+  lang: Locale,
+): Promise<Metadata> {
   const dict = await getDictionary(lang)
   return {
     title: dict.useCases.title,
@@ -23,7 +25,9 @@ export async function UseCasesPage({ lang }: { lang: Locale }) {
 
   return (
     <main className="flex flex-col max-w-2xl mx-auto items-center justify-center my-8">
-      <h1 className="font-semibold text-4xl mb-8 tracking-tighter">{dict.useCases.title}</h1>
+      <h1 className="font-semibold text-4xl mb-8 tracking-tighter">
+        {dict.useCases.title}
+      </h1>
 
       <div>
         {useCasesJson.map((useCase) => (

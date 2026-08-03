@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/flask.svg"
   },
-  "technologies": [
-    "python",
-    "flask"
-  ],
+  "technologies": ["python", "flask"],
   "extends": "python-app"
 }

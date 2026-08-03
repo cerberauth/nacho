@@ -12,9 +12,27 @@ import { Input } from '@/components/ui/input'
 import { InputTags } from '@/components/ui/input-tags'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { ApplicationTypes, tokenAuthenticationMethods } from '@/lib/consts'
 import { getTemplateById } from '@/lib/templates'
 
@@ -28,7 +46,11 @@ type CreateClientFormProps = {
   isSubmitting: boolean
 }
 
-export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientFormProps) {
+export function CreateClientForm({
+  form,
+  onSubmit,
+  isSubmitting,
+}: CreateClientFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const data = form.watch()
@@ -49,14 +71,17 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
     if (template) {
       form.setValue('template', template)
       const templateApplication = getTemplateById(template)
-      client = templateApplication ? {
-        name: templateApplication.name,
-        ...client,
-        ...{
-          ...templateApplication.client,
-          tokenEndpointAuthMethod: templateApplication.client.tokenEndpointAuthMethods[0],
-        }
-      } : client
+      client = templateApplication
+        ? {
+            name: templateApplication.name,
+            ...client,
+            ...{
+              ...templateApplication.client,
+              tokenEndpointAuthMethod:
+                templateApplication.client.tokenEndpointAuthMethods[0],
+            },
+          }
+        : client
 
       import('@plausible-analytics/tracker').then(({ track }) => {
         track('Create Client From Template', { props: { template } })
@@ -78,29 +103,41 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
     localStorage.setItem(localStorageItem, JSON.stringify(data))
   }, [isSubmitting, data])
 
-  const onApplicationTypeChange = useCallback((type: ApplicationType | null) => {
-    if (type === null) {
-      form.resetField('applicationType')
-      return
-    }
+  const onApplicationTypeChange = useCallback(
+    (type: ApplicationType | null) => {
+      if (type === null) {
+        form.resetField('applicationType')
+        return
+      }
 
-    form.setValue('applicationType', type)
-  }, [form])
-  const onGrantTypeChange = useCallback((grantTypes: GrantType[]) => {
-    form.setValue('grantTypes', grantTypes)
-  }, [form])
-  const onTokenEndpointAuthMethodChange = useCallback((authMethods: TokenEndpointAuthMethod[]) => {
-    form.setValue('tokenEndpointAuthMethod', authMethods[0])
-  }, [form])
+      form.setValue('applicationType', type)
+    },
+    [form],
+  )
+  const onGrantTypeChange = useCallback(
+    (grantTypes: GrantType[]) => {
+      form.setValue('grantTypes', grantTypes)
+    },
+    [form],
+  )
+  const onTokenEndpointAuthMethodChange = useCallback(
+    (authMethods: TokenEndpointAuthMethod[]) => {
+      form.setValue('tokenEndpointAuthMethod', authMethods[0])
+    },
+    [form],
+  )
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <main className="container mx-auto max-w-4xl px-4 py-12 space-y-4">
           <div>
-            <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">Create your new client</h1>
+            <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">
+              Create your new client
+            </h1>
             <p className="text-sm text-muted-foreground">
-              Choose the type of application you are building and the grant type you want to use.
+              Choose the type of application you are building and the grant type
+              you want to use.
             </p>
           </div>
           <div className="divide-y divide-gray-200">
@@ -112,7 +149,10 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
             />
           </div>
 
-          <Collapsible title="Client details" open={data.grantTypes?.length > 0}>
+          <Collapsible
+            title="Client details"
+            open={data.grantTypes?.length > 0}
+          >
             <CollapsibleContent className="space-y-4">
               <Card>
                 <CardHeader>
@@ -132,7 +172,8 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                           <Input {...field} />
                         </FormControl>
                         <FormDescription>
-                          Usually your application friendly name. Will be displayed in the authorization page.
+                          Usually your application friendly name. Will be
+                          displayed in the authorization page.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -151,7 +192,8 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                           <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
-                          List of redirect URIs (comma separated) that your client can redirect to.
+                          List of redirect URIs (comma separated) that your
+                          client can redirect to.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -164,14 +206,13 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                       name="allowedCorsOrigins"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            Allowed CORS Origins
-                          </FormLabel>
+                          <FormLabel>Allowed CORS Origins</FormLabel>
                           <FormControl>
                             <InputTags {...field} />
                           </FormControl>
                           <FormDescription>
-                            List of allowed CORS origins (comma separated) for your JavaScript Application.
+                            List of allowed CORS origins (comma separated) for
+                            your JavaScript Application.
                           </FormDescription>
                           <FormMessage />
                         </FormItem>
@@ -184,14 +225,13 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="scopes"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Scopes
-                        </FormLabel>
+                        <FormLabel>Scopes</FormLabel>
                         <FormControl>
                           <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
-                          List of scopes (comma separated) that your client can request.
+                          List of scopes (comma separated) that your client can
+                          request.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -203,14 +243,13 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="audiences"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Audiences
-                        </FormLabel>
+                        <FormLabel>Audiences</FormLabel>
                         <FormControl>
                           <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
-                          List of audiences (comma separated) that your client can request.
+                          List of audiences (comma separated) that your client
+                          can request.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -222,14 +261,13 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="postLogoutRedirectUris"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Post Logout Redirect URIs
-                        </FormLabel>
+                        <FormLabel>Post Logout Redirect URIs</FormLabel>
                         <FormControl>
                           <InputTags {...field} />
                         </FormControl>
                         <FormDescription>
-                          List of post logout redirect URIs (comma separated) that your client can redirect to after logout.
+                          List of post logout redirect URIs (comma separated)
+                          that your client can redirect to after logout.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -242,7 +280,9 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
 
           <Collapsible title="UI & Legal Details">
             <CollapsibleTrigger asChild>
-              <Button variant="link" type="button" className="text-sm">UI & Legal Settings</Button>
+              <Button variant="link" type="button" className="text-sm">
+                UI & Legal Settings
+              </Button>
             </CollapsibleTrigger>
 
             <CollapsibleContent className="space-y-4">
@@ -257,14 +297,13 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="contacts"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Contacts Email
-                        </FormLabel>
+                        <FormLabel>Contacts Email</FormLabel>
                         <FormControl>
                           <InputTags type="email" {...field} />
                         </FormControl>
                         <FormDescription>
-                          List of contacts email (comma separated) for your client.
+                          List of contacts email (comma separated) for your
+                          client.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -276,9 +315,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="uri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Homepage URI
-                        </FormLabel>
+                        <FormLabel>Homepage URI</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -292,9 +329,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="policyUri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Policy URI
-                        </FormLabel>
+                        <FormLabel>Policy URI</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -308,9 +343,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="tosUri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Terms of Service URI
-                        </FormLabel>
+                        <FormLabel>Terms of Service URI</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -324,14 +357,13 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     name="logoUri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          Logo URI
-                        </FormLabel>
+                        <FormLabel>Logo URI</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
                         <FormDescription>
-                          The Logo URI of your application. Will be displayed in the authorization page.
+                          The Logo URI of your application. Will be displayed in
+                          the authorization page.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -344,7 +376,9 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
 
           <Collapsible title="Advanced settings">
             <CollapsibleTrigger asChild>
-              <Button variant="link" type="button" className="text-sm">Show advanced settings</Button>
+              <Button variant="link" type="button" className="text-sm">
+                Show advanced settings
+              </Button>
             </CollapsibleTrigger>
 
             <CollapsibleContent>
@@ -360,25 +394,37 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel htmlFor={field.name}>
-                          Token Endpoint Authentication Method <span className="text-red-500">*</span>
+                          Token Endpoint Authentication Method{' '}
+                          <span className="text-red-500">*</span>
                         </FormLabel>
                         <FormControl>
-                          <Select value={field.value} name={field.name} onValueChange={field.onChange}>
+                          <Select
+                            value={field.value}
+                            name={field.name}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger>
-                              <SelectValue placeholder="Token Endpoint Auth Method" onBlur={field.onBlur} ref={field.ref}></SelectValue>
+                              <SelectValue
+                                placeholder="Token Endpoint Auth Method"
+                                onBlur={field.onBlur}
+                                ref={field.ref}
+                              ></SelectValue>
                             </SelectTrigger>
 
                             <SelectContent>
-                              {tokenAuthenticationMethods.map(({ id, label }) => (
-                                <SelectItem key={id} value={id}>
-                                  {label}
-                                </SelectItem>
-                              ))}
+                              {tokenAuthenticationMethods.map(
+                                ({ id, label }) => (
+                                  <SelectItem key={id} value={id}>
+                                    {label}
+                                  </SelectItem>
+                                ),
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
                         <FormDescription>
-                          The Token Endpoint Authentication Method of your application.
+                          The Token Endpoint Authentication Method of your
+                          application.
                         </FormDescription>
                         <FormMessage />
                       </FormItem>
@@ -412,14 +458,22 @@ export function CreateClientForm({ form, onSubmit, isSubmitting }: CreateClientF
             <CircleHelp className="w-4 h-4" />
             <AlertTitle>Data Usage</AlertTitle>
             <AlertDescription>
-              The data you provide here <b>won&apos;t be send to our servers</b>. Only browser local storage and URL encoding is used to store and share the data.
+              The data you provide here <b>won&apos;t be send to our servers</b>
+              . Only browser local storage and URL encoding is used to store and
+              share the data.
             </AlertDescription>
           </Alert>
         </main>
 
         <div className="fixed bottom-0 w-full border-t-2 border-t-primary-500 py-4 bg-white">
           <div className="container mx-auto max-w-4xl w-full px-4 flex justify-end">
-            <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="mr-4">
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              onClick={() => router.back()}
+              className="mr-4"
+            >
               Cancel
             </Button>
             <Button type="submit" size="lg">

@@ -32,7 +32,10 @@ export function DataTable({ dict }: DataTableProps) {
     deleteClient(clientId)
     setClients(getClients())
   }, [])
-  const dataColumns = useMemo(() => columns(onDeleteClientClick, dict), [onDeleteClientClick, dict])
+  const dataColumns = useMemo(
+    () => columns(onDeleteClientClick, dict),
+    [onDeleteClientClick, dict],
+  )
   const table = useReactTable({
     data: clients ?? defaultClients,
     columns: dataColumns,
@@ -55,9 +58,9 @@ export function DataTable({ dict }: DataTableProps) {
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                   </TableHead>
                 )
               })}
@@ -77,7 +80,10 @@ export function DataTable({ dict }: DataTableProps) {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={dataColumns.length} className='h-24 text-center'>
+              <TableCell
+                colSpan={dataColumns.length}
+                className="h-24 text-center"
+              >
                 {dict.noClients}
               </TableCell>
             </TableRow>

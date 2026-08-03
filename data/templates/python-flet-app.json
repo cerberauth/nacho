@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/flet.svg"
   },
-  "technologies": [
-    "python",
-    "flet"
-  ],
+  "technologies": ["python", "flet"],
   "extends": "python-app"
 }

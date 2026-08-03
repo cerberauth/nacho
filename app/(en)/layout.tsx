@@ -39,14 +39,20 @@ export const viewport: Viewport = {
   maximumScale: 1,
 }
 
-export default async function EnLayout({ children }: { children: React.ReactNode }) {
+export default async function EnLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
   const dict = await getDictionary('en')
 
   return (
     <html lang="en">
       <ClientPlausibleProvider />
 
-      <body className={`min-h-[100dvh] bg-white dark:bg-gray-950 text-black dark:text-white ${fontSans.className} antialiased`}>
+      <body
+        className={`min-h-[100dvh] bg-white dark:bg-gray-950 text-black dark:text-white ${fontSans.className} antialiased`}
+      >
         <Header lang="en" dict={dict.nav} />
 
         {children}

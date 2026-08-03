@@ -1,4 +1,12 @@
-import { AppWindowMac, Monitor, PanelTop, Server, SquareTerminal, TabletSmartphone, Tv } from 'lucide-react'
+import {
+  AppWindowMac,
+  Monitor,
+  PanelTop,
+  Server,
+  SquareTerminal,
+  TabletSmartphone,
+  Tv,
+} from 'lucide-react'
 
 type ApplicationTypeIconProps = {
   type: ApplicationType

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
 import { getIAMProviders } from '@/lib/iam-providers'
-import { generateIAMProviderDetailMetadata, IAMProviderDetailPage } from '@/components/pages/iam-providers-detail'
+import {
+  generateIAMProviderDetailMetadata,
+  IAMProviderDetailPage,
+} from '@/components/pages/iam-providers-detail'
 
 type Props = { params: Promise<{ id: string }> }
 

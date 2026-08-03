@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/elixir.svg"
   },
-  "technologies": [
-    "erlang",
-    "elixir"
-  ],
+  "technologies": ["erlang", "elixir"],
   "extends": "web-app"
 }

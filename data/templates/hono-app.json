@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/hono.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "hono",
-    "react"
-  ],
+  "technologies": ["javascript", "typescript", "hono", "react"],
   "extends": "web-app"
 }

@@ -12,8 +12,8 @@ export const metadata: Metadata = {
   description: seoConfig.description,
   alternates: {
     languages: {
-      'en': '/en',
-      'fr': '/fr',
+      en: '/en',
+      fr: '/fr',
       'x-default': '/en',
     },
   },

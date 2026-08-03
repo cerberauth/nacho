@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/nodejs.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js",
-    "koa"
-  ],
+  "technologies": ["javascript", "typescript", "node.js", "koa"],
   "extends": "nodejs-app"
 }

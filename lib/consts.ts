@@ -34,10 +34,11 @@ export const applicationTypeImplementationRecommendation = [
   },
 
   {
-    types: [ApplicationTypes.mobileApplication, ApplicationTypes.desktopApplication],
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc8252',
+    types: [
+      ApplicationTypes.mobileApplication,
+      ApplicationTypes.desktopApplication,
     ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc8252'],
   },
 ]
 
@@ -94,7 +95,8 @@ export const applicationTypes = [
     id: 'smartTvAndLimitedInputDevice',
     value: ApplicationTypes.smartTvAndLimitedInputDevice,
     label: 'Smart TV and Limited Input Device',
-    description: 'Applications for Smart TVs, Encoders and more globally device with limited capability for inputting text.',
+    description:
+      'Applications for Smart TVs, Encoders and more globally device with limited capability for inputting text.',
     withUserInteraction: true,
     technologies: ['Android TV', 'Apple TV', 'Roku', 'Fire TV'],
   },
@@ -104,57 +106,43 @@ export const grantTypes = [
   {
     id: GrantTypes.authorizationCode,
     label: 'Authorization Code',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.1'],
   },
 
   {
     id: GrantTypes.pkce,
     label: 'PKCE',
-    references: [
-      'https://tools.ietf.org/html/rfc7636',
-    ],
+    references: ['https://tools.ietf.org/html/rfc7636'],
   },
 
   {
     id: GrantTypes.refreshToken,
     label: 'Refresh Token',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.5',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc6749#section-1.5'],
   },
 
   {
     id: GrantTypes.clientCredentials,
     label: 'Client Credentials',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.4'],
   },
 
   {
     id: GrantTypes.deviceCode,
     label: 'Device Code',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc8628',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc8628'],
   },
 
   {
     id: GrantTypes.implicit,
     label: 'Implicit',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc6749#section-1.3.2'],
   },
 
   {
     id: GrantTypes.jwtBearer,
     label: 'JWT Bearer',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc7523',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc7523'],
   },
 ]
 
@@ -162,29 +150,21 @@ export const tokenAuthenticationMethods = [
   {
     id: TokenEndpointAuthMethods.none,
     label: 'None',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc7636#section-4.5',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc7636#section-4.5'],
   },
   {
     id: TokenEndpointAuthMethods.clientSecretPost,
     label: 'Client Secret Post',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1'],
   },
   {
     id: TokenEndpointAuthMethods.clientSecretBasic,
     label: 'Client Secret Basic',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc6749#section-2.3.1'],
   },
   {
     id: TokenEndpointAuthMethods.mtls,
     label: 'Mutual TLS',
-    references: [
-      'https://datatracker.ietf.org/doc/html/rfc8705',
-    ],
+    references: ['https://datatracker.ietf.org/doc/html/rfc8705'],
   },
 ]

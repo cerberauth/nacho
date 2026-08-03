@@ -18,11 +18,33 @@ export const countries: CountryConfig[] = [
     label: 'European Union',
     flag: '🇪🇺',
     nationalities: [
-      'Germany', 'France', 'Netherlands', 'Sweden', 'Austria',
-      'Belgium', 'Spain', 'Italy', 'Portugal', 'Finland', 'Denmark',
-      'Ireland', 'Czech Republic', 'Poland', 'Romania', 'Hungary',
-      'Bulgaria', 'Croatia', 'Slovakia', 'Slovenia', 'Estonia',
-      'Latvia', 'Lithuania', 'Luxembourg', 'Malta', 'Cyprus', 'Greece',
+      'Germany',
+      'France',
+      'Netherlands',
+      'Sweden',
+      'Austria',
+      'Belgium',
+      'Spain',
+      'Italy',
+      'Portugal',
+      'Finland',
+      'Denmark',
+      'Ireland',
+      'Czech Republic',
+      'Poland',
+      'Romania',
+      'Hungary',
+      'Bulgaria',
+      'Croatia',
+      'Slovakia',
+      'Slovenia',
+      'Estonia',
+      'Latvia',
+      'Lithuania',
+      'Luxembourg',
+      'Malta',
+      'Cyprus',
+      'Greece',
     ],
     isRegion: true,
   },
@@ -61,7 +83,9 @@ export const countries: CountryConfig[] = [
 export const getCountryBySlug = (slug: string): CountryConfig | undefined =>
   countries.find((c) => c.slug === slug)
 
-export const getCountryByNationality = (nationality: string): CountryConfig | undefined =>
+export const getCountryByNationality = (
+  nationality: string,
+): CountryConfig | undefined =>
   countries.find((c) => !c.isRegion && c.nationalities.includes(nationality))
 
 export const getRegionsByNationality = (nationality: string): CountryConfig[] =>

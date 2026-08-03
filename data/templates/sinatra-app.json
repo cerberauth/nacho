@@ -6,10 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/ruby.svg"
   },
-  "technologies": [
-    "ruby",
-    "sinatra"
-  ],
+  "technologies": ["ruby", "sinatra"],
   "libraries": [
     {
       "name": "omniauth-openid-connect",

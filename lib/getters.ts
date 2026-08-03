@@ -1,21 +1,26 @@
-import { applicationTypes, grantTypes, tokenAuthenticationMethods } from './consts'
+import {
+  applicationTypes,
+  grantTypes,
+  tokenAuthenticationMethods,
+} from './consts'
 
 export const applicationTypeName = (type: string) => {
-  return applicationTypes.find(option => option.value === type)?.label
+  return applicationTypes.find((option) => option.value === type)?.label
 }
 
 const getGrantType = (type: string) => {
-  return grantTypes.find(grantType => grantType.id === type)
+  return grantTypes.find((grantType) => grantType.id === type)
 }
 
-export const grantTypeName = (type: string) => 
-  getGrantType(type)?.label
+export const grantTypeName = (type: string) => getGrantType(type)?.label
 
-export const grantTypeReferences = (type: string) => 
+export const grantTypeReferences = (type: string) =>
   getGrantType(type)?.references || []
 
 const getTokenAuthenticationMethod = (method: string) => {
-  return tokenAuthenticationMethods.find(tokenMethod => tokenMethod.id === method)
+  return tokenAuthenticationMethods.find(
+    (tokenMethod) => tokenMethod.id === method,
+  )
 }
 
 export const tokenAuthenticationMethodLabel = (method: string) =>

@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/codeigniter.svg"
   },
-  "technologies": [
-    "php",
-    "codeigniter"
-  ],
+  "technologies": ["php", "codeigniter"],
   "extends": "php-app"
 }

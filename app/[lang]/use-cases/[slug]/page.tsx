@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation'
 
 import { hasLocale, locales } from '@/lib/dictionaries'
 import useCasesJson from '@/data/mdx/use-cases.json'
-import { generateUseCaseDetailMetadata, UseCaseDetailPage } from '@/components/pages/use-cases-detail'
+import {
+  generateUseCaseDetailMetadata,
+  UseCaseDetailPage,
+} from '@/components/pages/use-cases-detail'
 
 type Props = { params: Promise<{ lang: string; slug: string }> }
 

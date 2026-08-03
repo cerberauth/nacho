@@ -28,7 +28,7 @@ export function useBenchmarkParams() {
       extra?: Record<string, string | null>
     }) => {
       const params = new URLSearchParams(searchParams.toString())
-      
+
       if (paramsToUpdate.features !== undefined) {
         if (paramsToUpdate.features.size > 0) {
           params.set('features', Array.from(paramsToUpdate.features).join(','))
@@ -39,7 +39,10 @@ export function useBenchmarkParams() {
 
       if (paramsToUpdate.hiddenProviders !== undefined) {
         if (paramsToUpdate.hiddenProviders.size > 0) {
-          params.set('excluded_providers', Array.from(paramsToUpdate.hiddenProviders).join(','))
+          params.set(
+            'excluded_providers',
+            Array.from(paramsToUpdate.hiddenProviders).join(','),
+          )
         } else {
           params.delete('excluded_providers')
         }
@@ -47,7 +50,10 @@ export function useBenchmarkParams() {
 
       if (paramsToUpdate.hiddenRows !== undefined) {
         if (paramsToUpdate.hiddenRows.size > 0) {
-          params.set('excluded_features', Array.from(paramsToUpdate.hiddenRows).join(','))
+          params.set(
+            'excluded_features',
+            Array.from(paramsToUpdate.hiddenRows).join(','),
+          )
         } else {
           params.delete('excluded_features')
         }

@@ -19,9 +19,10 @@ export default function Header({ lang, dict }: HeaderProps) {
   const pathname = usePathname()
 
   const switchLocale = (newLang: string) => {
-    const path = lang !== 'en' && pathname.startsWith(`/${lang}`)
-      ? pathname.slice(`/${lang}`.length) || '/'
-      : pathname
+    const path =
+      lang !== 'en' && pathname.startsWith(`/${lang}`)
+        ? pathname.slice(`/${lang}`.length) || '/'
+        : pathname
     return langUrl(newLang, path)
   }
 
@@ -30,20 +31,33 @@ export default function Header({ lang, dict }: HeaderProps) {
       <div className="mx-4 sm:mx-8 flex h-14 items-center">
         <div className="flex items-center space-x-4 lg:space-x-0">
           <Link href={langUrl(lang, '/')} className="font-medium text-lg flex">
-            <Image src={NachoLogo} className="mr-2" alt="Nacho" width={30} height={30} priority />
+            <Image
+              src={NachoLogo}
+              className="mr-2"
+              alt="Nacho"
+              width={30}
+              height={30}
+              priority
+            />
             Nacho
           </Link>
         </div>
 
         <div className="hidden lg:flex items-center space-x-4 mx-6">
-          <Link href={langUrl(lang, '/clients')} className="font-medium">{dict.clients}</Link>
+          <Link href={langUrl(lang, '/clients')} className="font-medium">
+            {dict.clients}
+          </Link>
         </div>
 
         <div className="flex flex-1 items-center space-x-4 justify-end">
           <div className="flex items-center gap-2 text-sm font-medium">
             <Link
               href={switchLocale('en')}
-              className={lang === 'en' ? 'text-primary font-semibold' : 'text-gray-500 hover:text-gray-700'}
+              className={
+                lang === 'en'
+                  ? 'text-primary font-semibold'
+                  : 'text-gray-500 hover:text-gray-700'
+              }
               aria-label="English"
             >
               EN
@@ -51,14 +65,22 @@ export default function Header({ lang, dict }: HeaderProps) {
             <span className="text-gray-300">|</span>
             <Link
               href={switchLocale('fr')}
-              className={lang === 'fr' ? 'text-primary font-semibold' : 'text-gray-500 hover:text-gray-700'}
+              className={
+                lang === 'fr'
+                  ? 'text-primary font-semibold'
+                  : 'text-gray-500 hover:text-gray-700'
+              }
               aria-label="Français"
             >
               FR
             </Link>
           </div>
 
-          <Link href="https://github.com/cerberauth/nacho" rel="nofollow noopener noreferrer" target="_blank">
+          <Link
+            href="https://github.com/cerberauth/nacho"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
             <GitHubLogoIcon className="w-6 h-6" />
           </Link>
         </div>

@@ -6,8 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/haskell.svg"
   },
-  "technologies": [
-    "haskell"
-  ],
+  "technologies": ["haskell"],
   "extends": "web-app"
 }

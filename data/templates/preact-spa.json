@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/preact.svg"
   },
-  "technologies": [
-    "javascript",
-    "preact"
-  ],
+  "technologies": ["javascript", "preact"],
   "extends": "spa"
 }

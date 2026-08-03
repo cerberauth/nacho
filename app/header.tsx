@@ -10,17 +10,30 @@ export default function Header() {
       <div className="mx-4 sm:mx-8 flex h-14 items-center">
         <div className="flex items-center space-x-4 lg:space-x-0">
           <Link href="/" className="font-medium text-lg flex">
-            <Image src={NachoLogo} className="mr-2" alt="Nacho" width={30} height={30} priority />
+            <Image
+              src={NachoLogo}
+              className="mr-2"
+              alt="Nacho"
+              width={30}
+              height={30}
+              priority
+            />
             Nacho
           </Link>
         </div>
 
         <div className="hidden lg:flex items-center space-x-4 mx-6">
-          <Link href="/clients" className="font-medium">Clients</Link>
+          <Link href="/clients" className="font-medium">
+            Clients
+          </Link>
         </div>
 
         <div className="flex flex-1 items-center space-x-4 justify-end">
-          <Link href="https://github.com/cerberauth/nacho" rel="nofollow noopener noreferrer" target="_blank">
+          <Link
+            href="https://github.com/cerberauth/nacho"
+            rel="nofollow noopener noreferrer"
+            target="_blank"
+          >
             <GitHubLogoIcon className="w-6 h-6" />
           </Link>
         </div>

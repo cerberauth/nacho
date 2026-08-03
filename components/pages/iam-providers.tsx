@@ -4,7 +4,10 @@ import Link from 'next/link'
 
 import { getFeaturesCategories } from '@/data/iam/index'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
-import { getIAMProviders, getIAMProvidersByNationalities } from '@/lib/iam-providers'
+import {
+  getIAMProviders,
+  getIAMProvidersByNationalities,
+} from '@/lib/iam-providers'
 import { getTableCells } from '@/app/iam/providers/get-table-cells'
 import { IAMProvidersInteractiveView } from '@/app/iam/providers/providers-interactive-view'
 import { getDictionary, type Locale } from '@/lib/dictionaries'
@@ -13,9 +16,13 @@ import { makeCanonical, makeLanguageAlternates } from '@/lib/metadata'
 import { countries } from '@/lib/countries'
 
 const allProviders = getIAMProviders()
-const countriesWithProviders = countries.filter((c) => getIAMProvidersByNationalities(c.nationalities).length > 0)
+const countriesWithProviders = countries.filter(
+  (c) => getIAMProvidersByNationalities(c.nationalities).length > 0,
+)
 
-export async function generateIAMProvidersMetadata(lang: Locale): Promise<Metadata> {
+export async function generateIAMProvidersMetadata(
+  lang: Locale,
+): Promise<Metadata> {
   const dict = await getDictionary(lang)
   return {
     title: dict.iamProviders.title,
@@ -32,7 +39,10 @@ export async function IAMProvidersPage({ lang }: { lang: Locale }) {
   const t = dict.iamProviders
 
   const categoriesData = getFeaturesCategories(t)
-  const allCategories = getTableCells(categoriesData, allProviders.map((p) => p.identifier))
+  const allCategories = getTableCells(
+    categoriesData,
+    allProviders.map((p) => p.identifier),
+  )
 
   return (
     <main className="flex flex-col gap-8 py-24 items-center px-4">
@@ -40,12 +50,13 @@ export async function IAMProvidersPage({ lang }: { lang: Locale }) {
         <h1 className="text-5xl font-semibold leading-none tracking-tight mb-2">
           {t.title}
         </h1>
-        <p className="text-md text-slate-600">
-          {t.description}
-        </p>
+        <p className="text-md text-slate-600">{t.description}</p>
         <p className="text-sm text-slate-500">
           {t.lookingForOpenID}{' '}
-          <Link href={langUrl(lang, '/openid/providers')} className="text-primary hover:underline">
+          <Link
+            href={langUrl(lang, '/openid/providers')}
+            className="text-primary hover:underline"
+          >
             {t.checkOpenID}
           </Link>
           .

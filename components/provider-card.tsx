@@ -21,32 +21,44 @@ export function ProviderCard({ provider }: ProviderCardProps) {
         />
       )}
       <div className="flex items-center gap-1.5 mt-2">
-        <Link href={`/openid/providers/${provider.identifier}`} className="text-md text-center text-slate-900 dark:text-white">
+        <Link
+          href={`/openid/providers/${provider.identifier}`}
+          className="text-md text-center text-slate-900 dark:text-white"
+        >
           {provider.name}
         </Link>
         {provider.nationality && (
-          <span title={provider.nationality} className="text-sm grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+          <span
+            title={provider.nationality}
+            className="text-sm grayscale-[0.5] hover:grayscale-0 transition-all cursor-help"
+          >
             {getCountryFlag(provider.nationality)}
           </span>
         )}
       </div>
-      <p className="text-sm text-slate-500">
-        {provider.license}
-      </p>
+      <p className="text-sm text-slate-500">{provider.license}</p>
       <p className="text-sm text-slate-500 transition flex gap-2">
         {provider.github && (
-          <Link href={provider.github} rel="nofollow noopener" target="_blank"
-            className="flex items-center gap-1 hover:text-slate-800">
+          <Link
+            href={provider.github}
+            rel="nofollow noopener"
+            target="_blank"
+            className="flex items-center gap-1 hover:text-slate-800"
+          >
             <GitHubLogoIcon />
           </Link>
         )}
         {provider.website && (
-          <Link href={provider.website} rel="nofollow noopener" target="_blank"
-            className="flex items-center gap-1 hover:text-slate-800">
+          <Link
+            href={provider.website}
+            rel="nofollow noopener"
+            target="_blank"
+            className="flex items-center gap-1 hover:text-slate-800"
+          >
             <GlobeIcon />
           </Link>
         )}
       </p>
-    </span >
+    </span>
   )
 }

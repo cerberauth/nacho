@@ -42,11 +42,7 @@ type CustomLinkProps = {
 function CustomLink(props: CustomLinkProps) {
   const href = props.href
   if (href.startsWith('/')) {
-    return (
-      <Link {...props}>
-        {props.children}
-      </Link>
-    )
+    return <Link {...props}>{props.children}</Link>
   }
 
   if (href.startsWith('#')) {
@@ -56,7 +52,7 @@ function CustomLink(props: CustomLinkProps) {
   return <a target="_blank" rel="noopener noreferrer" {...props} />
 }
 
-function RoundedImage({ alt, ...props}: ImageProps) {
+function RoundedImage({ alt, ...props }: ImageProps) {
   return <Image alt={alt} className="rounded-lg" {...props} />
 }
 
@@ -82,7 +78,7 @@ function createHeading(level: number) {
           className: 'anchor',
         }),
       ],
-      children
+      children,
     )
   }
 

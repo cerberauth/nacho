@@ -20,7 +20,7 @@ export async function generateStaticParams() {
     .flatMap((lang) =>
       countries
         .filter((c) => getProvidersByNationalities(c.nationalities).length > 0)
-        .map((c) => ({ lang, country: c.slug }))
+        .map((c) => ({ lang, country: c.slug })),
     )
 }
 

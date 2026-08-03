@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/loopback.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js",
-    "loopback"
-  ],
+  "technologies": ["javascript", "typescript", "node.js", "loopback"],
   "extends": "nodejs-app"
 }

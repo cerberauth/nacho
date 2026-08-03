@@ -1,6 +1,10 @@
 import { Server, User } from 'lucide-react'
 import { useMemo } from 'react'
-import { ChoiceCard, MiniChoiceCard, type ChoiceCardOption } from '@/components/choice-card'
+import {
+  ChoiceCard,
+  MiniChoiceCard,
+  type ChoiceCardOption,
+} from '@/components/choice-card'
 
 const userInteractionOptions: Array<ChoiceCardOption<boolean>> = [
   {
@@ -14,19 +18,24 @@ const userInteractionOptions: Array<ChoiceCardOption<boolean>> = [
     id: 'no',
     value: false,
     label: 'No User Interaction',
-    description: 'No user interaction is needed. The application runs in the background or as a service.',
+    description:
+      'No user interaction is needed. The application runs in the background or as a service.',
     icon: <Server className="w-8 h-8 text-primary" />,
   },
 ]
 
 type WithUserInteractionChoiceProps = {
-  onChange: (userInteraction: boolean) => void;
+  onChange: (userInteraction: boolean) => void
 }
 
-export function WithUserInteractionChoice({ onChange }: WithUserInteractionChoiceProps) {
+export function WithUserInteractionChoice({
+  onChange,
+}: WithUserInteractionChoiceProps) {
   return (
     <>
-      <h3 className="text-xl font-semibold leading-none tracking-tight mb-2">How the token will be retrieved?</h3>
+      <h3 className="text-xl font-semibold leading-none tracking-tight mb-2">
+        How the token will be retrieved?
+      </h3>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-2">
         {userInteractionOptions.map((option) => (
           <ChoiceCard
@@ -48,13 +57,28 @@ type MiniUserInteractionChoiceCardProps = {
   onClick: () => void
 }
 
-export function MiniUserInteractionChoiceCard({ className, withUserInteraction, onClick }: MiniUserInteractionChoiceCardProps) {
-  const option = useMemo(() => userInteractionOptions.find(option => option.value === withUserInteraction), [withUserInteraction])
+export function MiniUserInteractionChoiceCard({
+  className,
+  withUserInteraction,
+  onClick,
+}: MiniUserInteractionChoiceCardProps) {
+  const option = useMemo(
+    () =>
+      userInteractionOptions.find(
+        (option) => option.value === withUserInteraction,
+      ),
+    [withUserInteraction],
+  )
   if (!option) {
     return null
   }
 
   return (
-    <MiniChoiceCard className={className} icon={option.icon} title={option.label} onClick={onClick} />
+    <MiniChoiceCard
+      className={className}
+      icon={option.icon}
+      title={option.label}
+      onClick={onClick}
+    />
   )
 }

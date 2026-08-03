@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/starlette.svg"
   },
-  "technologies": [
-    "python",
-    "starlette"
-  ],
+  "technologies": ["python", "starlette"],
   "extends": "python-app"
 }

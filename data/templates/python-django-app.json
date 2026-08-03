@@ -6,10 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/django.svg"
   },
-  "technologies": [
-    "python",
-    "django"
-  ],
+  "technologies": ["python", "django"],
   "libraries": [
     {
       "name": "mozilla-django-oidc",

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
 import useCasesJson from '@/data/mdx/use-cases.json'
-import { generateUseCaseDetailMetadata, UseCaseDetailPage } from '@/components/pages/use-cases-detail'
+import {
+  generateUseCaseDetailMetadata,
+  UseCaseDetailPage,
+} from '@/components/pages/use-cases-detail'
 
 type Props = { params: Promise<{ slug: string }> }
 

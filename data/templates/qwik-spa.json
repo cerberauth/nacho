@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/qwik.svg"
   },
-  "technologies": [
-    "javascript",
-    "qwik"
-  ],
+  "technologies": ["javascript", "qwik"],
   "extends": "spa"
 }

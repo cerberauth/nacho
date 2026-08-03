@@ -5,13 +5,26 @@ import { ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 
 import { FeatureStatus } from '@/lib/types'
-import { getFeaturesCategories, IAMFeatureCategory, type IAMFeature, type IAMProvider } from '@/data/iam/index'
-import { getIAMProviderById, getIAMProviderFeature, getIAMProviders, getIAMProviderVsOrder } from '@/lib/iam-providers'
+import {
+  getFeaturesCategories,
+  IAMFeatureCategory,
+  type IAMFeature,
+  type IAMProvider,
+} from '@/data/iam/index'
+import {
+  getIAMProviderById,
+  getIAMProviderFeature,
+  getIAMProviders,
+  getIAMProviderVsOrder,
+} from '@/lib/iam-providers'
 import { providers as openIDProviders } from '@/data/openid/providers'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
 import { getCountryFlag } from '@/lib/utils'
-import { getCountryByNationality, getRegionsByNationality } from '@/lib/countries'
+import {
+  getCountryByNationality,
+  getRegionsByNationality,
+} from '@/lib/countries'
 import { getTableCells } from '@/app/iam/providers/get-table-cells'
 import { getDictionary, type Locale, type Dictionary } from '@/lib/dictionaries'
 import { langUrl } from '@/lib/lang'
@@ -22,7 +35,10 @@ type FAQFeature = {
   providerFeature: IAMProvider['featureList'][0]
 }
 
-export async function generateIAMProviderDetailMetadata(lang: Locale, id: string): Promise<Metadata> {
+export async function generateIAMProviderDetailMetadata(
+  lang: Locale,
+  id: string,
+): Promise<Metadata> {
   const provider = getIAMProviderById(id)
   if (!provider) return {}
   const dict = await getDictionary(lang)
@@ -39,7 +55,13 @@ export async function generateIAMProviderDetailMetadata(lang: Locale, id: string
   }
 }
 
-export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: string }) {
+export async function IAMProviderDetailPage({
+  lang,
+  id,
+}: {
+  lang: Locale
+  id: string
+}) {
   const provider = getIAMProviderById(id)
   if (!provider) return notFound()
 
@@ -47,14 +69,23 @@ export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: st
   const t = dict.iamProviders
   const categoriesData = getFeaturesCategories(t)
   const categories = getTableCells(categoriesData, [provider.identifier])
-  const openIDProvider = openIDProviders.find((p) => p.identifier === provider.identifier)
+  const openIDProvider = openIDProviders.find(
+    (p) => p.identifier === provider.identifier,
+  )
   const faqFeatures = categoriesData.reduce((acc, category) => {
     const features = category.features
       .map((feature) => ({
         feature,
-        providerFeature: getIAMProviderFeature(provider.identifier, feature!.identifier),
+        providerFeature: getIAMProviderFeature(
+          provider.identifier,
+          feature!.identifier,
+        ),
       }))
-      .filter((f) => f.providerFeature && f.providerFeature.status !== FeatureStatus.Unknown) as unknown as FAQFeature[]
+      .filter(
+        (f) =>
+          f.providerFeature &&
+          f.providerFeature.status !== FeatureStatus.Unknown,
+      ) as unknown as FAQFeature[]
     return [...acc, ...features]
   }, [] as FAQFeature[])
 
@@ -76,66 +107,97 @@ export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: st
               <h1 className="text-5xl font-semibold leading-none tracking-tight">
                 {provider.name} {t.iamProvider}
               </h1>
-              {provider.nationality && (() => {
-                const countryConfig = getCountryByNationality(provider.nationality)
-                const regions = getRegionsByNationality(provider.nationality)
-                const allLinks = [...(countryConfig ? [countryConfig] : []), ...regions]
-                return allLinks.length > 0 ? (
-                  <div className="flex gap-1">
-                    {allLinks.map((c) => (
-                      <Link
-                        key={c.slug}
-                        href={langUrl(lang, `/iam/providers/country/${c.slug}`)}
-                        title={c.label}
-                        className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all"
-                      >
-                        {c.flag}
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <span title={provider.nationality} className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
-                    {getCountryFlag(provider.nationality)}
-                  </span>
-                )
-              })()}
+              {provider.nationality &&
+                (() => {
+                  const countryConfig = getCountryByNationality(
+                    provider.nationality,
+                  )
+                  const regions = getRegionsByNationality(provider.nationality)
+                  const allLinks = [
+                    ...(countryConfig ? [countryConfig] : []),
+                    ...regions,
+                  ]
+                  return allLinks.length > 0 ? (
+                    <div className="flex gap-1">
+                      {allLinks.map((c) => (
+                        <Link
+                          key={c.slug}
+                          href={langUrl(
+                            lang,
+                            `/iam/providers/country/${c.slug}`,
+                          )}
+                          title={c.label}
+                          className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all"
+                        >
+                          {c.flag}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <span
+                      title={provider.nationality}
+                      className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help"
+                    >
+                      {getCountryFlag(provider.nationality)}
+                    </span>
+                  )
+                })()}
             </div>
-            <p className="text-md text-slate-600">
-              {provider.abstract}
-            </p>
+            <p className="text-md text-slate-600">{provider.abstract}</p>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-8 max-w-full mt-8">
-        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">{t.featuresTitle}</h2>
+        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">
+          {t.featuresTitle}
+        </h2>
 
         <BenchmarkTable categories={categories} />
 
         <p className="text-sm text-slate-600">
           {t.compareNote}{' '}
-          <Link href={langUrl(lang, '/iam/providers')} className="text-primary hover:underline">{t.iamBenchmark}</Link>.
+          <Link
+            href={langUrl(lang, '/iam/providers')}
+            className="text-primary hover:underline"
+          >
+            {t.iamBenchmark}
+          </Link>
+          .
         </p>
         {openIDProvider && (
           <p className="text-sm text-slate-600">
             {t.lookingForOpenIDProvider.replace('{name}', provider.name)}{' '}
-            <Link href={langUrl(lang, `/openid/providers/${openIDProvider.identifier}`)} className="text-primary hover:underline">
+            <Link
+              href={langUrl(
+                lang,
+                `/openid/providers/${openIDProvider.identifier}`,
+              )}
+              className="text-primary hover:underline"
+            >
               {t.viewOnOpenID.replace('{name}', provider.name)}
-            </Link>.
+            </Link>
+            .
           </p>
         )}
         {!openIDProvider && (
           <p className="text-sm text-slate-600">
             {t.lookingForOpenIDGeneral}{' '}
-            <Link href={langUrl(lang, '/openid/providers')} className="text-primary hover:underline">
+            <Link
+              href={langUrl(lang, '/openid/providers')}
+              className="text-primary hover:underline"
+            >
               {t.checkOpenID}
-            </Link>.
+            </Link>
+            .
           </p>
         )}
       </div>
 
       <div className="flex flex-col gap-8 max-w-full mt-8">
-        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">{t.faq}</h2>
+        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">
+          {t.faq}
+        </h2>
 
         {faqFeatures.map((feature) => (
           <FAQFeatureComponent
@@ -148,12 +210,17 @@ export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: st
       </div>
 
       <div className="flex flex-col gap-4 max-w-full mt-8 w-full">
-        <h2 className="text-2xl font-semibold leading-none tracking-tight">{t.compareWith}</h2>
+        <h2 className="text-2xl font-semibold leading-none tracking-tight">
+          {t.compareWith}
+        </h2>
         <div className="flex flex-wrap gap-2">
           {getIAMProviders()
             .filter((p) => p.identifier !== provider.identifier)
             .map((p) => {
-              const order = getIAMProviderVsOrder(provider.identifier, p.identifier)
+              const order = getIAMProviderVsOrder(
+                provider.identifier,
+                p.identifier,
+              )
               if (!order) {
                 return null
               }
@@ -161,7 +228,10 @@ export async function IAMProviderDetailPage({ lang, id }: { lang: Locale; id: st
               return (
                 <Link
                   key={`vs-${p.identifier}`}
-                  href={langUrl(lang, `/iam/providers/${order[0]}/vs/${order[1]}`)}
+                  href={langUrl(
+                    lang,
+                    `/iam/providers/${order[0]}/vs/${order[1]}`,
+                  )}
                   className="text-sm text-primary hover:underline bg-slate-50 border border-slate-200 rounded-full px-3 py-1"
                 >
                   {provider.name} vs {p.name}
@@ -189,37 +259,75 @@ function FAQFeatureComponent({
 }) {
   let featureSuffix: string
   switch (feature.feature.category) {
-    case IAMFeatureCategory.AuthenticationMethod: featureSuffix = t.authenticationMethod; break
-    case IAMFeatureCategory.MFA: featureSuffix = t.mfa; break
-    case IAMFeatureCategory.IntegrationProtocols: featureSuffix = t.integrationProtocol; break
-    case IAMFeatureCategory.IdentityFederation: featureSuffix = t.identityFederation; break
-    case IAMFeatureCategory.UserManagement: featureSuffix = t.userManagement; break
-    case IAMFeatureCategory.AccessControl: featureSuffix = t.accessControl; break
-    case IAMFeatureCategory.Security: featureSuffix = t.security; break
-    case IAMFeatureCategory.MultiTenancy: featureSuffix = t.multiTenancy; break
-    case IAMFeatureCategory.BrandingUX: featureSuffix = t.branding; break
-    case IAMFeatureCategory.Analytics: featureSuffix = t.analytics; break
-    case IAMFeatureCategory.Compliance: featureSuffix = t.compliance; break
-    case IAMFeatureCategory.DeveloperIntegration: featureSuffix = t.developerIntegration; break
-    case IAMFeatureCategory.PostQuantum: featureSuffix = t.postQuantum; break
-    default: featureSuffix = t.feature; break
+    case IAMFeatureCategory.AuthenticationMethod:
+      featureSuffix = t.authenticationMethod
+      break
+    case IAMFeatureCategory.MFA:
+      featureSuffix = t.mfa
+      break
+    case IAMFeatureCategory.IntegrationProtocols:
+      featureSuffix = t.integrationProtocol
+      break
+    case IAMFeatureCategory.IdentityFederation:
+      featureSuffix = t.identityFederation
+      break
+    case IAMFeatureCategory.UserManagement:
+      featureSuffix = t.userManagement
+      break
+    case IAMFeatureCategory.AccessControl:
+      featureSuffix = t.accessControl
+      break
+    case IAMFeatureCategory.Security:
+      featureSuffix = t.security
+      break
+    case IAMFeatureCategory.MultiTenancy:
+      featureSuffix = t.multiTenancy
+      break
+    case IAMFeatureCategory.BrandingUX:
+      featureSuffix = t.branding
+      break
+    case IAMFeatureCategory.Analytics:
+      featureSuffix = t.analytics
+      break
+    case IAMFeatureCategory.Compliance:
+      featureSuffix = t.compliance
+      break
+    case IAMFeatureCategory.DeveloperIntegration:
+      featureSuffix = t.developerIntegration
+      break
+    case IAMFeatureCategory.PostQuantum:
+      featureSuffix = t.postQuantum
+      break
+    default:
+      featureSuffix = t.feature
+      break
   }
   const fullFeatureName = `${feature.feature.name} ${featureSuffix}`
-  const question = t.faqDoes.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+  const question = t.faqDoes
+    .replace('{name}', provider.name)
+    .replace('{feature}', fullFeatureName)
 
   let answer: string
   switch (feature.providerFeature.status) {
     case FeatureStatus.Supported:
-      answer = t.faqSupported.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+      answer = t.faqSupported
+        .replace('{name}', provider.name)
+        .replace('{feature}', fullFeatureName)
       break
     case FeatureStatus.NotSupported:
-      answer = t.faqNotSupported.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+      answer = t.faqNotSupported
+        .replace('{name}', provider.name)
+        .replace('{feature}', fullFeatureName)
       break
     case FeatureStatus.Partial:
-      answer = t.faqPartial.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+      answer = t.faqPartial
+        .replace('{name}', provider.name)
+        .replace('{feature}', fullFeatureName)
       break
     case FeatureStatus.Deprecated:
-      answer = t.faqDeprecated.replace('{name}', provider.name).replace('{featureName}', feature.feature.name)
+      answer = t.faqDeprecated
+        .replace('{name}', provider.name)
+        .replace('{featureName}', feature.feature.name)
       break
     default:
       answer = t.faqUnknown.replace('{feature}', feature.feature.name)
@@ -232,13 +340,23 @@ function FAQFeatureComponent({
 
   return (
     <div key={feature.feature.identifier}>
-      <h3 className="text-2xl font-semibold leading-none tracking-tight mb-2">{question}</h3>
-      <p>{answer} {feature.providerFeature.links?.[0] && (
-        <Link href={feature.providerFeature.links[0]} className="inline-flex items-center justify-center text-sm" rel="nofollow" target="_blank">
-          {t.readMore}
-          <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      )}</p>
+      <h3 className="text-2xl font-semibold leading-none tracking-tight mb-2">
+        {question}
+      </h3>
+      <p>
+        {answer}{' '}
+        {feature.providerFeature.links?.[0] && (
+          <Link
+            href={feature.providerFeature.links[0]}
+            className="inline-flex items-center justify-center text-sm"
+            rel="nofollow"
+            target="_blank"
+          >
+            {t.readMore}
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        )}
+      </p>
     </div>
   )
 }

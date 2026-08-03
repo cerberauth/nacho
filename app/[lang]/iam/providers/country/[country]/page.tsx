@@ -19,8 +19,10 @@ export async function generateStaticParams() {
     .filter((l) => l !== 'en')
     .flatMap((lang) =>
       countries
-        .filter((c) => getIAMProvidersByNationalities(c.nationalities).length > 0)
-        .map((c) => ({ lang, country: c.slug }))
+        .filter(
+          (c) => getIAMProvidersByNationalities(c.nationalities).length > 0,
+        )
+        .map((c) => ({ lang, country: c.slug })),
     )
 }
 

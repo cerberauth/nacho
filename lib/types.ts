@@ -4,7 +4,7 @@ export enum FeatureStatus {
   Partial = 'partial',
   Deprecated = 'deprecated',
   Planned = 'planned',
-  Unknown = 'unknown'
+  Unknown = 'unknown',
 }
 
 export type PricingPlan = {

@@ -36,9 +36,12 @@ function parseFreeTierLimit(limit?: string): number {
   return val
 }
 
-function calculateEstimatedPrice(provider: Provider, mau: number): number | 'Custom' | 'Free' {
+function calculateEstimatedPrice(
+  provider: Provider,
+  mau: number,
+): number | 'Custom' | 'Free' {
   if (!provider.pricing) return 'Custom'
-  
+
   const { pricing } = provider
   if (pricing.hasFreeTier) {
     const limit = parseFreeTierLimit(pricing.freeTierLimit)
@@ -88,26 +91,36 @@ type Provider = {
 }
 
 const VENDOR_DEPLOYMENT: Record<string, string[]> = {
-  'auth0': ['saas'],
-  'clerk': ['saas'],
+  auth0: ['saas'],
+  clerk: ['saas'],
   'firebase-auth': ['saas'],
-  'keycloak': ['self_hosted', 'saas'],
-  'fusionauth': ['saas', 'self_hosted'],
-  'ory': ['saas', 'self_hosted'],
-  'supertokens': ['saas', 'self_hosted'],
+  keycloak: ['self_hosted', 'saas'],
+  fusionauth: ['saas', 'self_hosted'],
+  ory: ['saas', 'self_hosted'],
+  supertokens: ['saas', 'self_hosted'],
   'supabase-auth': ['saas', 'self_hosted'],
-  'stytch': ['saas'],
+  stytch: ['saas'],
   'aws-cognito': ['saas'],
   'microsoft-entra-id': ['saas'],
-  'descope': ['saas'],
+  descope: ['saas'],
   'ping-identity': ['saas', 'self_hosted'],
 }
 
-const OPEN_SOURCE_LICENSES = ['MIT', 'Apache-2.0', 'Apache 2.0', 'AGPL-3.0', 'AGPL', 'BSL', 'SSPL']
+const OPEN_SOURCE_LICENSES = [
+  'MIT',
+  'Apache-2.0',
+  'Apache 2.0',
+  'AGPL-3.0',
+  'AGPL',
+  'BSL',
+  'SSPL',
+]
 
 function hasFeature(provider: Provider, featureId: string): boolean {
-  const f = provider.featureList.find(x => x.identifier === featureId)
-  return f?.status === FeatureStatus.Supported || f?.status === FeatureStatus.Partial
+  const f = provider.featureList.find((x) => x.identifier === featureId)
+  return (
+    f?.status === FeatureStatus.Supported || f?.status === FeatureStatus.Partial
+  )
 }
 
 const MAX_PER_DIM = 20
@@ -127,16 +140,43 @@ export const COMMON_FEATURES = [
 ]
 
 export const AUDIENCE_FEATURES: Record<string, string[]> = {
-  b2c: ['social_sign_in_authentication', 'passkey_authentication', 'magic_link_authentication', 'email_passwordless_authentication', 'anonymous_authentication', 'progressive_profiling'],
-  b2b: ['saml2_protocol', 'oidc_federation', 'saml_federation', 'per_org_branding', 'per_org_mfa_policy', 'organizations_multitenancy', 'inbound_scim_provisioning', 'jit_provisioning'],
-  b2e: ['saml2_protocol', 'active_directory_ldap', 'adaptive_mfa', 'oidc_federation', 'saml_federation', 'ws_federation_protocol', 'audit_log_streaming'],
+  b2c: [
+    'social_sign_in_authentication',
+    'passkey_authentication',
+    'magic_link_authentication',
+    'email_passwordless_authentication',
+    'anonymous_authentication',
+    'progressive_profiling',
+  ],
+  b2b: [
+    'saml2_protocol',
+    'oidc_federation',
+    'saml_federation',
+    'per_org_branding',
+    'per_org_mfa_policy',
+    'organizations_multitenancy',
+    'inbound_scim_provisioning',
+    'jit_provisioning',
+  ],
+  b2e: [
+    'saml2_protocol',
+    'active_directory_ldap',
+    'adaptive_mfa',
+    'oidc_federation',
+    'saml_federation',
+    'ws_federation_protocol',
+    'audit_log_streaming',
+  ],
 }
 
 export const FEATURE_MAP: Record<string, string[]> = {
   enterprise_sso: ['saml2_protocol', 'saml_federation', 'oidc_federation'],
   passkeys: ['passkey_authentication'],
   social_login: ['social_sign_in_authentication'],
-  passwordless: ['email_passwordless_authentication', 'magic_link_authentication'],
+  passwordless: [
+    'email_passwordless_authentication',
+    'magic_link_authentication',
+  ],
   adaptive_mfa: ['adaptive_mfa'],
   m2m: ['machine_to_machine'],
   custom_branding: ['universal_login_customization'],
@@ -151,8 +191,17 @@ export const COMPLIANCE_MAP: Record<string, string[]> = {
   iso27001: ['iso_27001'],
 }
 
-function scoreAudience(provider: Provider, audience: SurveyAnswers['audience']): ScoreDimension {
-  if (!audience) return { dimension: 'audience', label: 'Audience fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+function scoreAudience(
+  provider: Provider,
+  audience: SurveyAnswers['audience'],
+): ScoreDimension {
+  if (!audience)
+    return {
+      dimension: 'audience',
+      label: 'Audience fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
 
   let features: string[]
   let label: string
@@ -167,19 +216,39 @@ function scoreAudience(provider: Provider, audience: SurveyAnswers['audience']):
     label = 'Workforce (B2E) fit'
   } else {
     // mixed: average of all three
-    const allFeatures = [...new Set([...AUDIENCE_FEATURES.b2c, ...AUDIENCE_FEATURES.b2b, ...AUDIENCE_FEATURES.b2e])]
-    const supported = allFeatures.filter(f => hasFeature(provider, f)).length
+    const allFeatures = [
+      ...new Set([
+        ...AUDIENCE_FEATURES.b2c,
+        ...AUDIENCE_FEATURES.b2b,
+        ...AUDIENCE_FEATURES.b2e,
+      ]),
+    ]
+    const supported = allFeatures.filter((f) => hasFeature(provider, f)).length
     const score = Math.round((supported / allFeatures.length) * MAX_PER_DIM)
-    return { dimension: 'audience', label: 'Multi-audience fit', score, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'audience',
+      label: 'Multi-audience fit',
+      score,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
-  const supported = features.filter(f => hasFeature(provider, f)).length
+  const supported = features.filter((f) => hasFeature(provider, f)).length
   const score = Math.round((supported / features.length) * MAX_PER_DIM)
   return { dimension: 'audience', label, score, maxScore: MAX_PER_DIM }
 }
 
-function scoreScale(provider: Provider, mau: SurveyAnswers['mau']): ScoreDimension {
-  if (!mau) return { dimension: 'scale', label: 'Scale fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+function scoreScale(
+  provider: Provider,
+  mau: SurveyAnswers['mau'],
+): ScoreDimension {
+  if (!mau)
+    return {
+      dimension: 'scale',
+      label: 'Scale fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
 
   const pricing = provider.pricing
   let score = MAX_PER_DIM
@@ -192,7 +261,7 @@ function scoreScale(provider: Provider, mau: SurveyAnswers['mau']): ScoreDimensi
       score = MAX_PER_DIM
     } else {
       // Has paid plans — check if any plan is affordable
-      const hasAffordable = pricing.plans.some(p => {
+      const hasAffordable = pricing.plans.some((p) => {
         const price = parseFloat(p.price.replace(/[^0-9.]/g, ''))
         return !isNaN(price) && price <= 50
       })
@@ -207,7 +276,7 @@ function scoreScale(provider: Provider, mau: SurveyAnswers['mau']): ScoreDimensi
       const limitStr = pricing.freeTierLimit || ''
       const limitMatch = limitStr.replace(/[^0-9]/g, '')
       const limit = parseInt(limitMatch, 10)
-      score = (limit >= 10000) ? 18 : 14
+      score = limit >= 10000 ? 18 : 14
     } else {
       score = 16
     }
@@ -216,7 +285,7 @@ function scoreScale(provider: Provider, mau: SurveyAnswers['mau']): ScoreDimensi
     const deploymentModels = VENDOR_DEPLOYMENT[provider.identifier] || ['saas']
     if (deploymentModels.includes('self_hosted')) {
       score = MAX_PER_DIM
-    } else if (pricing?.plans.some(p => /enterprise|custom/i.test(p.name))) {
+    } else if (pricing?.plans.some((p) => /enterprise|custom/i.test(p.name))) {
       score = 18
     } else {
       score = 12
@@ -226,26 +295,44 @@ function scoreScale(provider: Provider, mau: SurveyAnswers['mau']): ScoreDimensi
     const deploymentModels = VENDOR_DEPLOYMENT[provider.identifier] || ['saas']
     if (deploymentModels.includes('self_hosted')) {
       score = MAX_PER_DIM
-    } else if (['aws-cognito', 'microsoft-entra-id', 'ping-identity', 'auth0'].includes(provider.identifier)) {
+    } else if (
+      ['aws-cognito', 'microsoft-entra-id', 'ping-identity', 'auth0'].includes(
+        provider.identifier,
+      )
+    ) {
       score = 18 // Known large-scale cloud providers
-    } else if (pricing?.plans.some(p => /enterprise|custom/i.test(p.name))) {
+    } else if (pricing?.plans.some((p) => /enterprise|custom/i.test(p.name))) {
       score = 14
     } else {
       score = 8
     }
   }
 
-  return { dimension: 'scale', label: 'Scale fit', score, maxScore: MAX_PER_DIM }
+  return {
+    dimension: 'scale',
+    label: 'Scale fit',
+    score,
+    maxScore: MAX_PER_DIM,
+  }
 }
 
-function scoreDeployment(provider: Provider, deployment: SurveyAnswers['deployment']): ScoreDimension {
+function scoreDeployment(
+  provider: Provider,
+  deployment: SurveyAnswers['deployment'],
+): ScoreDimension {
   if (!deployment || deployment === 'flexible') {
-    return { dimension: 'deployment', label: 'Deployment fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'deployment',
+      label: 'Deployment fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
   const models = VENDOR_DEPLOYMENT[provider.identifier] || ['saas']
   const isMatch = models.includes(deployment)
-  const isPartial = deployment === 'self_hosted' && models.includes('saas') && models.length > 1
+  const isPartial =
+    deployment === 'self_hosted' && models.includes('saas') && models.length > 1
 
   let score: number
   if (isMatch) {
@@ -260,47 +347,93 @@ function scoreDeployment(provider: Provider, deployment: SurveyAnswers['deployme
   return { dimension: 'deployment', label, score, maxScore: MAX_PER_DIM }
 }
 
-function scoreFeatures(provider: Provider, features: SurveyAnswers['features']): ScoreDimension {
+function scoreFeatures(
+  provider: Provider,
+  features: SurveyAnswers['features'],
+): ScoreDimension {
   if (!features || features.length === 0) {
-    return { dimension: 'features', label: 'Feature fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'features',
+      label: 'Feature fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
-  const required = features.flatMap(f => FEATURE_MAP[f] || [])
+  const required = features.flatMap((f) => FEATURE_MAP[f] || [])
   if (required.length === 0) {
-    return { dimension: 'features', label: 'Feature fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'features',
+      label: 'Feature fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
-  const supported = required.filter(f => hasFeature(provider, f)).length
+  const supported = required.filter((f) => hasFeature(provider, f)).length
   const score = Math.round((supported / required.length) * MAX_PER_DIM)
-  return { dimension: 'features', label: 'Feature fit', score, maxScore: MAX_PER_DIM }
+  return {
+    dimension: 'features',
+    label: 'Feature fit',
+    score,
+    maxScore: MAX_PER_DIM,
+  }
 }
 
-function scoreCompliance(provider: Provider, compliance: SurveyAnswers['compliance']): ScoreDimension {
+function scoreCompliance(
+  provider: Provider,
+  compliance: SurveyAnswers['compliance'],
+): ScoreDimension {
   if (!compliance || compliance.length === 0) {
-    return { dimension: 'compliance', label: 'Compliance fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'compliance',
+      label: 'Compliance fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
-  const required = compliance.flatMap(c => COMPLIANCE_MAP[c] || [])
+  const required = compliance.flatMap((c) => COMPLIANCE_MAP[c] || [])
   if (required.length === 0) {
-    return { dimension: 'compliance', label: 'Compliance fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'compliance',
+      label: 'Compliance fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
-  const supported = required.filter(f => hasFeature(provider, f)).length
+  const supported = required.filter((f) => hasFeature(provider, f)).length
   const score = Math.round((supported / required.length) * MAX_PER_DIM)
-  return { dimension: 'compliance', label: 'Compliance fit', score, maxScore: MAX_PER_DIM }
+  return {
+    dimension: 'compliance',
+    label: 'Compliance fit',
+    score,
+    maxScore: MAX_PER_DIM,
+  }
 }
 
-function scoreBudget(provider: Provider, budget: SurveyAnswers['budget']): ScoreDimension {
+function scoreBudget(
+  provider: Provider,
+  budget: SurveyAnswers['budget'],
+): ScoreDimension {
   if (!budget || budget === 'enterprise') {
-    return { dimension: 'budget', label: 'Budget fit', score: MAX_PER_DIM, maxScore: MAX_PER_DIM }
+    return {
+      dimension: 'budget',
+      label: 'Budget fit',
+      score: MAX_PER_DIM,
+      maxScore: MAX_PER_DIM,
+    }
   }
 
   const pricing = provider.pricing
-  const isOpenSource = OPEN_SOURCE_LICENSES.some(l => provider.license.toLowerCase().includes(l.toLowerCase()))
+  const isOpenSource = OPEN_SOURCE_LICENSES.some((l) =>
+    provider.license.toLowerCase().includes(l.toLowerCase()),
+  )
 
   let score: number
   if (budget === 'free') {
-    if (isOpenSource || (pricing?.hasFreeTier)) {
+    if (isOpenSource || pricing?.hasFreeTier) {
       score = MAX_PER_DIM
     } else {
       score = 0
@@ -309,7 +442,7 @@ function scoreBudget(provider: Provider, budget: SurveyAnswers['budget']): Score
     if (pricing?.hasFreeTier) {
       score = MAX_PER_DIM
     } else if (pricing) {
-      const hasAffordable = pricing.plans.some(p => {
+      const hasAffordable = pricing.plans.some((p) => {
         const price = parseFloat(p.price.replace(/[^0-9.]/g, ''))
         return !isNaN(price) && price <= 100
       })
@@ -322,7 +455,7 @@ function scoreBudget(provider: Provider, budget: SurveyAnswers['budget']): Score
     if (pricing?.hasFreeTier) {
       score = MAX_PER_DIM
     } else if (pricing) {
-      const hasInRange = pricing.plans.some(p => {
+      const hasInRange = pricing.plans.some((p) => {
         const price = parseFloat(p.price.replace(/[^0-9.]/g, ''))
         return !isNaN(price) && price <= 1000
       })
@@ -332,18 +465,34 @@ function scoreBudget(provider: Provider, budget: SurveyAnswers['budget']): Score
     }
   }
 
-  return { dimension: 'budget', label: 'Budget fit', score, maxScore: MAX_PER_DIM }
+  return {
+    dimension: 'budget',
+    label: 'Budget fit',
+    score,
+    maxScore: MAX_PER_DIM,
+  }
 }
 
-function buildTopReasons(breakdown: ScoreDimension[], answers: SurveyAnswers): string[] {
+function buildTopReasons(
+  breakdown: ScoreDimension[],
+  answers: SurveyAnswers,
+): string[] {
   const reasons: string[] = []
 
-  const highDims = breakdown.filter(d => d.score >= d.maxScore * 0.8).sort((a, b) => b.score - a.score)
+  const highDims = breakdown
+    .filter((d) => d.score >= d.maxScore * 0.8)
+    .sort((a, b) => b.score - a.score)
   for (const dim of highDims.slice(0, 3)) {
     if (dim.dimension === 'audience' && dim.score > 14) {
       reasons.push(`Strong ${dim.label.toLowerCase()}`)
-    } else if (dim.dimension === 'deployment' && answers.deployment && answers.deployment !== 'flexible') {
-      reasons.push(`Supports ${answers.deployment === 'saas' ? 'cloud SaaS' : 'self-hosting'}`)
+    } else if (
+      dim.dimension === 'deployment' &&
+      answers.deployment &&
+      answers.deployment !== 'flexible'
+    ) {
+      reasons.push(
+        `Supports ${answers.deployment === 'saas' ? 'cloud SaaS' : 'self-hosting'}`,
+      )
     } else if (dim.dimension === 'compliance' && answers.compliance?.length) {
       reasons.push(`Meets your compliance requirements`)
     } else if (dim.dimension === 'features' && answers.features?.length) {
@@ -358,10 +507,25 @@ function buildTopReasons(breakdown: ScoreDimension[], answers: SurveyAnswers): s
   return reasons.slice(0, 3)
 }
 
-export function scoreVendors(providers: Provider[], answers: SurveyAnswers): VendorScore[] {
-  const mauCount = answers.mauCount || (answers.mau === '<1k' ? 500 : answers.mau === '1k-10k' ? 5000 : answers.mau === '10k-100k' ? 50000 : answers.mau === '100k-1m' ? 500000 : answers.mau === '1m+' ? 1500000 : 0)
+export function scoreVendors(
+  providers: Provider[],
+  answers: SurveyAnswers,
+): VendorScore[] {
+  const mauCount =
+    answers.mauCount ||
+    (answers.mau === '<1k'
+      ? 500
+      : answers.mau === '1k-10k'
+        ? 5000
+        : answers.mau === '10k-100k'
+          ? 50000
+          : answers.mau === '100k-1m'
+            ? 500000
+            : answers.mau === '1m+'
+              ? 1500000
+              : 0)
 
-  const scores = providers.map(provider => {
+  const scores = providers.map((provider) => {
     const breakdown: ScoreDimension[] = [
       scoreAudience(provider, answers.audience),
       scoreScale(provider, answers.mau),
@@ -381,7 +545,8 @@ export function scoreVendors(providers: Provider[], answers: SurveyAnswers): Ven
       breakdown,
       recommended: false,
       topReasons: [] as string[],
-      estimatedPrice: mauCount > 0 ? calculateEstimatedPrice(provider, mauCount) : undefined
+      estimatedPrice:
+        mauCount > 0 ? calculateEstimatedPrice(provider, mauCount) : undefined,
     }
   })
 
@@ -392,7 +557,10 @@ export function scoreVendors(providers: Provider[], answers: SurveyAnswers): Ven
     s.recommended = true
     s.topReasons = buildTopReasons(s.breakdown, answers)
     if (s.topReasons.length === 0) {
-      s.topReasons = i === 0 ? ['Best overall match for your profile'] : [`#${i + 1} match for your profile`]
+      s.topReasons =
+        i === 0
+          ? ['Best overall match for your profile']
+          : [`#${i + 1} match for your profile`]
     }
   })
 
