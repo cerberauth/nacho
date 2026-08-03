@@ -10,7 +10,10 @@ type TemplateCardProps = {
 
 export function TemplateCard({ template, lang = 'en' }: TemplateCardProps) {
   return (
-    <Link href={langUrl(lang, `/templates/${template.identifier}`)} className="text-center">
+    <Link
+      href={langUrl(lang, `/templates/${template.identifier}`)}
+      className="text-center"
+    >
       {template.icon?.contentUrl && (
         <Image
           className="mx-auto mb-2"

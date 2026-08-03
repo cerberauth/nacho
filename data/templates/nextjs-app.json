@@ -6,11 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/nextjs.svg"
   },
-  "technologies": [
-    "javascript",
-    "react",
-    "next.js"
-  ],
+  "technologies": ["javascript", "react", "next.js"],
   "example": {
     "name": "Next.js App Example",
     "url": "https://cerberauth-nextjs-app-oidc.pages.dev/",

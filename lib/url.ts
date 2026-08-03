@@ -1,4 +1,4 @@
-const compressionEncoding = 'gzip';
+const compressionEncoding = 'gzip'
 
 // Version prefix for new encoding format (URL-safe base64)
 const URL_ENCODING_VERSION = 'v2_'
@@ -74,7 +74,9 @@ export function clientClientURLByEncodedClient(encodedClient: string): string {
   return `/clients/c?client=${encodedClient}`
 }
 
-export async function clientClientURLByOAuth2Client(client: OAuth2Client): Promise<string> {
+export async function clientClientURLByOAuth2Client(
+  client: OAuth2Client,
+): Promise<string> {
   const encoded = await urlEncode(client)
   return clientClientURLByEncodedClient(encoded)
 }

@@ -6,11 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/nodejs.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js"
-  ],
+  "technologies": ["javascript", "typescript", "node.js"],
   "libraries": [
     {
       "name": "openid-client",

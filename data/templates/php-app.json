@@ -6,8 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/php.svg"
   },
-  "technologies": [
-    "php"
-  ],
+  "technologies": ["php"],
   "extends": "web-app"
 }

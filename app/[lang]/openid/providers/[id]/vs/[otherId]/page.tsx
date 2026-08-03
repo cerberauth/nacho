@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation'
 
 import { getProviderVsPairs } from '@/lib/providers'
 import { hasLocale, locales, type Locale } from '@/lib/dictionaries'
-import { generateOpenIDProviderVsMetadata, OpenIDProviderVsPage } from '@/components/pages/openid-providers-vs'
+import {
+  generateOpenIDProviderVsMetadata,
+  OpenIDProviderVsPage,
+} from '@/components/pages/openid-providers-vs'
 
 type Props = { params: Promise<{ lang: string; id: string; otherId: string }> }
 
@@ -14,7 +17,11 @@ export async function generateStaticParams() {
   return locales
     .filter((l) => l !== 'en')
     .flatMap((lang) =>
-      getProviderVsPairs().map((pair) => ({ lang, id: pair.a.identifier, otherId: pair.b.identifier }))
+      getProviderVsPairs().map((pair) => ({
+        lang,
+        id: pair.a.identifier,
+        otherId: pair.b.identifier,
+      })),
     )
 }
 

@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/yii3.svg"
   },
-  "technologies": [
-    "php",
-    "yii",
-    "yii3"
-  ],
+  "technologies": ["php", "yii", "yii3"],
   "extends": "php-app"
 }

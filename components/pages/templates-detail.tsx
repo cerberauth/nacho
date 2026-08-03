@@ -10,7 +10,11 @@ import { TemplateCard } from '@/components/template-card'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { templates } from '@/data/templates'
-import { applicationTypeName, grantTypeName, grantTypeReferences } from '@/lib/getters'
+import {
+  applicationTypeName,
+  grantTypeName,
+  grantTypeReferences,
+} from '@/lib/getters'
 import { getRelatedTemplates, getTemplateById } from '@/lib/templates'
 import { getDictionary, type Locale } from '@/lib/dictionaries'
 import { langUrl } from '@/lib/lang'
@@ -22,7 +26,10 @@ function GrantTypeListItem({ grantType }: { grantType: string }) {
   return <ListItemWithReferences name={name} references={references} />
 }
 
-export async function generateTemplateDetailMetadata(lang: Locale, templateParam: string): Promise<Metadata> {
+export async function generateTemplateDetailMetadata(
+  lang: Locale,
+  templateParam: string,
+): Promise<Metadata> {
   const template = getTemplateById(templateParam)
   if (!template) return {}
   const dict = await getDictionary(lang)
@@ -36,7 +43,13 @@ export async function generateTemplateDetailMetadata(lang: Locale, templateParam
   }
 }
 
-export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale; templateParam: string }) {
+export async function TemplateDetailPage({
+  lang,
+  templateParam,
+}: {
+  lang: Locale
+  templateParam: string
+}) {
   const template = getTemplateById(templateParam)
   if (!template) notFound()
 
@@ -73,23 +86,33 @@ export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale
             {template.technologies.length > 0 && (
               <div>
                 <dt className="font-semibold mb-1">{t.technologies}</dt>
-                <dd>
-                  {template.technologies.join(', ')}
-                </dd>
+                <dd>{template.technologies.join(', ')}</dd>
               </div>
             )}
             {template.example && (
               <div>
                 <dd>
-                  <Link href={template.example.url} className="underline plausible-event-name=Template+Example+Link+Click" rel="nofollow noopener" target="_blank">
+                  <Link
+                    href={template.example.url}
+                    className="underline plausible-event-name=Template+Example+Link+Click"
+                    rel="nofollow noopener"
+                    target="_blank"
+                  >
                     <strong>{template.example.name}</strong>
                     <ArrowUpRight className="mx-1 w-4 h-4 inline-block" />
                   </Link>
                   <span className="text-sm">
-                    (<Link href={template.example.repository.url} className="plausible-event-name=Template+Example+Repository+Link+Click" rel="nofollow noopener" target="_blank">
+                    (
+                    <Link
+                      href={template.example.repository.url}
+                      className="plausible-event-name=Template+Example+Repository+Link+Click"
+                      rel="nofollow noopener"
+                      target="_blank"
+                    >
                       Github
                       <GitPullRequest className="ml-1 w-3 h-3 inline-block" />
-                    </Link>)
+                    </Link>
+                    )
                   </span>
                 </dd>
               </div>
@@ -98,7 +121,13 @@ export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale
 
           <div className="mt-8 text-center">
             <Button type="button">
-              <Link href={langUrl(lang, `/clients/create?template=${template.identifier}`)} className={`plausible-event-name=Create+Client+From+Template+Button+Click plausible-event-template=${template.identifier}`}>
+              <Link
+                href={langUrl(
+                  lang,
+                  `/clients/create?template=${template.identifier}`,
+                )}
+                className={`plausible-event-name=Create+Client+From+Template+Button+Click plausible-event-template=${template.identifier}`}
+              >
                 {t.createClient.replace('{name}', template.name)}
               </Link>
             </Button>
@@ -108,14 +137,19 @@ export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale
 
       {Array.isArray(template.libraries) && template.libraries.length > 0 && (
         <div className="space-y-4">
-          <h2 className="text-2xl font-semibold">{t.librariesTitle.replace('{name}', template.name)}</h2>
-          <p>
-            {t.librariesIntro.replace('{name}', template.name)}
-          </p>
+          <h2 className="text-2xl font-semibold">
+            {t.librariesTitle.replace('{name}', template.name)}
+          </h2>
+          <p>{t.librariesIntro.replace('{name}', template.name)}</p>
           <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
             {template.libraries.map((library, i) => (
               <li key={i}>
-                <Link href={library.url} rel="nofollow noopener" target="_blank" className="underline">
+                <Link
+                  href={library.url}
+                  rel="nofollow noopener"
+                  target="_blank"
+                  className="underline"
+                >
                   {library.name}
                   <ArrowUpRight className="w-3 h-3 ml-1 inline-block" />
                 </Link>
@@ -129,10 +163,10 @@ export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale
       )}
 
       <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">{t.grantTypesTitle.replace('{name}', template.name)}</h2>
-        <p>
-          {t.grantTypesIntro.replace('{name}', template.name)}
-        </p>
+        <h2 className="text-2xl font-semibold">
+          {t.grantTypesTitle.replace('{name}', template.name)}
+        </h2>
+        <p>{t.grantTypesIntro.replace('{name}', template.name)}</p>
         <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
           {template.client.grantTypes.map((grantType) => (
             <GrantTypeListItem key={grantType} grantType={grantType} />
@@ -141,13 +175,16 @@ export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale
       </div>
 
       <div className="space-y-4">
-        <h2 className="text-2xl font-semibold">{t.authMethodsTitle.replace('{name}', template.name)}</h2>
-        <p>
-          {t.authMethodsIntro.replace('{name}', template.name)}
-        </p>
+        <h2 className="text-2xl font-semibold">
+          {t.authMethodsTitle.replace('{name}', template.name)}
+        </h2>
+        <p>{t.authMethodsIntro.replace('{name}', template.name)}</p>
         <ul className="text-sm my-4 ml-6 list-disc [&>li]:mt-2">
           {template.client.tokenEndpointAuthMethods.map((authMethod) => (
-            <TokenAuthenticationMethodListItem key={authMethod} authMethod={authMethod} />
+            <TokenAuthenticationMethodListItem
+              key={authMethod}
+              authMethod={authMethod}
+            />
           ))}
         </ul>
       </div>
@@ -156,7 +193,11 @@ export async function TemplateDetailPage({ lang, templateParam }: { lang: Locale
         <h2 className="text-2xl font-semibold">{t.relatedTemplates}</h2>
         <div className="grid grid-cols-3 gap-4">
           {relatedTemplates.map((template) => (
-            <TemplateCard key={template.identifier} template={template} lang={lang} />
+            <TemplateCard
+              key={template.identifier}
+              template={template}
+              lang={lang}
+            />
           ))}
         </div>
       </div>

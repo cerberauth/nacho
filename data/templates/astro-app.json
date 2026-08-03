@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/astro.svg"
   },
-  "technologies": [
-    "javascript",
-    "astro"
-  ],
+  "technologies": ["javascript", "astro"],
   "extends": "web-app"
 }

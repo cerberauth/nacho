@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/kotlin.svg"
   },
-  "technologies": [
-    "java",
-    "kotlin"
-  ],
+  "technologies": ["java", "kotlin"],
   "extends": "java-web-app"
 }

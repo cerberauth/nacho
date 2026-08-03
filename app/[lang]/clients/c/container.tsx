@@ -22,7 +22,13 @@ export function SearchParamsContainer({ dict }: Props) {
   return <ClientContainer encodedClient={encodedClient} dict={dict} />
 }
 
-function ClientContainer({ encodedClient, dict }: { encodedClient: string; dict: Dictionary['clientView'] }) {
+function ClientContainer({
+  encodedClient,
+  dict,
+}: {
+  encodedClient: string
+  dict: Dictionary['clientView']
+}) {
   const [client, setClient] = useState<OAuth2Client | undefined>()
   useEffect(() => {
     urlDecode(encodedClient).then((decodedClient) => {

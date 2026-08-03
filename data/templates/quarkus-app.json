@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/quarkus.svg"
   },
-  "technologies": [
-    "java",
-    "quarkus"
-  ],
+  "technologies": ["java", "quarkus"],
   "extends": "java-web-app"
 }

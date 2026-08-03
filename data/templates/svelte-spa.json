@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/svelte.svg"
   },
-  "technologies": [
-    "javascript",
-    "svelte"
-  ],
+  "technologies": ["javascript", "svelte"],
   "extends": "spa"
 }

@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { hasLocale, type Locale } from '@/lib/dictionaries'
-import { generateUseCasesMetadata, UseCasesPage } from '@/components/pages/use-cases'
+import {
+  generateUseCasesMetadata,
+  UseCasesPage,
+} from '@/components/pages/use-cases'
 
 type Props = { params: Promise<{ lang: string }> }
 

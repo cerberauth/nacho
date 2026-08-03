@@ -5,7 +5,10 @@ import { baseUrl } from '@/app/seo.config'
 import { makeCanonical, makeLanguageAlternates } from '@/lib/metadata'
 import useCasesJson from '@/data/mdx/use-cases.json'
 
-export function generateUseCaseDetailMetadata(lang: string, slug: string): Metadata {
+export function generateUseCaseDetailMetadata(
+  lang: string,
+  slug: string,
+): Metadata {
   const useCase = useCasesJson.find((u) => u.slug === slug)
   if (!useCase) return {}
 
@@ -35,7 +38,13 @@ export function generateUseCaseDetailMetadata(lang: string, slug: string): Metad
   }
 }
 
-export async function UseCaseDetailPage({ lang, slug }: { lang: string; slug: string }) {
+export async function UseCaseDetailPage({
+  lang,
+  slug,
+}: {
+  lang: string
+  slug: string
+}) {
   const useCase = useCasesJson.find((u) => u.slug === slug)
   if (!useCase) notFound()
 

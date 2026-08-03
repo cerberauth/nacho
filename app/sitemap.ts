@@ -4,8 +4,14 @@ import { baseUrl } from './seo.config'
 import { langUrl } from '@/lib/lang'
 import { locales } from '@/lib/dictionaries'
 import { countries } from '@/lib/countries'
-import { getIAMProvidersByNationalities, getIAMProviderVsPairs } from '@/lib/iam-providers'
-import { getProvidersByNationalities, getProviderVsPairs } from '@/lib/providers'
+import {
+  getIAMProvidersByNationalities,
+  getIAMProviderVsPairs,
+} from '@/lib/iam-providers'
+import {
+  getProvidersByNationalities,
+  getProviderVsPairs,
+} from '@/lib/providers'
 
 import useCasesJson from '@/data/mdx/use-cases.json'
 import { providers as openIDConnectProviders } from '@/data/openid/providers'
@@ -16,7 +22,11 @@ export const dynamic = 'force-static'
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const lastModified = new Date()
 
-  const makeEntry = (path: string, priority: number, changeFrequency?: MetadataRoute.Sitemap[0]['changeFrequency']) =>
+  const makeEntry = (
+    path: string,
+    priority: number,
+    changeFrequency?: MetadataRoute.Sitemap[0]['changeFrequency'],
+  ) =>
     locales.map((lang) => ({
       url: `${baseUrl}${langUrl(lang, path)}`,
       lastModified,
@@ -24,7 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority,
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${baseUrl}${langUrl(l, path)}`])
+          locales.map((l) => [l, `${baseUrl}${langUrl(l, path)}`]),
         ) as Record<string, string>,
       },
     }))
@@ -36,30 +46,42 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...makeEntry('/grant-types', 0.8, 'weekly'),
     ...makeEntry('/openid/providers', 0.8, 'weekly'),
     ...openIDConnectProviders.flatMap((provider) =>
-      makeEntry(`/openid/providers/${provider.identifier}`, 1)
+      makeEntry(`/openid/providers/${provider.identifier}`, 1),
     ),
     ...countries
       .filter((c) => getProvidersByNationalities(c.nationalities).length > 0)
-      .flatMap((c) => makeEntry(`/openid/providers/country/${c.slug}`, 0.9, 'weekly')),
+      .flatMap((c) =>
+        makeEntry(`/openid/providers/country/${c.slug}`, 0.9, 'weekly'),
+      ),
     ...getProviderVsPairs().flatMap((pair) =>
-      makeEntry(`/openid/providers/${pair.a.identifier}/vs/${pair.b.identifier}`, 0.7, 'monthly')
+      makeEntry(
+        `/openid/providers/${pair.a.identifier}/vs/${pair.b.identifier}`,
+        0.7,
+        'monthly',
+      ),
     ),
     ...makeEntry('/iam/providers', 0.8, 'weekly'),
     ...iamProviders.flatMap((provider) =>
-      makeEntry(`/iam/providers/${provider.identifier}`, 1)
+      makeEntry(`/iam/providers/${provider.identifier}`, 1),
     ),
     ...countries
       .filter((c) => getIAMProvidersByNationalities(c.nationalities).length > 0)
-      .flatMap((c) => makeEntry(`/iam/providers/country/${c.slug}`, 0.9, 'weekly')),
+      .flatMap((c) =>
+        makeEntry(`/iam/providers/country/${c.slug}`, 0.9, 'weekly'),
+      ),
     ...getIAMProviderVsPairs().flatMap((pair) =>
-      makeEntry(`/iam/providers/${pair.a.identifier}/vs/${pair.b.identifier}`, 0.7, 'monthly')
+      makeEntry(
+        `/iam/providers/${pair.a.identifier}/vs/${pair.b.identifier}`,
+        0.7,
+        'monthly',
+      ),
     ),
     ...makeEntry('/use-cases', 0.8, 'weekly'),
     ...useCasesJson.flatMap((useCase) =>
-      makeEntry(`/use-cases/${useCase.slug}`, 1)
+      makeEntry(`/use-cases/${useCase.slug}`, 1),
     ),
     ...templates.flatMap((template) =>
-      makeEntry(`/templates/${template.identifier}`, 1)
+      makeEntry(`/templates/${template.identifier}`, 1),
     ),
   ]
 }

@@ -5,13 +5,26 @@ import { ArrowUpRight } from 'lucide-react'
 import type { Metadata } from 'next'
 
 import { FeatureStatus } from '@/lib/types'
-import { getFeaturesCategories, OpenIDConnectFeatureCategory, type OpenIDConnectFeature, type OpenIDConnectProvider } from '@/data/openid/providers'
-import { getProviderById, getProviderFeature, getProviders, getProviderVsOrder } from '@/lib/providers'
+import {
+  getFeaturesCategories,
+  OpenIDConnectFeatureCategory,
+  type OpenIDConnectFeature,
+  type OpenIDConnectProvider,
+} from '@/data/openid/providers'
+import {
+  getProviderById,
+  getProviderFeature,
+  getProviders,
+  getProviderVsOrder,
+} from '@/lib/providers'
 import { providers as iamProviders } from '@/data/iam/index'
 import { BenchmarkTable } from '@/components/benchmark-table'
 import { ProviderInaccuracyWarning } from '@/components/inaccuracy-warning'
 import { getCountryFlag } from '@/lib/utils'
-import { getCountryByNationality, getRegionsByNationality } from '@/lib/countries'
+import {
+  getCountryByNationality,
+  getRegionsByNationality,
+} from '@/lib/countries'
 import { getTableCells } from '@/app/openid/providers/get-table-cells'
 import { getDictionary, type Locale, type Dictionary } from '@/lib/dictionaries'
 import { langUrl } from '@/lib/lang'
@@ -22,7 +35,10 @@ type FAQFeature = {
   providerFeature: OpenIDConnectProvider['featureList'][0]
 }
 
-export async function generateOpenIDProviderDetailMetadata(lang: Locale, id: string): Promise<Metadata> {
+export async function generateOpenIDProviderDetailMetadata(
+  lang: Locale,
+  id: string,
+): Promise<Metadata> {
   const provider = getProviderById(id)
   if (!provider) {
     return {}
@@ -42,7 +58,13 @@ export async function generateOpenIDProviderDetailMetadata(lang: Locale, id: str
   }
 }
 
-export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id: string }) {
+export async function OpenIDProviderDetailPage({
+  lang,
+  id,
+}: {
+  lang: Locale
+  id: string
+}) {
   const provider = getProviderById(id)
   if (!provider) {
     return notFound()
@@ -52,14 +74,23 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
   const t = dict.openidProviders
   const categoriesData = getFeaturesCategories(t)
   const categories = getTableCells(categoriesData, [provider.identifier])
-  const iamProvider = iamProviders.find((p) => p.identifier === provider.identifier)
+  const iamProvider = iamProviders.find(
+    (p) => p.identifier === provider.identifier,
+  )
   const faqFeatures = categoriesData.reduce((acc, category) => {
     const features = category.features
       .map((feature) => ({
         feature,
-        providerFeature: getProviderFeature(provider.identifier, feature!.identifier),
+        providerFeature: getProviderFeature(
+          provider.identifier,
+          feature!.identifier,
+        ),
       }))
-      .filter((f) => f.providerFeature && f.providerFeature.status !== FeatureStatus.Unknown) as unknown as FAQFeature[]
+      .filter(
+        (f) =>
+          f.providerFeature &&
+          f.providerFeature.status !== FeatureStatus.Unknown,
+      ) as unknown as FAQFeature[]
     return [...acc, ...features]
   }, [] as FAQFeature[])
 
@@ -70,16 +101,24 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
         {iamProvider ? (
           <>
             {t.lookingForIAMProvider.replace('{name}', provider.name)}{' '}
-            <Link href={langUrl(lang, `/iam/providers/${iamProvider.identifier}`)} className="underline font-medium">
+            <Link
+              href={langUrl(lang, `/iam/providers/${iamProvider.identifier}`)}
+              className="underline font-medium"
+            >
               {t.viewOnIAM.replace('{name}', provider.name)}
-            </Link>.
+            </Link>
+            .
           </>
         ) : (
           <>
             {t.lookingForIAMGeneral}{' '}
-            <Link href={langUrl(lang, '/iam/providers')} className="underline font-medium">
+            <Link
+              href={langUrl(lang, '/iam/providers')}
+              className="underline font-medium"
+            >
               {t.checkIAM}
-            </Link>.
+            </Link>
+            .
           </>
         )}
       </div>
@@ -100,66 +139,94 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
               <h1 className="text-5xl font-semibold leading-none tracking-tight">
                 {provider.name} {t.openIDProvider}
               </h1>
-              {provider.nationality && (() => {
-                const countryConfig = getCountryByNationality(provider.nationality)
-                const regions = getRegionsByNationality(provider.nationality)
-                const allLinks = [...(countryConfig ? [countryConfig] : []), ...regions]
-                return allLinks.length > 0 ? (
-                  <div className="flex gap-1">
-                    {allLinks.map((c) => (
-                      <Link
-                        key={c.slug}
-                        href={langUrl(lang, `/openid/providers/country/${c.slug}`)}
-                        title={c.label}
-                        className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all"
-                      >
-                        {c.flag}
-                      </Link>
-                    ))}
-                  </div>
-                ) : (
-                  <span title={provider.nationality} className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
-                    {getCountryFlag(provider.nationality)}
-                  </span>
-                )
-              })()}
+              {provider.nationality &&
+                (() => {
+                  const countryConfig = getCountryByNationality(
+                    provider.nationality,
+                  )
+                  const regions = getRegionsByNationality(provider.nationality)
+                  const allLinks = [
+                    ...(countryConfig ? [countryConfig] : []),
+                    ...regions,
+                  ]
+                  return allLinks.length > 0 ? (
+                    <div className="flex gap-1">
+                      {allLinks.map((c) => (
+                        <Link
+                          key={c.slug}
+                          href={langUrl(
+                            lang,
+                            `/openid/providers/country/${c.slug}`,
+                          )}
+                          title={c.label}
+                          className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all"
+                        >
+                          {c.flag}
+                        </Link>
+                      ))}
+                    </div>
+                  ) : (
+                    <span
+                      title={provider.nationality}
+                      className="text-4xl grayscale-[0.5] hover:grayscale-0 transition-all cursor-help"
+                    >
+                      {getCountryFlag(provider.nationality)}
+                    </span>
+                  )
+                })()}
             </div>
-            <p className="text-md text-slate-600">
-              {provider.abstract}
-            </p>
+            <p className="text-md text-slate-600">{provider.abstract}</p>
           </div>
         </div>
       </div>
 
       <div className="flex flex-col gap-8 max-w-full mt-8">
-        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">{t.featuresTitle}</h2>
+        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">
+          {t.featuresTitle}
+        </h2>
 
         <BenchmarkTable categories={categories} />
 
         <p className="text-sm text-slate-600">
           {t.compareNote}{' '}
-          <Link href={langUrl(lang, '/openid/providers')} className="text-primary hover:underline">{t.openidBenchmark}</Link>.
+          <Link
+            href={langUrl(lang, '/openid/providers')}
+            className="text-primary hover:underline"
+          >
+            {t.openidBenchmark}
+          </Link>
+          .
         </p>
         {iamProvider && (
           <p className="text-sm text-slate-600">
             {t.lookingForIAMProvider.replace('{name}', provider.name)}{' '}
-            <Link href={langUrl(lang, `/iam/providers/${iamProvider.identifier}`)} className="text-primary hover:underline">
+            <Link
+              href={langUrl(lang, `/iam/providers/${iamProvider.identifier}`)}
+              className="text-primary hover:underline"
+            >
               {t.viewOnIAM.replace('{name}', provider.name)}
-            </Link>.
+            </Link>
+            .
           </p>
         )}
         {!iamProvider && (
           <p className="text-sm text-slate-600">
             {t.lookingForIAMGeneral}{' '}
-            <Link href={langUrl(lang, '/iam/providers')} className="text-primary hover:underline">
+            <Link
+              href={langUrl(lang, '/iam/providers')}
+              className="text-primary hover:underline"
+            >
               {t.checkIAM}
-            </Link>.
+            </Link>
+            .
           </p>
         )}
       </div>
 
       <div className="flex flex-col gap-8 max-w-full mt-8">
-        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">{t.faq}</h2>
+        <h2 className="text-3xl text-center font-semibold leading-none tracking-tight mb-2">
+          {t.faq}
+        </h2>
 
         {faqFeatures.map((feature) => (
           <FAQFeatureComponent
@@ -172,12 +239,17 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
       </div>
 
       <div className="flex flex-col gap-4 max-w-full mt-8 w-full">
-        <h2 className="text-2xl font-semibold leading-none tracking-tight">{t.compareWith}</h2>
+        <h2 className="text-2xl font-semibold leading-none tracking-tight">
+          {t.compareWith}
+        </h2>
         <div className="flex flex-wrap gap-2">
           {getProviders()
             .filter((p) => p.identifier !== provider.identifier)
             .map((p) => {
-              const order = getProviderVsOrder(provider.identifier, p.identifier)
+              const order = getProviderVsOrder(
+                provider.identifier,
+                p.identifier,
+              )
               if (!order) {
                 return null
               }
@@ -185,7 +257,10 @@ export async function OpenIDProviderDetailPage({ lang, id }: { lang: Locale; id:
               return (
                 <Link
                   key={`vs-${p.identifier}`}
-                  href={langUrl(lang, `/openid/providers/${order[0]}/vs/${order[1]}`)}
+                  href={langUrl(
+                    lang,
+                    `/openid/providers/${order[0]}/vs/${order[1]}`,
+                  )}
                   className="text-sm text-primary hover:underline bg-slate-50 border border-slate-200 rounded-full px-3 py-1"
                 >
                   {provider.name} vs {p.name}
@@ -213,29 +288,51 @@ function FAQFeatureComponent({
 }) {
   let featureSuffix: string
   switch (feature.feature.category) {
-    case OpenIDConnectFeatureCategory.GrantType: featureSuffix = t.grantType; break
-    case OpenIDConnectFeatureCategory.Extension: featureSuffix = t.extension; break
-    case OpenIDConnectFeatureCategory.Endpoint: featureSuffix = t.endpoint; break
-    case OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod: featureSuffix = t.tokenEndpointAuthMethod; break
-    case OpenIDConnectFeatureCategory.Prompt: featureSuffix = t.prompt; break
-    default: featureSuffix = t.feature; break
+    case OpenIDConnectFeatureCategory.GrantType:
+      featureSuffix = t.grantType
+      break
+    case OpenIDConnectFeatureCategory.Extension:
+      featureSuffix = t.extension
+      break
+    case OpenIDConnectFeatureCategory.Endpoint:
+      featureSuffix = t.endpoint
+      break
+    case OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod:
+      featureSuffix = t.tokenEndpointAuthMethod
+      break
+    case OpenIDConnectFeatureCategory.Prompt:
+      featureSuffix = t.prompt
+      break
+    default:
+      featureSuffix = t.feature
+      break
   }
   const fullFeatureName = `${feature.feature.name} ${featureSuffix}`
-  const question = t.faqDoes.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+  const question = t.faqDoes
+    .replace('{name}', provider.name)
+    .replace('{feature}', fullFeatureName)
 
   let answer: string
   switch (feature.providerFeature.status) {
     case FeatureStatus.Supported:
-      answer = t.faqSupported.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+      answer = t.faqSupported
+        .replace('{name}', provider.name)
+        .replace('{feature}', fullFeatureName)
       break
     case FeatureStatus.NotSupported:
-      answer = t.faqNotSupported.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+      answer = t.faqNotSupported
+        .replace('{name}', provider.name)
+        .replace('{feature}', fullFeatureName)
       break
     case FeatureStatus.Partial:
-      answer = t.faqPartial.replace('{name}', provider.name).replace('{feature}', fullFeatureName)
+      answer = t.faqPartial
+        .replace('{name}', provider.name)
+        .replace('{feature}', fullFeatureName)
       break
     case FeatureStatus.Deprecated:
-      answer = t.faqDeprecated.replace('{name}', provider.name).replace('{featureName}', feature.feature.name)
+      answer = t.faqDeprecated
+        .replace('{name}', provider.name)
+        .replace('{featureName}', feature.feature.name)
       break
     default:
       answer = t.faqUnknown.replace('{feature}', feature.feature.name)
@@ -248,13 +345,23 @@ function FAQFeatureComponent({
 
   return (
     <div key={feature.feature.identifier}>
-      <h3 className="text-2xl font-semibold leading-none tracking-tight mb-2">{question}</h3>
-      <p>{answer} {feature.providerFeature.links?.[0] && (
-        <Link href={feature.providerFeature.links[0]} className="inline-flex items-center justify-center text-sm" rel="nofollow" target="_blank">
-          {t.readMore}
-          <ArrowUpRight className="h-4 w-4" />
-        </Link>
-      )}</p>
+      <h3 className="text-2xl font-semibold leading-none tracking-tight mb-2">
+        {question}
+      </h3>
+      <p>
+        {answer}{' '}
+        {feature.providerFeature.links?.[0] && (
+          <Link
+            href={feature.providerFeature.links[0]}
+            className="inline-flex items-center justify-center text-sm"
+            rel="nofollow"
+            target="_blank"
+          >
+            {t.readMore}
+            <ArrowUpRight className="h-4 w-4" />
+          </Link>
+        )}
+      </p>
     </div>
   )
 }

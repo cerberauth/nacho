@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/nuxt.svg"
   },
-  "technologies": [
-    "javascript",
-    "vue",
-    "nuxt"
-  ],
+  "technologies": ["javascript", "vue", "nuxt"],
   "extends": "web-app"
 }

@@ -4,12 +4,28 @@ import { Fragment, useState, useMemo, useCallback } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, Check, ChevronLeft, ChevronRight, CircleHelp, Info, Plus, Settings2, Trash, X } from 'lucide-react'
+import {
+  ArrowUpRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  CircleHelp,
+  Info,
+  Plus,
+  Settings2,
+  Trash,
+  X,
+} from 'lucide-react'
 
 import { FeatureStatus, type Provider, type FeatureCategory } from '@/lib/types'
 import { StatusCell } from '@/components/benchmark/status-cell'
 import type { BenchmarkCategoryProps } from '@/components/benchmark-table'
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip'
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
 import {
   Dialog,
   DialogContent,
@@ -36,13 +52,14 @@ type Props = {
   providerDetailUrlPrefix: string
 }
 
-export function ProvidersInteractiveView({ providers, allCategories, featuresCategories, providerDetailUrlPrefix }: Props) {
-  const {
-    selectedFeatures,
-    hiddenProviders,
-    hiddenRows,
-    updateParams,
-  } = useBenchmarkParams()
+export function ProvidersInteractiveView({
+  providers,
+  allCategories,
+  featuresCategories,
+  providerDetailUrlPrefix,
+}: Props) {
+  const { selectedFeatures, hiddenProviders, hiddenRows, updateParams } =
+    useBenchmarkParams()
 
   const [wizardOpen, setWizardOpen] = useState(false)
   const [wizardStep, setWizardStep] = useState(0)
@@ -52,7 +69,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
 
   const toggleProvider = (id: string) => {
     const next = new Set(hiddenProviders)
-    const visibleCount = providers.filter(p => !next.has(p.identifier)).length
+    const visibleCount = providers.filter((p) => !next.has(p.identifier)).length
     if (next.has(id)) {
       next.delete(id)
     } else if (visibleCount > 1) {
@@ -73,7 +90,9 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
 
   const trackVendorClick = (identifier: string) => {
     import('@plausible-analytics/tracker').then(({ track }) =>
-      track('Benchmark Vendor Click', { props: { vendor: identifier, benchmark: 'openid' } })
+      track('Benchmark Vendor Click', {
+        props: { vendor: identifier, benchmark: 'openid' },
+      }),
     )
   }
 
@@ -84,7 +103,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
   }
 
   const toggleDraftFeature = (featureId: string) => {
-    setDraftFeatures(prev => {
+    setDraftFeatures((prev) => {
       const next = new Set(prev)
       if (next.has(featureId)) next.delete(featureId)
       else next.add(featureId)
@@ -94,7 +113,12 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
 
   const applyWizard = () => {
     import('@plausible-analytics/tracker').then(({ track }) =>
-      track('Benchmark Setup', { props: { features: Array.from(draftFeatures).join(','), benchmark: 'openid' } })
+      track('Benchmark Setup', {
+        props: {
+          features: Array.from(draftFeatures).join(','),
+          benchmark: 'openid',
+        },
+      }),
     )
     updateParams({ features: draftFeatures })
     setWizardOpen(false)
@@ -108,7 +132,13 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
       next.add(featureId)
     }
     import('@plausible-analytics/tracker').then(({ track }) =>
-      track('Benchmark Feature Filter', { props: { feature: featureId, action: next.has(featureId) ? 'add' : 'remove', benchmark: 'openid' } })
+      track('Benchmark Feature Filter', {
+        props: {
+          feature: featureId,
+          action: next.has(featureId) ? 'add' : 'remove',
+          benchmark: 'openid',
+        },
+      }),
     )
     updateParams({ features: next })
   }
@@ -119,70 +149,91 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
 
   const tableProviderIds = useMemo(() => {
     return providers
-      .filter(p => !hiddenProviders.has(p.identifier))
-      .filter(p => {
+      .filter((p) => !hiddenProviders.has(p.identifier))
+      .filter((p) => {
         if (selectedFeatures.size === 0) return true
         for (const featureId of selectedFeatures) {
-          const feat = p.featureList.find(f => f.identifier === featureId)
+          const feat = p.featureList.find((f) => f.identifier === featureId)
           const status = feat?.status
-          if (status === FeatureStatus.NotSupported || status === FeatureStatus.Deprecated) {
+          if (
+            status === FeatureStatus.NotSupported ||
+            status === FeatureStatus.Deprecated
+          ) {
             return false
           }
         }
         return true
       })
-      .map(p => p.identifier)
+      .map((p) => p.identifier)
   }, [providers, hiddenProviders, selectedFeatures])
 
   const sortedProviders = useMemo(() => {
-    const notHidden = providers.filter(p => !hiddenProviders.has(p.identifier))
+    const notHidden = providers.filter(
+      (p) => !hiddenProviders.has(p.identifier),
+    )
     return [
-      ...notHidden.filter(p => tableProviderIds.includes(p.identifier)),
-      ...notHidden.filter(p => !tableProviderIds.includes(p.identifier)),
+      ...notHidden.filter((p) => tableProviderIds.includes(p.identifier)),
+      ...notHidden.filter((p) => !tableProviderIds.includes(p.identifier)),
     ]
   }, [providers, hiddenProviders, tableProviderIds])
 
   const hiddenProviderList = useMemo(() => {
-    return providers.filter(p => hiddenProviders.has(p.identifier))
+    return providers.filter((p) => hiddenProviders.has(p.identifier))
   }, [providers, hiddenProviders])
 
   const dimmedProviders = useMemo(() => {
-    return new Set(sortedProviders.filter(p => !tableProviderIds.includes(p.identifier)).map(p => p.identifier))
+    return new Set(
+      sortedProviders
+        .filter((p) => !tableProviderIds.includes(p.identifier))
+        .map((p) => p.identifier),
+    )
   }, [sortedProviders, tableProviderIds])
 
   const filteredCategories = useMemo(() => {
-    const sortedIds = sortedProviders.map(p => p.identifier)
+    const sortedIds = sortedProviders.map((p) => p.identifier)
     return allCategories
-      .map(cat => ({
+      .map((cat) => ({
         ...cat,
         rows: cat.rows
-          .filter(row => !hiddenRows.has(row.identifier))
-          .filter(row => selectedFeatures.size === 0 || selectedFeatures.has(row.identifier))
-          .map(row => ({
+          .filter((row) => !hiddenRows.has(row.identifier))
+          .filter(
+            (row) =>
+              selectedFeatures.size === 0 ||
+              selectedFeatures.has(row.identifier),
+          )
+          .map((row) => ({
             ...row,
-            cells: sortedIds.map(id =>
-              row.cells.find(cell => cell.identifier === id) ?? { identifier: id, status: FeatureStatus.Unknown }
-            )
-          }))
+            cells: sortedIds.map(
+              (id) =>
+                row.cells.find((cell) => cell.identifier === id) ?? {
+                  identifier: id,
+                  status: FeatureStatus.Unknown,
+                },
+            ),
+          })),
       }))
-      .filter(cat => cat.rows.length > 0)
+      .filter((cat) => cat.rows.length > 0)
   }, [allCategories, selectedFeatures, hiddenRows, sortedProviders])
 
   const hiddenRowDetails = useMemo(() => {
     if (hiddenRows.size === 0) return []
-    const allRowsList = allCategories.flatMap(c => c.rows)
+    const allRowsList = allCategories.flatMap((c) => c.rows)
     return Array.from(hiddenRows)
-      .map(id => allRowsList.find(r => r.identifier === id))
+      .map((id) => allRowsList.find((r) => r.identifier === id))
       .filter(Boolean) as (typeof allRowsList)[number][]
   }, [hiddenRows, allCategories])
 
   const excludedFeaturesSorted = useMemo(() => {
     return [...hiddenRowDetails].sort((a, b) => {
-      const countA = sortedProviders.filter(p =>
-        p.featureList.find(f => f.identifier === a.identifier)?.status === FeatureStatus.Supported
+      const countA = sortedProviders.filter(
+        (p) =>
+          p.featureList.find((f) => f.identifier === a.identifier)?.status ===
+          FeatureStatus.Supported,
       ).length
-      const countB = sortedProviders.filter(p =>
-        p.featureList.find(f => f.identifier === b.identifier)?.status === FeatureStatus.Supported
+      const countB = sortedProviders.filter(
+        (p) =>
+          p.featureList.find((f) => f.identifier === b.identifier)?.status ===
+          FeatureStatus.Supported,
       ).length
       return countB - countA
     })
@@ -204,7 +255,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
         </div>
       ) : (
         <div className="flex items-center gap-2 flex-wrap">
-          {excludedFeaturesSorted.map(feature => (
+          {excludedFeaturesSorted.map((feature) => (
             <button
               key={feature.identifier}
               onClick={() => toggleRow(feature.identifier)}
@@ -217,9 +268,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
 
           <Sheet>
             <SheetTrigger asChild>
-              <button
-                className="flex items-center gap-1 border border-dashed border-slate-300 text-slate-400 text-xs px-2 py-1 rounded-full hover:border-slate-500 hover:text-slate-600 transition-colors"
-              >
+              <button className="flex items-center gap-1 border border-dashed border-slate-300 text-slate-400 text-xs px-2 py-1 rounded-full hover:border-slate-500 hover:text-slate-600 transition-colors">
                 <Plus className="h-3 w-3" />
                 Add feature
               </button>
@@ -232,11 +281,13 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                 Only providers supporting all selected features will be shown.
               </p>
               <div className="flex flex-col gap-6">
-                {featuresCategories.map(category => (
+                {featuresCategories.map((category) => (
                   <div key={category.identifier}>
-                    <h3 className="text-sm font-semibold text-slate-700 mb-2">{category.name}</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 mb-2">
+                      {category.name}
+                    </h3>
                     <div className="flex flex-col gap-0.5">
-                      {category.features.map(feature => (
+                      {category.features.map((feature) => (
                         <label
                           key={feature.identifier}
                           className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 px-1 py-1 rounded"
@@ -256,14 +307,18 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
 
                 {hiddenRowDetails.length > 0 && (
                   <div>
-                    <h3 className="text-sm font-semibold text-slate-700 mb-2">Hidden rows</h3>
+                    <h3 className="text-sm font-semibold text-slate-700 mb-2">
+                      Hidden rows
+                    </h3>
                     <div className="flex flex-col gap-0.5">
-                      {hiddenRowDetails.map(row => (
+                      {hiddenRowDetails.map((row) => (
                         <div
                           key={row.identifier}
                           className="flex items-center justify-between px-1 py-1 rounded hover:bg-slate-50"
                         >
-                          <span className="text-sm text-slate-500"><code>{row.name}</code></span>
+                          <span className="text-sm text-slate-500">
+                            <code>{row.name}</code>
+                          </span>
                           <button
                             onClick={() => toggleRow(row.identifier)}
                             className="flex items-center gap-1 text-xs text-slate-400 hover:text-slate-700 transition-colors"
@@ -298,7 +353,8 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
           </DialogHeader>
 
           <p className="text-sm text-slate-500 -mt-2">
-            Pick the features your project needs. Only providers that support all of them will be shown.
+            Pick the features your project needs. Only providers that support
+            all of them will be shown.
           </p>
 
           <div className="flex gap-1">
@@ -307,12 +363,13 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                 key={cat.identifier}
                 onClick={() => setWizardStep(i)}
                 title={cat.name}
-                className={`h-1.5 flex-1 rounded-full transition-colors ${i === wizardStep
-                  ? 'bg-slate-900'
-                  : i < wizardStep
-                    ? 'bg-slate-400'
-                    : 'bg-slate-200'
-                  }`}
+                className={`h-1.5 flex-1 rounded-full transition-colors ${
+                  i === wizardStep
+                    ? 'bg-slate-900'
+                    : i < wizardStep
+                      ? 'bg-slate-400'
+                      : 'bg-slate-200'
+                }`}
               />
             ))}
           </div>
@@ -325,7 +382,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
               Step {wizardStep + 1} of {totalSteps}
             </p>
             <div className="flex flex-col gap-0.5 overflow-y-auto max-h-56">
-              {featuresCategories[wizardStep].features.map(feature => (
+              {featuresCategories[wizardStep].features.map((feature) => (
                 <label
                   key={feature.identifier}
                   className="flex items-center gap-2 cursor-pointer hover:bg-slate-50 px-2 py-1.5 rounded"
@@ -346,26 +403,31 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
             <Button
               variant="ghost"
               size="sm"
-              onClick={() => setWizardStep(s => s - 1)}
+              onClick={() => setWizardStep((s) => s - 1)}
               disabled={wizardStep === 0}
             >
               <ChevronLeft className="h-4 w-4 mr-1" />
               Back
             </Button>
             <span className="text-xs text-slate-400">
-              {draftFeatures.size} feature{draftFeatures.size !== 1 ? 's' : ''} selected
+              {draftFeatures.size} feature{draftFeatures.size !== 1 ? 's' : ''}{' '}
+              selected
             </span>
             {wizardStep < totalSteps - 1 ? (
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => setWizardStep(s => s + 1)}
+                onClick={() => setWizardStep((s) => s + 1)}
               >
                 Next
                 <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             ) : (
-              <Button size="sm" onClick={applyWizard} disabled={draftFeatures.size === 0}>
+              <Button
+                size="sm"
+                onClick={applyWizard}
+                disabled={draftFeatures.size === 0}
+              >
                 <Check className="h-4 w-4 mr-1" />
                 Apply
               </Button>
@@ -377,21 +439,27 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
       <div className="w-full overflow-x-auto overflow-y-clip">
         <div
           className="grid gap-x-1"
-          style={{ gridTemplateColumns: `280px repeat(${sortedProviders.length}, minmax(124px, 1fr))` }}
+          style={{
+            gridTemplateColumns: `280px repeat(${sortedProviders.length}, minmax(124px, 1fr))`,
+          }}
         >
           {/* ── Corner spacer ── */}
           <div className="sticky top-0 left-0 z-30 bg-white" />
 
           {/* ── Provider header cards ── */}
-          {sortedProviders.map(provider => {
+          {sortedProviders.map((provider) => {
             const inTable = tableProviderIds.includes(provider.identifier)
             return (
-              <div key={provider.identifier} className="sticky top-0 z-20 bg-white pt-2 pb-1 group/col relative">
+              <div
+                key={provider.identifier}
+                className="sticky top-0 z-20 bg-white pt-2 pb-1 group/col relative"
+              >
                 <div
-                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${inTable
+                  className={`flex flex-col items-center justify-between rounded-md px-3 py-2 gap-1 border transition-all ${
+                    inTable
                       ? 'bg-slate-50 border-slate-200 hover:border-slate-300'
                       : 'bg-white border-slate-100 opacity-20 hover:opacity-40'
-                    }`}
+                  }`}
                 >
                   <div className="h-10 flex items-center justify-center">
                     {provider.icon?.contentUrl && (
@@ -407,24 +475,35 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                   <div className="flex items-center gap-1 w-full justify-center">
                     <Link
                       href={`${providerDetailUrlPrefix}/${provider.identifier}`}
-                      onClick={(e) => { trackVendorClick(provider.identifier) }}
+                      onClick={(e) => {
+                        trackVendorClick(provider.identifier)
+                      }}
                       className="text-sm text-center text-slate-900 truncate hover:underline"
                     >
                       {provider.name}
                     </Link>
                     {provider.nationality && (
-                      <span title={provider.nationality} className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help">
+                      <span
+                        title={provider.nationality}
+                        className="text-xs grayscale-[0.5] hover:grayscale-0 transition-all cursor-help"
+                      >
                         {getCountryFlag(provider.nationality)}
                       </span>
                     )}
                   </div>
-                  <span className="text-xs text-slate-400">{provider.license}</span>
+                  <span className="text-xs text-slate-400">
+                    {provider.license}
+                  </span>
                   {provider.pricing && (
                     <div className="flex flex-col items-center gap-0.5 w-full">
                       {provider.pricing.hasFreeTier ? (
-                        <span className="text-xs text-lime-700 bg-lime-50 rounded px-1">Free tier</span>
+                        <span className="text-xs text-lime-700 bg-lime-50 rounded px-1">
+                          Free tier
+                        </span>
                       ) : (
-                        <span className="text-xs text-slate-400">No free tier</span>
+                        <span className="text-xs text-slate-400">
+                          No free tier
+                        </span>
                       )}
                       {provider.pricing.pricingUrl && (
                         <Link
@@ -450,10 +529,13 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
             )
           })}
 
-            <PricingRows providers={sortedProviders} dimmedProviders={dimmedProviders} />
+          <PricingRows
+            providers={sortedProviders}
+            dimmedProviders={dimmedProviders}
+          />
 
-            {/* ── Categories + feature rows ── */}
-          {filteredCategories.map(category => (
+          {/* ── Categories + feature rows ── */}
+          {filteredCategories.map((category) => (
             <Fragment key={category.name}>
               {/* Category header spans all columns */}
               <div
@@ -468,7 +550,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
               </div>
 
               {/* Feature rows */}
-              {category.rows.map(row => (
+              {category.rows.map((row) => (
                 <Fragment key={row.identifier}>
                   {/* Feature label */}
                   <div className="sticky left-0 z-10 bg-white flex items-center px-2 group/row">
@@ -478,9 +560,13 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                       title={row.description || row.name}
                       target="_blank"
                     >
-                      <span className="min-w-0"><code>{row.name}</code></span>
+                      <span className="min-w-0">
+                        <code>{row.name}</code>
+                      </span>
                       {row.status === FeatureStatus.Deprecated && (
-                        <span className="text-red-600 shrink-0"><Trash className="h-4 w-4" /></span>
+                        <span className="text-red-600 shrink-0">
+                          <Trash className="h-4 w-4" />
+                        </span>
                       )}
                     </Link>
                     <button
@@ -493,7 +579,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
                   </div>
 
                   {/* Feature cells */}
-                  {row.cells.map(cell => (
+                  {row.cells.map((cell) => (
                     <div
                       key={cell.identifier}
                       className={`flex items-center justify-center transition-opacity ${dimmedProviders.has(cell.identifier) ? 'opacity-25' : ''}`}
@@ -518,7 +604,7 @@ export function ProvidersInteractiveView({ providers, allCategories, featuresCat
       {hiddenProviderList.length > 0 && (
         <div className="flex items-center gap-2 flex-wrap mt-2">
           <span className="text-xs text-slate-400">Hidden:</span>
-          {hiddenProviderList.map(p => (
+          {hiddenProviderList.map((p) => (
             <button
               key={p.identifier}
               onClick={() => toggleProvider(p.identifier)}

@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/fastapi.svg"
   },
-  "technologies": [
-    "python",
-    "FastAPI"
-  ],
+  "technologies": ["python", "FastAPI"],
   "extends": "python-app"
 }

@@ -48,7 +48,7 @@ function getMDXMetaData(dir: string) {
 function generateJSONFiles(fileName: string, data: any[]) {
   fs.writeFileSync(
     path.join(path.join(process.cwd(), 'data', 'mdx'), `${fileName}.json`),
-    JSON.stringify(data)
+    JSON.stringify(data),
   )
 }
 

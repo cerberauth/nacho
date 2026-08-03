@@ -29,7 +29,10 @@ export function DataTable({}: DataTableProps) {
     deleteClient(clientId)
     setClients(getClients())
   }, [])
-  const dataColumns = useMemo(() => columns(onDeleteClientClick), [onDeleteClientClick])
+  const dataColumns = useMemo(
+    () => columns(onDeleteClientClick),
+    [onDeleteClientClick],
+  )
   const table = useReactTable({
     data: clients ?? defaultClients,
     columns: dataColumns,
@@ -52,9 +55,9 @@ export function DataTable({}: DataTableProps) {
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                        header.column.columnDef.header,
-                        header.getContext()
-                      )}
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )}
                   </TableHead>
                 )
               })}
@@ -74,7 +77,7 @@ export function DataTable({}: DataTableProps) {
             ))
           ) : (
             <TableRow>
-              <TableCell colSpan={columns.length} className='h-24 text-center'>
+              <TableCell colSpan={columns.length} className="h-24 text-center">
                 No clients. Create one to get started.
               </TableCell>
             </TableRow>

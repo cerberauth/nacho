@@ -2,12 +2,31 @@
 
 import Link from 'next/link'
 
-import { AlertDialog, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/ui/card'
+import {
+  AlertDialog,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from '@/components/ui/alert-dialog'
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
 import { Skeleton } from '@/components/ui/skeleton'
-import { applicationTypeName, grantTypeName, tokenAuthenticationMethodLabel } from '@/lib/getters'
+import {
+  applicationTypeName,
+  grantTypeName,
+  tokenAuthenticationMethodLabel,
+} from '@/lib/getters'
 import type { Dictionary } from '@/lib/dictionaries'
 
 const createShareableLink = (medium: string) => {
@@ -44,12 +63,16 @@ export function ClientView({ client, dict }: ClientViewProps) {
   return (
     <>
       <div>
-        <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2 text-center">{client.name} {dict.client}</h1>
+        <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2 text-center">
+          {client.name} {dict.client}
+        </h1>
       </div>
 
       <Card>
         <CardHeader title="Client Information">
-          <CardTitle>{client.name} {dict.client}</CardTitle>
+          <CardTitle>
+            {client.name} {dict.client}
+          </CardTitle>
         </CardHeader>
 
         <CardContent className="grid gap-3">
@@ -58,21 +81,27 @@ export function ClientView({ client, dict }: ClientViewProps) {
               <span className="text-muted-foreground">
                 {dict.applicationType}
               </span>
-              <span>{applicationTypeName(client.applicationType as ApplicationType)}</span>
+              <span>
+                {applicationTypeName(client.applicationType as ApplicationType)}
+              </span>
             </li>
 
             <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                {dict.grantTypes}
+              <span className="text-muted-foreground">{dict.grantTypes}</span>
+              <span>
+                {client.grantTypes
+                  .map((type) => grantTypeName(type as GrantType))
+                  .join(', ')}
               </span>
-              <span>{client.grantTypes.map(type => grantTypeName(type as GrantType)).join(', ')}</span>
             </li>
 
             <li className="flex items-center justify-between">
               <span className="text-muted-foreground">
                 {dict.tokenEndpointAuthMethod}
               </span>
-              <span>{tokenAuthenticationMethodLabel(client.tokenEndpointAuthMethod)}</span>
+              <span>
+                {tokenAuthenticationMethodLabel(client.tokenEndpointAuthMethod)}
+              </span>
             </li>
           </ul>
 
@@ -81,71 +110,68 @@ export function ClientView({ client, dict }: ClientViewProps) {
           <div className="font-semibold">{dict.application}</div>
           <ul className="grid gap-3">
             <li className="flex items-center justify-between">
-              <span className="text-muted-foreground">
-                {dict.clientName}
-              </span>
+              <span className="text-muted-foreground">{dict.clientName}</span>
               <span>{client.name}</span>
             </li>
 
             <li className="flex justify-between">
-              <span className="text-muted-foreground">
-                {dict.redirectUris}
-              </span>
+              <span className="text-muted-foreground">{dict.redirectUris}</span>
               <ul className="text-right space-y-2">
-                {client.redirectUris.map(uri => (
+                {client.redirectUris.map((uri) => (
                   <li key={uri}>{uri}</li>
                 ))}
               </ul>
             </li>
 
             <li className="flex justify-between">
-              <span className="text-muted-foreground">
-                {dict.scopes}
-              </span>
+              <span className="text-muted-foreground">{dict.scopes}</span>
               <span>{client.scopes.join(' ')}</span>
             </li>
 
             {Array.isArray(client.audiences) && client.audiences.length > 0 && (
               <li className="flex justify-between">
-                <span className="text-muted-foreground">
-                  {dict.audiences}
-                </span>
+                <span className="text-muted-foreground">{dict.audiences}</span>
                 <ul className="text-right space-y-2">
-                  {client.audiences.map(audience => (
+                  {client.audiences.map((audience) => (
                     <li key={audience}>{audience}</li>
                   ))}
                 </ul>
               </li>
             )}
 
-            {Array.isArray(client.allowedCorsOrigins) && client.allowedCorsOrigins.length > 0 && (
-              <li className="flex justify-between">
-                <span className="text-muted-foreground">
-                  {dict.allowedOrigins}
-                </span>
-                <ul className="text-right space-y-2">
-                  {client.allowedCorsOrigins.map(allowedCorsOrigin => (
-                    <li key={allowedCorsOrigin}>{allowedCorsOrigin}</li>
-                  ))}
-                </ul>
-              </li>
-            )}
+            {Array.isArray(client.allowedCorsOrigins) &&
+              client.allowedCorsOrigins.length > 0 && (
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground">
+                    {dict.allowedOrigins}
+                  </span>
+                  <ul className="text-right space-y-2">
+                    {client.allowedCorsOrigins.map((allowedCorsOrigin) => (
+                      <li key={allowedCorsOrigin}>{allowedCorsOrigin}</li>
+                    ))}
+                  </ul>
+                </li>
+              )}
 
-            {Array.isArray(client.postLogoutRedirectUris) && client.postLogoutRedirectUris.length > 0 && (
-              <li className="flex justify-between">
-                <span className="text-muted-foreground">
-                  {dict.postLogoutRedirectUris}
-                </span>
-                <ul className="text-right space-y-2">
-                  {client.postLogoutRedirectUris.map(uri => (
-                    <li key={uri}>{uri}</li>
-                  ))}
-                </ul>
-              </li>
-            )}
+            {Array.isArray(client.postLogoutRedirectUris) &&
+              client.postLogoutRedirectUris.length > 0 && (
+                <li className="flex justify-between">
+                  <span className="text-muted-foreground">
+                    {dict.postLogoutRedirectUris}
+                  </span>
+                  <ul className="text-right space-y-2">
+                    {client.postLogoutRedirectUris.map((uri) => (
+                      <li key={uri}>{uri}</li>
+                    ))}
+                  </ul>
+                </li>
+              )}
           </ul>
 
-          {(client.uri || client.logoUri || client.policyUri || client.tosUri) && (
+          {(client.uri ||
+            client.logoUri ||
+            client.policyUri ||
+            client.tosUri) && (
             <>
               <Separator className="my-2" />
 
@@ -153,10 +179,14 @@ export function ClientView({ client, dict }: ClientViewProps) {
               <ul className="grid gap-3">
                 {client.uri && (
                   <li className="flex items-center justify-between">
-                    <span className="text-muted-foreground">
-                      {dict.uri}
-                    </span>
-                    <Link href={client.uri} target="_blank" rel="nofollow noopener noreferrer ugc">{client.uri}</Link>
+                    <span className="text-muted-foreground">{dict.uri}</span>
+                    <Link
+                      href={client.uri}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer ugc"
+                    >
+                      {client.uri}
+                    </Link>
                   </li>
                 )}
 
@@ -174,16 +204,26 @@ export function ClientView({ client, dict }: ClientViewProps) {
                     <span className="text-muted-foreground">
                       {dict.policyUri}
                     </span>
-                    <Link href={client.policyUri} target="_blank" rel="nofollow noopener noreferrer ugc">{client.policyUri}</Link>
+                    <Link
+                      href={client.policyUri}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer ugc"
+                    >
+                      {client.policyUri}
+                    </Link>
                   </li>
                 )}
 
                 {client.tosUri && (
                   <li className="flex items-center justify-between">
-                    <span className="text-muted-foreground">
-                      {dict.tosUri}
-                    </span>
-                    <Link href={client.tosUri} target="_blank" rel="nofollow noopener noreferrer ugc">{client.tosUri}</Link>
+                    <span className="text-muted-foreground">{dict.tosUri}</span>
+                    <Link
+                      href={client.tosUri}
+                      target="_blank"
+                      rel="nofollow noopener noreferrer ugc"
+                    >
+                      {client.tosUri}
+                    </Link>
                   </li>
                 )}
               </ul>
@@ -192,8 +232,19 @@ export function ClientView({ client, dict }: ClientViewProps) {
         </CardContent>
 
         <CardFooter className="flex justify-end gap-2">
-          <Button className="active:bg-secondary/50 plausible-event-name=Client+URL+Clipboard+Copy" variant="outline" onClick={shareByLink}>{dict.copyLink}</Button>
-          <Button className="plausible-event-name=Client+Email+Share" onClick={shareByEmail}>{dict.shareByEmail}</Button>
+          <Button
+            className="active:bg-secondary/50 plausible-event-name=Client+URL+Clipboard+Copy"
+            variant="outline"
+            onClick={shareByLink}
+          >
+            {dict.copyLink}
+          </Button>
+          <Button
+            className="plausible-event-name=Client+Email+Share"
+            onClick={shareByEmail}
+          >
+            {dict.shareByEmail}
+          </Button>
         </CardFooter>
       </Card>
 
@@ -203,20 +254,22 @@ export function ClientView({ client, dict }: ClientViewProps) {
         </CardHeader>
 
         <CardContent>
-          <p className="text-muted-foreground">
-            {dict.developerDescription}
-          </p>
+          <p className="text-muted-foreground">{dict.developerDescription}</p>
         </CardContent>
 
         <CardFooter className="flex justify-end">
           <AlertDialog>
             <AlertDialogTrigger asChild>
-              <Button className="plausible-event-name=Create+TestId+Client">{dict.createTestClient}</Button>
+              <Button className="plausible-event-name=Create+TestId+Client">
+                {dict.createTestClient}
+              </Button>
             </AlertDialogTrigger>
 
             <AlertDialogContent>
               <AlertDialogHeader>
-                <AlertDialogTitle>{dict.testClientDialogTitle}</AlertDialogTitle>
+                <AlertDialogTitle>
+                  {dict.testClientDialogTitle}
+                </AlertDialogTitle>
                 <AlertDialogDescription>
                   {dict.testClientDialogDescription}
                 </AlertDialogDescription>

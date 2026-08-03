@@ -3,7 +3,10 @@ import { notFound } from 'next/navigation'
 
 import { getIAMProviderVsPairs } from '@/lib/iam-providers'
 import { hasLocale, locales, type Locale } from '@/lib/dictionaries'
-import { generateIAMProviderVsMetadata, IAMProviderVsPage } from '@/components/pages/iam-providers-vs'
+import {
+  generateIAMProviderVsMetadata,
+  IAMProviderVsPage,
+} from '@/components/pages/iam-providers-vs'
 
 type Props = { params: Promise<{ lang: string; id: string; otherId: string }> }
 
@@ -14,7 +17,11 @@ export async function generateStaticParams() {
   return locales
     .filter((l) => l !== 'en')
     .flatMap((lang) =>
-      getIAMProviderVsPairs().map((pair) => ({ lang, id: pair.a.identifier, otherId: pair.b.identifier }))
+      getIAMProviderVsPairs().map((pair) => ({
+        lang,
+        id: pair.a.identifier,
+        otherId: pair.b.identifier,
+      })),
     )
 }
 

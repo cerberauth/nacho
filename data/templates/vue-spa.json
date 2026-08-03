@@ -6,10 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/vue.svg"
   },
-  "technologies": [
-    "javascript",
-    "vue"
-  ],
+  "technologies": ["javascript", "vue"],
   "example": {
     "name": "Vue SPA Example",
     "url": "https://cerberauth-vue-spa-oidc.pages.dev/",

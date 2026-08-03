@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { hasLocale, type Locale } from '@/lib/dictionaries'
-import { generateIAMProvidersMetadata, IAMProvidersPage } from '@/components/pages/iam-providers'
+import {
+  generateIAMProvidersMetadata,
+  IAMProvidersPage,
+} from '@/components/pages/iam-providers'
 
 type Props = { params: Promise<{ lang: string }> }
 

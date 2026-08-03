@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/golang.svg"
   },
-  "technologies": [
-    "go",
-    "gin"
-  ],
+  "technologies": ["go", "gin"],
   "extends": "golang-app"
 }

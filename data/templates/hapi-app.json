@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/hapi.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js",
-    "hapi"
-  ],
+  "technologies": ["javascript", "typescript", "node.js", "hapi"],
   "extends": "nodejs-app"
 }

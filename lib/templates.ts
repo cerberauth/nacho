@@ -10,8 +10,9 @@ export const getRelatedTemplates = (id: string) => {
     return []
   }
 
-  return templates.filter((t) =>
-    t.client.applicationType === template.client.applicationType &&
-    t.technologies.some((tag) => template.technologies.includes(tag))
+  return templates.filter(
+    (t) =>
+      t.client.applicationType === template.client.applicationType &&
+      t.technologies.some((tag) => template.technologies.includes(tag)),
   )
 }

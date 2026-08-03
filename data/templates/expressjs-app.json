@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/expressjs.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js",
-    "express.js"
-  ],
+  "technologies": ["javascript", "typescript", "node.js", "express.js"],
   "extends": "nodejs-app"
 }

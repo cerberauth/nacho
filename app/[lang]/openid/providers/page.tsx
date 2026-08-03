@@ -2,7 +2,10 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { hasLocale, type Locale } from '@/lib/dictionaries'
-import { generateOpenIDProvidersMetadata, OpenIDProvidersPage } from '@/components/pages/openid-providers'
+import {
+  generateOpenIDProvidersMetadata,
+  OpenIDProvidersPage,
+} from '@/components/pages/openid-providers'
 
 type Props = { params: Promise<{ lang: string }> }
 

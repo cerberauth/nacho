@@ -6,8 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/python.svg"
   },
-  "technologies": [
-    "python"
-  ],
+  "technologies": ["python"],
   "extends": "web-app"
 }

@@ -15,8 +15,11 @@ type Props = {
 }
 
 export function GrantTypesView({ dict }: Props) {
-  const [selectedGrantTypes, setSelectedGrantTypes] = useState<GrantType[] | null>(null)
-  const [selectedTokenEndpointAuthMethod, setSelectedTokenEndpointAuthMethod] = useState<TokenEndpointAuthMethod[] | null>(null)
+  const [selectedGrantTypes, setSelectedGrantTypes] = useState<
+    GrantType[] | null
+  >(null)
+  const [selectedTokenEndpointAuthMethod, setSelectedTokenEndpointAuthMethod] =
+    useState<TokenEndpointAuthMethod[] | null>(null)
 
   return (
     <main className="container mx-auto max-w-4xl px-4 py-12 space-y-8">
@@ -43,7 +46,11 @@ export function GrantTypesView({ dict }: Props) {
                     <ul className="text-sm my-6 ml-6 list-disc [&>li]:mt-2">
                       {grantTypeReferences(type).map((reference) => (
                         <li key={reference}>
-                          <Link href={reference} target="_blank" className="inline-flex">
+                          <Link
+                            href={reference}
+                            target="_blank"
+                            className="inline-flex"
+                          >
                             {reference}
                             <ArrowUpRight className="w-4 h-4 ml-1" />
                           </Link>
@@ -57,22 +64,26 @@ export function GrantTypesView({ dict }: Props) {
           </Card>
         )}
 
-        {Array.isArray(selectedTokenEndpointAuthMethod) && selectedTokenEndpointAuthMethod.length > 0 && (
-          <Card>
-            <CardHeader>
-              <CardTitle>{dict.authMethodTitle}</CardTitle>
-            </CardHeader>
+        {Array.isArray(selectedTokenEndpointAuthMethod) &&
+          selectedTokenEndpointAuthMethod.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>{dict.authMethodTitle}</CardTitle>
+              </CardHeader>
 
-            <CardContent>
-              <span className="underline">{dict.possibleAuthMethods}</span>
-              <ul className="text-sm my-6 ml-6 list-disc [&>li]:mt-2">
-                {selectedTokenEndpointAuthMethod.map((method) => (
-                  <TokenAuthenticationMethodListItem key={method} authMethod={method} />
-                ))}
-              </ul>
-            </CardContent>
-          </Card>
-        )}
+              <CardContent>
+                <span className="underline">{dict.possibleAuthMethods}</span>
+                <ul className="text-sm my-6 ml-6 list-disc [&>li]:mt-2">
+                  {selectedTokenEndpointAuthMethod.map((method) => (
+                    <TokenAuthenticationMethodListItem
+                      key={method}
+                      authMethod={method}
+                    />
+                  ))}
+                </ul>
+              </CardContent>
+            </Card>
+          )}
       </div>
     </main>
   )

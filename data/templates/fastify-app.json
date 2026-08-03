@@ -6,11 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/fastify.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "node.js",
-    "fastify"
-  ],
+  "technologies": ["javascript", "typescript", "node.js", "fastify"],
   "extends": "nodejs-app"
 }

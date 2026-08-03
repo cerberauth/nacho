@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/symfony.svg"
   },
-  "technologies": [
-    "php",
-    "symfony"
-  ],
+  "technologies": ["php", "symfony"],
   "extends": "php-app"
 }

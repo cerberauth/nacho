@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/zend-framework.svg"
   },
-  "technologies": [
-    "php",
-    "zend-framework",
-    "zf"
-  ],
+  "technologies": ["php", "zend-framework", "zf"],
   "extends": "php-app"
 }

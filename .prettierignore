@@ -1,0 +1,5 @@
+.next/
+.open-next/
+out/
+.wrangler/
+package-lock.json

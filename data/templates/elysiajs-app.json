@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/elysia.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "elysia"
-  ],
+  "technologies": ["javascript", "typescript", "elysia"],
   "extends": "web-app"
 }

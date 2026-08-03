@@ -6,10 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/react.svg"
   },
-  "technologies": [
-    "javascript",
-    "react"
-  ],
+  "technologies": ["javascript", "react"],
   "example": {
     "name": "React SPA Example",
     "url": "https://cerberauth-react-spa-oidc.pages.dev/",

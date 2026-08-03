@@ -12,9 +12,27 @@ import { Input } from '@/components/ui/input'
 import { InputTags } from '@/components/ui/input-tags'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible'
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form'
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
+import {
+  Collapsible,
+  CollapsibleContent,
+  CollapsibleTrigger,
+} from '@/components/ui/collapsible'
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@/components/ui/form'
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select'
 import { ApplicationTypes, tokenAuthenticationMethods } from '@/lib/consts'
 import { getTemplateById } from '@/lib/templates'
 import type { Dictionary } from '@/lib/dictionaries'
@@ -31,7 +49,13 @@ type CreateClientFormProps = {
   lang: string
 }
 
-export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: CreateClientFormProps) {
+export function CreateClientForm({
+  form,
+  onSubmit,
+  isSubmitting,
+  dict,
+  lang,
+}: CreateClientFormProps) {
   const router = useRouter()
   const searchParams = useSearchParams()
   const data = form.watch()
@@ -52,14 +76,17 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
     if (template) {
       form.setValue('template', template)
       const templateApplication = getTemplateById(template)
-      client = templateApplication ? {
-        name: templateApplication.name,
-        ...client,
-        ...{
-          ...templateApplication.client,
-          tokenEndpointAuthMethod: templateApplication.client.tokenEndpointAuthMethods[0],
-        }
-      } : client
+      client = templateApplication
+        ? {
+            name: templateApplication.name,
+            ...client,
+            ...{
+              ...templateApplication.client,
+              tokenEndpointAuthMethod:
+                templateApplication.client.tokenEndpointAuthMethods[0],
+            },
+          }
+        : client
 
       import('@plausible-analytics/tracker').then(({ track }) => {
         track('Create Client From Template', { props: { template } })
@@ -81,30 +108,39 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
     localStorage.setItem(localStorageItem, JSON.stringify(data))
   }, [isSubmitting, data])
 
-  const onApplicationTypeChange = useCallback((type: ApplicationType | null) => {
-    if (type === null) {
-      form.resetField('applicationType')
-      return
-    }
+  const onApplicationTypeChange = useCallback(
+    (type: ApplicationType | null) => {
+      if (type === null) {
+        form.resetField('applicationType')
+        return
+      }
 
-    form.setValue('applicationType', type)
-  }, [form])
-  const onGrantTypeChange = useCallback((grantTypes: GrantType[]) => {
-    form.setValue('grantTypes', grantTypes)
-  }, [form])
-  const onTokenEndpointAuthMethodChange = useCallback((authMethods: TokenEndpointAuthMethod[]) => {
-    form.setValue('tokenEndpointAuthMethod', authMethods[0])
-  }, [form])
+      form.setValue('applicationType', type)
+    },
+    [form],
+  )
+  const onGrantTypeChange = useCallback(
+    (grantTypes: GrantType[]) => {
+      form.setValue('grantTypes', grantTypes)
+    },
+    [form],
+  )
+  const onTokenEndpointAuthMethodChange = useCallback(
+    (authMethods: TokenEndpointAuthMethod[]) => {
+      form.setValue('tokenEndpointAuthMethod', authMethods[0])
+    },
+    [form],
+  )
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <main className="container mx-auto max-w-4xl px-4 py-12 space-y-4">
           <div>
-            <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">{dict.title}</h1>
-            <p className="text-sm text-muted-foreground">
-              {dict.subtitle}
-            </p>
+            <h1 className="text-3xl font-semibold leading-none tracking-tight mb-2">
+              {dict.title}
+            </h1>
+            <p className="text-sm text-muted-foreground">{dict.subtitle}</p>
           </div>
           <div className="divide-y divide-gray-200">
             <ChooseGrantType
@@ -115,7 +151,10 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
             />
           </div>
 
-          <Collapsible title="Client details" open={data.grantTypes?.length > 0}>
+          <Collapsible
+            title="Client details"
+            open={data.grantTypes?.length > 0}
+          >
             <CollapsibleContent className="space-y-4">
               <Card>
                 <CardHeader>
@@ -129,7 +168,10 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          {dict.name} <span className="text-red-500">{dict.nameRequired}</span>
+                          {dict.name}{' '}
+                          <span className="text-red-500">
+                            {dict.nameRequired}
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <Input {...field} />
@@ -148,7 +190,10 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          {dict.redirectUris} <span className="text-red-500">{dict.redirectUrisRequired}</span>
+                          {dict.redirectUris}{' '}
+                          <span className="text-red-500">
+                            {dict.redirectUrisRequired}
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <InputTags {...field} />
@@ -167,9 +212,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                       name="allowedCorsOrigins"
                       render={({ field }) => (
                         <FormItem>
-                          <FormLabel>
-                            {dict.allowedCorsOrigins}
-                          </FormLabel>
+                          <FormLabel>{dict.allowedCorsOrigins}</FormLabel>
                           <FormControl>
                             <InputTags {...field} />
                           </FormControl>
@@ -187,9 +230,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="scopes"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.scopes}
-                        </FormLabel>
+                        <FormLabel>{dict.scopes}</FormLabel>
                         <FormControl>
                           <InputTags {...field} />
                         </FormControl>
@@ -206,9 +247,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="audiences"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.audiences}
-                        </FormLabel>
+                        <FormLabel>{dict.audiences}</FormLabel>
                         <FormControl>
                           <InputTags {...field} />
                         </FormControl>
@@ -225,9 +264,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="postLogoutRedirectUris"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.postLogoutRedirectUris}
-                        </FormLabel>
+                        <FormLabel>{dict.postLogoutRedirectUris}</FormLabel>
                         <FormControl>
                           <InputTags {...field} />
                         </FormControl>
@@ -245,7 +282,9 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
 
           <Collapsible title="UI & Legal Details">
             <CollapsibleTrigger asChild>
-              <Button variant="link" type="button" className="text-sm">{dict.uiLegalSettings}</Button>
+              <Button variant="link" type="button" className="text-sm">
+                {dict.uiLegalSettings}
+              </Button>
             </CollapsibleTrigger>
 
             <CollapsibleContent className="space-y-4">
@@ -260,9 +299,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="contacts"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.contactsEmail}
-                        </FormLabel>
+                        <FormLabel>{dict.contactsEmail}</FormLabel>
                         <FormControl>
                           <InputTags type="email" {...field} />
                         </FormControl>
@@ -279,9 +316,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="uri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.homepageUri}
-                        </FormLabel>
+                        <FormLabel>{dict.homepageUri}</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -295,9 +330,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="policyUri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.policyUri}
-                        </FormLabel>
+                        <FormLabel>{dict.policyUri}</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -311,9 +344,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="tosUri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.tosUri}
-                        </FormLabel>
+                        <FormLabel>{dict.tosUri}</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -327,9 +358,7 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     name="logoUri"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>
-                          {dict.logoUri}
-                        </FormLabel>
+                        <FormLabel>{dict.logoUri}</FormLabel>
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -347,7 +376,9 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
 
           <Collapsible title="Advanced settings">
             <CollapsibleTrigger asChild>
-              <Button variant="link" type="button" className="text-sm">{dict.showAdvancedSettings}</Button>
+              <Button variant="link" type="button" className="text-sm">
+                {dict.showAdvancedSettings}
+              </Button>
             </CollapsibleTrigger>
 
             <CollapsibleContent>
@@ -363,20 +394,35 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel htmlFor={field.name}>
-                          {dict.tokenEndpointAuthMethod} <span className="text-red-500">{dict.tokenEndpointAuthMethodRequired}</span>
+                          {dict.tokenEndpointAuthMethod}{' '}
+                          <span className="text-red-500">
+                            {dict.tokenEndpointAuthMethodRequired}
+                          </span>
                         </FormLabel>
                         <FormControl>
-                          <Select value={field.value} name={field.name} onValueChange={field.onChange}>
+                          <Select
+                            value={field.value}
+                            name={field.name}
+                            onValueChange={field.onChange}
+                          >
                             <SelectTrigger>
-                              <SelectValue placeholder={dict.tokenEndpointAuthMethodPlaceholder} onBlur={field.onBlur} ref={field.ref}></SelectValue>
+                              <SelectValue
+                                placeholder={
+                                  dict.tokenEndpointAuthMethodPlaceholder
+                                }
+                                onBlur={field.onBlur}
+                                ref={field.ref}
+                              ></SelectValue>
                             </SelectTrigger>
 
                             <SelectContent>
-                              {tokenAuthenticationMethods.map(({ id, label }) => (
-                                <SelectItem key={id} value={id}>
-                                  {label}
-                                </SelectItem>
-                              ))}
+                              {tokenAuthenticationMethods.map(
+                                ({ id, label }) => (
+                                  <SelectItem key={id} value={id}>
+                                    {label}
+                                  </SelectItem>
+                                ),
+                              )}
                             </SelectContent>
                           </Select>
                         </FormControl>
@@ -394,7 +440,10 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
                     render={({ field }) => (
                       <FormItem>
                         <FormLabel>
-                          {dict.grantTypes} <span className="text-red-500">{dict.grantTypesRequired}</span>
+                          {dict.grantTypes}{' '}
+                          <span className="text-red-500">
+                            {dict.grantTypesRequired}
+                          </span>
                         </FormLabel>
                         <FormControl>
                           <InputTags {...field} />
@@ -414,15 +463,19 @@ export function CreateClientForm({ form, onSubmit, isSubmitting, dict, lang }: C
           <Alert className="my-4">
             <CircleHelp className="w-4 h-4" />
             <AlertTitle>{dict.dataUsageTitle}</AlertTitle>
-            <AlertDescription>
-              {dict.dataUsageDescription}
-            </AlertDescription>
+            <AlertDescription>{dict.dataUsageDescription}</AlertDescription>
           </Alert>
         </main>
 
         <div className="fixed bottom-0 w-full border-t-2 border-t-primary-500 py-4 bg-white">
           <div className="container mx-auto max-w-4xl w-full px-4 flex justify-end">
-            <Button type="button" variant="outline" size="lg" onClick={() => router.back()} className="mr-4">
+            <Button
+              type="button"
+              variant="outline"
+              size="lg"
+              onClick={() => router.back()}
+              className="mr-4"
+            >
               {dict.cancel}
             </Button>
             <Button type="submit" size="lg">

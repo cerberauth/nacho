@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/waku.svg"
   },
-  "technologies": [
-    "javascript",
-    "react",
-    "waku"
-  ],
+  "technologies": ["javascript", "react", "waku"],
   "extends": "web-app"
 }

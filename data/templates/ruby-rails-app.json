@@ -6,10 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/rails.svg"
   },
-  "technologies": [
-    "ruby",
-    "rails"
-  ],
+  "technologies": ["ruby", "rails"],
   "libraries": [
     {
       "name": "omniauth-openid-connect",

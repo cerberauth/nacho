@@ -3,22 +3,32 @@ import { MoreHorizontal } from 'lucide-react'
 import Link from 'next/link'
 
 import { Button } from '@/components/ui/button'
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuLabel, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from '@/components/ui/dropdown-menu'
 
-export const columns = (onDeleteClientClick: (clientId: string) => void): ColumnDef<Client>[] => ([
+export const columns = (
+  onDeleteClientClick: (clientId: string) => void,
+): ColumnDef<Client>[] => [
   {
     accessorKey: 'clientName',
     header: 'Client',
     cell: ({ row }) => {
       const name = row.original.client.name
-      const uri = row.original.client.uri || row.original.client.redirectUris?.[0]
+      const uri =
+        row.original.client.uri || row.original.client.redirectUris?.[0]
 
       return (
         <Link href={row.original.url}>
           {name} {uri && <span className="text-xs text-gray-500">({uri})</span>}
         </Link>
       )
-    }
+    },
   },
   {
     id: 'actions',
@@ -35,7 +45,11 @@ export const columns = (onDeleteClientClick: (clientId: string) => void): Column
           {row.original.testIdClient && (
             <>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(row.original.testIdClient!.clientId)}
+                onClick={() =>
+                  navigator.clipboard.writeText(
+                    row.original.testIdClient!.clientId,
+                  )
+                }
               >
                 Copy TestID Client ID
               </DropdownMenuItem>
@@ -43,9 +57,7 @@ export const columns = (onDeleteClientClick: (clientId: string) => void): Column
             </>
           )}
           <DropdownMenuItem>
-            <Link href={row.original.url}>
-              View client
-            </Link>
+            <Link href={row.original.url}>View client</Link>
           </DropdownMenuItem>
           <DropdownMenuItem>
             <span onClick={() => onDeleteClientClick(row.original.client.id)}>
@@ -56,4 +68,4 @@ export const columns = (onDeleteClientClick: (clientId: string) => void): Column
       </DropdownMenu>
     ),
   },
-])
+]

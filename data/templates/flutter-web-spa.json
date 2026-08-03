@@ -6,11 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/flutter.svg"
   },
-  "technologies": [
-    "javascript",
-    "dart",
-    "flutter"
-  ],
+  "technologies": ["javascript", "dart", "flutter"],
   "libraries": [
     {
       "name": "openid_client",

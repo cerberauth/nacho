@@ -24,7 +24,11 @@ export async function generateStaticParams() {
   return locales.filter((l) => l !== 'en').map((lang) => ({ lang }))
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ lang: string }>
+}): Promise<Metadata> {
   const { lang } = await params
   return {
     metadataBase: new URL(seoConfig.canonical),
@@ -62,7 +66,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps) {
     <html lang={lang}>
       <ClientPlausibleProvider />
 
-      <body className={`min-h-[100dvh] bg-white dark:bg-gray-950 text-black dark:text-white ${fontSans.className} antialiased`}>
+      <body
+        className={`min-h-[100dvh] bg-white dark:bg-gray-950 text-black dark:text-white ${fontSans.className} antialiased`}
+      >
         <Header lang={lang} dict={dict.nav} />
 
         {children}

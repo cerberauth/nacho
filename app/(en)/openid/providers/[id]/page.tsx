@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
 import { getProviders } from '@/lib/providers'
-import { generateOpenIDProviderDetailMetadata, OpenIDProviderDetailPage } from '@/components/pages/openid-providers-detail'
+import {
+  generateOpenIDProviderDetailMetadata,
+  OpenIDProviderDetailPage,
+} from '@/components/pages/openid-providers-detail'
 
 type Props = { params: Promise<{ id: string }> }
 

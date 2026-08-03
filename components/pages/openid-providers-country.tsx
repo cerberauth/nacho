@@ -13,7 +13,10 @@ import { langUrl } from '@/lib/lang'
 import { makeCanonical, makeLanguageAlternates } from '@/lib/metadata'
 import { getCountryBySlug } from '@/lib/countries'
 
-export async function generateOpenIDProvidersCountryMetadata(lang: Locale, country: string): Promise<Metadata> {
+export async function generateOpenIDProvidersCountryMetadata(
+  lang: Locale,
+  country: string,
+): Promise<Metadata> {
   const countryConfig = getCountryBySlug(country)
   if (!countryConfig) return {}
   const dict = await getDictionary(lang)
@@ -30,7 +33,13 @@ export async function generateOpenIDProvidersCountryMetadata(lang: Locale, count
   }
 }
 
-export async function OpenIDProvidersCountryPage({ lang, country }: { lang: Locale; country: string }) {
+export async function OpenIDProvidersCountryPage({
+  lang,
+  country,
+}: {
+  lang: Locale
+  country: string
+}) {
   const countryConfig = getCountryBySlug(country)
   if (!countryConfig) notFound()
 
@@ -40,9 +49,15 @@ export async function OpenIDProvidersCountryPage({ lang, country }: { lang: Loca
 
   const providers = getProvidersByNationalities(countryConfig.nationalities)
   const categoriesData = getFeaturesCategories(tOpenid)
-  const allCategories = getTableCells(categoriesData, providers.map((p) => p.identifier))
+  const allCategories = getTableCells(
+    categoriesData,
+    providers.map((p) => p.identifier),
+  )
 
-  const title = t.title.replace('{country}', `${countryConfig.flag} ${countryConfig.label}`)
+  const title = t.title.replace(
+    '{country}',
+    `${countryConfig.flag} ${countryConfig.label}`,
+  )
   const description = t.description.replace(/{country}/g, countryConfig.label)
 
   return (
@@ -51,19 +66,23 @@ export async function OpenIDProvidersCountryPage({ lang, country }: { lang: Loca
         <h1 className="text-5xl font-semibold leading-none tracking-tight mb-2">
           {title}
         </h1>
-        <p className="text-md text-slate-600">
-          {description}
-        </p>
+        <p className="text-md text-slate-600">{description}</p>
         <p className="text-sm text-slate-500">
           {t.lookingForAllProviders}{' '}
-          <Link href={langUrl(lang, '/openid/providers')} className="text-primary hover:underline">
+          <Link
+            href={langUrl(lang, '/openid/providers')}
+            className="text-primary hover:underline"
+          >
             {t.checkAllProviders}
           </Link>
           .
         </p>
         <p className="text-sm text-slate-500">
           {t.lookingForIAM}{' '}
-          <Link href={langUrl(lang, `/iam/providers/country/${country}`)} className="text-primary hover:underline">
+          <Link
+            href={langUrl(lang, `/iam/providers/country/${country}`)}
+            className="text-primary hover:underline"
+          >
             {t.checkIAM}
           </Link>
           .
@@ -72,7 +91,9 @@ export async function OpenIDProvidersCountryPage({ lang, country }: { lang: Loca
       </div>
 
       {providers.length === 0 ? (
-        <p className="text-slate-500">{t.noProviders.replace('{country}', countryConfig.label)}</p>
+        <p className="text-slate-500">
+          {t.noProviders.replace('{country}', countryConfig.label)}
+        </p>
       ) : (
         <Suspense>
           <ProvidersInteractiveView

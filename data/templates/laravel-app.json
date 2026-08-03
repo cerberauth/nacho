@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/laravel.svg"
   },
-  "technologies": [
-    "php",
-    "laravel"
-  ],
+  "technologies": ["php", "laravel"],
   "extends": "php-app"
 }

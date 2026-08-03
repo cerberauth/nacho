@@ -29,30 +29,33 @@ export function CreateClientContainer({ dict, lang }: Props) {
     resolver: zodResolver(createClientSchema),
   })
 
-  const onSubmit = useCallback(async (data: z.infer<typeof createClientSchema>) => {
-    setIsSubmitting(true)
-    const client: OAuth2Client = {
-      ...data,
-      id: nanoid(),
-      audiences: data.audiences || [],
-      scopes: data.scopes || [],
-      allowedCorsOrigins: data.allowedCorsOrigins || [],
-      postLogoutRedirectUris: data.postLogoutRedirectUris || [],
-      grantTypes: data.grantTypes,
-      applicationType: ApplicationTypes[data.applicationType],
-      contacts: data.contacts || [],
-    }
+  const onSubmit = useCallback(
+    async (data: z.infer<typeof createClientSchema>) => {
+      setIsSubmitting(true)
+      const client: OAuth2Client = {
+        ...data,
+        id: nanoid(),
+        audiences: data.audiences || [],
+        scopes: data.scopes || [],
+        allowedCorsOrigins: data.allowedCorsOrigins || [],
+        postLogoutRedirectUris: data.postLogoutRedirectUris || [],
+        grantTypes: data.grantTypes,
+        applicationType: ApplicationTypes[data.applicationType],
+        contacts: data.contacts || [],
+      }
 
-    localStorage.removeItem(localStorageItem)
+      localStorage.removeItem(localStorageItem)
 
-    const { track } = await import('@plausible-analytics/tracker')
-    track('Create Client', { props: {} })
-    const href = await clientClientURLByOAuth2Client(client)
+      const { track } = await import('@plausible-analytics/tracker')
+      track('Create Client', { props: {} })
+      const href = await clientClientURLByOAuth2Client(client)
 
-    saveClient({ client, url: href })
+      saveClient({ client, url: href })
 
-    router.push(href)
-  }, [router])
+      router.push(href)
+    },
+    [router],
+  )
 
   return (
     <CreateClientForm

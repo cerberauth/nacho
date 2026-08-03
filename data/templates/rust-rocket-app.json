@@ -6,8 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/rust.svg"
   },
-  "technologies": [
-    "rust"
-  ],
+  "technologies": ["rust"],
   "extends": "rust-app"
 }

@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
 import { templates } from '@/data/templates'
-import { generateTemplateDetailMetadata, TemplateDetailPage } from '@/components/pages/templates-detail'
+import {
+  generateTemplateDetailMetadata,
+  TemplateDetailPage,
+} from '@/components/pages/templates-detail'
 
 type Props = { params: Promise<{ template: string }> }
 

@@ -6,9 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/vapor.svg"
   },
-  "technologies": [
-    "swift",
-    "vapor"
-  ],
+  "technologies": ["swift", "vapor"],
   "extends": "swift-web-app"
 }

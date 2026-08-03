@@ -26,7 +26,14 @@ export async function HomePage({ lang }: { lang: Locale }) {
   return (
     <main className="flex flex-col max-w-xl mx-auto items-center justify-center">
       <div className="space-y-6 text-center mt-9 md:my-32">
-        <Image src={NachoLogo} className="mx-auto" alt="Nacho" width={150} height={150} priority />
+        <Image
+          src={NachoLogo}
+          className="mx-auto"
+          alt="Nacho"
+          width={150}
+          height={150}
+          priority
+        />
         <h1 className="flex flex-col space-y-4 font-bold tracking-tight text-gray-900 dark:text-gray-50">
           <span className="text-3xl sm:text-4xl">{dict.home.title}</span>
         </h1>
@@ -42,7 +49,10 @@ export async function HomePage({ lang }: { lang: Locale }) {
           </Link>
         </div>
         <div>
-          <Link className="inline-flex items-center justify-center text-sm" href={langUrl(lang, '/grant-types')}>
+          <Link
+            className="inline-flex items-center justify-center text-sm"
+            href={langUrl(lang, '/grant-types')}
+          >
             {dict.home.chooseGrantType}
             <ArrowUpRight className="w-4 h-4 ml-1" />
           </Link>

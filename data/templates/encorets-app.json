@@ -6,10 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/encorets.svg"
   },
-  "technologies": [
-    "javascript",
-    "typescript",
-    "encore"
-  ],
+  "technologies": ["javascript", "typescript", "encore"],
   "extends": "web-app"
 }

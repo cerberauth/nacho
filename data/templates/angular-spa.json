@@ -6,10 +6,7 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/angular.svg"
   },
-  "technologies": [
-    "javascript",
-    "angular"
-  ],
+  "technologies": ["javascript", "angular"],
   "libraries": [
     {
       "name": "angular-oauth2-oidc",

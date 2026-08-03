@@ -6,8 +6,6 @@
   "icon": {
     "contentUrl": "https://nacho.cerberauth.com/logos/golang.svg"
   },
-  "technologies": [
-    "go"
-  ],
+  "technologies": ["go"],
   "extends": "web-app"
 }

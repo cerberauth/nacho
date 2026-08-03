@@ -1,7 +1,10 @@
 import type { Metadata } from 'next'
 
 import { getProviderVsPairs } from '@/lib/providers'
-import { generateOpenIDProviderVsMetadata, OpenIDProviderVsPage } from '@/components/pages/openid-providers-vs'
+import {
+  generateOpenIDProviderVsMetadata,
+  OpenIDProviderVsPage,
+} from '@/components/pages/openid-providers-vs'
 
 type Props = { params: Promise<{ id: string; otherId: string }> }
 
@@ -9,7 +12,10 @@ export const dynamic = 'force-static'
 export const dynamicParams = false
 
 export async function generateStaticParams() {
-  return getProviderVsPairs().map((pair) => ({ id: pair.a.identifier, otherId: pair.b.identifier }))
+  return getProviderVsPairs().map((pair) => ({
+    id: pair.a.identifier,
+    otherId: pair.b.identifier,
+  }))
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {

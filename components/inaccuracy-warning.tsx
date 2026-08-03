@@ -20,9 +20,18 @@ type Props = {
 
 export function ProviderInaccuracyWarning({ dict = defaultDict }: Props) {
   return (
-    <p className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4" role="alert">
+    <p
+      className="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4"
+      role="alert"
+    >
       <strong>{dict.note}</strong> {dict.text}{' '}
-      <Link href="https://github.com/cerberauth/nacho/issues" rel="nofollow" target="_blank">{dict.openIssue}</Link>{' '}
+      <Link
+        href="https://github.com/cerberauth/nacho/issues"
+        rel="nofollow"
+        target="_blank"
+      >
+        {dict.openIssue}
+      </Link>{' '}
       {dict.textAfter}
     </p>
   )
