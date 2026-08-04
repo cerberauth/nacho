@@ -67,6 +67,7 @@ export type IAMProvider = {
 import iamFeatures from './features.json'
 
 import auth0 from './auth0.json'
+import authelia from './authelia.json'
 import authlete from './authlete.json'
 import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
@@ -115,11 +116,16 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.authentication_methods,
     identifier: IAMFeatureCategory.AuthenticationMethod,
     features: iamFeatures.featureList
-      .filter((feature) => feature.category === IAMFeatureCategory.AuthenticationMethod)
+      .filter(
+        (feature) =>
+          feature.category === IAMFeatureCategory.AuthenticationMethod,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -131,7 +137,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -139,11 +147,16 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.integration_protocols,
     identifier: IAMFeatureCategory.IntegrationProtocols,
     features: iamFeatures.featureList
-      .filter((feature) => feature.category === IAMFeatureCategory.IntegrationProtocols)
+      .filter(
+        (feature) =>
+          feature.category === IAMFeatureCategory.IntegrationProtocols,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -151,11 +164,15 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.identity_federation,
     identifier: IAMFeatureCategory.IdentityFederation,
     features: iamFeatures.featureList
-      .filter((feature) => feature.category === IAMFeatureCategory.IdentityFederation)
+      .filter(
+        (feature) => feature.category === IAMFeatureCategory.IdentityFederation,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -163,11 +180,15 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.user_management,
     identifier: IAMFeatureCategory.UserManagement,
     features: iamFeatures.featureList
-      .filter((feature) => feature.category === IAMFeatureCategory.UserManagement)
+      .filter(
+        (feature) => feature.category === IAMFeatureCategory.UserManagement,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -175,11 +196,15 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.access_control,
     identifier: IAMFeatureCategory.AccessControl,
     features: iamFeatures.featureList
-      .filter((feature) => feature.category === IAMFeatureCategory.AccessControl)
+      .filter(
+        (feature) => feature.category === IAMFeatureCategory.AccessControl,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -191,7 +216,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -203,7 +230,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -215,7 +244,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -227,7 +258,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -239,7 +272,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -247,11 +282,16 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.developer_integration,
     identifier: IAMFeatureCategory.DeveloperIntegration,
     features: iamFeatures.featureList
-      .filter((feature) => feature.category === IAMFeatureCategory.DeveloperIntegration)
+      .filter(
+        (feature) =>
+          feature.category === IAMFeatureCategory.DeveloperIntegration,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -263,7 +303,9 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -275,13 +317,16 @@ export const getFeaturesCategories = (dict: any) => [
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 ]
 
 export const providers: IAMProvider[] = [
   auth0,
+  authelia,
   authlete,
   awsCognito,
   clerk,

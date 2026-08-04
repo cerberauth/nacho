@@ -1,0 +1,336 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Authelia",
+  "abstract": "Authelia is an open-source, OpenID Certified authentication and authorization server that acts as a companion for reverse proxies (nginx, Traefik, Caddy, Envoy, HAProxy, Skipper), providing 2FA/SSO via forward-auth, and, since Beta 8+, a self-hostable OpenID Connect 1.0 Provider for statically configured OAuth 2.0/OIDC clients.",
+  "identifier": "authelia",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/authelia.svg"
+  },
+  "website": "https://www.authelia.com",
+  "license": "Apache 2.0",
+  "github": "https://github.com/authelia/authelia",
+  "featureList": [
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/",
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "implicit_grant",
+      "status": "partial",
+      "description": "OAuth 2.0 Multiple Response Types are certified (id_token, token, hybrid), but the documentation strongly recommends only the code response type, calling the others less secure.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "description": "OpenID Certified for PKCE. Enforcement policy (never, public_clients_only, always) is configurable per client.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "par_extension",
+      "status": "supported",
+      "description": "Pushed Authorization Requests can be required globally or per client via require_pushed_authorization_requests.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "not_supported",
+      "description": "OAuth 2.0 Rich Authorization Requests is listed as unsupported in the OIDC support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "supported",
+      "description": "OAuth 2.0 JWT-Secured Authorization Request is listed as complete in the OIDC support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported",
+      "description": "Resource Owner Password Credentials grant is listed as unsupported in the OIDC support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported",
+      "description": "OAuth 2.0 Token Exchange is listed as unsupported in the OIDC support chart, and is on the roadmap.",
+      "links": [
+        "https://www.authelia.com/roadmap/active/openid-connect-1.0-provider/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "description": "OAuth 2.0 Device Authorization Flow is listed as complete, with a configurable device_code lifespan.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported",
+      "description": "OpenID Connect CIBA Flow is listed as unsupported and not yet started on the roadmap.",
+      "links": [
+        "https://www.authelia.com/roadmap/active/openid-connect-1.0-provider/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "not_supported",
+      "description": "Not documented as a supported authorization grant type; JWT/private_key_jwt support is limited to client authentication."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported",
+      "description": "SAML 2.0 Profile for OAuth 2.0 is listed as unsupported in the OIDC support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/"
+      ]
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "description": "OAuth 2.0 Token Revocation is listed as complete.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "description": "OAuth 2.0 Token Introspection and JWT Response for Token Introspection are both listed as complete, including stateless JWT access token introspection.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "description": "OpenID Connect Discovery 1.0 is OpenID Certified; responses can optionally be signed.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "description": "OAuth 2.0 Authorization Server Metadata and Issuer Identification are both listed as complete.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/"
+      ]
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/"
+      ]
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/"
+      ]
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented as a supported prompt value."
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported",
+      "description": "Authelia has no self-service user registration; OpenID Connect 1.0 User Registration is listed as unsupported.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported",
+      "description": "Default for public clients.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "description": "Default for confidential clients.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "partial",
+      "description": "OAuth 2.0 JWT Profile for Client Authentication is listed as partial in the support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "partial",
+      "description": "OAuth 2.0 JWT Profile for Client Authentication is listed as partial in the support chart; OAuth 2.0 Private Key JWT itself is listed as complete.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "not_supported",
+      "description": "OAuth 2.0 Mutual-TLS is listed as unsupported in the OIDC support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported",
+      "description": "Clients are statically defined in configuration; OAuth 2.0 and OpenID Connect Dynamic Client Registration are both listed as unsupported and are on the roadmap.",
+      "links": [
+        "https://www.authelia.com/roadmap/active/openid-connect-1.0-provider/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported",
+      "links": [
+        "https://www.authelia.com/roadmap/active/openid-connect-1.0-provider/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "not_supported",
+      "description": "OpenID Connect RP-Initiated Logout 1.0 is listed as unsupported and is on the roadmap.",
+      "links": [
+        "https://www.authelia.com/roadmap/active/openid-connect-1.0-provider/"
+      ]
+    },
+    {
+      "identifier": "dpop",
+      "status": "not_supported",
+      "description": "OAuth 2.0 DPoP is listed as unsupported in the OIDC support chart.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported",
+      "description": "Not listed in the OIDC support chart; only FAPI 2.0 items (partial) are documented."
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported",
+      "description": "Not listed in the OIDC support chart; only FAPI 2.0 items (partial) are documented."
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "partial",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "partial",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "jarm",
+      "status": "supported",
+      "description": "OAuth 2.0 JWT Secured Authorization Response Mode is listed as complete.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    }
+  ]
+}

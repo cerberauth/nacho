@@ -43,6 +43,7 @@ export type OpenIDConnectProvider = {
 import openIDConnectFeatures from './features.json'
 
 import auth0 from './auth0.json'
+import authelia from './authelia.json'
 import authlete from './authlete.json'
 import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
@@ -62,6 +63,7 @@ export {
   openIDConnectFeatures,
 
   auth0,
+  authelia,
   authlete,
   clerk,
   curity,
@@ -82,11 +84,16 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.grant_types,
     identifier: OpenIDConnectFeatureCategory.GrantType,
     features: openIDConnectFeatures.featureList
-      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.GrantType)
+      .filter(
+        (feature) =>
+          feature.category === OpenIDConnectFeatureCategory.GrantType,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -94,11 +101,16 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.extensions,
     identifier: OpenIDConnectFeatureCategory.Extension,
     features: openIDConnectFeatures.featureList
-      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Extension)
+      .filter(
+        (feature) =>
+          feature.category === OpenIDConnectFeatureCategory.Extension,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -106,11 +118,15 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.endpoints,
     identifier: OpenIDConnectFeatureCategory.Endpoint,
     features: openIDConnectFeatures.featureList
-      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Endpoint)
+      .filter(
+        (feature) => feature.category === OpenIDConnectFeatureCategory.Endpoint,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -119,12 +135,16 @@ export const getFeaturesCategories = (dict: any) => [
     identifier: OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod,
     features: openIDConnectFeatures.featureList
       .filter(
-        (feature) => feature.category === OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod,
+        (feature) =>
+          feature.category ===
+          OpenIDConnectFeatureCategory.TokenEndpointAuthenticationMethod,
       )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -132,11 +152,15 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.prompts,
     identifier: OpenIDConnectFeatureCategory.Prompt,
     features: openIDConnectFeatures.featureList
-      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Prompt)
+      .filter(
+        (feature) => feature.category === OpenIDConnectFeatureCategory.Prompt,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -154,11 +178,15 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.features,
     identifier: OpenIDConnectFeatureCategory.Feature,
     features: openIDConnectFeatures.featureList
-      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.Feature)
+      .filter(
+        (feature) => feature.category === OpenIDConnectFeatureCategory.Feature,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 
@@ -166,17 +194,22 @@ export const getFeaturesCategories = (dict: any) => [
     name: dict.categories.fapi,
     identifier: OpenIDConnectFeatureCategory.FAPI,
     features: openIDConnectFeatures.featureList
-      .filter((feature) => feature.category === OpenIDConnectFeatureCategory.FAPI)
+      .filter(
+        (feature) => feature.category === OpenIDConnectFeatureCategory.FAPI,
+      )
       .map((feature) => ({
         ...feature,
         name: dict.features?.[feature.identifier]?.name || feature.name,
-        description: dict.features?.[feature.identifier]?.description || feature.description,
+        description:
+          dict.features?.[feature.identifier]?.description ||
+          feature.description,
       })),
   },
 ]
 
 export const providers: OpenIDConnectProvider[] = [
   auth0,
+  authelia,
   authlete,
   awsCognito,
   clerk,

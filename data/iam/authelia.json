@@ -1,0 +1,631 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Authelia",
+  "abstract": "Authelia is a community-driven, open-source (Apache 2.0) 2FA and single sign-on authentication server. It is a forward-auth companion for reverse proxies (nginx, Traefik, Caddy, Envoy, HAProxy, Skipper), authenticating against a file or LDAP backend and issuing access-control decisions to protect self-hosted applications, with an optional built-in OpenID Certified OpenID Connect 1.0 Provider. There is no commercial edition or SaaS offering; the project is entirely community-maintained.",
+  "identifier": "authelia",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/authelia.svg"
+  },
+  "website": "https://www.authelia.com",
+  "github": "https://github.com/authelia/authelia",
+  "license": "Apache 2.0",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "Unlimited (self-hosted, open source)",
+    "pricingModel": "open-source",
+    "pricingUrl": "https://www.authelia.com",
+    "plans": [
+      {
+        "name": "Open Source (self-hosted)",
+        "price": "Free (Apache 2.0)"
+      }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "description": "First-factor authentication against a file (YAML) or LDAP backend, with Argon2id (default) or SHA512 password hashing.",
+      "links": [
+        "https://www.authelia.com/configuration/first-factor/introduction/"
+      ]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "not_supported",
+      "description": "No built-in social/OAuth identity provider login; Authelia is itself an identity provider, not a relying party."
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "Passwordless logins via Passkeys, supported since v4.39.0, in addition to multi-credential WebAuthn security keys.",
+      "links": [
+        "https://www.authelia.com/overview/authentication/security-key/"
+      ]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "not_supported",
+      "description": "No email-OTP/magic-link passwordless first factor; password reset and identity verification use emailed links, not authentication itself."
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "Access control supports a bypass policy for unauthenticated routing, but there is no anonymous/guest user session concept."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "links": [
+        "https://www.authelia.com/configuration/second-factor/time-based-one-time-password/"
+      ]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "Only TOTP is supported for one-time password second factor; HOTP is not documented."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "partial",
+      "description": "Legacy FIDO U2F is superseded by FIDO2/WebAuthn security key support.",
+      "links": [
+        "https://www.authelia.com/overview/authentication/security-key/"
+      ]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "description": "FIDO2/WebAuthn hardware security keys (e.g. YubiKey), with multiple credential registration since v4.38.0.",
+      "links": [
+        "https://www.authelia.com/overview/authentication/security-key/"
+      ]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "unknown",
+      "description": "Not documented as a built-in feature."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "supported",
+      "description": "Duo Push mobile app second factor, via the third-party Duo API.",
+      "links": [
+        "https://www.authelia.com/overview/authentication/push-notification/"
+      ]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "unknown",
+      "description": "Not documented as a risk-based/adaptive authentication feature."
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "supported",
+      "links": ["https://www.authelia.com/configuration/second-factor/duo/"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "not_supported",
+      "description": "OAuth 2.0 Step-up Authentication Challenge is listed as unsupported in the OIDC support chart, though access control policies can require two_factor per route/domain.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "OpenID Certified OpenID Connect 1.0 Provider.",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/"
+      ]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "not_supported",
+      "description": "SAML 2.0 Profile for OAuth 2.0 is listed as unsupported; Authelia does not implement a SAML IdP.",
+      "links": [
+        "https://www.authelia.com/integration/openid-connect/introduction/"
+      ]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 client_credentials grant for statically configured confidential clients.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/clients/"
+      ]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "not_supported",
+      "description": "Authelia is an OIDC Provider only; it does not act as a relying party federating to upstream OIDC IdPs."
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "LDAP authentication backend, with tested implementations for Active Directory, OpenLDAP, LLDAP, FreeIPA, and others.",
+      "links": ["https://www.authelia.com/integration/ldap/introduction/"]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "not_supported",
+      "description": "Not documented; LDAP integration targets Active Directory/LDAP servers directly, not Azure AD/Entra ID over OIDC/SAML federation."
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "not_supported",
+      "description": "The file backend is manually edited YAML with no bulk import tool; the LDAP backend is managed externally, and no SCIM API exists (open feature request).",
+      "links": ["https://github.com/authelia/authelia/issues/7668"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "unknown",
+      "description": "The file backend documents supported hash formats (Argon2id, SHA512) for manually provisioned entries; no dedicated legacy-hash migration tool is documented."
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "SCIM 2.0 support is an open feature request, not implemented.",
+      "links": ["https://github.com/authelia/authelia/issues/7668"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "not_supported",
+      "description": "Users must already exist in the file or LDAP backend; Authelia does not create accounts on first login."
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Self-service password reset and WebAuthn/TOTP device registration, gated by emailed identity verification links.",
+      "links": ["https://www.authelia.com/reference/guides/passwords/"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "partial",
+      "description": "Regulation (brute-force ban) temporarily bans a user/IP after repeated failed attempts; there is no persistent admin-triggered account disable in the file/LDAP backends themselves.",
+      "links": ["https://www.authelia.com/configuration/security/regulation/"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "partial",
+      "description": "The file backend supports standard attributes (email, display name, groups) but no arbitrary custom user metadata schema.",
+      "links": ["https://www.authelia.com/configuration/first-factor/file/"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown"
+    },
+    {
+      "identifier": "user_search",
+      "status": "not_supported",
+      "description": "No admin UI or API for searching users; management is via the backing file/LDAP store directly."
+    },
+    {
+      "identifier": "rbac",
+      "status": "partial",
+      "description": "Access control rules match on user/group subjects, domains, resources, methods and networks to assign bypass/one_factor/two_factor/deny policies; this is policy-based rather than a formal role hierarchy.",
+      "links": [
+        "https://www.authelia.com/configuration/security/access-control/"
+      ]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "not_supported",
+      "description": "No multi-organization/tenant model; each deployment is a single instance."
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Standard policy (min length, character classes) or zxcvbn-based strength metering.",
+      "links": [
+        "https://www.authelia.com/configuration/security/password-policy/"
+      ]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "unknown"
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "abac",
+      "status": "partial",
+      "description": "Access control rules can condition policies on network/subject attributes, but there is no general-purpose attribute-based policy engine beyond the built-in rule matcher.",
+      "links": [
+        "https://www.authelia.com/configuration/security/access-control/"
+      ]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Per-domain, per-resource-path, per-method, per-network access control rules with bypass/one_factor/two_factor/deny policies.",
+      "links": [
+        "https://www.authelia.com/configuration/security/access-control/"
+      ]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "Forward-auth gate for reverse-proxied APIs, plus OAuth 2.0 scopes/audience for OIDC-protected APIs.",
+      "links": ["https://www.authelia.com/overview/prologue/introduction/"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "csa_star",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "not_supported",
+      "description": "No built-in data export tooling; self-hosted operators have direct access to the backing store."
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "not_supported",
+      "description": "No built-in account deletion API; erasure is a manual operation on the file/LDAP/database backend."
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "OpenID Connect consent screen (pre-configured or interactive) per client/scope.",
+      "links": [
+        "https://www.authelia.com/overview/authorization/openid-connect-1.0/"
+      ]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Self-hosted in any region; no managed hosting offering exists.",
+      "links": ["https://www.authelia.com/overview/prologue/introduction/"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Deployable via Docker, Kubernetes, or bare-metal binary, with SQLite/MySQL/PostgreSQL storage and Redis for HA session state.",
+      "links": ["https://github.com/authelia/authelia"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Structured logs of authentication and authorization events; retention is operator-configured.",
+      "links": ["https://www.authelia.com/reference/guides/logging/"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "partial",
+      "description": "Logs can be written to file or stdout for collection by external log shippers/SIEM; no native streaming integration.",
+      "links": ["https://www.authelia.com/reference/guides/logging/"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "Sensitive fields (TOTP secrets, WebAuthn keys, OIDC session data) are encrypted in the storage backend using a configured HMAC/encryption secret.",
+      "links": ["https://www.authelia.com/overview/security/measures/"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "TLS for the web portal and SMTP notifier, with certificate validation.",
+      "links": ["https://www.authelia.com/overview/security/measures/"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "Full key/secret management control via self-hosted deployment, including OIDC JWKS signing keys.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Regulation module bans a user after a configurable number of failed attempts within a time window, plus adaptive minimum-delay authentication timing to resist username enumeration.",
+      "links": ["https://www.authelia.com/configuration/security/regulation/"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "Token-bucket rate limiters on authentication-sensitive endpoints, configurable per use case.",
+      "links": ["https://www.authelia.com/overview/security/measures/"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "not_supported",
+      "description": "Not documented; password policy covers strength (standard rules or zxcvbn), not breach-corpus checks."
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "unknown"
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "unknown"
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "not_supported",
+      "description": "Single-instance deployment; no multi-organization branding model."
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "partial",
+      "description": "Second-factor requirements are set per access-control rule (domain/resource/network), not per organization.",
+      "links": [
+        "https://www.authelia.com/configuration/security/access-control/"
+      ]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "links": ["https://www.authelia.com/overview/prologue/introduction/"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "not_supported",
+      "description": "Authentication happens on Authelia's own portal; no embeddable widget/SDK-driven inline login."
+    },
+    {
+      "identifier": "white_label",
+      "status": "partial",
+      "description": "Built-in light/dark/auto themes and a configurable logo; full CSS/branding overrides require disabling the default Content-Security-Policy, which the docs discourage.",
+      "links": ["https://www.authelia.com/reference/guides/branding/"]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "The portal UI is translated into numerous community-contributed languages.",
+      "links": ["https://www.authelia.com/overview/prologue/introduction/"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "not_supported",
+      "description": "No built-in analytics dashboard; structured logs can feed external tooling."
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "not_supported",
+      "description": "No official client SDKs; integration is via standard OAuth 2.0/OIDC libraries or the forward-auth proxy contract."
+    },
+    {
+      "identifier": "management_api",
+      "status": "not_supported",
+      "description": "No REST management API; configuration is file-based (YAML) with environment variable/secret overrides."
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "Configurable per-endpoint rate limiters for authentication-sensitive routes.",
+      "links": ["https://www.authelia.com/overview/security/measures/"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "not_supported",
+      "description": "No scripting/custom-code extensibility hooks; behavior is driven entirely by declarative YAML configuration."
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Self-hosted on any domain, with multi-cookie-domain support for protecting multiple root domains from one instance.",
+      "links": ["https://www.authelia.com/configuration/session/introduction/"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "supported",
+      "description": "authelia CLI binary and Docker/Kubernetes manifests for configuration validation and deployment; no interactive admin CLI beyond config management.",
+      "links": ["https://github.com/authelia/authelia"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "not_supported",
+      "description": "No official Authelia Terraform provider; configuration is plain YAML, which can be templated by generic Terraform file/template resources."
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "SQLite, MySQL/MariaDB, or PostgreSQL storage backends, plus Redis/Redis Sentinel for session/cache high availability.",
+      "links": ["https://github.com/authelia/authelia"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "not_supported",
+      "description": "Notification system modernization (webhook notifier) is an open feature request, not yet implemented.",
+      "links": ["https://github.com/authelia/authelia/issues/12333"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "partial",
+      "description": "Logo and theme are configurable; deeper HTML/CSS customization requires relaxing the built-in Content-Security-Policy.",
+      "links": ["https://www.authelia.com/reference/guides/branding/"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "SMTP notifier (with a filesystem notifier for testing only).",
+      "links": ["https://www.authelia.com/configuration/notifications/smtp/"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "HTML and plaintext notification templates (password reset, WebAuthn/TOTP registration) are overridable per template_path.",
+      "links": [
+        "https://www.authelia.com/reference/guides/notification-templates/"
+      ]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Per-client claims_policy configuration maps custom scopes/claims onto ID tokens and userinfo responses.",
+      "links": [
+        "https://www.authelia.com/configuration/identity-providers/openid-connect/provider/"
+      ]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "not_supported",
+      "description": "No documented support for AI agent/workload identity tokens beyond standard OAuth 2.0 client_credentials."
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "Authelia (written in Go) can terminate TLS itself in addition to the common reverse-proxy deployment, so the underlying stack is Go's crypto/tls, which supports the X25519MLKEM768 hybrid group since Go 1.24 (Feb 2025). However, the Authelia project has published no documentation, changelog entry, or statement claiming post-quantum/hybrid TLS key-exchange support, and self-hosted deployments usually rely on external reverse proxies. Without vendor evidence, status is unknown.",
+      "links": [
+        "https://www.authelia.com/configuration/miscellaneous/server/",
+        "https://go.dev/blog/tls-key-exchange"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No evidence found of ML-DSA/Dilithium, SLH-DSA/SPHINCS+, or FN-DSA/Falcon support for OIDC ID token or JWT signing. Targeted GitHub searches of authelia/authelia issues/discussions for quantum-related terms returned no results.",
+      "links": ["https://github.com/authelia/authelia"]
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public roadmap, blog post, whitepaper, or GitHub discussion found describing PQC migration plans or a crypto-agility/quantum-readiness statement from the Authelia project."
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
+    }
+  ]
+}
