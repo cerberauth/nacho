@@ -49,6 +49,7 @@ import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
 import curity from './curity.json'
 import cyberArk from './cyberark.json'
+import duende from './duende.json'
 import fusionauth from './fusionauth.json'
 import kinde from './kinde.json'
 import keycloak from './keycloak.json'
@@ -68,6 +69,7 @@ export {
   clerk,
   curity,
   cyberArk,
+  duende,
   fusionauth,
   kinde,
   keycloak,
@@ -215,6 +217,7 @@ export const providers: OpenIDConnectProvider[] = [
   clerk,
   curity,
   cyberArk,
+  duende,
   fusionauth,
   kinde,
   keycloak,
