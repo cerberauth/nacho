@@ -73,6 +73,7 @@ import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
 import curity from './curity.json'
 import cyberark from './cyberark.json'
+import duende from './duende.json'
 import microsoftEntraId from './microsoft-entra-id.json'
 // import firebaseAuth from './firebase-auth.json'
 import fusionauth from './fusionauth.json'
@@ -91,11 +92,13 @@ export {
   iamFeatures,
 
   auth0,
+  authelia,
   authlete,
   awsCognito,
   clerk,
   curity,
   cyberark,
+  duende,
   microsoftEntraId,
   // firebaseAuth,
   fusionauth,
@@ -332,6 +335,7 @@ export const providers: IAMProvider[] = [
   clerk,
   curity,
   cyberark,
+  duende,
   microsoftEntraId,
   // firebaseAuth,
   fusionauth,

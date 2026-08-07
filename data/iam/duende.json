@@ -1,0 +1,705 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Duende IdentityServer",
+  "abstract": "Proprietary, self-hosted OpenID Connect/OAuth 2.1 and SAML 2.0 framework for ASP.NET Core, from Duende Software (USA), the commercial successor to IdentityServer4. Primarily a developer-first token service and authorization server rather than an out-of-the-box CIAM product: authentication UI, user store, MFA, and branding are built as part of your own ASP.NET Core application, using either the optional Duende User Management add-on or a custom store. FAPI 2.0 certified conformance. Edition-based subscription licensing (Lite, Standard, Advanced, Custom); free for development/testing and for qualifying open-source/small-company use under Community Edition.",
+  "identifier": "duende",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/duende.svg"
+  },
+  "website": "https://duendesoftware.com",
+  "github": "https://github.com/DuendeSoftware",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "Free for development, testing, and personal projects; Community Edition available for qualifying organizations",
+    "pricingModel": "subscription",
+    "pricingUrl": "https://duendesoftware.com/pricing",
+    "plans": [
+      {
+        "name": "Lite",
+        "price": "$5,750/year (1 deployment, 2 client IDs, 2 BFF front-ends, 10,000 User Management users)"
+      },
+      {
+        "name": "Standard",
+        "price": "$12,500/year (1 deployment, 10 client IDs, 10 BFF front-ends, 100,000 User Management users)"
+      },
+      {
+        "name": "Advanced",
+        "price": "$24,900/year (2 deployments, 30 client IDs, 30 BFF front-ends, 500,000 User Management users, SAML/Automatic Key Management/FGSC included)"
+      },
+      {
+        "name": "Custom",
+        "price": "Custom (unlimited scale, enhanced support)"
+      }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "description": "Built in via the optional Duende User Management SDK, or via a custom ASP.NET Core Identity/user store.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Any external OIDC/OAuth provider (Google, Microsoft, Facebook, etc.) via standard ASP.NET Core external authentication handlers.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/ui/login/external/"
+      ]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "WebAuthn/passkeys are part of the Duende User Management passwordless-first authentication layer.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP is included in Duende User Management's passwordless layer.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "partial",
+      "description": "No native SMS carrier/OTP integration is documented; requires plugging in a custom notification service."
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "partial",
+      "description": "Achievable by customizing the email OTP delivery in Duende User Management, but there is no dedicated magic-link authenticator."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "IdentityServer issues tokens for authenticated subjects; anonymous/guest sessions are not a built-in concept."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "unknown",
+      "description": "Not documented separately from TOTP."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "Covered by the WebAuthn/passkey support in Duende User Management."
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "description": "Email OTP can be used as a second factor in a custom authentication flow."
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "partial",
+      "description": "No native SMS provider; requires a custom notification service."
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "supported",
+      "description": "Recovery codes are included in the Duende User Management passwordless layer.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "description": "No native push MFA; typically added via a third-party integration such as Authsignal or Duo."
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "partial",
+      "description": "No built-in risk engine, but the authorization interaction pipeline is extensible enough to build custom risk-based MFA logic.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "No first-party Duo integration; achieved via third-party plugins such as Authsignal."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "ACR values and custom interaction logic support step-up authentication, a well-established IdentityServer pattern.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML 2.0 Identity Provider and Service Provider roles, available as an add-on/higher edition.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "Client credentials grant is a core, primary use case.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/fundamentals/clients/"
+      ]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "External OIDC authentication handler for federating with any OpenID Connect provider.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/ui/login/external/"
+      ]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "SAML 2.0 Service Provider role for federating with SAML identity providers (add-on).",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "partial",
+      "description": "No native LDAP connector; integrates via a custom user store implementation or Windows Authentication."
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Azure AD/Entra ID federation via the external OIDC authentication handler.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/ui/login/external/"
+      ]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "partial",
+      "description": "No dedicated bulk-import tool; achievable by writing directly to the configured user store or via IMembershipAdmin scripting."
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "partial",
+      "description": "Feasible when migrating to a custom user store that can accept pre-hashed passwords, but not a documented built-in feature."
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "partial",
+      "description": "Achievable via direct data-store queries; no dedicated export API."
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "Programmatic membership management via the IMembershipAdmin interface.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "partial",
+      "description": "Depends entirely on the custom user store used to wrap a legacy system."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "No built-in SCIM server; third-party products (e.g. LoginRadius) can bridge SCIM provisioning."
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time provisioning on first external login is a standard pattern with the external authentication handler pipeline.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/ui/login/external/"
+      ]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "partial",
+      "description": "Achievable via a custom user store/validator that proxies credential checks to a legacy system on first login."
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Duende User Management provides profile, credential, and MFA device self-service via its SDK.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Linking external logins to a local account is a standard ASP.NET Core Identity/IdentityServer pattern.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/ui/login/external/"
+      ]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Accounts can be locked/disabled via IMembershipAdmin.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Extensible user profile and custom claims via the profile service and Duende User Management.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Client model supports a free-form Properties dictionary for custom client metadata.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/fundamentals/clients/"
+      ]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown",
+      "description": "Depends on the configured data store (e.g. EF Core column sizes); no universal documented limit."
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "Query API via IMembershipAdmin.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Roles and groups from Duende User Management, mapped into scopes and claims.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "partial",
+      "description": "Multi-issuer support lets one deployment serve multiple tenant issuer URLs (edition-restricted), but there is no built-in organization-management UI.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Configurable password policy in Duende User Management.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported"
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "partial",
+      "description": "Achievable by customizing the login/consent UI to conditionally collect additional attributes; no dedicated built-in feature."
+    },
+    {
+      "identifier": "abac",
+      "status": "partial",
+      "description": "Attribute-based rules can be implemented via custom claims and ASP.NET Core authorization policies, but there is no built-in ABAC engine."
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "partial",
+      "description": "Scopes and custom claims provide coarse-to-medium granularity; fine-grained/relationship-based authorization requires integrating an external engine (e.g. OpenFGA)."
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "Core use case: scoped access-token issuance for API protection.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/fundamentals/clients/"
+      ]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "not_supported",
+      "description": "Duende IdentityServer is self-hosted software, not a Duende-operated service, so traditional vendor SOC 2 attestation does not apply; the customer's own deployment is what gets certified.",
+      "links": [
+        "https://duendesoftware.com/products/frequently-asked-questions"
+      ]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "not_supported",
+      "description": "Same self-hosted reasoning as SOC 2: certification applies to the customer's deployment, not a Duende-run service."
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "not_supported",
+      "description": "No BAA is offered since Duende does not host or process customer data."
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown"
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "unknown"
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "Because deployment and data storage are entirely customer-controlled, export tooling is built by the operator against their own store.",
+      "links": [
+        "https://duendesoftware.com/use-case-compliance-security-ready-identity"
+      ]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "description": "User deletion available via IMembershipAdmin; full control over storage supports erasure workflows.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "Built-in OAuth/OIDC consent screen for scope-based authorization, audited by the server.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Self-hosted; deployable in any region the operator chooses."
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Runs as a standard ASP.NET Core application: on-premises, Docker, Kubernetes, or any cloud (AWS, Azure, GCP).",
+      "links": ["https://docs.duendesoftware.com/identityserver/deployment/"]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Structured eventing system (IEventSink) supports building audit trails for regulated industries; retention is operator-configured.",
+      "links": [
+        "https://duendesoftware.com/blog/20260317-developing-audit-logs-with-duende-identityserver-events"
+      ]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Custom IEventSink implementations can stream events to external log/SIEM systems.",
+      "links": [
+        "https://duendesoftware.com/blog/20260317-developing-audit-logs-with-duende-identityserver-events"
+      ]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "partial",
+      "description": "Depends on the operator's chosen data store (database-level TDE, disk encryption); not a built-in IdentityServer feature."
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "TLS is the standard, recommended deployment configuration."
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "Self-hosted signing key management, optionally via the Automatic Key Management add-on or a custom key management service (e.g. Azure Key Vault, HSM).",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "partial",
+      "description": "Not built in by default; typically added via ASP.NET Core rate-limiting middleware or a custom validator."
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "partial",
+      "description": "Requires custom middleware; no built-in IP-based throttling."
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "unknown"
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "unknown"
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "unknown"
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "partial",
+      "description": "Achievable by writing per-client conditional theming into the custom login UI; no built-in per-tenant theming system."
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "partial",
+      "description": "Achievable via ACR values/client-specific policy in custom authentication logic; not a built-in per-org policy engine."
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "The IdentityServer host includes its own Razor Pages-based login UI (typically derived from the Quickstart UI template).",
+      "links": ["https://docs.duendesoftware.com/identityserver/ui/"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "partial",
+      "description": "The Backend for Frontend (BFF) pattern avoids some cross-origin redirect friction, but classic embedded (non-redirect) login is discouraged by design.",
+      "links": ["https://duendesoftware.com/products/identityserver"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "The login/consent/logout UI is your own ASP.NET Core application code, fully customizable.",
+      "links": ["https://docs.duendesoftware.com/identityserver/ui/"]
+    },
+    {
+      "identifier": "localization",
+      "status": "partial",
+      "description": "Left to the operator's custom UI implementation using standard ASP.NET Core localization; no first-party localized templates are shipped."
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "partial",
+      "description": "The Quickstart UI is a reference/sample implementation to start from, not a polished component library.",
+      "links": ["https://docs.duendesoftware.com/identityserver/ui/"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "partial",
+      "description": "No built-in dashboard; structured events can feed external analytics/observability tooling."
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "partial",
+      "description": "Primarily a .NET/ASP.NET Core server framework; client-side apps use any standard OIDC library rather than first-party mobile/JS SDKs."
+    },
+    {
+      "identifier": "management_api",
+      "status": "partial",
+      "description": "Configuration is typically managed via EF Core store/DB directly or custom admin tooling; the DCR endpoint provides API-driven client registration but there is no comprehensive first-party management API for all resources.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/configuration/dcr/"
+      ]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "partial",
+      "description": "Not built in by default; added via ASP.NET Core rate-limiting middleware."
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Extensive C# extensibility: custom profile services, event sinks, validators, extension grants, and interaction services.",
+      "links": ["https://docs.duendesoftware.com/identityserver/"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Extensibility is C#/.NET code running in-process; there is no separate JavaScript/TypeScript runtime for server-side logic."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Self-hosted deployment supports any custom domain."
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "partial",
+      "description": "Deployed like any ASP.NET Core app via the standard dotnet CLI, Docker, or Kubernetes tooling; no dedicated Duende deployment CLI.",
+      "links": ["https://docs.duendesoftware.com/identityserver/deployment/"]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "not_supported",
+      "description": "No official Terraform provider is published for Duende IdentityServer."
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "Entity Framework Core configuration/operational stores support SQL Server, PostgreSQL, MySQL, SQLite, and other EF Core providers; custom stores are also pluggable.",
+      "links": ["https://docs.duendesoftware.com/identityserver/"]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "partial",
+      "description": "Custom IEventSink implementations can push events to any endpoint, but there is no first-party webhook configuration UI."
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Full HTML/CSS/Razor customization since the login/consent UI is part of the operator's own application.",
+      "links": ["https://docs.duendesoftware.com/identityserver/ui/"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "supported",
+      "description": "Duende User Management allows plugging in a custom email/notification sender for OTP and account emails.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/usermanagement/"
+      ]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Fully customizable since email content is generated by the operator's own application code."
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims added via a custom IProfileService implementation.",
+      "links": ["https://docs.duendesoftware.com/identityserver/"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported",
+      "description": "Authentication and authorization logic is configured in C# code; there is no visual/no-code flow builder."
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "unknown"
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "partial",
+      "description": "Duende markets an emerging 'AI' capability area and RFC 8693 token exchange for securing AI-agent and machine workflows, but this is less mature than dedicated agentic-identity products.",
+      "links": ["https://duendesoftware.com/products/capabilities/ai"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "Duende's own blog post on PQC in .NET 10 covers ML-KEM only as a general-purpose key-establishment primitive and application-level signing; it explicitly does not discuss TLS 1.3 hybrid key exchange for Kestrel/ASP.NET Core, and TLS termination for IdentityServer deployments is typically handled by the hosting environment, not documented as an IdentityServer feature.",
+      "links": [
+        "https://duendesoftware.com/blog/20260514-post-quantum-cryptography-in-dotnet-10"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "Duende's official blog (May 2026) demonstrates using .NET 10's new ML-DSA/SLH-DSA/Composite ML-DSA APIs for token signing, noting IdentityServer's automatic key management is 'algorithm-agnostic' and thus architecturally compatible - presented as a developer guide, not an announced shipped feature. Separately, an independent third-party library, Strathweb.Dilithium (not an official Duende product, since 2023), plugs into IdentityServer's automatic key management to sign tokens with CRYSTALS-Dilithium and publish PQ public keys via JWKS, per a draft IETF JOSE PQC spec.",
+      "links": [
+        "https://duendesoftware.com/blog/20260514-post-quantum-cryptography-in-dotnet-10",
+        "https://www.strathweb.com/2023/03/post-quantum-token-signing-with-dilithium-using-duende-identity-server/",
+        "https://www.strathweb.com/2024/08/strathweb-dilithium-for-duende-identity-server-now-supports-automatic-key-management/"
+      ]
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "Duende published a dedicated blog post, 'Post-Quantum Cryptography in .NET 10: A Practical Guide' (May 2026), discussing harvest-now-decrypt-later risk and encouraging early experimentation with .NET 10's PQC APIs within IdentityServer's algorithm-agnostic key management. It contains no committed timeline, version target, or formal roadmap for native/first-class PQC support in the product itself.",
+      "links": [
+        "https://duendesoftware.com/blog/20260514-post-quantum-cryptography-in-dotnet-10",
+        "https://docs.duendesoftware.com/identityserver/deployment/fips-compliance/"
+      ]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
+    }
+  ]
+}

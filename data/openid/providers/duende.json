@@ -1,0 +1,306 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Duende IdentityServer",
+  "abstract": "Duende IdentityServer is a .NET-based OpenID Connect and OAuth 2.1 framework maintained by Duende Software, the commercial successor to IdentityServer4. It targets enterprise ASP.NET Core applications needing full control over identity infrastructure, with FAPI 2.0 certified conformance and a modular, edition-based licensing model.",
+  "identifier": "duende",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/duende.svg"
+  },
+  "website": "https://duendesoftware.com",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "github": "https://github.com/DuendeSoftware",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "description": "Supported via the OIDC 'Multiple Response Types' spec (e.g. id_token, id_token token) but discouraged in favor of authorization code with PKCE.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/fundamentals/clients/"
+      ]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "par_extension",
+      "status": "supported",
+      "description": "Pushed Authorization Requests available on Business (legacy), Enterprise (legacy), Standard, Advanced, and Custom editions; not included in Community Edition.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "not_supported",
+      "description": "Rich Authorization Requests (RFC 9396) are not listed among supported specifications."
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "supported",
+      "links": ["https://docs.duendesoftware.com/identityserver/tokens/jar/"]
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/fundamentals/clients/"
+      ]
+    },
+    {
+      "identifier": "password_grant",
+      "status": "partial",
+      "description": "Resource Owner Password Credentials grant can still be enabled per client but is deprecated per OAuth 2.1 and discouraged in current guidance.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/password-grant/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/refresh/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "description": "Client-Initiated Backchannel Authentication is available on Enterprise (legacy), Standard, Advanced, and Custom editions.",
+      "links": ["https://docs.duendesoftware.com/identityserver/ui/ciba/"]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "partial",
+      "description": "Not a built-in grant, but the extension grant validator model allows implementing custom JWT bearer grants."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/refresh/"
+      ]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "description": "RFC 8414 Authorization Server Metadata implemented in v7.4.",
+      "links": [
+        "https://duendesoftware.com/blog/20251202-duende-identityserver-v74-release-now-available-securing-the-age-of-ai-and-dotnet-10-lts"
+      ]
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/endpoints/authorize/"
+      ]
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented as a distinct supported prompt value."
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/client-authentication/"
+      ]
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/client-authentication/"
+      ]
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/client-authentication/"
+      ]
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "not_supported",
+      "description": "Documentation only lists client_secret_basic, client_secret_post, private_key_jwt, and mTLS; HMAC-based client_secret_jwt is not documented."
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "supported",
+      "description": "Recommended over shared secrets.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/client-authentication/"
+      ]
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "supported",
+      "description": "Mutual TLS (RFC 8705) client authentication and certificate-bound tokens, recommended alongside private_key_jwt.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/tokens/client-authentication/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "description": "RFC 7591-based registration endpoint (/connect/dcr) available on Business (legacy), Enterprise (legacy), Standard, Advanced, and Custom editions via the Duende.IdentityServer.Configuration package.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/configuration/dcr/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "partial",
+      "description": "Registration covers a mixture of standardized and IdentityServer-specific client metadata; full RFC 7592 read/update/delete management is not explicitly documented as built-in.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/dcr/models/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "description": "Configurable per client via RefreshTokenUsage (OneTimeOnly rotates the token, ReUse does not). ReUse has been the default since v7.0.",
+      "links": ["https://duendesoftware.com/blog/20240405-refresh-token-reuse"]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "partial",
+      "description": "No built-in grace period policy by default (a consumed rotated token is rejected), but the AcceptConsumedTokenAsync extensibility point plus ConsumedTokenCleanupDelay allow implementing a custom grace window.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/reference/services/refresh-token-service/"
+      ]
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "dpop",
+      "status": "supported",
+      "description": "Available on Enterprise (legacy), Standard, Advanced, and Custom editions.",
+      "links": [
+        "https://docs.duendesoftware.com/identityserver/overview/specs/"
+      ]
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported",
+      "description": "Duende IdentityServer's certified conformance targets FAPI 2.0; FAPI 1.0 is not listed among supported specifications."
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "supported",
+      "description": "Conformance-tested against the OpenID Foundation FAPI 2.0 suite since v7.3, with an automated Financial-Grade Security and Conformance report starting in v8.0.",
+      "links": [
+        "https://duendesoftware.com/blog/20250814-duende-identityserver-7-3-release-fapi"
+      ]
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "not_supported",
+      "description": "JWT-secured authorization requests (JAR) are supported, but JWT-secured authorization responses (JARM) are not documented as supported."
+    }
+  ]
+}
