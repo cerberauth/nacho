@@ -73,9 +73,10 @@ import awsCognito from './aws-cognito.json'
 import clerk from './clerk.json'
 import curity from './curity.json'
 import cyberark from './cyberark.json'
+import descope from './descope.json'
 import duende from './duende.json'
 import microsoftEntraId from './microsoft-entra-id.json'
-// import firebaseAuth from './firebase-auth.json'
+import firebaseAuth from './firebase-auth.json'
 import fusionauth from './fusionauth.json'
 import kinde from './kinde.json'
 import okta from './okta.json'
@@ -83,10 +84,11 @@ import keycloak from './keycloak.json'
 import ory from './ory.json'
 import pingIdentity from './ping-identity.json'
 import sailpoint from './sailpoint.json'
+import workos from './workos.json'
 import zitadel from './zitadel.json'
-// import stytch from './stytch.json'
-// import supabaseAuth from './supabase-auth.json'
-// import supertokens from './supertokens.json'
+import stytch from './stytch.json'
+import supabaseAuth from './supabase-auth.json'
+import supertokens from './supertokens.json'
 
 export {
   iamFeatures,
@@ -98,9 +100,10 @@ export {
   clerk,
   curity,
   cyberark,
+  descope,
   duende,
   microsoftEntraId,
-  // firebaseAuth,
+  firebaseAuth,
   fusionauth,
   kinde,
   keycloak,
@@ -108,10 +111,11 @@ export {
   ory,
   pingIdentity,
   sailpoint,
+  workos,
   zitadel,
-  // stytch,
-  // supabaseAuth,
-  // supertokens,
+  stytch,
+  supabaseAuth,
+  supertokens,
 }
 
 export const getFeaturesCategories = (dict: any) => [
@@ -335,9 +339,10 @@ export const providers: IAMProvider[] = [
   clerk,
   curity,
   cyberark,
+  descope,
   duende,
   microsoftEntraId,
-  // firebaseAuth,
+  firebaseAuth,
   fusionauth,
   kinde,
   keycloak,
@@ -345,8 +350,9 @@ export const providers: IAMProvider[] = [
   ory,
   pingIdentity,
   sailpoint,
+  workos,
   zitadel,
-  // stytch,
-  // supabaseAuth,
-  // supertokens,
+  stytch,
+  supabaseAuth,
+  supertokens,
 ]
