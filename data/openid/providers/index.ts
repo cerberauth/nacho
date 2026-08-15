@@ -52,6 +52,7 @@ import cyberArk from './cyberark.json'
 import duende from './duende.json'
 import frontegg from './frontegg.json'
 import fusionauth from './fusionauth.json'
+import gluu from './gluu.json'
 import kinde from './kinde.json'
 import keycloak from './keycloak.json'
 import microsoftEntraID from './microsoft-entra-id.json'
@@ -74,6 +75,7 @@ export {
   duende,
   frontegg,
   fusionauth,
+  gluu,
   kinde,
   keycloak,
   microsoftEntraID,
@@ -224,6 +226,7 @@ export const providers: OpenIDConnectProvider[] = [
   duende,
   frontegg,
   fusionauth,
+  gluu,
   kinde,
   keycloak,
   microsoftEntraID,
