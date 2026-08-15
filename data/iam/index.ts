@@ -77,6 +77,7 @@ import descope from './descope.json'
 import duende from './duende.json'
 import microsoftEntraId from './microsoft-entra-id.json'
 import firebaseAuth from './firebase-auth.json'
+import frontegg from './frontegg.json'
 import fusionauth from './fusionauth.json'
 import kinde from './kinde.json'
 import okta from './okta.json'
@@ -104,6 +105,7 @@ export {
   duende,
   microsoftEntraId,
   firebaseAuth,
+  frontegg,
   fusionauth,
   kinde,
   keycloak,
@@ -343,6 +345,7 @@ export const providers: IAMProvider[] = [
   duende,
   microsoftEntraId,
   firebaseAuth,
+  frontegg,
   fusionauth,
   kinde,
   keycloak,
