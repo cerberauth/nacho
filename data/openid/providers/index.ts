@@ -50,6 +50,7 @@ import clerk from './clerk.json'
 import curity from './curity.json'
 import cyberArk from './cyberark.json'
 import duende from './duende.json'
+import frontegg from './frontegg.json'
 import fusionauth from './fusionauth.json'
 import kinde from './kinde.json'
 import keycloak from './keycloak.json'
@@ -71,6 +72,7 @@ export {
   curity,
   cyberArk,
   duende,
+  frontegg,
   fusionauth,
   kinde,
   keycloak,
@@ -220,6 +222,7 @@ export const providers: OpenIDConnectProvider[] = [
   curity,
   cyberArk,
   duende,
+  frontegg,
   fusionauth,
   kinde,
   keycloak,

@@ -1,0 +1,223 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Frontegg",
+  "abstract": "Frontegg is an Israeli B2B/B2C CIAM platform offering hosted login, enterprise SSO and M2M authentication for SaaS applications. It implements OpenID Connect by default as part of its hosted identity provider offering, exposing standard OIDC discovery, authorization code and client-credentials flows for both end-user and machine-to-machine authentication.",
+  "identifier": "frontegg",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/frontegg.svg"
+  },
+  "website": "https://frontegg.com",
+  "github": "https://github.com/frontegg",
+  "license": "Proprietary",
+  "nationality": "Israel",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/native-hosted"
+      ]
+    },
+    {
+      "identifier": "par_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/m2m/overview"
+      ]
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "links": ["https://frontegg.com/blog/oauth-2-refresh-tokens"]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "unknown"
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "unknown"
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "description": "Frontegg publishes a standard .well-known/openid-configuration discovery document per environment, found under Authentication → SSO → Identity Provider → OpenID Connect Endpoints.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "unknown"
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "description": "Applications authenticate to Frontegg's token endpoint using a Client ID and API key/secret pair.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "description": "Frontegg enforces refresh token rotation with a cap of 100 active refresh tokens per API token; exceeding the cap invalidates the oldest token.",
+      "links": ["https://frontegg.com/blog/oauth-2-refresh-tokens"]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "unknown"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "unknown"
+    },
+    {
+      "identifier": "dpop",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jarm",
+      "status": "not_supported"
+    }
+  ]
+}

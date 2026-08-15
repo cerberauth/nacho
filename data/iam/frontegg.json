@@ -1,0 +1,745 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Frontegg",
+  "abstract": "B2B/B2C CIAM platform from Israel built for SaaS companies that need enterprise authentication without building it themselves. Flagship products include a fully hosted and embeddable Login Box (SSO via SAML/OIDC, social login, passkeys, MFA), self-service SSO/SCIM configuration for enterprise customers, an Entitlements engine that unifies RBAC, ABAC/ReBAC, feature flags and subscription plans into a single authorization API, Account Hierarchies for complex B2B org structures, a Security Center with built-in bot/brute-force/breached-password defenses and Adaptive MFA, and Frontegg.ai/AgentLink for securing AI agent and MCP-based access. Free up to 7,500 MAUs. SaaS-only deployment with EU/US data residency options.",
+  "identifier": "frontegg",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/frontegg.svg"
+  },
+  "website": "https://frontegg.com",
+  "github": "https://github.com/frontegg",
+  "license": "Proprietary",
+  "nationality": "Israel",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "7,500 monthly active users",
+    "pricingModel": "mau",
+    "pricingUrl": "https://frontegg.com/pricing",
+    "plans": [
+      {
+        "name": "Pay as You Go",
+        "price": "Free up to 7,500 MAUs; includes hosted login, 5 enterprise (SSO/SCIM) connections, unlimited organizations, custom domain; usage-based beyond free tier"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom (add-ons, multiple environments, advanced fraud protection, 99.99% uptime SLA, premium support)"
+      }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "description": "Email-and-password authentication with configurable strength policy (predefined Easy/Medium levels or custom rules for length, casing, digits, special characters), password history, and expiration settings.",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/credentials/passwords/overview"
+      ]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "OAuth social login toggled per application in the Login Box builder, covering providers such as Google, Microsoft, GitHub, Facebook, Slack and others.",
+      "links": ["https://frontegg.com/product/authentication"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "FIDO2/WebAuthn passkeys supported as a primary authentication method alongside password and social login.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authentication/credentials/passkeys"
+      ]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Magic links and email-based magic codes (OTP) for passwordless sign-in. Default link/code expiration is 5 minutes, configurable between 1 minute and 1 hour; single-use tokens.",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/credentials/passwordless"
+      ]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "SMS-based one-time code sign-in as an alternative passwordless credential.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authentication/credentials/sms"
+      ]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "supported",
+      "description": "Clickable one-time login links delivered by email; user enters their email, receives a link, and is logged in on click. Customizable email templates.",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/credentials/passwordless"
+      ]
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "Frontegg's identity model requires a real authenticated user (typically identified by email). No documented anonymous/guest session primitive exists."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "Authenticator app (TOTP) MFA compatible with Google Authenticator, Authy, LastPass Authenticator, Microsoft Authenticator and similar apps.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/mfa/management"
+      ]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "Frontegg's documented authenticator-app MFA is TOTP-based only; counter-based HOTP is not offered as a distinct factor."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "Security Keys (WebAuthn cross-platform authenticators such as YubiKeys) are one of Frontegg's four native MFA methods, covering roaming/U2F-class hardware keys.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/mfa/management"
+      ]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "description": "WebAuthn is supported both as Security Keys (roaming authenticators) and Built-in Authenticators (platform biometrics such as Touch ID / Windows Hello).",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/mfa/management"
+      ]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "not_supported",
+      "description": "Email OTP is offered as a first-factor passwordless login method, but Frontegg's documented MFA methods (Authenticator Apps, SMS, Security Keys, Built-in Authenticators) do not include email code as a second factor."
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS is one of Frontegg's four native MFA methods: users receive a code by SMS and enter it to complete authentication.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/mfa/management"
+      ]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "unknown"
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "description": "Frontegg does not ship its own push-notification authenticator app. Push-based approval (e.g. Duo Push) is only available indirectly by federating to Cisco Duo as a SAML SSO identity provider."
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "supported",
+      "description": "Adaptive MFA analyzes contextual risk signals (device type, location, IP, login behavior) in real time and prompts for additional verification when risk exceeds a threshold.",
+      "links": ["https://frontegg.com/product/adaptive-mfa"]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "partial",
+      "description": "Cisco Duo integrates with Frontegg via Duo's SAML SSO identity provider, letting Duo handle push/WebAuthn/security-key challenges before returning an assertion to Frontegg; this is a federation pattern rather than a native Duo API integration.",
+      "links": ["https://duo.com/docs/sso-frontegg"]
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "Step-up authentication can be required before sensitive actions (bulk deletes, permission changes, large transactions, data exports), prompting OTP or WebAuthn re-verification.",
+      "links": ["https://developers.frontegg.com/ciam/guides/step-up/intro"]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "Frontegg implements OpenID Connect by default as part of its hosted login/identity provider offering, including a discovery document and JWKS-based token validation.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/frontegg-idp/via-oidc"
+      ]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML 2.0 is supported both for consuming enterprise customer SSO (Service Provider) and via Frontegg's own SAML/OIDC identity provider endpoints for downstream integrations.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authentication/sso/management/sso-overview"
+      ]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "description": "No WS-Federation support is documented; enterprise federation is built on SAML 2.0 and OIDC only."
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "Client Credentials-based M2M tokens for user-context and tenant-context service-to-service authentication, managed via Client ID/API key pairs.",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/m2m/overview"
+      ]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Per-tenant OIDC SSO connections configurable via Management Portal or self-service, with JIT provisioning.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authentication/sso/self-service/oidc"
+      ]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "Per-tenant SAML 2.0 SSO connections supporting Okta, Azure AD/Entra ID, Google Workspace and others, with JIT provisioning and SAML attribute/role mapping built in.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authentication/sso/management/sso-overview"
+      ]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "not_supported",
+      "description": "No direct on-premises LDAP/Active Directory connector is documented; AD environments are integrated via SAML/OIDC federation (e.g., ADFS, Entra ID) or SCIM."
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID (Azure AD) is a documented SSO identity provider (SAML) and SCIM provisioning source.",
+      "links": [
+        "https://frontegg.com/blog/configuring-sso-part-3-saml-and-azure-entra-id"
+      ]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Bulk user migration via API (up to 1,000 users per batch) or CSV upload.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/migrations/api-migration"
+      ]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Bulk migration supports importing existing password hashes in Bcrypt, Scrypt, Firebase (Firebase Scrypt), Argon2 and PBKDF2 formats; unsupported hash types fall back to a forced password reset on next login.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/migrations/api-migration"
+      ]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "partial",
+      "description": "Users can be retrieved via the paginated user search/list API with exact and fuzzy filtering; no dedicated one-click bulk export/download feature is documented."
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "partial",
+      "description": "Individual user update, lock and disable operations are available via the Management API; no dedicated batch update/delete endpoint is documented."
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "partial",
+      "description": "Frontegg's primary identifier is email; imported users can bring phone numbers as well, but non-email username identifiers are not a first-class concept."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "description": "SCIM 2.0 inbound provisioning from enterprise IdPs (Okta, Microsoft Entra ID, etc.) syncing users into Frontegg tenants, configurable via Management Portal or self-service.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/manage-users/scim/overview"
+      ]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "Frontegg acts as a SCIM consumer (inbound) rather than exposing itself as a SCIM server to downstream applications."
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "description": "SCIM group sync from upstream IdPs is part of the standard SCIM 2.0 provisioning implementation.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/management/manage-users/scim/overview"
+      ]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time user provisioning on first SSO login is included out of the box with SAML/OIDC SSO connections.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authentication/sso/management/sso-overview"
+      ]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "unknown"
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "An embeddable self-service Admin Portal lets end users and tenant admins manage profile, security, SSO, SCIM and members without developer effort.",
+      "links": ["https://developers.frontegg.com/guides/admin-portal/intro"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Users are automatically merged when they authenticate with different login methods (e.g., password and social login) using the same email address.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/manage-users/overview"
+      ]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Users can be locked (login prevented without data loss) or disabled per account/tenant via the Management API.",
+      "links": [
+        "https://developers.frontegg.com/ciam/api/identity/user-management/userstenantscontrollerv1_disableusertenant"
+      ]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "A general-purpose metadata property is available for storing custom user data.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/manage-users/overview"
+      ]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Secure user metadata (vendorMetadata) stores sensitive, internal/admin-only data on the user object, analogous to app metadata.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/manage-users/overview"
+      ]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown"
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "Exact and fuzzy search across user fields (name, email, metadata, ID) via the Management API.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/manage-users/overview"
+      ]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Role-based access control with custom roles and permissions, assignable globally or per tenant, integrated into the broader Entitlements engine.",
+      "links": [
+        "https://developers.frontegg.com/guides/authorization/rbac/roles"
+      ]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "description": "Accounts (tenants) are Frontegg's core multi-tenancy primitive, extended by Account Hierarchies that let a parent account nest sub-accounts with cascading roles.",
+      "links": [
+        "https://developers.frontegg.com/guides/management/manage-accounts/hierarchies"
+      ]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Predefined strength levels (Easy/Medium) or custom rules for length, casing, digits and special characters, configurable at environment or account level, plus password history and expiration.",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/credentials/passwords/overview"
+      ]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "unknown"
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "unknown"
+    },
+    {
+      "identifier": "abac",
+      "status": "supported",
+      "description": "The Entitlements engine unifies RBAC, ReBAC and ABAC, evaluating user, resource and environment attributes for context-aware access decisions.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/authorization/entitlements-rbac-overview"
+      ]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Entitlements provide fine-grained, feature-level access control down to individual features, plans and feature flags, with a visual dashboard for building product bundles.",
+      "links": ["https://frontegg.com/product/entitlements"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "M2M and user API tokens carry scoped roles/permissions; tenant-level Client Credentials tokens support account-wide API authorization.",
+      "links": [
+        "https://developers.frontegg.com/guides/authentication/m2m/overview"
+      ]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://frontegg.com/trust-center"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "supported",
+      "description": "ISO 27001:2022 certified, along with related ISO 27701 (privacy), 27017 (cloud security) and 27018 (PII in the cloud) certifications.",
+      "links": [
+        "https://frontegg.com/blog/fronteggs-commitment-to-security-and-privacy-iso-27001-27701-27017-and-27018-certifications-achieved"
+      ]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "partial",
+      "description": "Frontegg positions itself as suitable for HIPAA-compliant deployments in its marketing content, but the official Trust Center page lists only SOC 2 Type II and ISO 27001 as formal certifications; BAA availability is not explicitly documented.",
+      "links": ["https://frontegg.com/trust-center"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "not_supported",
+      "description": "Frontegg does not process payment card data and PCI DSS is not listed among its Trust Center certifications."
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fedramp",
+      "status": "not_supported",
+      "description": "No FedRAMP authorization is listed on Frontegg's official Trust Center; Frontegg is a commercial SaaS platform not targeting US federal workloads."
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "GDPR data portability is addressed via the Trust Center privacy commitments and per-user data retrieval through the Management API.",
+      "links": ["https://frontegg.com/trust-center/privacy"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "description": "Users and their data can be permanently deleted via the Management API in line with GDPR right-to-erasure obligations described in Frontegg's privacy policy.",
+      "links": ["https://frontegg.com/privacy-policy"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "not_supported",
+      "description": "No dedicated consent management (marketing opt-in, granular data-processing consent) feature is documented beyond standard OAuth scope consent."
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "Frontegg stores/processes personal data in the EU by default, with the option to choose US-based storage instead.",
+      "values": ["EU", "US"],
+      "links": ["https://frontegg.com/trust-center/privacy"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "not_supported",
+      "description": "Frontegg is a SaaS-only, multi-tenant platform with no documented self-hosted or single-tenant private cloud offering."
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Audit events are recorded and exposed via the Audits API and end-user self-service audit section (with a download option).",
+      "links": ["https://developers.frontegg.com/ciam/api/audits"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "unknown"
+    },
+    {
+      "identifier": "security_center",
+      "status": "supported",
+      "description": "Security Center is a dedicated product area providing MFA management, brute-force/bot/suspicious-IP/breached-password defenses, device fingerprinting and analytics of security events.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/security-rules/overview"
+      ]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "Customer data is encrypted at rest using modern encryption algorithms per Frontegg's Trust Center security page.",
+      "links": ["https://frontegg.com/trust-center/security"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "All data in transit is encrypted per Frontegg's Trust Center security page.",
+      "links": ["https://frontegg.com/trust-center/security"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "not_supported",
+      "description": "No BYOK / customer-managed encryption key offering is documented."
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "description": "Bot detection uses proprietary algorithms by default, with optional Google reCAPTCHA for adjustable strictness.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/security-rules/bot-detection"
+      ]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Built-in brute-force protection with visibility into attempts via Analytics \u2192 Security Events.",
+      "links": [
+        "https://developers.frontegg.com/guides/security-center/security-rules/brute-force"
+      ]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "Suspicious IP Detection and Impossible Travel Protection are among Frontegg's built-in security defenses.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/security-rules/overview"
+      ]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "supported",
+      "description": "Breached Password Protection is one of Frontegg's built-in security defenses, screening credentials against known breach data.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/security-rules/overview"
+      ]
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "No continuous dark-web credential monitoring product is documented beyond point-in-time breached password screening."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "unknown"
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "supported",
+      "description": "Device fingerprinting and new-device detection are built-in security rules feeding into the Security Center risk signals.",
+      "links": [
+        "https://developers.frontegg.com/guides/security-center/security-rules/device-fingerprint"
+      ]
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "partial",
+      "description": "Login Box and Admin Portal branding (logo, colors, layout, localizations) are configurable via theme options at the environment/application level; explicit per-individual-tenant branding overrides are not documented.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/customizations/advanced"
+      ]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "Security and MFA policies can be configured at the environment level or overridden per account (tenant) for stricter enforcement.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/security-center/mfa/management"
+      ]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "A fully hosted, customizable Login Box supports all authentication methods including social, SSO and passkeys.",
+      "links": ["https://frontegg.com/product/authentication"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "The Login Box and Admin Portal can be embedded directly into applications via framework SDKs (React, Angular, Vue, vanilla JS) rather than only redirect-based hosting.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/customizations/advanced"
+      ]
+    },
+    {
+      "identifier": "white_label",
+      "status": "partial",
+      "description": "Login Box and Admin Portal appearance can be fully re-themed, but explicit removal of any Frontegg-branding element is not documented as a distinct feature/plan entitlement.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/customizations/advanced"
+      ]
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "Built-in support for 25 languages across the login box and self-service portal, with per-language overrides via a localizations configuration object.",
+      "links": ["https://developers.frontegg.com/sdks/customizations/overview"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "Prebuilt Login Box and Admin Portal UI components ship via official React, Angular, Vue and vanilla JS SDKs.",
+      "links": ["https://developers.frontegg.com/guides/admin-portal/intro"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "Analytics dashboards including Security Events (brute force, suspicious IP, MFA activity) in the Frontegg portal.",
+      "links": [
+        "https://developers.frontegg.com/guides/security-center/security-rules/brute-force"
+      ]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Official SDKs for React, Angular, Vue and vanilla JavaScript on the frontend, plus backend/management SDKs and REST API access.",
+      "values": ["JavaScript", "TypeScript", "React", "Angular", "Vue"],
+      "links": ["https://github.com/frontegg"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Comprehensive REST Management API covering users, accounts/tenants, SSO, SCIM, RBAC, entitlements, M2M tokens and audits.",
+      "links": ["https://developers.frontegg.com/api/overview"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "unknown"
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Native and fully custom webhooks let applications subscribe to authentication and lifecycle events, with per-webhook delivery logs.",
+      "links": [
+        "https://developers.frontegg.com/guides/integrations/third-party/custom-webhooks"
+      ]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Frontegg has no hosted extensibility runtime that executes developer-supplied code; webhooks are delivered to externally hosted, developer-owned endpoints in any language."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Custom domain configuration is included even on the free tier and is set at the environment level.",
+      "links": ["https://frontegg.com/pricing"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "not_supported",
+      "description": "No dedicated Frontegg CLI is documented; infrastructure-as-code workflows are handled through the official Terraform provider instead."
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "supported",
+      "description": "Official Terraform provider (frontegg/frontegg) manages environments, workspaces and other Frontegg resources as code, with import support for existing resources.",
+      "links": [
+        "https://registry.terraform.io/providers/frontegg/frontegg/latest/docs"
+      ]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "not_supported",
+      "description": "Frontegg does not offer Auth0-style custom database action scripts; user migration is handled via bulk API/CSV import rather than per-login delegation to a legacy store."
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "Native webhook events for authentication and lifecycle changes, plus a custom webhook builder for adapting payloads to third-party integrations.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/integrations/webhooks"
+      ]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Login Box supports full visual customization (colors, logo, layout, enabled methods) via the portal builder or themeOptions in SDKs.",
+      "links": [
+        "https://developers.frontegg.com/ciam/guides/customizations/advanced"
+      ]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "unknown"
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Customizable email templates for magic links/magic codes and other transactional authentication emails via the Emails tab.",
+      "links": ["https://frontegg.com/blog/magic-links"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "unknown"
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "partial",
+      "description": "The Entitlements engine offers a visual, no-code dashboard for designing product bundles/feature access, but there is no general no-code builder for authentication flows themselves.",
+      "links": ["https://frontegg.com/product/entitlements"]
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported",
+      "description": "No document-based identity verification or biometric liveness checking is documented."
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported",
+      "description": "No support for W3C Verifiable Credentials or DIDs is documented."
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "partial",
+      "description": "Entitlements ties feature access to subscription Plans and supports free-trial provisioning, but this is subscription-tier gating logic rather than a full payment/billing system integration (e.g., Stripe sync).",
+      "links": ["https://frontegg.com/product/entitlements"]
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "supported",
+      "description": "Frontegg.ai and AgentLink provide an identity/authorization layer purpose-built for AI agents: a hosted MCP server exposing chosen API tools (Agent Connector), plus Agent IAM enforcing step-up authentication, human-in-the-loop approvals, sensitive-data masking and RBAC for agent access.",
+      "links": [
+        "https://frontegg.com/product/agentlink",
+        "https://frontegg.com/product/frontegg-ai"
+      ]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "No vendor statement on PQC TLS support found. Frontegg's public API (api.frontegg.com) responds with 'server: CloudFront', indicating Frontegg is fronted by AWS CloudFront. AWS CloudFront enabled hybrid PQC key exchange (ML-KEM) by default on all existing TLS security policies in September 2025, but this is infra-inherited, not a documented Frontegg-specific claim.",
+      "links": [
+        "https://frontegg.com/trust-center/security",
+        "https://aws.amazon.com/about-aws/whats-new/2025/09/amazon-cloudfront-TLS-policy-post-quantum-support"
+      ]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence Frontegg supports ML-DSA, SLH-DSA, or FN-DSA for JWT/SAML/OIDC signing."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public PQC roadmap, blog post, or trust-center statement was found for Frontegg. Their trust center covers SOC 2 Type II, ISO 27001, and OWASP Top 10 practices but does not mention quantum readiness.",
+      "links": ["https://frontegg.com/trust-center"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
+    }
+  ]
+}
