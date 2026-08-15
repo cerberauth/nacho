@@ -1,0 +1,226 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "WorkOS",
+  "abstract": "WorkOS is a developer-first B2B identity platform offering Enterprise SSO, Directory Sync, and AuthKit authentication. Its hosted OIDC/OAuth 2.0 provider (WorkOS Connect) powers both user-facing login and machine-to-machine authentication for SaaS applications targeting enterprise customers.",
+  "identifier": "workos",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/workos.svg"
+  },
+  "website": "https://workos.com",
+  "github": "https://github.com/workos",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "not_supported",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "par_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "unknown"
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/user-management/authentication"
+      ]
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "links": ["https://workos.com/docs/user-management/sessions"]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "unknown"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "unknown"
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/workos-connect/metadata/openid-configuration"
+      ]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/workos-connect/metadata/openid-configuration"
+      ]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/workos-connect/metadata/openid-configuration"
+      ]
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/workos-connect/metadata/openid-configuration"
+      ]
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/user-management/authentication"
+      ]
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "unknown"
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/workos-connect/metadata/openid-configuration"
+      ]
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "links": [
+        "https://workos.com/docs/reference/workos-connect/metadata/openid-configuration"
+      ]
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/overview"]
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "unknown"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "unknown"
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "links": ["https://workos.com/docs/user-management/sessions"]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "unknown",
+      "description": "WorkOS documents that refresh tokens are rotated after use, but does not document a grace/overlap window for the previous token."
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "links": ["https://workos.com/docs/user-management/sessions"]
+    },
+    {
+      "identifier": "dpop",
+      "status": "unknown"
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "jarm",
+      "status": "not_supported"
+    }
+  ]
+}

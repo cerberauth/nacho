@@ -58,6 +58,7 @@ import okta from './okta.json'
 import oryHydra from './ory-hydra.json'
 import pingIdentity from './ping-identity.json'
 import sailpoint from './sailpoint.json'
+import workos from './workos.json'
 import zitadel from './zitadel.json'
 
 export {
@@ -78,6 +79,7 @@ export {
   oryHydra,
   pingIdentity,
   sailpoint,
+  workos,
   zitadel,
 }
 
@@ -226,5 +228,6 @@ export const providers: OpenIDConnectProvider[] = [
   oryHydra,
   pingIdentity,
   sailpoint,
+  workos,
   zitadel,
 ]

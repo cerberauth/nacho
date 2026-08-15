@@ -1,0 +1,675 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "WorkOS",
+  "abstract": "Developer-first B2B identity platform from the USA designed for SaaS companies adding enterprise features. Flagship products include Enterprise SSO (SAML/OIDC with 20+ IdP integrations), Directory Sync (SCIM from Okta, Entra ID, Workday, Google Workspace), AuthKit (hosted login UI with passkeys and social login), Fine-Grained Authorization (hierarchical RBAC/ReBAC), Radar (bot and fraud protection), and Vault (BYOK encryption). Free up to 1 million MAUs. SaaS-only deployment.",
+  "identifier": "workos",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/workos.svg"
+  },
+  "website": "https://workos.com",
+  "github": "https://github.com/workos",
+  "license": "Proprietary",
+  "nationality": "USA",
+  "pricing": {
+    "hasFreeTier": true,
+    "freeTierLimit": "1 million monthly active users",
+    "pricingModel": "per_user",
+    "pricingUrl": "https://workos.com/pricing",
+    "plans": [
+      {
+        "name": "Free",
+        "price": "Free (up to 1M MAUs; includes AuthKit, SSO, Directory Sync)"
+      },
+      {
+        "name": "Growth",
+        "price": "$2,500/month per additional million MAUs"
+      },
+      {
+        "name": "Enterprise SSO / Directory Sync",
+        "price": "$125/connection/month (volume discounts up to 60%)"
+      },
+      {
+        "name": "Audit Logs",
+        "price": "$125/month per SIEM connection or $99/month per million events"
+      },
+      {
+        "name": "Custom Domain",
+        "price": "$99/month"
+      },
+      {
+        "name": "Enterprise",
+        "price": "Custom (annual credits, 99.99% SLA, migration support)"
+      }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "links": ["https://workos.com/docs/authkit/email-password"]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Google, Microsoft, GitHub, Apple, GitLab, LinkedIn, Slack, and Xero. Configured per-application in the WorkOS Dashboard.",
+      "links": ["https://workos.com/docs/user-management/social-login"]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "supported",
+      "description": "FIDO2/WebAuthn passkeys supported as both first and second factor via AuthKit. Passkeys satisfy MFA requirements since they require biometric or device PIN verification. Progressive enrollment prompts password users to register a passkey on next sign-in. Passkeys are bound to the custom domain; only available through AuthKit hosted UI.",
+      "links": ["https://workos.com/docs/authkit/passkeys"]
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Magic Auth sends a six-digit one-time code to the user's email inbox. Codes expire after 10 minutes. Configurable via WorkOS Dashboard and customizable email templates.",
+      "links": ["https://workos.com/docs/authkit/magic-auth"]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "not_supported",
+      "description": "WorkOS does not support SMS-based passwordless authentication. By design, SMS is excluded because it is a phishable authentication method."
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "not_supported",
+      "description": "WorkOS Magic Auth uses a six-digit OTP code sent by email, not a clickable magic link. Clickable link-based authentication is not available."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "WorkOS requires authenticated user identity. Anonymous or guest session flows are not a built-in feature."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "Time-based OTP via any TOTP-compatible authenticator app (Google Authenticator, Authy, etc.). Configurable and resettable via the User Security Widget.",
+      "links": ["https://workos.com/docs/user-management/mfa"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "not_supported",
+      "description": "WorkOS only supports TOTP (time-based OTP). Counter-based HOTP is not available."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "supported",
+      "description": "Roaming FIDO2 security keys (YubiKey, etc.) supported as a second factor through the WebAuthn/Passkeys implementation.",
+      "links": ["https://workos.com/docs/authkit/passkeys"]
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "supported",
+      "description": "WebAuthn/Passkeys satisfy both first and second factor requirements. Platform authenticators (Face ID, Touch ID, Windows Hello) and roaming security keys are supported.",
+      "links": ["https://workos.com/docs/authkit/passkeys"]
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "not_supported",
+      "description": "Email OTP is available as a first-factor passwordless method (Magic Auth), but not as a standalone MFA second factor."
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "not_supported",
+      "description": "WorkOS explicitly does not offer SMS MFA by design, citing SMS as a phishable authentication method that weakens the authentication chain.",
+      "links": [
+        "https://workos.com/blog/passkeys-stop-ai-phishing-mfa-fallbacks"
+      ]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "supported",
+      "description": "Backup codes generated at MFA enrollment for account recovery when the primary MFA device is unavailable.",
+      "links": ["https://workos.com/docs/user-management/mfa"]
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "not_supported",
+      "description": "WorkOS does not have a proprietary push notification MFA app. Passkeys provide a comparable user experience for tap-to-approve flows."
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "not_supported",
+      "description": "WorkOS does not offer risk-based or adaptive MFA. Authentication policies are configured statically per application."
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "not_supported",
+      "description": "No native Cisco Duo MFA integration. WorkOS supports Duo as an Enterprise SSO identity provider (SAML/OIDC), but not as a Duo-specific second-factor provider."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "not_supported",
+      "description": "WorkOS does not have a built-in step-up authentication mechanism. Re-authentication flows would need to be implemented at the application layer."
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "WorkOS acts as an OIDC provider via WorkOS Connect. Supports authorization code flow with PKCE, token introspection, and standard discovery.",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "WorkOS can act as a SAML 2.0 Identity Provider through WorkOS Connect, in addition to supporting SAML as a Service Provider (Enterprise SSO). Supports both SP-initiated and IdP-initiated flows.",
+      "links": ["https://workos.com/docs/sso"]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "description": "WorkOS does not support WS-Federation. Microsoft Entra ID and ADFS are supported via SAML 2.0 and OIDC connections."
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant for service-to-service authentication. M2M tokens support API authorization for backend services and agentic workflows.",
+      "links": [
+        "https://workos.com/docs/reference/user-management/authentication"
+      ]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Per-organization OIDC SSO connections for enterprise customers. Supports Okta, Google, PingIdentity, Generic OIDC, and many others. IT admins can self-configure connections via the Admin Portal.",
+      "links": ["https://workos.com/docs/sso"]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "Per-organization SAML 2.0 SSO connections. Supports Okta, Azure AD, ADFS, Google Workspace, JumpCloud, OneLogin, PingFederate, and 20+ enterprise IdPs. SP-initiated and IdP-initiated flows supported. Admin Portal enables self-service setup.",
+      "links": ["https://workos.com/docs/sso"]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "not_supported",
+      "description": "WorkOS does not support native LDAP or Active Directory protocol. On-premises AD is integrated via SCIM provisioning or SAML/OIDC federation, not direct LDAP."
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID (Azure AD) supported as both an SSO provider (SAML/OIDC federation) and a Directory Sync source via SCIM.",
+      "links": ["https://workos.com/docs/directory-sync"]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Bulk user creation and import via the User Management API. Migration tooling supports importing users at scale from external systems.",
+      "links": ["https://workos.com/docs/user-management/migrate-users"]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "supported",
+      "description": "Import users with existing password hashes during migration. Supported algorithms include bcrypt, scrypt, argon2i, argon2id, MD5, SHA-1, and PBKDF2.",
+      "links": ["https://workos.com/docs/user-management/migrate-users"]
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "supported",
+      "description": "Export users via the User Management API with pagination and filtering support.",
+      "links": ["https://workos.com/docs/reference/user-management/user"]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "partial",
+      "description": "Individual user update and delete operations are supported via the API. No dedicated bulk batch endpoint; bulk operations require iterating through the API."
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "User import API supports upsert semantics for migration scenarios.",
+      "links": ["https://workos.com/docs/user-management/migrate-users"]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "unknown"
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "not_supported",
+      "description": "MFA enrollments (TOTP secrets, WebAuthn credentials) cannot be imported. Users must re-enroll MFA after migrating to WorkOS."
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "supported",
+      "description": "Directory Sync: enterprise identity providers (Okta, Microsoft Entra ID, Google Workspace, Workday, JumpCloud, and any SCIM 2.0-compliant directory) push user and group changes to WorkOS via SCIM 2.0.",
+      "links": ["https://workos.com/docs/directory-sync"]
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "not_supported",
+      "description": "WorkOS does not push user changes to downstream third-party applications as a SCIM client. WorkOS delivers directory sync events to your application via webhooks and the Events API."
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "supported",
+      "description": "Directory Group sync is supported. Group membership changes from enterprise IdPs are delivered via Directory Sync events and available via the Groups API.",
+      "links": ["https://workos.com/docs/directory-sync"]
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "supported",
+      "description": "Just-in-time user provisioning creates WorkOS user records on first SSO login without pre-provisioning via Directory Sync.",
+      "links": ["https://workos.com/docs/sso"]
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "supported",
+      "description": "WorkOS provides migration tooling for gradual user migration from legacy systems, including password hash import and API-driven user creation that avoids forced password resets.",
+      "links": ["https://workos.com/docs/user-management/migrate-users"]
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "AuthKit provides a built-in User Security Widget for end-user MFA management and account security settings. Profile management available via AuthKit hosted UI.",
+      "links": ["https://workos.com/docs/authkit/overview"]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "supported",
+      "description": "Multiple authentication methods (social, enterprise SSO, passkeys) can be linked to a single user account.",
+      "links": ["https://workos.com/docs/user-management"]
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "Users can be deactivated via the User Management API to prevent all sign-in.",
+      "links": ["https://workos.com/docs/reference/user-management/user"]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Custom user-editable metadata stored per user via the User Management API.",
+      "links": ["https://workos.com/docs/user-management"]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "supported",
+      "description": "Application-managed, non-user-editable metadata on user objects via the API.",
+      "links": ["https://workos.com/docs/user-management"]
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "supported",
+      "description": "Metadata limits are documented in the WorkOS developer reference.",
+      "links": ["https://workos.com/docs/reference/user-management/user"]
+    },
+    {
+      "identifier": "user_search",
+      "status": "supported",
+      "description": "Search and filter users by email, organization, and other attributes via the User Management API.",
+      "links": ["https://workos.com/docs/reference/user-management/user"]
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Role-based access control via the Roles API. Roles can be assigned to users within organizations, and WorkOS FGA extends this with hierarchical resource-scoped permissions.",
+      "links": ["https://workos.com/docs/user-management/roles"]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "supported",
+      "description": "Organizations are a first-class B2B multi-tenancy primitive in WorkOS. Each organization can have dedicated SSO connections, Directory Sync, domain verification, member management, and Admin Portal access.",
+      "links": ["https://workos.com/docs/user-management/organizations"]
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "supported",
+      "description": "Password strength and complexity requirements configurable per application via the WorkOS Dashboard.",
+      "links": ["https://workos.com/docs/authkit/email-password"]
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "supported",
+      "description": "Username and email format restrictions configurable per application.",
+      "links": ["https://workos.com/docs/user-management"]
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "partial",
+      "description": "PassKey progressive enrollment prompts users to adopt stronger authentication on subsequent sign-ins. Full progressive profiling forms for collecting arbitrary user attributes are not a built-in feature."
+    },
+    {
+      "identifier": "abac",
+      "status": "not_supported",
+      "description": "WorkOS does not have a built-in ABAC policy engine. Attribute-based rules can be implemented at the application level using user metadata from WorkOS."
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "WorkOS FGA extends RBAC with hierarchical, resource-scoped access control. Subjects (users/groups), resources (workspace, project, document), and privileges (roles/permissions) support inheritance down the resource hierarchy, sharing conceptual similarities with Zanzibar-style ReBAC.",
+      "links": ["https://workos.com/docs/fga"]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "OAuth 2.0 scopes and permissions for API access control via WorkOS Connect. M2M Client Credentials flow for backend service authorization.",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "supported",
+      "links": ["https://workos.com/security"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "unknown",
+      "links": ["https://trust.workos.com"]
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "supported",
+      "description": "WorkOS can sign Business Associate Agreements (BAAs) for customers under enterprise plans.",
+      "links": ["https://workos.com/security"]
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown",
+      "links": ["https://trust.workos.com"]
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown",
+      "links": ["https://trust.workos.com"]
+    },
+    {
+      "identifier": "fedramp",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "User data exportable via the User Management API for GDPR portability requests.",
+      "links": ["https://workos.com/docs/reference/user-management/user"]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "supported",
+      "description": "Users can be permanently deleted via the User Management API to satisfy GDPR right to erasure.",
+      "links": ["https://workos.com/docs/reference/user-management/user"]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "not_supported",
+      "description": "WorkOS does not have a built-in consent management or privacy consent feature. OAuth 2.0 scopes provide basic consent screens for WorkOS Connect applications."
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "partial",
+      "description": "WorkOS infrastructure is primarily US-based. Personal data transferred outside the EEA is stored in the US. BYOK Vault allows encryption keys to remain in specific cloud regions (AWS KMS, Azure Key Vault, Google Cloud KMS).",
+      "values": ["US"],
+      "links": ["https://workos.com/legal/data-processing-addendum"]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "not_supported",
+      "description": "WorkOS is a SaaS-only platform with no self-hosted or on-premises deployment option."
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Audit Logs product captures authentication and administrative events with configurable retention. Available as a separate paid add-on ($99/month per million events).",
+      "links": ["https://workos.com/docs/audit-logs"]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "supported",
+      "description": "Audit Logs can be streamed to external SIEM systems. $125/month per SIEM connection.",
+      "links": ["https://workos.com/docs/audit-logs"]
+    },
+    {
+      "identifier": "security_center",
+      "status": "not_supported",
+      "description": "WorkOS does not provide a dedicated threat monitoring dashboard. Security analytics are available via Radar reports and the Audit Logs product."
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "All data encrypted at rest. WorkOS Vault uses envelope encryption with Data Encryption Keys (DEK) and Key Encryption Keys (KEK).",
+      "links": ["https://workos.com/security"]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "All endpoints enforced over TLS. SPF, DKIM, and DMARC configured automatically for email authentication.",
+      "links": ["https://workos.com/security"]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "supported",
+      "description": "WorkOS Vault supports Bring Your Own Key (BYOK). Customers provide encryption keys managed in AWS KMS, Azure Key Vault, or Google Cloud KMS. WorkOS access is scoped and auditable.",
+      "links": ["https://workos.com/docs/vault/byok"]
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "supported",
+      "description": "WorkOS Radar provides bot, fraud, and abuse detection for authentication flows. First 1,000 checks included free; $100/month per 50,000 additional checks.",
+      "links": ["https://workos.com/docs/radar"]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "supported",
+      "description": "Automatic account lockout and rate limiting on authentication endpoints to prevent brute force attacks.",
+      "links": ["https://workos.com/docs/authkit"]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "supported",
+      "description": "WorkOS Radar detects and throttles suspicious sign-in attempts from anomalous IP addresses as part of fraud protection.",
+      "links": ["https://workos.com/docs/radar"]
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "unknown"
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "WorkOS does not provide dark web credential monitoring."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "unknown"
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "not_supported",
+      "description": "WorkOS does not expose device fingerprinting as a standalone feature. Radar handles bot and fraud detection at the network/request level."
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "supported",
+      "description": "Admin Portal supports per-organization branding. AuthKit supports application-level branding customization (logo, colors, domain).",
+      "links": ["https://workos.com/docs/admin-portal/custom-branding"]
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "MFA enforcement can be configured per organization, requiring enterprise users to complete MFA based on their organization's policy.",
+      "links": ["https://workos.com/docs/user-management/organizations"]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "AuthKit provides a fully hosted and customizable login UI (logo, colors, background image, custom domain). Handles all authentication flows including social login, passkeys, and Enterprise SSO.",
+      "links": ["https://workos.com/docs/authkit/hosted-ui"]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "partial",
+      "description": "AuthKit is primarily a hosted-redirect login experience. Embedding components directly in app UIs requires custom implementation using the WorkOS User Management API.",
+      "links": ["https://workos.com/docs/authkit"]
+    },
+    {
+      "identifier": "white_label",
+      "status": "supported",
+      "description": "Custom domain ($99/month) and full branding customization (logo, colors, background) removes WorkOS branding from the AuthKit login experience.",
+      "links": ["https://workos.com/docs/user-management/branding"]
+    },
+    {
+      "identifier": "localization",
+      "status": "partial",
+      "description": "AuthKit UI supports some localization capabilities. Full multi-language i18n support is not prominently documented.",
+      "links": ["https://workos.com/docs/authkit"]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "supported",
+      "description": "AuthKit provides a hosted login UI with ready-to-use components for all authentication flows. Framework-specific integration guides available for Next.js, Remix, Astro, and others.",
+      "links": ["https://workos.com/docs/authkit"]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "WorkOS Dashboard provides analytics for authentication events, active users, and SSO/Directory Sync connection activity.",
+      "links": ["https://workos.com/docs"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "supported",
+      "description": "Official SDKs for Node.js/TypeScript, Python, Ruby, Go, PHP, Java, and .NET. Framework-specific quickstarts for Next.js, Remix, Astro, Express, Laravel, Django, Rails, and more.",
+      "links": ["https://workos.com/docs"]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "Comprehensive REST API for managing users, organizations, SSO connections, directory sync, roles, and all WorkOS resources.",
+      "links": ["https://workos.com/docs/reference"]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "supported",
+      "description": "WorkOS enforces rate limits on authentication API endpoints with documented limits per endpoint.",
+      "links": ["https://workos.com/docs/reference"]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Webhooks deliver real-time events for authentication, user lifecycle, directory sync, and SSO changes to external endpoints. Events API provides pull-based event retrieval.",
+      "links": ["https://workos.com/docs/events"]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "WorkOS does not provide a managed serverless runtime for hooks. Webhooks are dispatched to customer-hosted endpoints, which can be implemented in any language."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Custom domain for AuthKit login pages and authentication endpoints. Required for passkeys in production. Available as a paid add-on at $99/month.",
+      "links": ["https://workos.com/docs/user-management/branding"]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "not_supported",
+      "description": "WorkOS does not provide an official CLI for managing or deploying WorkOS configuration as code."
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "partial",
+      "description": "A community-maintained Terraform provider exists (osodevops/workos) supporting organization, user, SSO, and webhook management. No official WorkOS-published provider.",
+      "links": [
+        "https://registry.terraform.io/providers/osodevops/workos/latest"
+      ]
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "not_supported",
+      "description": "WorkOS does not support custom database connections or scripts for delegating authentication to a legacy credential store."
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "WorkOS pushes real-time events (authentication, directory sync, SSO lifecycle) to configured webhook endpoints with signature verification.",
+      "links": ["https://workos.com/docs/events"]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "AuthKit hosted login page supports full visual customization: logo, background image, brand colors, and custom CSS via the WorkOS Dashboard.",
+      "links": ["https://workos.com/docs/user-management/branding"]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "partial",
+      "description": "WorkOS sends Magic Auth OTP emails automatically. Custom email templates are supported, but routing through a custom SMTP relay is not natively configurable.",
+      "links": ["https://workos.com/docs/authkit/magic-auth"]
+    },
+    {
+      "identifier": "email_templates",
+      "status": "supported",
+      "description": "Customizable email templates for Magic Auth OTP, MFA enrollment, and other transactional emails via the WorkOS Dashboard.",
+      "links": ["https://workos.com/docs/authkit/magic-auth"]
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "supported",
+      "description": "Custom claims can be added to WorkOS Connect access tokens and ID tokens via token configuration.",
+      "links": ["https://workos.com/docs/authkit/connect/oauth"]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported",
+      "description": "WorkOS does not provide a visual no-code authentication flow builder. Flows are configured via the Dashboard and API."
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "not_supported",
+      "description": "WorkOS does not offer document-based identity verification or biometric liveness checks."
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported",
+      "description": "WorkOS does not support W3C Verifiable Credentials or decentralized identity (DID) standards."
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported",
+      "description": "WorkOS does not include built-in billing or subscription management integration."
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "partial",
+      "description": "WorkOS Pipes provides app and agent integrations for AI workflows. M2M Client Credentials tokens support service-to-service and agent authentication. Dedicated MCP server authentication features are in early development.",
+      "links": ["https://workos.com/docs"]
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "partial",
+      "description": "No direct vendor claim of PQC TLS support, but WorkOS's published subprocessor list names Cloudflare, Inc. alongside AWS, and WorkOS's public API (api.workos.com) responds with 'server: cloudflare' and a cf-ray header, confirming Cloudflare fronts WorkOS's API traffic. Cloudflare enabled hybrid PQC key exchange by default for TLS 1.3 in 2023-2024 - infra-inherited, not a WorkOS-specific commitment.",
+      "links": ["https://trust.workos.com/subprocessors"]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence WorkOS supports ML-DSA, SLH-DSA, or FN-DSA for JWT/SSO token signing."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No dedicated PQC roadmap found. A WorkOS blog post about NIST standards mentions quantum computing once, in passing, as an example of a future threat NIST is addressing generally - no WorkOS-specific commitment, timeline, or crypto-agility claim.",
+      "links": ["https://workos.com/blog/what-is-nist"]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
+    }
+  ]
+}
