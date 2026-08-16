@@ -1,0 +1,296 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Gluu",
+  "abstract": "Gluu's Auth Server, part of the open-source Janssen Project (Linux Foundation, Apache 2.0), is a comprehensive OAuth 2.0 and OpenID Connect implementation historically known as the Gluu Server, now also distributed commercially as Gluu Flex.",
+  "identifier": "gluu",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/gluu.svg"
+  },
+  "website": "https://gluu.org",
+  "license": "Apache 2.0",
+  "nationality": "USA",
+  "github": "https://github.com/JanssenProject/jans",
+  "featureList": [
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/tokens/oauth-refresh-tokens/"
+      ]
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/oauth-features/token-exchange/"
+      ]
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/oauth-features/device-grant/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "supported",
+      "description": "JWT bearer grant type is one of the grant types configurable at the token endpoint.",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "password_grant",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "supported",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "supported",
+      "description": "Supports both plain and S256 code challenge methods.",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/oauth-features/pkce/"
+      ]
+    },
+    {
+      "identifier": "par_extension",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/oauth-features/par/"
+      ]
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "supported",
+      "description": "Rich Authorization Requests via the authorization_details parameter.",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/authz-details/"
+      ]
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/authorization/"
+      ]
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/authorization/"
+      ]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "supported",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "supported",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "supported",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/oauth-features/device-grant/"
+      ]
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "supported",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "supported",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/authorization/"
+      ]
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/authorization/"
+      ]
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/authorization/"
+      ]
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented as a supported prompt value."
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/client-management/client-authn/"
+      ]
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/client-management/client-authn/"
+      ]
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/client-management/client-authn/"
+      ]
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/client-management/client-authn/"
+      ]
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/client-management/client-authn/"
+      ]
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "supported",
+      "description": "Mutual TLS client authentication, referenced via the mtlsTokenEndpoint configuration property.",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/endpoints/token/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/v1.7.0/janssen-server/auth-server/endpoints/client-registration/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "supported",
+      "links": [
+        "https://docs.jans.io/v1.7.0/janssen-server/auth-server/endpoints/client-registration/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "supported",
+      "description": "Refresh tokens rotate on use; the refreshTokenExtendLifetimeOnRotation property controls whether lifetime extends on rotation.",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/tokens/oauth-refresh-tokens/"
+      ]
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "not_supported"
+    },
+    {
+      "identifier": "dpop",
+      "status": "supported",
+      "description": "DPoP proof-of-possession at the application layer, including dpop_jkt authorization code binding and DPoP-Nonce replay mitigation.",
+      "links": [
+        "https://docs.jans.io/head/janssen-server/auth-server/oauth-features/dpop/"
+      ]
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "supported",
+      "description": "Auth Server targets OpenID FAPI OpenID Provider conformance profiles.",
+      "links": ["https://docs.jans.io/head/janssen-server/auth-server/"]
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "unknown",
+      "description": "FAPI-CIBA/advanced profile is referenced in documentation goals; certification status is not published."
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "unknown",
+      "description": "Not documented as certified; core building blocks (PAR, DPoP, JAR, mTLS) are implemented."
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "unknown"
+    },
+    {
+      "identifier": "jarm",
+      "status": "unknown",
+      "description": "JWT Secured Authorization Response Mode is not documented as a supported response mode."
+    }
+  ]
+}

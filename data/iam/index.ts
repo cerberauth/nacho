@@ -79,6 +79,7 @@ import microsoftEntraId from './microsoft-entra-id.json'
 import firebaseAuth from './firebase-auth.json'
 import frontegg from './frontegg.json'
 import fusionauth from './fusionauth.json'
+import gluu from './gluu.json'
 import kinde from './kinde.json'
 import okta from './okta.json'
 import keycloak from './keycloak.json'
@@ -107,6 +108,7 @@ export {
   firebaseAuth,
   frontegg,
   fusionauth,
+  gluu,
   kinde,
   keycloak,
   okta,
@@ -347,6 +349,7 @@ export const providers: IAMProvider[] = [
   firebaseAuth,
   frontegg,
   fusionauth,
+  gluu,
   kinde,
   keycloak,
   okta,
