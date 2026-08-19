@@ -1,0 +1,257 @@
+{
+  "$schema": "https://schemas.cerberauth.com/openid/draft/2024-09/provider.schema.json",
+  "name": "Evidian",
+  "abstract": "Evidian Web Access Manager, part of Evidian's Web Access Management and Identity Governance suite from France (Eviden/Atos Group), includes an OAuth 2.0 Authorization Server and can act as both an OpenID Connect and SAML 2.0 Identity Provider for web application SSO, identity federation, and API access control.",
+  "identifier": "evidian",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/evidian.svg"
+  },
+  "website": "https://www.evidian.com",
+  "license": "Proprietary",
+  "nationality": "France",
+  "featureList": [
+    {
+      "identifier": "implicit_grant",
+      "status": "supported",
+      "description": "OAuth 2.0 Implicit grant is documented as a supported grant type.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "authorization_code_grant",
+      "status": "supported",
+      "description": "OAuth 2.0 Authorization grant (authorization code flow) is documented as a supported grant type.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "pkce_extension",
+      "status": "unknown",
+      "description": "PKCE (RFC 7636) is not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "par_extension",
+      "status": "unknown",
+      "description": "Pushed Authorization Requests (RFC 9126) are not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "rar_extension",
+      "status": "unknown",
+      "description": "Rich Authorization Requests (RFC 9396) are not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "jar_extension",
+      "status": "unknown",
+      "description": "JWT Secured Authorization Requests (RFC 9101) are not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "client_credentials_grant",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant is documented as a supported grant type.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "password_grant",
+      "status": "not_supported",
+      "description": "Resource Owner Password Credentials grant is not among the grant types documented for Web Access Manager's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "refresh_token_grant",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:token-exchange",
+      "status": "unknown",
+      "description": "OAuth 2.0 Token Exchange (RFC 8693) is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:device_code",
+      "status": "not_supported",
+      "description": "Device Authorization Grant (RFC 8628) is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "urn:openid:params:grant-type:ciba",
+      "status": "not_supported",
+      "description": "Client-Initiated Backchannel Authentication (CIBA) is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:jwt-bearer",
+      "status": "unknown",
+      "description": "JWT Bearer grant type (RFC 7523) is not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "urn:ietf:params:oauth:grant-type:saml2-bearer",
+      "status": "partial",
+      "description": "Web Access Manager documents \"SAML Token Translation\" between SAML assertions and OAuth tokens, which overlaps with SAML 2.0 Bearer grant (RFC 7522) functionality, though standard-flow conformance is not explicitly confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "authorization_endpoint",
+      "status": "supported",
+      "description": "Implied by documented OAuth 2.0 Authorization Server and OpenID Connect Identity Provider roles.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "token_endpoint",
+      "status": "supported",
+      "description": "Implied by documented OAuth 2.0 Authorization Server and OpenID Connect Identity Provider roles.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "userinfo_endpoint",
+      "status": "unknown",
+      "description": "Not explicitly documented, though implied by Web Access Manager's OpenID Connect Identity Provider role."
+    },
+    {
+      "identifier": "token_revocation_endpoint",
+      "status": "unknown",
+      "description": "Token revocation (RFC 7009) is not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "token_introspection_endpoint",
+      "status": "unknown",
+      "description": "Web Access Manager documents API Gateway/bearer token authentication, but standard RFC 7662 token introspection is not explicitly confirmed."
+    },
+    {
+      "identifier": "device_authorization_endpoint",
+      "status": "not_supported",
+      "description": "Device Authorization Grant is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "openid_connect_discovery_endpoint",
+      "status": "unknown",
+      "description": "A /.well-known/openid-configuration discovery document is not referenced in Evidian's public product documentation."
+    },
+    {
+      "identifier": "oauth_authorization_server_metadata_endpoint",
+      "status": "unknown",
+      "description": "OAuth Authorization Server metadata (RFC 8414) is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "none_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OpenID Connect implementation."
+    },
+    {
+      "identifier": "login_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OpenID Connect implementation."
+    },
+    {
+      "identifier": "consent_prompt",
+      "status": "unknown",
+      "description": "Web Access Manager documents a consent management feature, but the OIDC prompt=consent parameter specifically is not confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "select_account_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OpenID Connect implementation."
+    },
+    {
+      "identifier": "create_prompt",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OpenID Connect implementation."
+    },
+    {
+      "identifier": "none_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "client_secret_basic_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "client_secret_post_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "client_secret_jwt_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "private_key_jwt_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "tls_client_auth_token_endpoint_auth",
+      "status": "unknown",
+      "description": "Web Access Manager documents X.509v3 certificate authentication for users, but mutual TLS client authentication (RFC 8705) at the token endpoint is not explicitly confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "dynamic_client_registration",
+      "status": "not_supported",
+      "description": "Dynamic Client Registration (RFC 7591) is not documented. OAuth/OIDC clients are configured via the administration console."
+    },
+    {
+      "identifier": "dynamic_client_registration_management",
+      "status": "not_supported",
+      "description": "Dynamic Client Registration Management (RFC 7592) is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "refresh_token_rotation",
+      "status": "unknown",
+      "description": "Not explicitly documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "refresh_token_rotation_grace_period",
+      "status": "unknown"
+    },
+    {
+      "identifier": "rp_initiated_logout",
+      "status": "unknown",
+      "description": "Web Access Manager documents Single Sign-On/logout across protected applications at the gateway level, but an OIDC end_session_endpoint conforming to RP-Initiated Logout 1.0 is not explicitly confirmed."
+    },
+    {
+      "identifier": "dpop",
+      "status": "not_supported",
+      "description": "Demonstrating Proof of Possession (RFC 9449) is not documented for Evidian's OAuth 2.0 Authorization Server."
+    },
+    {
+      "identifier": "fapi_1_0_baseline",
+      "status": "not_supported",
+      "description": "No FAPI 1.0 Baseline certification or conformance is documented."
+    },
+    {
+      "identifier": "fapi_1_0_advanced",
+      "status": "not_supported",
+      "description": "No FAPI 1.0 Advanced certification or conformance is documented."
+    },
+    {
+      "identifier": "fapi_2_0_security_profile",
+      "status": "not_supported",
+      "description": "No FAPI 2.0 Security Profile certification or conformance is documented."
+    },
+    {
+      "identifier": "fapi_2_0_message_signing",
+      "status": "not_supported",
+      "description": "No FAPI 2.0 Message Signing support is documented."
+    },
+    {
+      "identifier": "jarm",
+      "status": "not_supported",
+      "description": "JWT Secured Authorization Response Mode is not documented for Evidian's OAuth 2.0 Authorization Server."
+    }
+  ]
+}

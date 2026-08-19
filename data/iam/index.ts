@@ -75,6 +75,7 @@ import curity from './curity.json'
 import cyberark from './cyberark.json'
 import descope from './descope.json'
 import duende from './duende.json'
+import evidian from './evidian.json'
 import microsoftEntraId from './microsoft-entra-id.json'
 import firebaseAuth from './firebase-auth.json'
 import frontegg from './frontegg.json'
@@ -94,7 +95,6 @@ import supertokens from './supertokens.json'
 
 export {
   iamFeatures,
-
   auth0,
   authelia,
   authlete,
@@ -104,6 +104,7 @@ export {
   cyberark,
   descope,
   duende,
+  evidian,
   microsoftEntraId,
   firebaseAuth,
   frontegg,
@@ -345,6 +346,7 @@ export const providers: IAMProvider[] = [
   cyberark,
   descope,
   duende,
+  evidian,
   microsoftEntraId,
   firebaseAuth,
   frontegg,
