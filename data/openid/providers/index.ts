@@ -50,6 +50,7 @@ import clerk from './clerk.json'
 import curity from './curity.json'
 import cyberArk from './cyberark.json'
 import duende from './duende.json'
+import evidian from './evidian.json'
 import frontegg from './frontegg.json'
 import fusionauth from './fusionauth.json'
 import gluu from './gluu.json'
@@ -65,7 +66,6 @@ import zitadel from './zitadel.json'
 
 export {
   openIDConnectFeatures,
-
   auth0,
   authelia,
   authlete,
@@ -73,6 +73,7 @@ export {
   curity,
   cyberArk,
   duende,
+  evidian,
   frontegg,
   fusionauth,
   gluu,
@@ -224,6 +225,7 @@ export const providers: OpenIDConnectProvider[] = [
   curity,
   cyberArk,
   duende,
+  evidian,
   frontegg,
   fusionauth,
   gluu,

@@ -1,0 +1,757 @@
+{
+  "$schema": "https://schemas.cerberauth.com/content/draft/2024-09/features.schema.json",
+  "name": "Evidian",
+  "abstract": "Enterprise Web Access Management (WAM) and Identity Governance and Administration (IGA) suite from France, part of the Eviden (Atos Group) cybersecurity portfolio. Flagship products include Web Access Manager (reverse-proxy Web SSO with SAML/OIDC/OAuth 2.0 federation), Identity Governance and Administration (provisioning, role management, access certification), Authentication Manager (smart card, OTP, biometric, and passwordless strong authentication for PCs), Enterprise SSO, and Orbion (cloud IDaaS). CSPN certified (French ANSSI scheme) and carries the \"Cybersecurity Made in Europe\" label. Available on-premises, in private cloud, or as SaaS via Orbion; pricing is quote-based.",
+  "identifier": "evidian",
+  "icon": {
+    "contentUrl": "https://nacho.cerberauth.com/logos/evidian.svg"
+  },
+  "website": "https://www.evidian.com",
+  "license": "Proprietary",
+  "nationality": "France",
+  "pricing": {
+    "hasFreeTier": false,
+    "freeTierLimit": "Orbion (IDaaS) offers a free trial; on-premises Web Access Manager, IGA, and Authentication Manager have no free tier",
+    "pricingModel": "custom",
+    "pricingUrl": "https://www.evidian.com/company/get-a-quote/",
+    "plans": [
+      {
+        "name": "Web Access Manager / IGA / Authentication Manager / Enterprise SSO",
+        "price": "Custom (quote based on user count, servers, and modules)"
+      },
+      {
+        "name": "Orbion (IDaaS)",
+        "price": "Custom (free trial available)"
+      }
+    ]
+  },
+  "featureList": [
+    {
+      "identifier": "username_and_password_authentication",
+      "status": "supported",
+      "description": "Form-based authentication against LDAP, Active Directory, or ADLDS directories, with basic HTTP authentication also supported.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "social_sign_in_authentication",
+      "status": "supported",
+      "description": "Web Access Manager includes built-in social authentication for Facebook, Twitter, Google, LinkedIn, and Microsoft.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "passkey_authentication",
+      "status": "unknown",
+      "description": "FIDO2/WebAuthn passkey support is not documented on Evidian's public product pages. Authentication Manager documents smart card, USB token, and biometric fingerprint methods instead."
+    },
+    {
+      "identifier": "email_passwordless_authentication",
+      "status": "supported",
+      "description": "Email OTP delivery is a documented authentication method in Web Access Manager and Authentication Manager.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "phone_passwordless_authentication",
+      "status": "supported",
+      "description": "SMS OTP delivery and RADIUS OTP token authentication are documented as primary authentication methods.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "magic_link_authentication",
+      "status": "not_supported",
+      "description": "Evidian delivers one-time codes via SMS/email OTP rather than a clickable magic sign-in link."
+    },
+    {
+      "identifier": "anonymous_authentication",
+      "status": "not_supported",
+      "description": "Evidian's WAM and IGA products require an identified directory user; anonymous or guest session flows are not a documented feature."
+    },
+    {
+      "identifier": "totp_mfa",
+      "status": "supported",
+      "description": "OTP token authentication via RADIUS and Evidian Authentication Manager, compatible with hardware and software time-based OTP tokens.",
+      "links": ["https://www.evidian.com/products/authentication-manager/"]
+    },
+    {
+      "identifier": "hotp_mfa",
+      "status": "unknown",
+      "description": "OTP token support is documented generically; counter-based HOTP is not distinguished from TOTP in public documentation."
+    },
+    {
+      "identifier": "u2f_mfa",
+      "status": "unknown",
+      "description": "Authentication Manager documents smart cards, USB tokens, and certificates as strong-authentication factors, but standards-based FIDO U2F security key support is not explicitly documented."
+    },
+    {
+      "identifier": "webauthn_mfa",
+      "status": "unknown",
+      "description": "WebAuthn is not documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "email_code_mfa",
+      "status": "supported",
+      "description": "Chainable multi-step, multi-factor authentication policies allow email OTP to be used as a second factor.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "phone_code_mfa",
+      "status": "supported",
+      "description": "SMS OTP can be chained as a second factor via Web Access Manager's multi-step authentication policies.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "recovery_code_mfa",
+      "status": "unknown",
+      "description": "Backup/recovery codes are not documented as a standalone feature. Self-service password reset uses security questions and QR codes instead."
+    },
+    {
+      "identifier": "push_notification_mfa",
+      "status": "supported",
+      "description": "Push notification via a mobile app is a documented authentication method in Web Access Manager.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "adaptive_mfa",
+      "status": "partial",
+      "description": "Access Control Zones and dynamic, attribute-based user groups allow contextual authentication policies, but a named risk-scoring or adaptive-MFA engine is not documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "cisco_duo_mfa",
+      "status": "unknown",
+      "description": "No native Cisco Duo integration is documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "step_up_authentication",
+      "status": "supported",
+      "description": "Chainable multi-step, multi-factor authentication policies combined with per-URL Access Control Zones support step-up authentication for sensitive resources.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "oidc_protocol",
+      "status": "supported",
+      "description": "Web Access Manager acts as an OpenID Connect Identity Provider and can delegate authentication to external OpenID Connect providers.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "saml2_protocol",
+      "status": "supported",
+      "description": "SAML 2.0 supported both as Service Provider and Identity Provider, including inter-domain federation and IdP proxy with assertion rewriting.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "ws_federation_protocol",
+      "status": "not_supported",
+      "description": "WS-Federation is not among the protocols documented for Web Access Manager, which lists SAML, OpenID Connect, OAuth, and Kerberos."
+    },
+    {
+      "identifier": "machine_to_machine",
+      "status": "supported",
+      "description": "OAuth 2.0 Client Credentials grant is documented as a supported grant type on Web Access Manager's OAuth 2.0 Authorization Server.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "oidc_federation",
+      "status": "supported",
+      "description": "Authentication can be delegated to external identity providers via OpenID Connect, in addition to acting as an IdP proxy with token/protocol translation.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "saml_federation",
+      "status": "supported",
+      "description": "SAML Inter-Domain authentication and IdP proxy with assertion rewriting enable federation with trusted SAML domains, partners, and affiliates.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "active_directory_ldap",
+      "status": "supported",
+      "description": "Native support for multiple LDAP, Active Directory, and ADLDS directories as authentication sources.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "azure_ad_integration",
+      "status": "supported",
+      "description": "Microsoft Entra ID / Azure AD is reachable via standard LDAP/AD directory integration, and Evidian IGA ships a dedicated Office 365 connector for provisioning.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "bulk_user_import",
+      "status": "supported",
+      "description": "Evidian IGA provides standard connectors for LDAP, SQL, CSV, Active Directory, SAP, Salesforce, Google Apps, ServiceNow, and Office 365, with reconciliation processes for provisioning.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "password_hash_import",
+      "status": "unknown",
+      "description": "Password hash import is not documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "bulk_user_export",
+      "status": "partial",
+      "description": "IGA connectors support bidirectional reconciliation with source/target systems, but a dedicated bulk export API is not explicitly documented.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "bulk_user_update_delete",
+      "status": "supported",
+      "description": "IGA provisioning workflows cover user lifecycle changes and deprovisioning across connected target applications.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "upsert_on_import",
+      "status": "supported",
+      "description": "IGA reconciliation processes are designed to create-or-update user records from source systems.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "legacy_username_import",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "mfa_enrollment_import",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "inbound_scim_provisioning",
+      "status": "unknown",
+      "description": "Evidian IGA's provisioning connectors (LDAP, SQL, CSV, SAP, Salesforce, ServiceNow, Office 365) are documented, but SCIM 2.0 is not explicitly referenced as a supported protocol."
+    },
+    {
+      "identifier": "outbound_scim_provisioning",
+      "status": "unknown",
+      "description": "SCIM is not explicitly documented; IGA provisioning relies on proprietary connectors rather than a confirmed SCIM client role."
+    },
+    {
+      "identifier": "scim_groups",
+      "status": "unknown",
+      "description": "SCIM is not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "jit_provisioning",
+      "status": "unknown",
+      "description": "Not explicitly documented; IGA documentation emphasizes workflow-driven provisioning rather than just-in-time federation provisioning."
+    },
+    {
+      "identifier": "lazy_migration",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "self_service_profile_management",
+      "status": "supported",
+      "description": "Web Access Manager includes user self-enrollment, self-management, and a profile management portal; Self Service Password Reset (SSPR) covers Windows password self-service.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "account_linking",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "user_blocking",
+      "status": "supported",
+      "description": "IGA user lifecycle management covers account deactivation and deprovisioning across connected applications.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "user_metadata",
+      "status": "supported",
+      "description": "Dynamic user groups based on user attributes, and a profile management portal, indicate custom user attribute storage.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "app_metadata",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "metadata_size_limits",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "user_search",
+      "status": "unknown",
+      "description": "Not explicitly documented in public marketing/specification pages, though user search is expected in the administration console."
+    },
+    {
+      "identifier": "rbac",
+      "status": "supported",
+      "description": "Evidian IGA implements an extended Role-Based Access Control model incorporating organizations, contexts, and business rules.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "organizations_multitenancy",
+      "status": "unknown",
+      "description": "Not explicitly documented; multi-tenancy for the Orbion cloud offering is not detailed publicly."
+    },
+    {
+      "identifier": "password_strength_policy",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "username_restrictions",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "progressive_profiling",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "abac",
+      "status": "partial",
+      "description": "Dynamic user groups based on attributes and dynamic authorization evaluation provide attribute-based access control elements, though no formal named ABAC framework is documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "fine_grained_authorization",
+      "status": "supported",
+      "description": "Access Control Zones provide per-URL, dynamically evaluated authorization policies for protected web applications.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "api_authorization",
+      "status": "supported",
+      "description": "Web Access Manager includes an OAuth 2.0 Authorization Server and API Gateway with bearer token authentication for protecting backend APIs.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "soc2_type2",
+      "status": "unknown",
+      "description": "No SOC 2 Type II certification is publicly disclosed. Evidian instead advertises CSPN certification (French ANSSI scheme).",
+      "links": ["https://www.evidian.com/products/enterprise-sso/"]
+    },
+    {
+      "identifier": "iso_27001",
+      "status": "unknown",
+      "description": "Not publicly disclosed on Evidian's product or trust pages."
+    },
+    {
+      "identifier": "hipaa_baa",
+      "status": "unknown",
+      "description": "A HIPAA white paper is published, but a Business Associate Agreement offering is not explicitly documented."
+    },
+    {
+      "identifier": "pci_dss",
+      "status": "unknown",
+      "description": "Not publicly disclosed on Evidian's product or trust pages."
+    },
+    {
+      "identifier": "csa_star",
+      "status": "unknown",
+      "description": "Not publicly disclosed on Evidian's product or trust pages."
+    },
+    {
+      "identifier": "fedramp",
+      "status": "not_supported",
+      "description": "Evidian is a France/EU-focused vendor; FedRAMP authorization is not disclosed or applicable to its published market focus."
+    },
+    {
+      "identifier": "gdpr_data_export",
+      "status": "supported",
+      "description": "Web Access Manager and IGA include GDPR compliance assistance, with a dedicated Personal Data governance reporting area in IGA.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "gdpr_right_to_erasure",
+      "status": "partial",
+      "description": "GDPR compliance reporting and personal-data governance workflows exist in IGA, but a dedicated right-to-erasure API/workflow is not separately documented.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "consent_management",
+      "status": "supported",
+      "description": "Consent management is a documented feature of Web Access Manager, alongside GDPR compliance assistance.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "region_deployment",
+      "status": "supported",
+      "description": "On-premises and private cloud deployment give operators full control over data residency and region; Orbion cloud regions are not detailed publicly.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "private_cloud_deployment",
+      "status": "supported",
+      "description": "Cross-platform (Linux, Windows) on-premises deployment and private cloud protection for VMware vCloud Directory are documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "audit_log_retention",
+      "status": "supported",
+      "description": "Complete activity recording in W3C Extended Log File Format with configurable retention policies; IGA adds centralized audit consolidation.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "audit_log_streaming",
+      "status": "partial",
+      "description": "Evidian Analytics & Intelligence consolidates audit data for anomaly detection and compliance reporting; a documented SIEM streaming integration is not confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "security_center",
+      "status": "supported",
+      "description": "Evidian Analytics & Intelligence provides dashboards (application accesses, audit activity, password changes, authentication activity) for trend and risk analysis.",
+      "links": ["https://www.evidian.com/products/web-sso/"]
+    },
+    {
+      "identifier": "encryption_at_rest",
+      "status": "supported",
+      "description": "AES encryption is used for sensitive configuration and authentication data.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "encryption_in_transit",
+      "status": "supported",
+      "description": "SSL/HTTPS and LDAPS are supported with configurable strong cipher algorithms.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "customer_managed_keys",
+      "status": "unknown",
+      "description": "On-premises deployment gives operators full control of key material in principle, but a documented BYOK/HSM integration is not confirmed."
+    },
+    {
+      "identifier": "bot_detection",
+      "status": "partial",
+      "description": "DoS protection can be configured at the reverse-proxy level, but a dedicated CAPTCHA or bot-detection feature is not documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "brute_force_protection",
+      "status": "partial",
+      "description": "DoS protection configuration is documented at the reverse-proxy level; a dedicated account lockout/throttling policy is not separately documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "suspicious_ip_throttling",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "breached_password_detection",
+      "status": "not_supported",
+      "description": "No known-breach password checking (e.g. Have I Been Pwned-style) is documented."
+    },
+    {
+      "identifier": "credential_guard",
+      "status": "not_supported",
+      "description": "No dark web credential monitoring feature is documented."
+    },
+    {
+      "identifier": "tenant_acl",
+      "status": "partial",
+      "description": "Access Control Zones provide service-isolation and per-URL access policies, which can function as a coarse-grained ACL mechanism, though a dedicated IP allowlist/blocklist feature is not separately documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "device_fingerprinting",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "per_org_branding",
+      "status": "partial",
+      "description": "Login and portal templates are customizable per deployment, but distinct per-organization/per-tenant branding is not explicitly documented."
+    },
+    {
+      "identifier": "per_org_mfa_policy",
+      "status": "supported",
+      "description": "Authentication policies, including chained multi-factor requirements, are configurable per Access Control Zone / protected application.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "hosted_login_page",
+      "status": "supported",
+      "description": "Web Access Manager's reverse-proxy gateway serves a hosted login portal for protected web applications.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "embedded_login",
+      "status": "supported",
+      "description": "CIAM Connect SDK (JavaScript) allows embedding authentication flows directly into custom application UIs.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "white_label",
+      "status": "partial",
+      "description": "Login page templates are customizable, but full white-labeling (complete removal of Evidian branding) is not explicitly documented."
+    },
+    {
+      "identifier": "localization",
+      "status": "supported",
+      "description": "Form-based authentication supports customizable, multi-language login pages.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "prebuilt_ui_components",
+      "status": "partial",
+      "description": "CIAM Connect SDK (JavaScript) supports embedding authentication, but a broader library of prebuilt UI components is not documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "login_analytics",
+      "status": "supported",
+      "description": "Evidian Analytics & Intelligence and IGA reporting cover authentication activity dashboards, alongside optional Google Analytics integration.",
+      "links": ["https://www.evidian.com/products/web-sso/"]
+    },
+    {
+      "identifier": "sdk_coverage",
+      "status": "partial",
+      "description": "CIAM Connect SDK (JavaScript) and a custom-authentication SDK are documented; broader multi-language SDK coverage is not confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "management_api",
+      "status": "supported",
+      "description": "RESTful Administration API is documented for Web Access Manager configuration and management.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "authentication_api_rate_limits",
+      "status": "partial",
+      "description": "DoS protection configuration is documented at the reverse-proxy level; explicit per-endpoint authentication API rate limit documentation is not confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "actions_extensibility",
+      "status": "supported",
+      "description": "Post-Authentication and Post-Authorization hooks, plus custom authentication via SDK, provide extensibility points.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "typescript_in_actions",
+      "status": "not_supported",
+      "description": "Extensibility is via server-side hooks and a custom-authentication SDK; a managed TypeScript/JavaScript runtime for server-side logic is not documented."
+    },
+    {
+      "identifier": "custom_domain",
+      "status": "supported",
+      "description": "Self-hosted reverse-proxy deployment supports multiple contact points and any custom domain, with X.509v3 wildcard certificate support.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "deploy_cli",
+      "status": "partial",
+      "description": "The RESTful Administration API allows scripted configuration management, but a dedicated deploy CLI is not documented.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification-22/"
+      ]
+    },
+    {
+      "identifier": "terraform_provider",
+      "status": "not_supported",
+      "description": "No official or community Terraform provider is documented for Evidian products."
+    },
+    {
+      "identifier": "custom_database_connections",
+      "status": "supported",
+      "description": "IGA connects to LDAP, SQL, CSV, SAP, Salesforce, Google Apps, ServiceNow, and Office 365 as source/target systems; WAM supports multiple directory backends.",
+      "links": [
+        "https://www.evidian.com/products/identity-governance-and-administration-iga-10/"
+      ]
+    },
+    {
+      "identifier": "native_webhooks",
+      "status": "supported",
+      "description": "URL notification webhooks in JSON format are documented as part of Web Access Manager's API capabilities.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "universal_login_customization",
+      "status": "supported",
+      "description": "Form detection and automatic completion, plus customizable multi-language login templates, allow login page customization.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "custom_email_provider",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "email_templates",
+      "status": "unknown",
+      "description": "Email OTP delivery is documented, but customizable email template management is not explicitly confirmed."
+    },
+    {
+      "identifier": "custom_oidc_claims",
+      "status": "partial",
+      "description": "HTTP header injection with user attributes is documented at the gateway level; a dedicated OIDC ID token/claims customization API is not separately confirmed.",
+      "links": [
+        "https://www.evidian.com/products/web-sso/web-access-manager-specification/"
+      ]
+    },
+    {
+      "identifier": "nocode_flow_builder",
+      "status": "not_supported",
+      "description": "Authentication and authorization policies are configured via the administration console rather than a visual no-code flow builder."
+    },
+    {
+      "identifier": "identity_proofing",
+      "status": "unknown",
+      "description": "Not explicitly documented on Evidian's public product pages."
+    },
+    {
+      "identifier": "decentralized_identity",
+      "status": "not_supported",
+      "description": "No support for W3C Verifiable Credentials or decentralized identity (DID) standards is documented."
+    },
+    {
+      "identifier": "billing_integration",
+      "status": "not_supported",
+      "description": "No built-in billing or subscription management integration is documented."
+    },
+    {
+      "identifier": "agentic_identity",
+      "status": "not_supported",
+      "description": "No AI agent identity features are documented. Evidian's product line targets traditional workforce (B2E) and customer (B2C/CIAM) access management."
+    },
+    {
+      "identifier": "pq_hybrid_key_exchange",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "No public statement specific to the Evidian IAM/CIAM product regarding TLS post-quantum hybrid key exchange was found on evidian.com or in Eviden press materials.",
+      "links": ["https://www.evidian.com/"]
+    },
+    {
+      "identifier": "pq_signature_algorithms",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public documentation found showing Evidian IAM supports PQC signature algorithms (ML-DSA/Dilithium, SLH-DSA/SPHINCS+, Falcon) for SAML assertions, JWTs, or OIDC tokens."
+    },
+    {
+      "identifier": "pq_migration_roadmap",
+      "category": "post_quantum_cryptography",
+      "status": "unknown",
+      "description": "Parent company Eviden (Atos) runs a company-wide quantum-safe security practice (post-quantum-ready digital identity announced April 2023, PQC HSMaaS launched October 2024), but the named 'post-quantum ready' products are IDnomic PKI and Cryptovision GreenShield - not Evidian IAM/CIAM itself. No publication commits the Evidian IAM product to a PQC migration roadmap, so without product evidence status is unknown.",
+      "links": [
+        "https://eviden.com/insights/press-releases/eviden-to-launch-first-post-quantum-ready-solutions-for-digital-identity/",
+        "https://eviden.com/solutions/cybersecurity/post-quantum-security-pqc/"
+      ]
+    },
+    {
+      "identifier": "pq_token_encryption",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found that the provider supports ML-KEM or HPKE (RFC 9180) for encrypting JWE tokens, SAML assertions, or user secrets."
+    },
+    {
+      "identifier": "pq_mtls_certificates",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of post-quantum or hybrid X.509 digital certificate support for mTLS client authentication or federation endpoints."
+    },
+    {
+      "identifier": "pq_stateful_hash_signatures",
+      "category": "post_quantum_cryptography",
+      "status": "not_supported",
+      "description": "No public evidence found of NIST SP 800-208 stateful hash-based signature scheme support (LMS/HSS, XMSS)."
+    }
+  ]
+}
