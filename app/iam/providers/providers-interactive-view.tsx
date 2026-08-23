@@ -146,7 +146,7 @@ export function IAMProvidersInteractiveView({
     return raw ? decodeAnswers(raw) : null
   }, [searchParams])
 
-  const [wizardOpen, setWizardOpen] = useState(!savedAnswers)
+  const [wizardOpen, setWizardOpen] = useState(false)
   const [wizardStep, setWizardStep] = useState(0)
   const [draftAnswers, setDraftAnswers] = useState<SurveyAnswers>(
     savedAnswers ?? {},
@@ -421,14 +421,7 @@ export function IAMProvidersInteractiveView({
 
   return (
     <>
-      <Dialog
-        open={wizardOpen}
-        onOpenChange={(open) => {
-          if (!open && savedAnswers) setWizardOpen(false)
-          else if (!open && !savedAnswers) setWizardOpen(false)
-          else setWizardOpen(open)
-        }}
-      >
+      <Dialog open={wizardOpen} onOpenChange={setWizardOpen}>
         <DialogContent className="max-w-4xl h-[80vh] flex flex-col">
           <DialogHeader>
             <DialogTitle>{dict.title}</DialogTitle>
