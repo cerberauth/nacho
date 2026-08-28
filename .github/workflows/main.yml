@@ -15,6 +15,8 @@ jobs:
     steps:
       - name: Checkout 🛎
         uses: actions/checkout@v7
+        with:
+          submodules: true
 
       - name: Setup node env 🏗
         uses: actions/setup-node@v7
@@ -50,9 +52,6 @@ jobs:
         include:
           - name: OpenID Connect Providers
             files: 'data/openid/providers/*.json'
-          - name: OpenID Connect Applications
-            files: 'data/templates/*.json'
-            schema: https://schemas.cerberauth.com/templates/draft/2024-09/application.schema.json
 
     steps:
       - name: Checkout 🛎

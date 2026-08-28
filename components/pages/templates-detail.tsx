@@ -9,7 +9,6 @@ import { TokenAuthenticationMethodListItem } from '@/components/token-authentica
 import { TemplateCard } from '@/components/template-card'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
-import { templates } from '@/data/templates'
 import {
   applicationTypeName,
   grantTypeName,
@@ -188,6 +187,22 @@ export async function TemplateDetailPage({
           ))}
         </ul>
       </div>
+
+      {template.clientId && (
+        <div className="space-y-4">
+          <h2 className="text-2xl font-semibold">{t.cimdTitle}</h2>
+          <p>{t.cimdIntro}</p>
+          <Link
+            href={template.clientId}
+            className="underline plausible-event-name=Template+CIMD+Document+Link+Click"
+            rel="nofollow noopener"
+            target="_blank"
+          >
+            <strong>{t.cimdDocument}</strong>
+            <ArrowUpRight className="mx-1 w-4 h-4 inline-block" />
+          </Link>
+        </div>
+      )}
 
       <div className="space-y-4">
         <h2 className="text-2xl font-semibold">{t.relatedTemplates}</h2>

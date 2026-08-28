@@ -1,0 +1,3 @@
+[submodule "data/cimd"]
+	path = data/cimd
+	url = https://github.com/cerberauth/cimd.git
