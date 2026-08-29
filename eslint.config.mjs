@@ -29,6 +29,7 @@ const eslintConfig = [
       'next-env.d.ts',
       '.open-next/**',
       '.wrangler/**',
+      'data/cimd/**',
     ],
   },
 ]

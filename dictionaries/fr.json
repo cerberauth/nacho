@@ -125,7 +125,10 @@
     "grantTypesIntro": "{name} peut utiliser un ou plusieurs des grant types OAuth suivants :",
     "authMethodsTitle": "Quelles méthodes d'authentification du token endpoint pour {name} ?",
     "authMethodsIntro": "{name} peut utiliser une ou plusieurs des méthodes d'authentification OAuth suivantes :",
-    "relatedTemplates": "Modèles associés"
+    "relatedTemplates": "Modèles associés",
+    "cimdTitle": "Document de métadonnées Client ID OAuth (CIMD)",
+    "cimdIntro": "Ce modèle est disponible en tant que document de métadonnées Client ID (CIMD) selon le draft-ietf-oauth-client-id-metadata-document-02 :",
+    "cimdDocument": "Document CIMD"
   },
   "useCases": {
     "title": "Cas d'utilisation OpenID Connect et IAM",

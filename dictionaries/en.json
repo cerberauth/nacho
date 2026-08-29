@@ -125,7 +125,10 @@
     "grantTypesIntro": "{name} can use one or many of the following OAuth Grant Types:",
     "authMethodsTitle": "Which Token Endpoint Authentication Methods for {name}?",
     "authMethodsIntro": "{name} can use one or many of the following OAuth Token Endpoint Authentication Methods:",
-    "relatedTemplates": "Related Templates"
+    "relatedTemplates": "Related Templates",
+    "cimdTitle": "OAuth Client ID Metadata Document (CIMD)",
+    "cimdIntro": "This template is available as an OAuth Client ID Metadata Document (CIMD) according to draft-ietf-oauth-client-id-metadata-document-02:",
+    "cimdDocument": "CIMD Document"
   },
   "useCases": {
     "title": "OpenID Connect and IAM Use Cases",
