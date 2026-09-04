@@ -52,7 +52,7 @@
     "remark-frontmatter": "5.0.0",
     "remark-gfm": "4.0.1",
     "slugify": "1.6.9",
-    "sugar-high": "1.2.1",
+    "sugar-high": "2.3.0",
     "tailwind-merge": "3.6.0",
     "zod": "4.4.3"
   },
